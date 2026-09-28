@@ -1,0 +1,3 @@
+﻿ticker,filing_date,accession_number,primary_document,error
+VMRK,2025-02-13,0000950170-25-019894,eqr-20241231.htm,"HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out."
+ES,2021-02-17,0000072741-21-000005,es-20201231.htm,"HTTPSConnectionPool(host='www.sec.gov', port=443): Read timed out."

@@ -1,0 +1,108 @@
+﻿ticker,filing_date,report_date,accession_number,company_name,section,status,words,start_line,end_line,method,boundary_method,score,input_file
+V,2017-11-17,2017-09-30,140316117000044,VISA INC.,item_1a,boundary_uncertain,0,4843.0,,explicit_item,uncertain,26.0,data\processed\10k\V\000140316117000044.txt
+FDX,2025-07-21,2025-05-31,104891125000011,FEDEX CORP,item_1a,boundary_uncertain,13901,523.0,766.0,explicit_item,structural_item,29.0,data\processed\10k\FDX\000104891125000011.txt
+FDX,2021-07-19,2021-05-31,156459021037031,FEDEX CORP,item_1a,boundary_uncertain,10035,537.0,682.0,explicit_item,structural_item,29.0,data\processed\10k\FDX\000156459021037031.txt
+FDX,2020-07-20,2020-05-31,156459020032775,FEDEX CORP,item_1a,too_short,26,597.0,600.0,explicit_item,structural_item,22.0,data\processed\10k\FDX\000156459020032775.txt
+FDX,2019-07-16,2019-05-31,156459019025065,FEDEX CORP,item_1a,too_short,29,494.0,497.0,explicit_item,structural_item,22.0,data\processed\10k\FDX\000156459019025065.txt
+FDX,2018-07-16,2018-05-31,156459018016877,FEDEX CORP,item_1a,too_short,30,472.0,476.0,explicit_item_fallback,structural_item,20.0,data\processed\10k\FDX\000156459018016877.txt
+FDX,2017-07-17,2017-05-31,95012317006152,FEDEX CORP,item_1a,too_short,31,460.0,465.0,explicit_item,structural_item,22.0,data\processed\10k\FDX\000095012317006152.txt
+FDX,2016-07-18,2016-05-31,119312516650267,FEDEX CORP,item_1a,too_short,29,843.0,846.0,explicit_item,structural_item,22.0,data\processed\10k\FDX\000119312516650267.txt
+LNG,2022-02-24,2021-12-31,357022000024,"Cheniere Energy, Inc.",item_1a,boundary_uncertain,8007,432.0,624.0,explicit_item,structural_item,28.0,data\processed\10k\LNG\000000357022000024.txt
+CAH,2024-08-14,2024-06-30,72137124000056,CARDINAL HEALTH INC,item_1a,heading_not_found,0,,,,,,data\processed\10k\CAH\000072137124000056.txt
+V,2024-11-13,2024-09-30,140316124000058,VISA INC.,item_7,boundary_uncertain,15923,463.0,1276.0,explicit_item_fallback,item_7a_start,27.0,data\processed\10k\V\000140316124000058.txt
+COST,2017-10-18,2017-09-03,90983217000014,COSTCO WHOLESALE CORP /NEW,item_7,heading_not_found,0,,,,,,data\processed\10k\COST\000090983217000014.txt
+COST,2016-10-12,2016-08-28,90983216000032,COSTCO WHOLESALE CORP /NEW,item_7,heading_not_found,0,,,,,,data\processed\10k\COST\000090983216000032.txt
+SCCO,2021-02-26,2020-12-31,155837021001894,SOUTHERN COPPER CORP/,item_7,boundary_uncertain,47737,469.0,5224.0,explicit_item_fallback,item_7a_start,27.0,data\processed\10k\SCCO\000155837021001894.txt
+WELL,2018-02-28,2017-12-31,76670418000012,WELLTOWER INC.,item_7,boundary_uncertain,34031,163.0,5769.0,title_only,item_7a_start,33.0,data\processed\10k\WELL\000076670418000012.txt
+WELL,2017-02-22,2016-12-31,76670417000012,WELLTOWER INC.,item_7,boundary_uncertain,45058,160.0,6735.0,title_only,item_7a_start,33.0,data\processed\10k\WELL\000076670417000012.txt
+WELL,2016-02-18,2015-12-31,76670416000055,WELLTOWER INC.,item_7,boundary_uncertain,51137,160.0,7440.0,title_only,item_7a_start,33.0,data\processed\10k\WELL\000076670416000055.txt
+FDX,2020-07-20,2020-05-31,156459020032775,FEDEX CORP,item_7,too_short,62,828.0,831.0,explicit_item_fallback,item_8,24.0,data\processed\10k\FDX\000156459020032775.txt
+FDX,2019-07-16,2019-05-31,156459019025065,FEDEX CORP,item_7,too_short,68,767.0,770.0,explicit_item_fallback,item_8,24.0,data\processed\10k\FDX\000156459019025065.txt
+FDX,2018-07-16,2018-05-31,156459018016877,FEDEX CORP,item_7,too_short,68,773.0,776.0,explicit_item_fallback,item_8,24.0,data\processed\10k\FDX\000156459018016877.txt
+FDX,2017-07-17,2017-05-31,95012317006152,FEDEX CORP,item_7,too_short,68,755.0,758.0,explicit_item_fallback,item_8,24.0,data\processed\10k\FDX\000095012317006152.txt
+FDX,2016-07-18,2016-05-31,119312516650267,FEDEX CORP,item_7,too_short,40,1219.0,1222.0,explicit_item_fallback,item_7a_start,21.0,data\processed\10k\FDX\000119312516650267.txt
+TER,2020-03-02,2019-12-31,119312520058676,"TERADYNE, INC",item_7,too_short,14,124.0,125.0,explicit_item,item_7a_start,10.0,data\processed\10k\TER\000119312520058676.txt
+NUE,2019-02-28,2018-12-31,119312519057744,NUCOR CORP,item_7,too_short,41,775.0,778.0,explicit_item_fallback,item_7a_start,24.0,data\processed\10k\NUE\000119312519057744.txt
+NUE,2018-02-28,2017-12-31,119312518064018,NUCOR CORP,item_7,too_short,41,744.0,747.0,explicit_item_fallback,item_7a_start,24.0,data\processed\10k\NUE\000119312518064018.txt
+NUE,2017-02-28,2016-12-31,119312517062124,NUCOR CORP,item_7,too_short,39,723.0,726.0,explicit_item_fallback,item_7a_start,24.0,data\processed\10k\NUE\000119312517062124.txt
+NUE,2016-02-26,2015-12-31,119312516481119,NUCOR CORP,item_7,too_short,39,703.0,706.0,explicit_item_fallback,item_7a_start,23.0,data\processed\10k\NUE\000119312516481119.txt
+WAT,2016-02-26,2015-12-31,119312516480594,WATERS CORP /DE/,item_7,heading_not_found,0,,,,,,data\processed\10k\WAT\000119312516480594.txt
+MSCI,2016-02-26,2015-12-31,119312516482334,MSCI Inc.,item_7,boundary_uncertain,43462,409.0,3832.0,explicit_item_fallback,item_7a_start,27.0,data\processed\10k\MSCI\000119312516482334.txt
+CMG,2024-02-08,2023-12-31,156276224000023,CHIPOTLE MEXICAN GRILL INC,item_7,heading_not_found,0,,,,,,data\processed\10k\CMG\000156276224000023.txt
+CMG,2023-02-09,2022-12-31,105809023000010,CHIPOTLE MEXICAN GRILL INC,item_7,too_short,23,111.0,114.0,explicit_item,item_8,13.0,data\processed\10k\CMG\000105809023000010.txt
+CMG,2022-02-11,2021-12-31,105809022000011,CHIPOTLE MEXICAN GRILL INC,item_7,too_short,23,112.0,115.0,explicit_item,item_8,13.0,data\processed\10k\CMG\000105809022000011.txt
+CMG,2021-02-10,2020-12-31,105809021000010,CHIPOTLE MEXICAN GRILL INC,item_7,heading_not_found,0,,,,,,data\processed\10k\CMG\000105809021000010.txt
+CMG,2020-02-05,2019-12-31,105809020000010,CHIPOTLE MEXICAN GRILL INC,item_7,heading_not_found,0,,,,,,data\processed\10k\CMG\000105809020000010.txt
+CMG,2019-02-08,2018-12-31,105809019000007,CHIPOTLE MEXICAN GRILL INC,item_7,heading_not_found,0,,,,,,data\processed\10k\CMG\000105809019000007.txt
+CMG,2018-02-08,2017-12-31,105809018000018,CHIPOTLE MEXICAN GRILL INC,item_7,too_short,23,114.0,117.0,explicit_item,item_8,10.0,data\processed\10k\CMG\000105809018000018.txt
+NTAP,2018-06-19,2018-04-27,156459018015820,"NetApp, Inc.",item_7,heading_not_found,0,,,,,,data\processed\10k\NTAP\000156459018015820.txt
+PAYX,2025-07-11,2025-05-31,95017025095300,PAYCHEX INC,item_7,too_short,14,124.0,125.0,explicit_item,item_7a_start,10.0,data\processed\10k\PAYX\000095017025095300.txt
+PAYX,2024-07-11,2024-05-31,95017024082958,PAYCHEX INC,item_7,too_short,14,123.0,124.0,explicit_item,item_7a_start,10.0,data\processed\10k\PAYX\000095017024082958.txt
+PAYX,2023-07-14,2023-05-31,95017023032988,PAYCHEX INC,item_7,too_short,14,122.0,123.0,explicit_item,item_7a_start,10.0,data\processed\10k\PAYX\000095017023032988.txt
+PAYX,2022-07-15,2022-05-31,95017022012734,PAYCHEX INC,item_7,too_short,14,117.0,118.0,explicit_item,item_7a_start,10.0,data\processed\10k\PAYX\000095017022012734.txt
+PAYX,2021-07-16,2021-05-31,72353121000035,PAYCHEX INC,item_7,too_short,14,117.0,118.0,explicit_item,item_7a_start,10.0,data\processed\10k\PAYX\000072353121000035.txt
+PAYX,2020-07-17,2020-05-31,72353120000048,PAYCHEX INC,item_7,too_short,14,119.0,120.0,explicit_item,item_7a_start,10.0,data\processed\10k\PAYX\000072353120000048.txt
+PAYX,2016-07-22,2016-05-31,72353116000046,PAYCHEX INC,item_7,boundary_uncertain,16229,191.0,1691.0,title_only,item_7a_start,36.0,data\processed\10k\PAYX\000072353116000046.txt
+MLM,2019-02-25,2018-12-31,119312519049961,MARTIN MARIETTA MATERIALS INC,item_7,too_short,95,1545.0,1549.0,explicit_item_fallback,item_7a_start,24.0,data\processed\10k\MLM\000119312519049961.txt
+MLM,2018-02-23,2017-12-31,119312518055887,MARTIN MARIETTA MATERIALS INC,item_7,too_short,86,1574.0,1578.0,explicit_item_fallback,item_7a_start,24.0,data\processed\10k\MLM\000119312518055887.txt
+MLM,2017-02-24,2016-12-31,119312517056282,MARTIN MARIETTA MATERIALS INC,item_7,too_short,86,1537.0,1541.0,explicit_item_fallback,item_7a_start,24.0,data\processed\10k\MLM\000119312517056282.txt
+MLM,2016-02-23,2015-12-31,119312516473754,MARTIN MARIETTA MATERIALS INC,item_7,too_short,89,1446.0,1453.0,explicit_item_fallback,item_7a_start,25.0,data\processed\10k\MLM\000119312516473754.txt
+CCL,2023-01-27,2022-11-30,81509723000012,Carnival Corp Ltd.,item_7,too_short,46,1350.0,1354.0,title_only,item_7a_start,19.0,data\processed\10k\CCL\000081509723000012.txt
+CCL,2022-01-27,2021-11-30,81509722000009,Carnival Corp Ltd.,item_7,too_short,46,1036.0,1040.0,title_only,item_7a_start,19.0,data\processed\10k\CCL\000081509722000009.txt
+CCL,2021-01-26,2020-11-30,81509721000027,Carnival Corp Ltd.,item_7,too_short,89,984.0,990.0,title_only,item_8,20.0,data\processed\10k\CCL\000081509721000027.txt
+CCL,2020-01-28,2019-11-30,81509720000003,Carnival Corp Ltd.,item_7,too_short,46,1135.0,1139.0,title_only,item_7a_start,19.0,data\processed\10k\CCL\000081509720000003.txt
+CCL,2019-01-28,2018-11-30,81509719000004,Carnival Corp Ltd.,item_7,too_short,46,1187.0,1189.0,title_only,item_7a_start,21.0,data\processed\10k\CCL\000081509719000004.txt
+CCL,2018-01-29,2017-11-30,81509718000005,Carnival Corp Ltd.,item_7,too_short,46,1255.0,1257.0,title_only,item_7a_start,21.0,data\processed\10k\CCL\000081509718000005.txt
+CCL,2017-01-30,2016-11-30,81509717000001,Carnival Corp Ltd.,item_7,too_short,46,1421.0,1423.0,title_only,item_7a_start,21.0,data\processed\10k\CCL\000081509717000001.txt
+CCL,2016-01-29,2015-11-30,81509716000030,Carnival Corp Ltd.,item_7,too_short,46,1392.0,1394.0,title_only,item_7a_start,20.0,data\processed\10k\CCL\000081509716000030.txt
+TDY,2025-02-21,2024-12-29,109428525000053,TELEDYNE TECHNOLOGIES INC,item_7,boundary_uncertain,23150,228.0,1177.0,explicit_item_fallback,item_7a_start,24.0,data\processed\10k\TDY\000109428525000053.txt
+ECHO,2025-02-27,2024-12-31,155837025001663,EchoStar CORP,item_7,boundary_uncertain,42166,527.0,2457.0,explicit_item_fallback,item_7a_start,27.0,data\processed\10k\ECHO\000155837025001663.txt
+AWK,2019-02-19,2018-12-31,141063619000041,"American Water Works Company, Inc.",item_7,boundary_uncertain,20251,252.0,821.0,explicit_item,item_7a_start,26.0,data\processed\10k\AWK\000141063619000041.txt
+AWK,2018-02-20,2017-12-31,141063618000076,"American Water Works Company, Inc.",item_7,boundary_uncertain,15011,448.0,807.0,explicit_item,item_7a_start,27.0,data\processed\10k\AWK\000141063618000076.txt
+ORCL,2017-06-27,2017-05-31,119312517214833,ORACLE CORP,item_7a,heading_not_found,0,,,,,,data\processed\10k\ORCL\000119312517214833.txt
+DE,2024-12-12,2024-10-27,155837024016169,DEERE & CO,item_7a,boundary_uncertain,0,2216.0,,heading_pattern,uncertain,37.0,data\processed\10k\DE\000155837024016169.txt
+DE,2023-12-15,2023-10-29,155837023019812,DEERE & CO,item_7a,boundary_uncertain,0,2223.0,,heading_pattern,uncertain,37.0,data\processed\10k\DE\000155837023019812.txt
+DE,2022-12-15,2022-10-30,155837022018703,DEERE & CO,item_7a,boundary_uncertain,0,1599.0,,heading_pattern,uncertain,35.0,data\processed\10k\DE\000155837022018703.txt
+PEP,2025-02-04,2024-12-28,7747625000007,PEPSICO INC,item_7a,too_short,28,3857.0,3858.0,explicit_item,item_8,26.0,data\processed\10k\PEP\000007747625000007.txt
+PEP,2024-02-09,2023-12-30,7747624000008,PEPSICO INC,item_7a,too_short,28,3863.0,3864.0,explicit_item,item_8,25.0,data\processed\10k\PEP\000007747624000008.txt
+PEP,2023-02-09,2022-12-31,7747623000007,PEPSICO INC,item_7a,too_short,28,3894.0,3895.0,explicit_item,item_8,25.0,data\processed\10k\PEP\000007747623000007.txt
+PEP,2022-02-10,2021-12-25,7747622000010,PEPSICO INC,item_7a,too_short,28,3680.0,3681.0,explicit_item,item_8,25.0,data\processed\10k\PEP\000007747622000010.txt
+PEP,2021-02-11,2020-12-26,7747621000007,PEPSICO INC,item_7a,too_short,28,3782.0,3783.0,explicit_item,item_8,26.0,data\processed\10k\PEP\000007747621000007.txt
+PEP,2020-02-13,2019-12-28,7747620000015,PEPSICO INC,item_7a,too_short,28,4525.0,4526.0,explicit_item,item_8,26.0,data\processed\10k\PEP\000007747620000015.txt
+PEP,2019-02-15,2018-12-29,7747619000017,PEPSICO INC,item_7a,too_short,28,4702.0,4703.0,explicit_item,item_8,26.0,data\processed\10k\PEP\000007747619000017.txt
+PEP,2018-02-13,2017-12-30,7747618000012,PEPSICO INC,item_7a,too_short,28,4801.0,4802.0,explicit_item,item_8,26.0,data\processed\10k\PEP\000007747618000012.txt
+PEP,2017-02-15,2016-12-31,7747617000010,PEPSICO INC,item_7a,too_short,28,4827.0,4828.0,explicit_item,item_8,26.0,data\processed\10k\PEP\000007747617000010.txt
+PEP,2016-02-11,2015-12-26,7747616000066,PEPSICO INC,item_7a,too_short,28,4743.0,4744.0,explicit_item,item_8,26.0,data\processed\10k\PEP\000007747616000066.txt
+FDX,2016-07-18,2016-05-31,119312516650267,FEDEX CORP,item_7a,too_short,28,1223.0,1226.0,explicit_item,item_8,23.0,data\processed\10k\FDX\000119312516650267.txt
+TER,2020-03-02,2019-12-31,119312520058676,"TERADYNE, INC",item_7a,too_short,9,126.0,127.0,explicit_item,item_8,9.0,data\processed\10k\TER\000119312520058676.txt
+CAH,2022-08-11,2022-06-30,72137122000058,CARDINAL HEALTH INC,item_7a,boundary_uncertain,16279,836.0,1308.0,heading_pattern,item_8,39.0,data\processed\10k\CAH\000072137122000058.txt
+LYV,2025-02-21,2024-12-31,133525825000028,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1261.0,1262.0,explicit_item,item_8,26.0,data\processed\10k\LYV\000133525825000028.txt
+LYV,2024-02-22,2023-12-31,133525824000017,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1229.0,1230.0,explicit_item,item_8,26.0,data\processed\10k\LYV\000133525824000017.txt
+LYV,2023-02-23,2022-12-31,133525823000014,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1218.0,1219.0,explicit_item,item_8,26.0,data\processed\10k\LYV\000133525823000014.txt
+LYV,2022-02-23,2021-12-31,133525822000019,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1363.0,1364.0,explicit_item,item_8,26.0,data\processed\10k\LYV\000133525822000019.txt
+LYV,2021-03-01,2020-12-31,133525821000009,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1422.0,1423.0,explicit_item,item_8,26.0,data\processed\10k\LYV\000133525821000009.txt
+LYV,2020-02-27,2019-12-31,133525820000028,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1466.0,1467.0,explicit_item,item_8,26.0,data\processed\10k\LYV\000133525820000028.txt
+LYV,2019-02-28,2018-12-31,133525819000024,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1855.0,1856.0,explicit_item,item_8,26.0,data\processed\10k\LYV\000133525819000024.txt
+LYV,2018-02-27,2017-12-31,133525818000023,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1971.0,1972.0,explicit_item,item_8,25.0,data\processed\10k\LYV\000133525818000023.txt
+LYV,2017-02-23,2016-12-31,133525817000031,"Live Nation Entertainment, Inc.",item_7a,too_short,29,1988.0,1989.0,explicit_item,item_8,25.0,data\processed\10k\LYV\000133525817000031.txt
+LYV,2016-02-25,2015-12-31,133525816000167,"Live Nation Entertainment, Inc.",item_7a,too_short,29,2077.0,2078.0,explicit_item,item_8,25.0,data\processed\10k\LYV\000133525816000167.txt
+PAYX,2025-07-11,2025-05-31,95017025095300,PAYCHEX INC,item_7a,too_short,9,126.0,127.0,explicit_item,item_8,9.0,data\processed\10k\PAYX\000095017025095300.txt
+PAYX,2024-07-11,2024-05-31,95017024082958,PAYCHEX INC,item_7a,too_short,9,125.0,126.0,explicit_item,item_8,9.0,data\processed\10k\PAYX\000095017024082958.txt
+PAYX,2023-07-14,2023-05-31,95017023032988,PAYCHEX INC,item_7a,too_short,9,124.0,125.0,explicit_item,item_8,9.0,data\processed\10k\PAYX\000095017023032988.txt
+PAYX,2022-07-15,2022-05-31,95017022012734,PAYCHEX INC,item_7a,too_short,9,119.0,120.0,explicit_item,item_8,9.0,data\processed\10k\PAYX\000095017022012734.txt
+PAYX,2021-07-16,2021-05-31,72353121000035,PAYCHEX INC,item_7a,too_short,9,119.0,120.0,explicit_item,item_8,9.0,data\processed\10k\PAYX\000072353121000035.txt
+PAYX,2020-07-17,2020-05-31,72353120000048,PAYCHEX INC,item_7a,too_short,9,121.0,122.0,explicit_item,item_8,9.0,data\processed\10k\PAYX\000072353120000048.txt
+VMC,2018-02-27,2017-12-31,139600918000011,Vulcan Materials CO,item_7a,boundary_uncertain,395,4744.0,4783.0,explicit_item,item_8,24.0,data\processed\10k\VMC\000139600918000011.txt
+VMC,2017-02-24,2016-12-31,139600917000005,Vulcan Materials CO,item_7a,boundary_uncertain,398,4397.0,4429.0,explicit_item,item_8,24.0,data\processed\10k\VMC\000139600917000005.txt
+VMC,2016-02-25,2015-12-31,139600916000044,Vulcan Materials CO,item_7a,boundary_uncertain,390,3966.0,3983.0,explicit_item,item_8,26.0,data\processed\10k\VMC\000139600916000044.txt
+MTD,2025-02-07,2024-12-31,103764625000012,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,1026.0,1027.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764625000012.txt
+MTD,2024-02-09,2023-12-31,103764624000007,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,937.0,938.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764624000007.txt
+MTD,2023-02-10,2022-12-31,103764623000005,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,934.0,935.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764623000005.txt
+MTD,2022-02-11,2021-12-31,103764622000008,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,917.0,918.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764622000008.txt
+MTD,2021-02-08,2020-12-31,103764621000008,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,1119.0,1120.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764621000008.txt
+MTD,2020-02-07,2019-12-31,103764620000005,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,1542.0,1543.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764620000005.txt
+MTD,2019-02-08,2018-12-31,103764619000010,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,1589.0,1590.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764619000010.txt
+MTD,2018-02-09,2017-12-31,103764618000006,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,1605.0,1606.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764618000006.txt
+MTD,2017-02-02,2016-12-31,103764617000004,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,1620.0,1621.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764617000004.txt
+MTD,2016-02-04,2015-12-31,103764616000043,METTLER TOLEDO INTERNATIONAL INC/,item_7a,too_short,26,1634.0,1635.0,heading_pattern,item_8,21.0,data\processed\10k\MTD\000103764616000043.txt
+CCL,2021-01-26,2020-11-30,81509721000027,Carnival Corp Ltd.,item_7a,boundary_uncertain,0,4144.0,,heading_pattern,uncertain,35.0,data\processed\10k\CCL\000081509721000027.txt

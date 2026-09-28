@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables
+.env
+
+# Raw and processed data
+data/raw/
+data/processed/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+# Extracted 10-K section text
+data/sections/
+data/sections_v2/
+data/sections_v3/
+
+# Event-study temporary/generated long-form data
+data/metadata/event_study/*
+
+# Control-variable SEC cache
+data/metadata/controls/sec_facts_cache/
+
+# Historical/intermediate metadata
+data/metadata/archive/
+
+# Backup metadata files
+data/metadata/*backup*
+
+# Historical/intermediate source versions
+src/archive/
+src/*backup*.py
+src/extract_sections_before_v3.py
+src/extract_sections_v2_2_final_candidate.py
+
+# Historical extraction snapshot
+src/extract_sections_v19_final_20260928_135935.py
+
+# Superseded section metadata
+data/metadata/sections_10k.csv
+data/metadata/sections_10k_v2.csv
+
+# Large regenerable event-study long-form data
+data/metadata/event_study_final/estimation_ar_long.csv
+data/metadata/event_study_final/event_ar_long.csv

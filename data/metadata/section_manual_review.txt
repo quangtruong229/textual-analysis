@@ -1,0 +1,909 @@
+
+====================================================================================================
+ITEM_1A | V | 2017-11-17 | 140316117000044
+status=boundary_uncertain | words=0 | start=4843.0 | end=nan | method=explicit_item | boundary=uncertain | score=26.0
+file=data\processed\10k\V\000140316117000044.txt
+
+--- START: line 4843 ---
+      4839: . Based on management’s assessment, management has concluded that the Company’s internal control over financial reporting was effective as of
+      4840: using the criteria set forth in Internal Control
+      4841: Integrated Framework issued by the Committee of Sponsoring Organizations of the Treadway Commission (2013 framework).
+      4842: Our internal control over financial reporting is designed to provide reasonable, but not absolute, assurance regarding the reliability of financial reporting and the preparation of financial statements in accordance with U.S. generally accepted accounting principles. There are inherent limitations to the effectiveness of any system of internal control over financial reporting. These limitations include the possibility of human error, the circumvention or overriding of the system and reasonable resource constraints. Because of its inherent limitations, our internal control over financial reporting may not prevent or detect misstatements. Projections of any evaluation of effectiveness to future periods are subject to the risks discussed in
+>>>   4843: Item 1A—Risk Factors
+      4844: The effectiveness of our internal control over financial reporting as of
+      4845: , has been audited by KPMG LLP, an independent registered public accounting firm and is included in
+      4846: Item 8
+      4847: Changes in Internal Control over Financial Reporting
+
+--- END: NONE ---
+
+====================================================================================================
+ITEM_1A | FDX | 2025-07-21 | 104891125000011
+status=boundary_uncertain | words=13901 | start=523.0 | end=766.0 | method=explicit_item | boundary=structural_item | score=29.0
+file=data\processed\10k\FDX\000104891125000011.txt
+
+--- START: line 523 ---
+       519: Governance
+       520: The FedEx Board of Directors is comprised of a majority of independent directors and is committed to the highest quality corporate governance and accountability to stockholders. Our Board of Directors periodically reviews all aspects of our governance policies and practices, including our Corporate Governance Guidelines (the “Guidelines”) and our Code of Conduct, in light of best practices and makes whatever changes it deems appropriate to further our longstanding commitment to the highest standards of corporate governance. The Guidelines and the Code of Conduct, which apply to all of our directors, officers, and employees, including our principal executive officer and senior financial officers, are available under the Corporate Governance heading under “Governance”
+       521: -20-
+       522: on the Investor Relations page of our website at investors.fedex.com. We will post under the Corporate Governance heading on the Investor Relations page of our website information regarding any amendment to, or waiver from, the provisions of the Code of Conduct to the extent such disclosure is required.
+>>>    523: ITEM 1A. RISK FACTORS
+       524: In addition to the other information set forth in this Annual Report, you should carefully consider the following factors, which could materially affect our business, results of operations, financial condition, and the price of our common stock. Additional risks not currently known to us or that we currently deem to be immaterial also may materially affect our business, results of operations, financial condition, and the price of our common stock. Although the risks below are organized by headings and each risk is discussed separately, many are interrelated.
+       525: Macroeconomic and Market Risks
+       526: We are directly affected by the state of the global economy and geopolitical developments.
+       527: While macroeconomic risks apply to most companies, we are particularly vulnerable. The transportation industry is highly cyclical and especially susceptible to trends in economic activity. Our primary business is to transport goods, so our business levels are directly tied to the purchase and production of goods and the rate of global trade growth — key macroeconomic measurements influenced by, among other things: inflation and deflation; international trade policies and relations; supply chain disruptions; interest rates and currency exchange rates; labor costs and unemployment levels; fuel and energy prices; inventory levels; spending patterns (including shifts from goods to services and vice versa); disposable income; debt levels; credit availability; political uncertainty; public health crises; and geopolitical tensions or conflicts. When individuals and companies purchase and produce fewer goods, we transport fewer goods, and as companies move manufacturing closer to consumer markets and expand the number of distribution centers, we transport goods shorter distances, which adversely affects our yields and results of operations. Certain manufacturers and retailers are making investments to produce and store goods in closer proximity to supply chains and consumers. Additionally, in 2025, we continued to see customer preference for slower, less costly shipping services and experienced lower fuel surcharges at FedEx Freight and reduced demand surcharges at Federal Express. We expect service mix to shift further toward deferred service offerings in 2026. Further, the scale of our operations and our relatively high fixed-cost structure, particularly with respect to our air network, make it difficult to quickly adjust to match shifting volume levels. For more information, see “Our businesses are capital intensive, and we must make capital decisions based upon projected volume levels.” below.
+
+--- END: line 766 ---
+       762: The CISO,
+       763: -35-
+       764: who has over 25 years of experience at FedEx and has received industry-recognized information security certifications, oversees an information security organization of more than 400 security, risk, and compliance professionals based in the U.S. and internationally across the FedEx enterprise. The leadership team of our information security organization has extensive experience in IT and cybersecurity and possess certifications in cybersecurity and related fields.
+       765: The FedEx Data and Technology Risk Council (“DTRC”), which is sponsored by the CISO, oversees the execution of FedEx’s comprehensive IT risk management program. The DTRC, which receives quarterly reports on FedEx’s IT risk management, is responsible for assessing the overall risk framework on an annual basis, setting acceptable risk tolerance levels, approving risk prioritization and associated risk mitigation activities, and monitoring the changing risk landscape and posture.
+>>>    766: Both our CISO and other members of our cybersecurity leadership team participate in threat intelligence briefings provided by various government and industry entities. Our CISO reports to the Chief Executive Officer, and the FedEx Executive Committee oversees our business risk, with cybersecurity threat risks being a regular topic of discussion. Our cybersecurity incident response plan includes processes for communicating cybersecurity incidents to relevant levels of management, including the DTRC, Executive Committee, the CyTOC, and the full Board of Directors, as appropriate, and consideration of external reporting and disclosure requirements.
+       767: ITEM 2. PROPERTIES
+       768: Federal Express Segment
+       769: Federal Express’s principal owned and leased properties include its aircraft, vehicles, major sorting and handling facilities, administration buildings, FedEx Drop Boxes, and data processing and telecommunications equipment.
+       770: Aircraft and Vehicles
+
+====================================================================================================
+ITEM_1A | FDX | 2021-07-19 | 156459021037031
+status=boundary_uncertain | words=10035 | start=537.0 | end=682.0 | method=explicit_item | boundary=structural_item | score=29.0
+file=data\processed\10k\FDX\000156459021037031.txt
+
+--- START: line 537 ---
+       533: Data Protection
+       534: . Recently, there has been heightened regulatory and enforcement focus on data protection in the U.S. (at both the state and federal level) and abroad. For example, the EU’s General Data Protection Regulation (“GDPR”), which became effective in 2018, greatly increases the jurisdictional reach of EU law and adds a broad array of requirements related to personal data, including individual notice and opt-out preferences and the public disclosure of significant data breaches. Additionally, violations of the GDPR can result in fines of as much as 4% of a company’s annual revenue. Other governments have enacted or are enacting similar data protection laws, including data localization laws that require data to stay within their borders. For more information regarding data protection regulation, see
+       535: “
+       536: Item 1A. Risk Factors” of this Annual Report.
+>>>    537: ITEM 1A. RISK FACTORS
+       538: In addition to the other information set forth in this Annual Report, you should carefully consider the following factors, which could materially affect our business, results of operations, financial condition and the price of our common stock. Additional risks not currently known to us or that we currently deem to be immaterial also may materially affect our business, results of operations, financial condition and the price of our common stock.
+       539: Macroeconomic and Market Risks
+       540: We are directly affected by the state of the global economy and anti-trade measures.
+       541: While macroeconomic risks apply to most companies, we are particularly vulnerable. The transportation industry is highly cyclical and especially susceptible to trends in economic activity. Our primary business is to transport goods, so our business levels are directly tied to the purchase and production of goods — key macroeconomic measurements influenced by, among other things, inflation and deflation, supply chain disruptions, interest rates and currency exchange rates, labor costs, fuel and energy prices, buying patterns, debt levels, credit availability and disposable income. When individuals and companies purchase and produce fewer goods, we transport fewer goods, and as companies move manufacturing closer to consumer markets and expand the number of distribution centers, we transport goods shorter distances. Certain retailers are making investments to house goods in closer proximity to customers in connection with the recent growth in e-commerce demand, and we expect this trend to continue. In addition, we have a relatively high fixed-cost structure, which is difficult to quickly adjust to match shifting volume levels. Moreover, as we continue to grow our international business, we are increasingly affected by the health of the global economy, the rate of growth of global trade, world trade policies, international taxes, government-to-government relations and the typically more volatile economies of emerging markets. For instance, anti-trade and protectionist measures adopted by the U.S. or other countries in which we do business, such as trade controls, tariffs, quotas, embargoes, sanctions, or retaliation by another country against such measures, could result in economic uncertainty and instability, resulting in fewer goods being transported globally.
+
+--- END: line 682 ---
+       678: stockholder activism, which could divert the attention of management and our board of directors from our business, hinder execution of our business strategy, give rise to perceived uncertainties as to our future and cause the price of our common stock to fluctuate significantly;
+       679: constraints, volatility or disruption in the capital markets, our ability to maintain our current credit ratings, commercial paper ratings, and senior unsecured debt and pass-through certificate credit ratings, and our ability to meet credit agreement financial covenants; and
+       680: the alternative interest rates we are able to negotiate with counterparties pursuant to the relevant provisions of our credit agreements following cessation of the publication of the London Interbank Offered Rate in the event the euro interbank offered rate also ceases to exist and we make borrowings under the agreements.
+       681: ITEM 1B. UNRESOLVED STAFF COMMENTS
+>>>    682: None.
+       683: ITEM 2.
+       684: PROPERTIES
+       685: FedEx Express Segment
+       686: FedEx Express’s principal owned and leased properties include its aircraft, vehicles, major sorting and handling facilities, administration buildings, FedEx Drop Boxes and data processing and telecommunications equipment.
+
+====================================================================================================
+ITEM_1A | LNG | 2022-02-24 | 357022000024
+status=boundary_uncertain | words=8007 | start=432.0 | end=624.0 | method=explicit_item | boundary=structural_item | score=28.0
+file=data\processed\10k\LNG\000000357022000024.txt
+
+--- START: line 432 ---
+       428: Available Information
+       429: Our common stock has been publicly traded since March 24, 2003 and is traded on the NYSE American under the symbol “LNG.” Our principal executive offices are located at 700 Milam Street, Suite 1900, Houston, Texas 77002, and our telephone number is (713) 375-5000. Our internet address is www.cheniere.com. We provide public access to our annual reports on Form 10-K, quarterly reports on Form 10-Q, current reports on Form 8-K and amendments to these reports as soon as reasonably practicable after we electronically file those materials with, or furnish those materials to, the SEC under the Exchange Act. These reports may be accessed free of charge through our internet website. We make our website content available for informational purposes only. The website should not be relied upon for investment purposes and is not incorporated by reference into this Form 10-K.
+       430: We will also make available to any stockholder, without charge, copies of our annual report on Form 10-K as filed with the SEC. For copies of this, or any other filing, please contact: Cheniere Energy, Inc., Investor Relations Department, 700 Milam Street Suite 1900, Houston, Texas 77002 or call (713) 375-5000. The SEC maintains an internet site (www.sec.gov) that contains reports, proxy and information statements and other information regarding issuers.
+       431: Additionally, we encourage you to review our Corporate Responsibility Report (located on our internet site at www.cheniere.com), for more detailed information regarding our Human Capital programs and initiatives, as well as our response to ESG issues. Nothing on our website, including our Corporate Responsibility Report or sections thereof, shall be deemed incorporated by reference into this Annual Report.
+>>>    432: ITEM 1A. RISK FACTORS
+       433: The following are some of the important factors that could affect our financial performance or could cause actual results to differ materially from estimates or expectations contained in our forward-looking statements. We may encounter risks in addition to those described below. Additional risks and uncertainties not currently known to us, or that we currently deem to be immaterial, may also impair or adversely affect our business, contracts, financial condition, operating results, cash flows, liquidity and prospects.
+       434: The risk factors in this report are grouped into the following categories:
+       435: Risks Relating to Our Financial Matters
+       436: ;
+
+--- END: line 624 ---
+       620: Additions or changes in tax laws and regulations could potentially affect our financial results.
+       621: We are subject to various types of tax arising from normal business operations in the jurisdictions in which we operate and transact. Any changes to local, domestic or international tax laws and regulations, or their interpretation and application, including those with retroactive effect, could affect our tax obligations, profitability and cash flows in the future.
+       622: Additionally, there have been a number of tax reform proposals introduced in Congress recently that have proposed applying a corporate level tax to oil and gas master limited partnerships, such as CQP. If such a proposal were to be enacted, it would represent a substantial departure from current tax law, subjecting CQP to an entity level corporate tax, which could adversely impact the cash distributions that we receive from CQP. In addition, tax rates in the various jurisdictions in which we operate may change significantly due to political or economic factors beyond our control. We continuously monitor and assess proposed tax legislation that could negatively impact our business.
+       623: ITEM 1B. UNRESOLVED STAFF COMMENTS
+>>>    624: None.
+       625: ITEM 3. LEGAL PROCEEDINGS
+       626: We may in the future be involved as a party to various legal proceedings, which are incidental to the ordinary course of business. We regularly analyze current information and, as necessary, provide accruals for probable liabilities on the eventual disposition of these matters.
+       627: LDEQ Matter
+       628: Certain of our subsidiaries are in discussions with the LDEQ to resolve self-reported deviations arising from operation of the Sabine Pass LNG terminal and the commissioning of the SPL Project, and relating to certain requirements under its Title V Permit. The matter involves deviations self-reported to LDEQ pursuant to the Title V Permit and covering the time period from January 1, 2012 through March 25, 2016. On April 11, 2016, certain of our subsidiaries received a Consolidated Compliance Order and Notice of Potential Penalty (the “Compliance Order”) from LDEQ covering deviations self-reported during that time period. Certain of our subsidiaries continue to work with LDEQ to resolve the matters identified in the Compliance Order. We do not expect that any ultimate sanction will have a material adverse impact on our financial results.
+
+====================================================================================================
+ITEM_1A | CAH | 2024-08-14 | 72137124000056
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\CAH\000072137124000056.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+   120: This report (including information incorporated by reference) includes forward-looking statements addressing expectations, prospects, estimates and other matters that are dependent upon future events or developments. Many forward-looking statements appear in MD&A and Risk Factors, but there are others throughout this report, which may be identified by words such as “expect,” “anticipate,” “intend,” “plan,” “believe,” “will,” “should,” “could,” “would,” “project,” “continue,” “likely,” and similar expressions, and include statements reflecting future results or guidance, statements of outlook and expense accruals. These matters are subject to risks and uncertainties that could cause actual results to differ materially from those projected, anticipated or implied. The most significant of these risks and uncertainties are described in “Risk Factors” in this report and in Exhibit 99.1 to the Form 10-K included in this report. Forward-looking statements in this report speak only as of the date of this document. Except to the extent required by applicable law, we undertake no obligation to update or revise any forward-looking statement.
+  1164: To date, we are not aware of risks from cybersecurity threats, including as a result of any previous cybersecurity incidents, that have materially affected or are reasonably likely to materially affect Cardinal Health. However, the scope and impact of any future incident cannot be predicted. For more information, please see Item 1A “Risk Factors” for the risk factor entitled “Our business and results of operations could be adversely affected if we experience a material cyber-attack or other systems breach.”
+  1909: The assets acquired and liabilities assumed in a business combination, including identifiable intangible assets, are recorded at their estimated fair values as of the acquisition date. The excess of the purchase price over the estimated fair value of the identifiable net assets acquired is recorded as goodwill. We base the fair values of identifiable intangible assets on detailed valuations that require management to make significant judgments, estimates and assumptions. Critical estimates and assumptions include: expected future cash flows for customer relationships, trade names, developed technology and other identifiable intangible assets; discount rates that reflect the risk factors associated with future cash flows; and estimates of useful lives. When an acquisition involves contingent consideration, we recognize a liability equal to the fair value of the contingent consideration obligation at the acquisition date. The estimate of fair value of a contingent consideration obligation requires subjective assumptions to be made regarding future business results, discount rates, discount periods and probabilities assigned to various potential business result scenarios. See
+
+====================================================================================================
+ITEM_7 | V | 2024-11-13 | 140316124000058
+status=boundary_uncertain | words=15923 | start=463.0 | end=1276.0 | method=explicit_item_fallback | boundary=item_7a_start | score=27.0
+file=data\processed\10k\V\000140316124000058.txt
+
+--- START: line 463 ---
+       459: data and cybersecurity practices and potentially change them when necessary or appropriate. We also may need to provide increased care in our data management, governance and quality practices, particularly as it relates to the use of data in products leveraging AI.
+       460: We may be subject to tax examinations or disputes, or changes in tax laws.
+       461: The application of tax laws requires significant judgment and can be subject to uncertainty and differing interpretations. We are currently under examination by, or in disputes with, the U.S. Internal Revenue Service as well as tax authorities in other jurisdictions, and we may be subject to additional examinations or disputes in the future. We exercise significant judgment and make estimates that we believe to be reasonable in calculating our worldwide provision for income taxes and other tax liabilities. However, relevant tax authorities may disagree with our estimates, interpretations or tax treatment of certain material items. Failure to sustain our position in these matters could adversely affect our cash flows and financial position.
+       462: In addition, changes in existing laws in the U.S. or foreign jurisdictions, including unilateral actions of foreign jurisdictions to introduce digital services taxes, or changes resulting from the Organization for Economic Cooperation and Development’s proposals for modernizing the international tax system, including the introduction of a global minimum tax with widespread implementation by member countries expected by 2025, may also materially affect our effective tax rate and could increase our tax payments. Please see
+>>>    463: Item 7
+       464: Note 19—Income Taxes
+       465: Litigation Risks
+       466: We may be adversely affected by the outcome of litigation or investigations.
+       467: We are involved in numerous litigation matters, investigations, and proceedings asserted by civil litigants, governments, and enforcement bodies investigating or alleging, among other things, violations of competition and antitrust law, consumer protection law, privacy law and intellectual property law (these are referred to as “actions” in this section). Details of the most significant actions we face are described more fully in
+
+--- END: line 1276 ---
+      1272: The determination of our provision for income taxes and income tax assets and liabilities requires significant judgment, the use of estimates and the interpretation and application of accounting principles and tax laws.
+      1273: Assumptions and judgment.
+      1274: We have various tax filing positions with regard to the timing and amount of income, including the allocation of income among various tax jurisdictions, deductions and credits, based on our interpretation of tax laws. We record a valuation allowance if it is more likely than not that some portion or all of a deferred tax asset will not be realized. We also inventory, evaluate and measure all uncertain tax positions taken or expected to be taken on tax returns and record liabilities for the amount of such positions that in our judgement may not be sustained, or may only be partially sustained, upon examination by the relevant taxing authorities. Our assessment may change based on various factors including changes in facts or circumstances, changes in tax law, and audit activity.
+      1275: Impact if actual results differ from assumptions.
+>>>   1276: Although we believe that our estimates and judgments are reasonable, actual results may differ from these estimates. Some or all of these judgments are subject to review by the taxing authorities. If one or more of the taxing authorities were to successfully challenge our right to realize some or all of the tax benefit we have recorded, and we were unable to realize this benefit, it could have a material adverse effect on our financial condition, results of operations or cash flows.
+      1277: ITEM 7A. Quantitative and Qualitative Disclosures about Market Risk
+      1278: Market risk is the potential economic loss arising from adverse changes in market factors. Our exposure to financial market risks results primarily from fluctuations in foreign currency exchange rates, interest rates and equity prices. Aggregate risk exposures are monitored on an ongoing basis.
+      1279: Foreign Currency Exchange Rate Risk
+      1280: We are exposed to risks from foreign currency exchange rate fluctuations that are primarily related to changes in the functional currency value of receipts and payments related to foreign currency-denominated transactions. We manage these risks by entering into foreign currency forward contracts that hedge exposures of the variability in the functional currency equivalent of anticipated non-functional currency denominated cash flows. Our foreign currency exchange rate risk management program reduces, but does not entirely eliminate, the impact of foreign currency exchange rate movements.
+
+====================================================================================================
+ITEM_7 | COST | 2017-10-18 | 90983217000014
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\COST\000090983217000014.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+    94: Item 7.
+    95: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+   124: Certain statements contained in this Report constitute forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995, Section 27A of the Securities Act of 1933 and Section 21E of the Securities Exchange Act of 1934. They include statements that address activities, events, conditions or developments that we expect or anticipate may occur in the future and may relate to such matters as sales growth, changes in comparable sales, cannibalization of existing locations by new openings, price or fee changes, earnings performance, earnings per share, stock-based compensation expense, warehouse openings and closures, capital spending, the effect of adopting certain accounting standards, future financial reporting, financing, margins, return on invested capital, strategic direction, expense controls, membership renewal rates, shopping frequency, litigation, modernization of information systems, and the demand for our products and services. Forward-looking statements may also be identified by the words “believe,” “project,” “expect,” “anticipate,” “estimate,” “intend,” “strategy,” “future,” “opportunity,” “plan,” “may,” “should,” “will,” “would,” “will be,” “will continue,” “will likely result,” and similar expressions. Such forward-looking statements involve risks and uncertainties that may cause actual events, results, or performance to differ materially from those indicated by such statements, including, without limitation, the factors set forth in the section titled “Item 1A-Risk Factors”, and other factors noted in the section titled “Item 7-Management's Discussion and Analysis of Financial Condition and Results of Operations” and in the consolidated financial statements and related notes in Item 8 of this Report. Forward-looking statements speak only as of the date they are made, and we do not undertake to update them, except as required by law.
+   262: s Discussion and Analysis of Financial Condition and Results of Operations in Item
+   403: See discussion of Legal Proceedings in Note 10 to the consolidated financial statements included in Item 8 of this Report.
+   491: The following table sets forth information concerning our consolidated financial condition, operating results, and key operating metrics. This information should be read in conjunction with Management’s Discussion and Analysis of Financial Condition and Results of Operations, included in Item 7 of this Report, and our consolidated financial statements and notes thereto, included in Item 8 of this Report.
+   622: In discussions of our consolidated operating results, we refer to the impact of changes in foreign currencies relative to the U.S. dollar, which are references to the differences between the foreign-exchange rates we use to convert the financial results of our international operations from local currencies into U.S. dollars for financial reporting purposes. This impact of foreign-exchange rate changes is calculated based on the difference between the current period's currency exchange rates and that of the comparable prior period. The impact of changes in gasoline prices on net sales is calculated based on the difference between the current period's average price per gallon sold and that of the comparable prior period.
+   951: The preparation of our consolidated financial statements in accordance with U.S. generally accepted accounting principles (U.S. GAAP) requires that we make estimates and judgments, including those related to revenue recognition, merchandise inventory valuation, impairment of long-lived assets, insurance/self-insurance liabilities, and income taxes. We base our estimates on historical experience and on assumptions that we believe to be reasonable, and we continue to review and evaluate these estimates. For further information on significant accounting policies, see discussion in Note 1 to the consolidated financial statements included in Item 8 of this Report.
+  1001: Management’s Report on the Consolidated Financial Statements
+  1011: Management’s Annual Report on Internal Control over Financial Reporting
+  1038: The information required by this Item is incorporated herein by reference to the sections entitled “Compensation of Directors,” “Executive Compensation,” and “Compensation Discussion and Analysis” in Costco’s Proxy Statement.
+  1361: Internal Control — Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (COSO). The Company’s management is responsible for maintaining effective internal control over financial reporting and for its assessment of the effectiveness of internal control over financial reporting, included in the accompanying Management’s Annual Report on Internal Control over Financial Reporting included in Item 9A. Our responsibility is to express an opinion on the Company’s internal control over financial reporting based on our audit.
+  2559: The Company and its subsidiaries are principally engaged in the operation of membership warehouses in the U.S., Canada, Mexico, U.K., Japan, Australia, Spain, Iceland, and France and through majority-owned subsidiaries in Taiwan and Korea. The Company’s reportable segments are largely based on management’s organization of the operating segments for operational decisions and assessments of financial performance, which considers geographic locations. The material accounting policies of the segments are as described in Note 1. All material inter-segment net sales and expenses have been eliminated in computing total revenue and operating income. Certain operating expenses, predominantly stock-based compensation, incurred on behalf of the Company's Canadian and Other International operations, but are included in the U.S. operations because those costs are not allocated internally and generally come under the responsibility of U.S. management.
+
+====================================================================================================
+ITEM_7 | COST | 2016-10-12 | 90983216000032
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\COST\000090983216000032.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+    98: Item 7.
+    99: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+   126: Certain statements contained in this Report constitute forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995, Section 27A of the Securities Act of 1933 and Section 21E of the Securities Exchange Act of 1934. They include statements that address activities, events, conditions or developments that we expect or anticipate may occur in the future and may relate to such matters as sales growth, changes in comparable sales, cannibalization of existing locations by new openings, price or fee changes, earnings performance, earnings per share, stock-based compensation expense, warehouse openings and closures, capital spending, the effect of adopting certain accounting standards, future financial reporting, financing, margins, return on invested capital, strategic direction, expense controls, membership renewal rates, shopping frequency, litigation, modernization of information systems, and the demand for our products and services. Forward-looking statements may also be identified by the words “believe,” “project,” “expect,” “anticipate,” “estimate,” “intend,” “strategy,” “future,” “opportunity,” “plan,” “may,” “should,” “will,” “would,” “will be,” “will continue,” “will likely result,” and similar expressions. Such forward-looking statements involve risks and uncertainties that may cause actual events, results, or performance to differ materially from those indicated by such statements, including, without limitation, the factors set forth in the section titled “Item 1A-Risk Factors”, and other factors noted in the section titled “Item 7-Management's Discussion and Analysis of Financial Condition and Results of Operations” and in the consolidated financial statements and related notes in Item 8 of this Report. Forward-looking statements speak only as of the date they are made, and we do not undertake to update them, except as required by law.
+   257: s Discussion and Analysis of Financial Condition and Results of Operations in Item
+   333: Our business requires compliance with many laws and regulations. Failure to achieve compliance could subject us to lawsuits and other proceedings, and lead to damage awards, fines, penalties, and remediation costs. We are, or may become involved, in a number of legal proceedings and audits including grand jury investigations, government and agency investigations, and consumer, employment, tort, unclaimed property laws, and other litigation (see discussion of Legal Proceedings in Note 10 to the consolidated financial statements included in Item
+   391: See discussion of Legal Proceedings in Note 10 to the consolidated financial statements included in Item 8 of this Report.
+   479: The following table sets forth information concerning our consolidated financial condition, operating results, and key operating metrics. This information should be read in conjunction with Management’s Discussion and Analysis of Financial Condition and Results of Operations, included in Item 7 of this Report, and our consolidated financial statements and notes thereto, included in Item 8 of this Report.
+   614: In discussions of our consolidated operating results, we refer to the impact of changes in foreign currencies relative to the U.S. dollar, which are references to the differences between the foreign-exchange rates we use to convert the financial results of our international operations from local currencies into U.S. dollars for financial reporting purposes. This impact of foreign-exchange rate changes is calculated based on the difference between the current period's currency exchange rates and that of the comparable prior period. The impact of changes in gasoline prices on net sales is calculated based on the difference between the current period's average price per gallon sold and that of the comparable prior period.
+   765: The decrease in interest income in 2016 is attributable to lower average cash and investment balances, due in part to the payment of the outstanding principal balance and interest on the 0.65% Senior Notes in the second quarter of 2016 (see discussion in Item 8, Note 4 of this Report). Foreign-currency transaction gains, net include mark-to-market adjustments for forward foreign-exchange contracts and the revaluation or settlement of monetary assets and liabilities by our Canadian and Other International operations. See Derivatives and Foreign Currency sections in Item 8, Note 1 of this Report.
+   900: The preparation of our consolidated financial statements in accordance with U.S. generally accepted accounting principles (U.S. GAAP) requires that we make estimates and judgments, including those related to revenue recognition, merchandise inventory valuation, impairment of long-lived assets, insurance/self-insurance liabilities, and income taxes. We base our estimates on historical experience and on assumptions that we believe to be reasonable, and we continue to review and evaluate these statements. For further information on significant accounting policies, see discussion in Note 1 to the consolidated financial statements included in Item 8 of this Report.
+   948: Management’s Report on the Consolidated Financial Statements
+   959: Management’s Annual Report on Internal Control over Financial Reporting
+   985: The information required by this Item is incorporated herein by reference to the sections entitled “Compensation of Directors,” “Executive Compensation,” and “Compensation Discussion and Analysis” in Costco’s Proxy Statement.
+  1136: Internal Control - Integrated Framework (2013) issued by the Committee of Sponsoring Organizations of the Treadway Commission (COSO). The Company’s management is responsible for maintaining effective internal control over financial reporting and for its assessment of the effectiveness of internal control over financial reporting, included in the accompanying management’s annual report on internal control over financial reporting included in Item 9A. Our responsibility is to express an opinion on the Company’s internal control over financial reporting based on our audit.
+  1927: . See Note 4 for discussion on the fair value of long-term debt.
+  2417: The Company has received from the Drug Enforcement Administration subpoenas and administrative inspection warrants concerning the Company's fulfillment of prescriptions related to controlled substances and related practices. Offices of the United States Attorney in various districts have communicated to the Company their belief that the Company has committed civil regulatory violations concerning these subjects. The Company is seeking to cooperate with these processes and is holding discussions concerning a potential resolution.
+  2420: The Company and its subsidiaries are principally engaged in the operation of membership warehouses in the U.S., Canada, Mexico, U.K., Japan, Australia, and Spain and through majority-owned subsidiaries in Taiwan and Korea. The Company’s reportable segments are largely based on management’s organization of the operating segments for operational decisions and assessments of financial performance, which considers geographic locations. The material accounting policies of the segments are the same as described in Note 1. All material inter-segment net sales and expenses have been eliminated in computing total revenue and operating income. Certain operating expenses, predominantly stock-based compensation, are incurred on behalf of the Company's Canadian and Other International operations, but are included in the U.S. operations because those costs are not allocated internally and generally come under the responsibility of the Company's U.S. management team.
+
+====================================================================================================
+ITEM_7 | SCCO | 2021-02-26 | 155837021001894
+status=boundary_uncertain | words=47737 | start=469.0 | end=5224.0 | method=explicit_item_fallback | boundary=item_7a_start | score=27.0
+file=data\processed\10k\SCCO\000155837021001894.txt
+
+--- START: line 469 ---
+       465: The Company seeks to create value for its employees to ensure that their working experience is optimal. Various efforts are made on this front, including promoting a safe and collaborative work environment and culture and ensuring employees continue to be engaged with the Company’s values and principles. We believe that this generates the bases for shared values and improves our employer brand for existing and future employees. We also focus on attracting and retaining employees by providing compensation and benefit packages that are competitive within the applicable market, taking into account the location of the position, responsibilities and compensation requirements in the countries where we operate. Our compensation practices consider many factors, including individual performance and responsibilities; years of service; elements of compensation mandated by Peruvian and Mexican law; future challenges and objectives; contributions to the future success of our Company; the employee’s total compensation and our financial performance. We may also look at the compensation levels of comparable companies.
+       466: In 2020, in response to COVID-19, we incurred
+       467: $27.6 million in COVID-19 related production costs, which included protective equipment and labor costs
+       468: to support employees where operations were impacted; expanding, where possible, options for remote work; and enhancing safety protocols. For additional information, refer to
+>>>    469: Item 7: Management’s Discussion and Analysis of Financial Condition and Results of Operations and Note 1 “Description of the Business, COVID-19 Pandemic” to the consolidated financial statements.
+       470: In terms of corporate culture, the Company is committed to the continuous growth and development of its employees and surrounding communities. Through values such as creativity, honesty, equality and respect, we ensure that our employees are aligned with the same principles and work ethics, which in turn results in a standardized culture across the Company. The Company also seeks to promote goal-oriented principles to obtain results that positively affect our main stakeholders and communities and which focus on innovation, human growth and wellbeing, environmental care, and forward thinking.
+       471: We deploy several talent attraction programs, which entail leveraging organizational relations; establishing links with national and regional institutions of higher learning in the countries where we operate; and participating in job fairs. We also have a careers page and use several local and international job boards to publish openings.
+       472: We offer professional internship programs to attract students before they graduate from universities or centers for vocational training. Additionally, we believe that we are a first-choice employer in the countries where we operate. This reflects our efforts to strengthen relationships with our stakeholders, including employees, and engage in community development. We have transparent selection processes and are committed to upholding principles for Human Rights and Diversity, Inclusion and Non-Discrimination.
+       473: All our employees receive initial training and opportunities for continuous development throughout their careers, which favors talent retention. We also prioritize recruiting from our ranks and 60% of our vacant positions, on average, are filled by current employees looking to make career moves.
+
+--- END: line 5224 ---
+      5220: Total debt/total capitalization(*)
+      5221: 47.4
+      5222: 50.3
+      5223: (*)
+>>>   5224: Represents debt divided by total capitalization.
+      5225: ITEM 7A. QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK
+      5226: Commodity price risk:
+      5227: For additional information on metal price sensitivity, refer to “Metal Prices” in Part II, Item 7 of this annual report.
+      5228: Open sales risk:
+
+====================================================================================================
+ITEM_7 | WELL | 2018-02-28 | 76670418000012
+status=boundary_uncertain | words=34031 | start=163.0 | end=5769.0 | method=title_only | boundary=item_7a_start | score=33.0
+file=data\processed\10k\WELL\000076670418000012.txt
+
+--- START: line 163 ---
+       159: 6.
+       160: Selected
+       161: Financial Data
+       162: 7.
+>>>    163: Management’s
+       164: Discussion and Analysis of Financial Condition and Results of Operations
+       165: 7A.
+       166: Quantitative
+       167: and Qualitative Disclosures About Market Risk
+
+--- END: line 5769 ---
+      5765: requires us to determine if indicators of impairment exist and to estimate
+      5766: the most likely stream of cash flows to be generated from the property during
+      5767: the period the property is expected to be held. Properties that meet the
+      5768: held-for-sale criteria are recorded at the lesser of fair value less costs to
+>>>   5769: sell or carrying value.
+      5770: Item 7A.
+      5771: Quantitative and Qualitative Disclosures About Market Risk
+      5772: We are exposed to various
+      5773: market risks, including the potential loss arising from adverse changes in
+
+====================================================================================================
+ITEM_7 | WELL | 2017-02-22 | 76670417000012
+status=boundary_uncertain | words=45058 | start=160.0 | end=6735.0 | method=title_only | boundary=item_7a_start | score=33.0
+file=data\processed\10k\WELL\000076670417000012.txt
+
+--- START: line 160 ---
+       156: 6.
+       157: Selected
+       158: Financial Data
+       159: 7.
+>>>    160: Management’s
+       161: Discussion and Analysis of Financial Condition and Results of Operations
+       162: 7A.
+       163: Quantitative
+       164: and Qualitative Disclosures About Market Risk
+
+--- END: line 6735 ---
+      6731: exist, then the undiscounted future cash flows from the most likely use of
+      6732: the property are compared to the current net book value. This analysis
+      6733: requires us to determine if indicators of impairment exist and to estimate
+      6734: the most likely stream of cash flows to be generated from the property during
+>>>   6735: the period the property is expected to be held.
+      6736: Item 7A.
+      6737: Quantitative and Qualitative Disclosures About Market Risk
+      6738: We are exposed to various
+      6739: market risks, including the potential loss arising from adverse changes in
+
+====================================================================================================
+ITEM_7 | WELL | 2016-02-18 | 76670416000055
+status=boundary_uncertain | words=51137 | start=160.0 | end=7440.0 | method=title_only | boundary=item_7a_start | score=33.0
+file=data\processed\10k\WELL\000076670416000055.txt
+
+--- START: line 160 ---
+       156: 6.
+       157: Selected
+       158: Financial Data
+       159: 7.
+>>>    160: Management’s
+       161: Discussion and Analysis of Financial Condition and Results of Operations
+       162: 7A.
+       163: Quantitative
+       164: and Qualitative Disclosures About Market Risk
+
+--- END: line 7440 ---
+      7436: exist, then the undiscounted future cash flows from the most likely use of
+      7437: the property are compared to the current net book value. This analysis
+      7438: requires us to determine if indicators of impairment exist and to estimate
+      7439: the most likely stream of cash flows to be generated from the property during
+>>>   7440: the period the property is expected to be held.
+      7441: Item 7A.
+      7442: Quantitative and Qualitative Disclosures About Market Risk
+      7443: We are exposed to
+      7444: various market risks, including the potential loss arising from adverse changes
+
+====================================================================================================
+ITEM_7 | WAT | 2016-02-26 | 119312516480594
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\WAT\000119312516480594.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+   113: Managements Discussion and Analysis of Financial Condition and Results of Operations
+   150: ), the Company primarily designs, manufactures, sells and services thermal analysis, rheometry and calorimetry
+   156: analysis of proteins in disease processes (known as proteomics), nutritional safety analysis and environmental testing. LC-MS instruments combine a liquid phase sample introduction and separation system with mass spectrometric compound
+   157: identification and quantification. The Companys thermal analysis, rheometry and calorimetry instruments are used in predicting the suitability and stability of fine chemicals, pharmaceuticals, water, polymers, metals and viscous liquids in
+   186: By using the ACQUITY UPLC, researchers and analysts are able to achieve more comprehensive chemical separations and faster analysis times in comparison with many analyses performed by HPLC. In addition, in using ACQUITY UPLC, researchers have the
+   218: absorbance to MS, optimized for certain analyses. The Company also manufactures tailored LC systems for the analysis of biologics, as well as an LC detector utilizing evaporative light scattering technology to expand the usage of LC to compounds
+   239: state mandated accreditation requirements or with quality control over critical pharmaceutical analysis. For example, the Company provides tests to identify and quantify mycotoxins (fungal biological contaminants) in various agricultural
+   242: lateral flow strip tests for the quantitative analysis of total aflatoxins in corn.
+   307: Scientific Data Management System, each of which is used to support innovations within world-leading
+   312: analysis, which was introduced in 2012. In 2014, the Company introduced Progenesis
+   324: Thermal Analysis, Rheometry and Calorimetry
+   325: Thermal analysis measures the physical characteristics of materials as a function of temperature. Changes in temperature affect several characteristics of
+   326: materials, such as their physical state, weight, dimension and mechanical and electrical properties, which may be measured by one or more thermal analysis techniques, including calorimetry. Consequently, thermal analysis techniques are widely used
+   331: Thermal analysis,
+   342: automated density and hardness testers. The RPA includes many test features and analysis functions that are being used in the latest research and development efforts for rubber and related materials technology.
+   343: In December 2013, the Company acquired Expert Systems Solutions S.r.l. (ESS), a manufacturer of advanced thermal analysis
+   348: temperature generation, for $4 million in cash. ULSPs core business is the manufacturing and servicing of high quality low temperature coolers for thermal analysis and rheology applications, and these products are important accessories for
+   383: assembly and testing. The Milford facility maintains quality management and environmental management systems in accordance with the requirements of ISO 9001:2008, ISO 13485:2003 and ISO 14001:2004, and adheres to applicable regulatory requirements
+   401: TAs thermal analysis, rheometry and calorimetry
+   488: Many of these statements appear, in particular, under the heading Managements Discussion and Analysis
+   489: of Financial Condition and Results of Operations in Part II, Item 7 of this Form 10-K. Statements that are not statements of historical fact may be deemed forward-looking statements. You can identify these forward-looking statements by
+   539: markets for its LC, LC-MS, thermal analysis, rheometry and calorimetry products; the timing and level of capital spending and expenditures of the Companys customers; changes in governmental regulations, particularly affecting drug, food and
+   555: The analytical instrument market and, in particular, the portion related to the Companys HPLC, UPLC, LC-MS, thermal analysis, rheometry and
+   587: through a subcontractor in Singapore; chemistry separation columns at its facilities in Taunton, Massachusetts and Wexford, Ireland; MS products at its facilities in Wilmslow, England, Solihull, England and Wexford, Ireland; thermal analysis and
+  1018: Managements
+  1019: Discussion and Analysis of Financial Condition and Results of Operations
+  1027: and chemistry consumable products and related services. TA products and services primarily consist of thermal analysis, rheometry and calorimetry instrument systems and service sales. The Companys products are used by life science (including
+  1297: physical properties instruments. In addition, TAs core thermal analysis instrument systems sales rebounded in 2015 after
+  1667: be effectively settled. The Company utilized Millimans Bond Matching model to determine the discount rate for its U.S. benefit plans. The Company determined the discount rate for its non-U.S. benefit plans based on the analysis of the Mercer
+  1715: be considered an integral part of this Item 7. See Note 2 in the Notes to the Consolidated Financial Statements for recently adopted and issued accounting standards.
+
+====================================================================================================
+ITEM_7 | MSCI | 2016-02-26 | 119312516482334
+status=boundary_uncertain | words=43462 | start=409.0 | end=3832.0 | method=explicit_item_fallback | boundary=item_7a_start | score=27.0
+file=data\processed\10k\MSCI\000119312516482334.txt
+
+--- START: line 409 ---
+       405: Americas
+       406: EMEA
+       407: Asia
+       408: Historical values of the assets in ETFs linked to our indexes are set forth in a table under Part II,
+>>>    409: Item 7. Managements Discussion and Analysis of Financial Condition and Results of OperationsResults of Operations below.
+       410: Increase managed services offerings
+       411: . Continued pressure on management fees is causing our clients to look for ways to become more operationally
+       412: efficient. MSCIs Managed Services include end-to-end services that aim to assist clients with meeting operational and regulatory requirements by providing a convenient and cost-effective way to outsource data processing, systems administration
+       413: and reporting. By outsourcing these functions to MSCIs data management professionals, we hope to free up our clients to focus on value-added work such as risk budgeting, asset allocation and manager selection and
+
+--- END: line 3832 ---
+      3828: At December 31, 2015 and 2014, we did not have any relationships with unconsolidated entities or financial partnerships, such as entities
+      3829: often referred to as structured finance or special purpose entities, which would have been established for the purpose of facilitating off-balance sheet arrangements or other contractually narrow or limited purposes.
+      3830: Recent Accounting Standards Updates
+      3831: See
+>>>   3832: Note 2, Recent Accounting Standards Updates, of the Notes to the Consolidated Financial Statements included herein for further information.
+      3833: Item 7A.
+      3834: Qualitative and Quantitative Disclosures About Market Risk
+      3835: Foreign Currency Risk
+      3836: We are subject to foreign currency exchange fluctuation risk. Exchange rate movements can impact the U.S. dollar reported value of our
+
+====================================================================================================
+ITEM_7 | CMG | 2024-02-08 | 156276224000023
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\CMG\000156276224000023.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+    67: Indicate by check mark whether the registrant has filed a report on and attestation to its management’s assessment of the effectiveness of its internal control over financial reporting under Section 404(b) of the Sarbanes-Oxley Act (15 U.S.C. 7262(b)) by the registered public accounting firm that prepared or issued its audit report.
+    70: Indicate by check mark whether any of those error corrections are restatements that required a recovery analysis of incentive-based compensation received by any of the registrant’s executive officers during the relevant recovery period pursuant to §240.10D-1(b).
+   105: Item 7.
+   106: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+   159: This report includes “forward-looking” statements within the meaning of the Private Securities Litigation Reform Act of 1995, including projected cash from operations, expected capital expenditures for 2024 and all other statements that are not historical facts. We use words such as “may,” “will,” “should,” “expect,” “intend,” “plan,” “anticipate,” “believe,” “think,” “estimate,” “seek,” “expect,” “predict,” “could,” “project,” “potential”, “goal” and other similar terms and phrases, including references to assumptions, to identify forward-looking statements. These forward-looking statements are based on currently available operating, financial and competitive information and are subject to various risks and uncertainties. Our actual future results and trends may differ materially depending on a variety of factors, including, but not limited to, the risks and uncertainties described in this report under the heading “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” so you should not place undue reliance on forward-looking statements. These statements are subject to risks and uncertainties that could cause actual results to differ materially from those described in the statements, including: increasing wage inflation and the competitive labor market, including as a result of regulations such as California AB 1228, which impacts our ability to attract and retain qualified employees and has resulted in occasional staffing shortages; increases in ingredient and other operating costs and the inability of our third-party suppliers and business partners to fulfill their responsibilities and commitments due to inflation, global conflicts, climate change, our Food with Integrity philosophy, tariffs or trade restrictions and supply shortages; increasing supply costs (including beef, tortillas, queso, salsa, beans and rice); risks of food safety incidents and food-borne illnesses; risks associated with our reliance on certain information technology systems operated by us or by third parties and potential failures, outages or interruptions; privacy and cybersecurity risks, including risk of breaches, unauthorized access, theft, modification, destruction or ransom of guest or employee personal or confidential information stored on our network or the network of third-party providers; the impact of competition, including from sources outside the restaurant industry; the competitive labor market and changes in the availability and cost of labor and the impact of any union organizing efforts and our responses to such efforts; the financial impact of increasing our average hourly wage; the impact of federal, state or local government regulations relating to our employees, employment practices, restaurant design and construction, and the sale of food or alcoholic beverages; our ability to achieve our planned growth, such as the costs and availability of suitable new restaurant sites and the equipment needed to fully outfit new restaurants, construction materials and contractors and the expected costs to accelerate our international expansion through franchise restaurants in the Middle East; the uncertainty of our ability to achieve expected levels of comparable restaurant sales due to factors such as changes in guests' perceptions of our brand, including as a result of actual or rumored food safety concerns or other negative publicity, decreased overall consumer spending, including as a result of high inflation, mass layoffs, fears of possible recession and higher energy costs, or the inability to increase menu prices or realize the benefits of menu price increases; risks associated with our digital business, including risks arising from our reliance on third party delivery services; and risks relating to litigation, including possible governmental actions and potential class action litigation related to food safety incidents, cybersecurity incidents, employment or privacy laws, advertising claims or other matters. We are including this Cautionary Note to make applicable and take advantage of the safe harbor provisions of the Private Securities Litigation Reform Act of 1995 for forward-looking statements. We expressly disclaim any obligation to update or revise any forward-looking statements after the date of this report as a result of new information, future events or other developments, except as required by applicable laws and regulations.
+   219: We have a holistic approach to pay equity to ensure consistent and equitable treatment among our employees. We retain an independent third-party compensation consultant each year to conduct a pay equity analysis of our U.S. and Canadian workforce, including factors of pay (e.g., grade level, tenure in role, most recent promotion) and external market conditions (e.g., geographic location), to ensure consistency and equitable treatment among our employees. In 2023, our review included 99% of our U.S. and Canadian employee population, excluding only approximately 50 of our most senior management employees. The analysis identified small, isolated pay gaps for certain segments of the population, and we subsequently made pay adjustments to close those gaps. Since there are not many common roles among our 50 most senior executives, we consider both internal equity by level as well as individualized market data to help ensure we maintain pay equity among this group.
+   248: subject to various federal, state and local laws and regulations that govern aspects of our business operations. While costs associated with compliance with laws and regulations have increased as the number and scope of regulation have increased, the total costs incurred have not had, and are not expected to have, a material effect on our capital expenditures, results of operations or competitive position. See “Risk Factors” in Item 1A for discussion of risks relating to federal, state, local and international laws and regulations applicable to our business.
+   250: Seasonal factors influencing our business are described under the heading “Quarterly Financial Data/Seasonality” in Item 7. “Management’s
+   251: Discussion
+   252: and Analysis of Financial Condition and Results of Operations.”
+   270: You should carefully consider the risks described below in addition to the other information set forth in this Annual Report on Form 10-K, including the “Management’s Discussion and Analysis of Financial Conditions and Results of Operations” section and the consolidated financial statements and related notes. If any of the risks and uncertainties described below occur or continue to occur, our business, financial condition and results of operations, and the trading price of our common stock could be materially and adversely affected. The risks and uncertainties described below are those that we have identified as material but are not the only risks and uncertainties we face. Our business is also subject to general risks and uncertainties that affect many other companies, including, but not limited to, overall economic and industry conditions. Additional risks not currently known to us or that we presently deem immaterial may arise or become material and may negatively impact our business, reputation, financial condition, results of operations or the trading price of our common stock.
+   321: We have been and likely will continue to be subject to litigation and other legal proceedings that may adversely affect our business. These legal proceedings may involve claims brought by employees, guests, government agencies, suppliers, shareholders or others through private actions, administrative proceedings, regulatory actions or other litigation, including litigation on a class or collective basis on behalf of what can be a large group of potential claimants. These legal proceedings have involved, and in the future may involve, allegations of illegal, unfair or inconsistent employment practices, including those governing wage and hour, employment of minors, discrimination, harassment, wrongful termination, and vacation and family leave laws; food safety issues including food-borne illness, food contamination and adverse health effects from consumption of our food products; data security or privacy breaches; guest discrimination; personal injury in our restaurants; marketing and advertising claims, including claims that our Food with Integrity or other sustainability claims are misleading or inaccurate; infringement of patent, copyright or other intellectual property rights; violation of the federal securities laws; workers’ compensation; or other concerns. We are party to a number of pending lawsuits and governmental audits alleging violations of federal and state employment laws, including wage and hour claims, and we could be involved in similar or even more significant litigation and legal proceedings in the future. Even if the allegations against us in current or future legal matters are unfounded or we ultimately are held not liable, the costs to defend ourselves may be significant and the litigation may subject us to substantial settlements, fines, penalties or judgments against us and may divert management's attention away from operating our business, all of which could negatively impact our financial condition and results of operations. Litigation also may generate negative publicity, regardless of whether the allegations are valid, or we ultimately are not liable, which could damage our reputation, and adversely impact our sales as well as our relationships with our employees and guests.
+   338: As of December 31, 2023, we owned and operated over 3,400 Chipotle restaurants and we plan to open a significant number of new restaurants in the next several years. Our existing restaurant management systems, back-office technology systems and processes, financial and management controls, information systems and personnel may not be adequate to support our continued growth. To effectively manage a larger number of restaurants, we may need to upgrade and expand our infrastructure and information systems, automate more processes that currently are manual or require manual intervention and hire, train and retrain restaurant employees and corporate support staff, all of which may result in increased costs and at least temporary inefficiencies. We also place a lot of importance on our culture, which we believe has been an important contributor to our success, and as we continue to grow it may be increasingly difficult to maintain our culture. Our failure to sufficiently invest in our infrastructure and information systems and maintain our strong staffing and culture could harm our brand and operating results.
+   340: Our global growth strategy includes expanding our existing restaurant footprint and introducing Chipotle in new international jurisdictions in which we currently do not operate. The success of our strategy will depend on our identifying and partnering with new business partners, including licensees, joint venture partners, suppliers and distributors, and may include identifying suitable acquisition targets in these new jurisdictions that align with our core values. In 2023, we signed our first-ever development agreement to open restaurants in the Middle East in partnership with international franchise retail operator Alshaya Group, which will initially open new Chipotle restaurants in Dubai and Kuwait before expanding further across the region. Licensees like Alshaya, and future joint venture partners would be authorized to operate restaurants under the Chipotle brand, and we believe guests will expect the same quality of food and customer service in these third-party operated restaurants as they receive in Chipotle-operated restaurants. We provide extensive training to our business partners and we include specific food quality and safety standards and guest service requirements in the contracts we sign with our business partners; however, we do not have direct control over the restaurants operated by third-party partners, and the quality and service in those restaurants may be less than the quality and service of Chipotle-operated restaurants. Failure of our business partners to adhere to our high food quality and operating standards could damage our brand reputation and impair our international expansion plans. New partnerships and/or acquisitions also may divert management’s attention from other initiatives and/or day-to-day operations, which could adversely affect our business and results of operations.
+   378: We assess Chipotle’s Information Security program using an industry cybersecurity framework from the National Institute of Standards and Technology. This program includes policies, processes and procedures that help assess and identify our cybersecurity risks and inform how security measures and controls are developed, implemented and maintained. The risk assessment along with risk-based analysis and judgment are used to select security controls to address risks. During this process, the following factors, among others, are considered: likelihood and severity of risk, impact on the Company and others if a risk materializes, feasibility and cost of controls and impact of controls on operations.
+   444: The following graph compares the cumulative annual stockholders return on our common stock from December 31, 2018, through December 31, 2023, to that of the total return index for the S&P 500 and the S&P 500 Restaurants Index assuming an investment of $100 on December 31, 2018. In calculating total annual stockholder return, reinvestment of dividends, if any, is assumed. The indices are included for comparative purposes only. They do not necessarily reflect management’s opinion that such indices are an appropriate measure of the relative performance of our common stock. The values shown are neither indicative nor determinative of future performance. This graph is not “soliciting material,” is not deemed filed with the Securities and Exchange Commission and is not to be incorporated by reference in any of our filings under the Securities Act or the Exchange Act, whether made before or after the date hereof and irrespective of any general incorporation language in any such filing.
+   455: . MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS
+   456: You should read the following discussion together with our consolidated financial statements and related notes included in Item 8. “Financial Statements and Supplementary Data.” This section of the Form 10-K generally discusses 2023 items and year-to-year comparisons of 2023 to 2022. Discussions of 2021 items and year-to-year comparisons of 2022 and 2021 that are not included in this Form 10-K can be found in “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in Part II, Item 7 on our Annual Report on Form 10-K for the year ended December 31, 2022. The discussion contains forward-looking statements involving risks, uncertainties and assumptions that could cause our results to differ materially from expectations. See “Cautionary Note Regarding Forward-Looking Statements.” Factors that might cause such differences include those described in Item 1A. “Risk Factors” and elsewhere in this report.
+   460: Throughout “Management’s Discussion and Analysis of Financial Condition and Results of Operations” we commonly discuss the following key operating metrics which we believe will drive our financial results and long-term growth model. W
+   756: Operating lease assets and liabilities are recognized at the lease commencement date, which is the date we control the use of the property. Operating lease liabilities represent the present value of lease payments not yet paid. We made the policy election to combine lease and non-lease components. We consider fixed common area maintenance (“CAM”) part of our fixed future lease payments; therefore, fixed CAM is also included in our operating lease liability. Operating lease assets represent our right to use an underlying asset and are based upon the operating lease liabilities adjusted for prepayments, initial direct costs, lease incentives, and impairment of operating lease assets. To determine the present value of lease payments not yet paid, we estimate incremental borrowing rates corresponding to the reasonably certain lease term. As we have no outstanding debt nor committed credit facilities, secured or otherwise, we estimate this rate based on prevailing financial market conditions, comparable company and credit analysis, and management judgment. If the estimate of our incremental borrowing rate was changed, our operating lease assets and liabilities could differ materially.
+   782: Our provision for income taxes, deferred tax assets and liabilities and any related valuation allowance requires the use of estimates based on our management’s interpretation and application of complex tax laws and accounting guidance. We are primarily subject to income taxes in the U.S. We establish reserves for uncertain tax positions for material, known tax exposures relating to deductions, transactions and other matters involving some uncertainty as to the measurement and recognition of the item. We may adjust these reserves when our judgment changes as a result of the evaluation of new information not previously available and will be reflected in the period in which the new information is available, or due to the expiration of any applicable statute of limitations. While we believe that our reserves are adequate, issues raised by a tax authority may be resolved at an amount different than the related reserve and could materially increase or decrease our income tax provision in future periods.
+   806: Auditing the estimated quantity of awards the Company determined are probable of vesting for the Company’s stock awards subject to performance conditions was complex and judgmental. In particular, the stock compensation expense is sensitive to significant assumptions including management’s internal estimates of the Company’s future performance.
+   808: We obtained an understanding, evaluated the design, and tested the operating effectiveness of management’s controls over stock-based compensation. We tested controls over management’s review of the assumptions used with regards to the performance conditions. We also tested management's controls to validate that data used in management’s internal estimates of the Company’s future performance was complete and accurate.
+   809: Our substantive audit procedures included, among others, testing the significant assumptions underlying the performance conditions (e.g., certain targets related to growth in cumulative restaurant cash flow dollars and cumulative base restaurant cash flow dollars) and testing the completeness and accuracy of the underlying data. We evaluated management’s significant assumptions by comparing the assumptions to current market and economic trends, historical results of the Company's business, and to other relevant factors. We additionally performed a sensitivity analysis of the significant assumptions to evaluate the change in the expense to be recognized for the stock awards subject to performance conditions. We also evaluated the adequacy of the Company’s stock-based compensation disclosures included in Notes 1 and 8 of the consolidated financial statements in relation to these matters.
+  1358: outstanding debt nor committed credit facilities, secured or otherwise, we estimate this rate based on prevailing financial market conditions, comparable company and credit analysis, and management judgment.
+  2408: Management’s Annual Report on Internal Control over Financial Reporting
+  2425: The Company’s management is responsible for maintaining effective internal control over financial reporting and for its assessment of the effectiveness of internal control over financial reporting included in the accompanying Management’s Annual Report on Internal Control over Financial Reporting. Our responsibility is to express an opinion on the Company’s internal control over financial reporting based on our audit. We are a public accounting firm registered with the PCAOB and are required to be independent with respect to the Company in accordance with the U.S. federal securities laws and the applicable rules and regulations of the Securities and Exchange Commission and the PCAOB.
+
+====================================================================================================
+ITEM_7 | CMG | 2021-02-10 | 105809021000010
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\CMG\000105809021000010.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+    76: Indicate by check mark whether the registrant has filed a report on and attestation to its management’s assessment of the effectiveness of its internal control over financial reporting under Section 404(b) of the Sarbanes-Oxley Act (15 U.S.C. 7262(b)) by the registered public accounting firm that prepared or issued its audit report.
+   109: Item 7.
+   110: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+   145: hese forward-looking statements are based on currently available operating, financial and competitive information and are subject to various risks and uncertainties. Our actual future results and trends may differ materially depending on a variety of factors, including, but not limited to, the risks and uncertainties described in this report under the heading “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” so you should not place undue reliance on forward-looking statements.
+   248: analysis
+   280: Compliance with these laws and regulation has not had, and is not expected to have, a material effect on our capital expenditures, results of operations or competitive position. See “Risk Factors” in Item 1A for a discussion of risks relating to federal, state, local and international laws and regulations applicable to our business and our Deferred Prosecution Agreement with the U.S. Attorney’s Office for the Central
+   284: Seasonal factors influencing our business are described under the heading “Quarterly Financial Data/Seasonality” in Item 7. “Management’s
+   285: Discussion
+   286: and Analysis of Financial Condition and Results of Operations.”
+   304: You should carefully consider the risks described below in addition to the other information set forth in this Annual Report on Form 10-K, including the Management’s Discussion and Analysis of Financial Conditions and Results of Operations section and the consolidated financial statements and related notes. If any of the risks and uncertainties described below actually occur or continue to occur, our business, financial condition and results of operations, and the trading price of our common stock could be materially and adversely affected. The risks and uncertainties described below are those that we have identified as material but are not the only risks and uncertainties we face. Our business is also subject to general risks and uncertainties that affect many other companies, including, but not limited to, overall economic and industry conditions and additional risks not currently known to us or that we presently deem immaterial may arise or become material and may negatively impact our business, reputation, financial condition, results of operations or the trading price of our common stock.
+   380: In April 2020, Chipotle signed a Deferred Prosecution Agreement (the “DPA”), which was filed in the U.S. District Court for the Central District of California, to settle an official criminal investigation conducted by the U.S. Attorney’s Office for the Central District of California, in conjunction with the U.S. Food and Drug Administration’s Office of Criminal Investigations (collectively, the “DOJ”), into company-wide food safety matters that occurred in our restaurants dating back to January 1, 2013. Pursuant to the DPA, the DOJ filed a two-count Class A Misdemeanor Information in the United States District Court for the Central District of California charging Chipotle with adulterating and causing food to be adulterated within the meaning of the Federal Food, Drug and Cosmetic Act (“FDCA”) while such food was held for sale. Under the DPA, Chipotle paid a $25 million fine and is required to enhance and maintain a comprehensive compliance program that is designed to ensure Chipotle complies with all applicable federal and state food safety laws. The DOJ agreed that if Chipotle is in full compliance with all of its obligations under the DPA at the conclusion of the three-year deferred prosecution term, the DOJ will move to dismiss the two-count information filed against Chipotle. Full compliance with the DPA requires, among other things, Chipotle to conduct a root cause analysis of the historic food safety matters, maintain and annually update a comprehensive food safety plan and comply with applicable provisions of the FDCA.
+   385: litigation and legal proceedings in the future. Even if the allegations against us in current or future legal matters are unfounded or we ultimately are not held liable, the costs to defend ourselves may be significant and the litigation may subject us to substantial settlements, fines, penalties or judgments against us and may divert management's attention away from operating our business, all of which could negatively impact our financial condition and results of operations. Litigation also may generate negative publicity, regardless of whether the allegations are valid, or we ultimately are liable, which could damage our reputation, and adversely impact our sales and our relationship with our employees and guests.
+   406: As of December 31, 2020, we owned and operated 2,764 Chipotle restaurants and we plan to open a significant number of new restaurants in the next several years. Our existing restaurant management systems, back office technology systems and processes, financial and management controls, information systems and personnel may not be adequate to support our continued growth. To effectively manage a larger number of restaurants, we may need to upgrade and expand our infrastructure and information systems, automate more processes that currently are manual or require manual intervention and hire, train and retain restaurant crew and corporate support staff, all of which may result in increased costs and at least temporary inefficiencies. We also place a lot of importance on our culture, which we believe has been an important contributor to our success, and as we continue to grow, it may be increasingly difficult to maintain our culture. Our failure to sufficiently invest in our infrastructure and information systems and maintain our strong staffing and culture could harm our brand and operating results.
+   451: The following graph compares the cumulative annual stockholders return on our common stock from December 31, 2015, through December 31, 2020, to that of the total return index for the S&P 500 and the S&P 500 Restaurants Index assuming an investment of $100 on December 31, 2015. In calculating total annual stockholder return, reinvestment of dividends, if any, is assumed. The indices are included for comparative purposes only. They do not necessarily reflect management’s opinion that such indices are an appropriate measure of the relative performance of our common stock. The values shown are neither indicative nor determinative of future performance. This graph is not “soliciting material,” is not deemed filed with the Securities and Exchange Commission and is not to be incorporated by reference in any of our filings under the Securities Act or the Exchange Act, whether made before or after the date hereof and irrespective of any general incorporation language in any such filing.
+   467: Our selected consolidated financial data shown below should be read together with Item 7. “Management’s Discussion and Analysis of Financial Condition and Results of Operations” and our consolidated financial statements and respective notes included in Item 8. “Financial Statements and Supplementary Data.” The data shown below is not necessarily indicative of results to be expected for any future period (dollar and share amounts in thousands, except per share data).
+   627: . MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS
+   628: You should read the following discussion together with Item 6. “Selected Financial Data” and our consolidated financial statements and related notes included in Item 8. “Financial Statements and Supplementary Data.” This section of the Form 10-K generally discusses 2020 and 2019 items and year-to-year comparisons of 2020 to 2019. Discussions of 2018 items and year-to-year comparisons of 2019 and 2018 that are not included in this Form 10-K can be found in “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in Part II, Item 7 on our Annual Report on Form 10-K for the year ended December 31, 2019. The discussion contains forward-looking statements involving risks, uncertainties and assumptions that could cause our results to differ materially from expectations. See “Cautionary Note Regarding Forward-Looking Statements.” Factors that might cause such differences include those described in Item 1A. “Risk Factors” and elsewhere in this report.
+   632: The COVID-19 pandemic has adversely affected, and will continue to adversely affect, our operations and financial results for the foreseeable future. In response to COVID-19, we temporarily closed some restaurants and dining rooms in our restaurants. We continue to follow guidance from health officials in determining the appropriate restrictions to put in place for each restaurant. As of December 31, 2020, the majority of our restaurants have been reopened for dine-in with restrictions, such as social distancing and mask requirements for all customers, to ensure the health and safety of our guests and employees. Certain restaurants only offer take-out, digital order ahead and delivery services in accordance with local guidance and regulations. For a further discussion of the impacts that COVID-19 has had on our financial results refer to the “Results of Operations.”
+   924: Operating lease assets and liabilities are recognized at time of lease inception. Operating lease liabilities represent the present value of lease payments not yet paid. Operating lease assets represent our right to use an underlying asset and are based upon the operating lease liabilities adjusted for prepayments or accrued lease payments, initial direct costs, lease incentives, and impairment of operating lease assets. To determine the present value of lease payments not yet paid, we estimate incremental borrowing rates corresponding to the reasonably certain lease term. As we have no outstanding debt nor committed credit facilities, secured or otherwise, we estimate this rate based on prevailing financial market conditions, comparable company and credit analysis, and management judgment. If the estimate of our incremental borrowing rate was changed, our operating lease assets and liabilities could differ materially.
+   944: Our benefit/(provision) for income taxes, deferred tax assets and liabilities including valuation allowance requires the use of estimates based on our management’s interpretation and application of complex tax laws and accounting guidance. We are primarily subject to income taxes in the United States. We establish reserves for uncertain tax positions for material, known tax exposures in accordance with Accounting Standards Codification (“ASC”) 740 relating to deductions, transactions and other matters involving some uncertainty as to the measurement and recognition of the item. We may adjust these reserves when our judgment changes as a result of the evaluation of new information not previously available and will be reflected in the period in which the new information is available. While we believe that our reserves are adequate, issues raised by a tax authority may be resolved at an amount different than the related reserve and could materially increase or decrease our income tax provision in future periods.
+   994: Auditing the grant date fair value and the appropriateness of the accounting treatment of the Company’s stock awards was complex and judgmental. In particular, the fair value estimate for stock awards subject to performance conditions is sensitive to significant assumptions including management’s internal estimates of the Company’s future performance.
+   996: We obtained an understanding, evaluated the design, and tested the operating effectiveness of management’s controls over stock-based compensation. We tested controls over management’s review of the valuation model methodology and assumptions used with regards to the service and performance conditions. We also tested management's controls to validate that data used in the valuation model was complete and accurate.
+   997: Our substantive audit procedures included, among others, testing the significant assumptions underlying the performance conditions (e.g., certain targets related to growth in comparable restaurant sales and average restaurant margin) and testing the completeness and accuracy of the underlying data. We evaluated management’s significant assumptions by comparing the assumptions to current market and economic trends, historical results of the Company’s business, and to other relevant factors. We additionally performed a sensitivity analysis of the significant assumptions to evaluate the change in the fair value of the stock awards subject to performance conditions resulting from changes in the assumptions. We also evaluated the adequacy of the Company’s stock-based compensation disclosures included in Notes 1 and 8 of the consolidated financial statements in relation to these matters.
+  1549: outstanding debt nor committed credit facilities, secured or otherwise, we estimate this rate based on prevailing financial market conditions, comparable company and credit analysis, and management judgment.
+  2510: Management’s Annual Report on Internal Control over Financial Reporting
+  2530: Management’s Annual Report on Internal Control over Financial Reporting
+
+====================================================================================================
+ITEM_7 | CMG | 2020-02-05 | 105809020000010
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\CMG\000105809020000010.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+   102: Item 7.
+   103: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+   138: hese forward-looking statements are based on currently available operating, financial and competitive information and are subject to various risks and uncertainties. Our actual future results and trends may differ materially depending on a variety of factors, including, but not limited to, the risks and uncertainties described in this report under the heading “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” so you should not place undue reliance on forward-looking statements.
+   199: We believe restaurant site selection is critical to our long-term success and growth strategy. As a result, we devote substantial time and effort to carefully evaluate each potential new restaurant location. Our site selection process is led by our internal team of real estate managers and includes external real estate brokers with expertise in specific markets, as well as support from an internal real estate strategy and research group. We thoroughly assess the surrounding trade area, demographic and business information within that area, and available information on competitors and other restaurants. Based on this analysis, including utilization of predictive modeling using proprietary formulas, we determine projected sales and targeted return on investment for each potential restaurant site. We have been successful in a number of different types of locations, such as
+   219: Seasonal factors influencing our business are described under the heading “Quarterly Financial Data/Seasonality” in Item 7. “Management’s Discussion and Analysis of Financial Condition and Results of Operations.”
+   229: You should carefully consider the risks described below in addition to the other information set forth in this Annual Report on Form 10-K, including the Management’s Discussion and Analysis of Financial Conditions and Results of Operations section and the consolidated financial statements and related notes. If any of the risks and uncertainties described below actually occur or continue to occur, our business, financial condition and results of operations, and the trading price of our common stock could be materially and adversely affected. The risks and uncertainties described below are those that we have identified as material but are not the only risks and uncertainties we face. Our business is also subject to general risks and uncertainties that affect many other companies, including, but not limited to, overall economic and industry conditions and additional risks not currently known to us or that we presently deem immaterial may arise or become material and may negatively impact our business, reputation, financial condition, results of operations or the trading price of our common stock.
+   291: As of December 31, 2019, we operated 2,619 Chipotle restaurants and we plan to open a significant number of new restaurants in the next few years. Our existing restaurant management systems, back office technology systems and processes, financial and management controls, information systems and personnel may not be adequate to support our continued growth. To effectively manage our growth, we may need to upgrade, expand or enhance our infrastructure and information systems, as well as hire, train and retain restaurant crew and corporate support staff, which may result in increased costs or inefficiencies. We also place a lot of importance on our culture, which we believe has been an important contributor to our success. As we continue to grow, it may be increasingly difficult to maintain our culture. Our failure to effectively
+   308: Even if the allegations against us in current or future legal matters are unfounded or we ultimately are not held liable, the costs to defend ourselves may be significant and the litigation may subject us to substantial settlements, fines, penalties or judgments against us and may divert management's attention away from operating our business, all of which could negatively impact our financial condition and results of operations. Litigation also may generate negative publicity, regardless of whether the allegations are valid, or we ultimately are liable, which could damage our reputation, and adversely impact our sales and our relationship with our employees.
+   398: The following graph compares the cumulative annual stockholders return on our common stock from December 31, 2014, through December 31, 2019, to that of the total return index for the S&P 500 and the S&P 500 Restaurants Index assuming an investment of $100 on December 31, 2014. In calculating total annual stockholder return, reinvestment of dividends, if any, is assumed. The indices are included for comparative purposes only. They do not necessarily reflect management’s opinion that such indices are an appropriate measure of the relative performance of our common stock. The values shown are neither indicative nor determinative of future performance. This graph is not “soliciting material,” is not deemed filed with the Securities and Exchange Commission and is not to be incorporated by reference in any of our filings under the Securities Act or the Exchange Act, whether made before or after the date hereof and irrespective of any general incorporation language in any such filing.
+   414: Our selected consolidated financial data shown below should be read together with Item 7. “Management’s Discussion and Analysis of Financial Condition and Results of Operations” and our consolidated financial statements and respective notes included in Item 8. “Financial Statements and Supplementary Data.” The data shown below are not necessarily indicative of results to be expected for any future period (dollar and share amounts in thousands, except per share data).
+   564: . MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS
+   565: You should read the following discussion together with Item 6. “Selected Financial Data” and our consolidated financial statements and related notes included in Item 8. “Financial Statements and Supplementary Data.” This section of the Form 10-K generally discusses 2019 and 2018 items and year-to-year comparisons of 2019 to 2018. Discussions of 2017 items and year-to-year comparisons of 2018 and 2017 that are not included in this Form 10-K can be found in “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in Part II, Item 7 on our Annual Report on Form 10-K for the year ended December 31, 2018. The discussion contains forward-looking statements involving risks, uncertainties and assumptions that could cause our results to differ materially from expectations. See “Cautionary Note Regarding Forward-Looking Statements.” Factors that might cause such differences include those described in Item 1A. “Risk Factors” and elsewhere in this report.
+   854: Operating lease assets and liabilities are recognized at the lease commencement date. Operating lease liabilities represent the present value of lease payments not yet paid. Operating lease assets represent our right to use an underlying asset and are based upon the operating lease liabilities adjusted for prepayments or accrued lease payments, initial direct costs, lease incentives, and impairment of operating lease assets. To determine the present value of lease payments not yet paid, we estimate incremental borrowing rates corresponding to the reasonably certain lease term. As we have no outstanding debt nor committed credit facilities, secured or otherwise, we estimate this rate based on prevailing financial market conditions, comparable company and credit analysis, and management judgment. If the estimate of our incremental borrowing rate was changed, our operating lease assets and liabilities could differ materially.
+   871: Our provision for income taxes, deferred tax assets and liabilities including valuation allowance requires the use of estimates based on our management’s interpretation and application of complex tax laws and accounting guidance. We are primarily subject to income taxes in the United States. We establish reserves for uncertain tax positions for material, known tax exposures in accordance with Accounting Standards Codification (“ASC”) 740 relating to deductions, transactions and other matters involving some uncertainty as to the measurement and recognition of the item. We may adjust these reserves when our judgment changes as a result of the evaluation of new information not previously available and will be reflected in the period in which the new information is available. While we believe that our reserves are adequate, issues raised by a tax authority may be resolved at an amount different than the related reserve and could materially increase or decrease our income tax provision in future periods.
+   922: Auditing management’s contract evaluation performed in conjunction with the adoption of ASC 842 was complex and required judgment to analyze the terms within the contracts and vendor agreements to determine whether we concurred with management’s evaluation. Additionally, during the inspection of contracts and vendor agreements and analysis of contractual terms, inquiries and discussions were held outside of the accounting department to support the evaluation. Further, auditing management’s assessment of its incremental borrowing rate is especially subjective and judgmental as the Company has no outstanding debt nor committed credit facilities, secured or otherwise that would have comparable collateral or similar terms as their underlying restaurant locations and office space.
+   924: We obtained an understanding, evaluated the design, and tested the operating effectiveness of management’s controls over the implementation of the ASC 842 process, including the Company’s controls with regards to the contract evaluation, and review of the methodology, inputs, and assumptions used to determine the incremental borrowing rate.
+   925: Our substantive audit procedures included, among others, involving specialists to assist in evaluating management’s methodology and assumptions used to determine the Company’s incremental borrowing rate at the date of adoption of ASC 842. The considerations to determine the appropriateness of the Company’s incremental borrowing rate included the Company’s credit rating, current market environment for recent debt transactions, and market data available to support the adjustment required to reflect a collateralized borrowing rate. In addition, we obtained and inspected a sample of individual leases to test the completeness and accuracy of the lease inputs and terms used in the Company’s calculation and tested the computational accuracy. We additionally performed procedures to determine the completeness of the lease population used in the Company’s analysis. We tested a sample of contracts and vendor agreements to determine whether management appropriately evaluated whether such agreements contained a lease. These procedures included, among others, inspecting contracts and vendor agreements, analyzing contractual terms and performing inquiries within the organization outside of the accounting department. Additionally, our procedures included reviewing management’s lease questionnaires sent to relevant employees and cash disbursement listings to test that contracts which could contain lease provisions were considered in the lease population used in the Company’s analysis. We also evaluated the Company’s lease disclosures included in Notes 1 and 11 in relation to these matters.
+   929: Auditing the grant date fair value and the appropriateness of the accounting treatment of the Company’s stock awards was complex and judgmental. In particular, the fair value estimate for stock awards subject to performance conditions is sensitive to significant assumptions including management’s internal estimates of the Company’s future performance.
+   931: We obtained an understanding, evaluated the design, and tested the operating effectiveness of management’s controls over stock-based compensation. We tested controls over management’s review of the valuation model methodology and assumptions used with regards to the service and performance conditions. We also tested management's controls to validate that data used in the valuation model was complete and accurate.
+   932: Our substantive audit procedures included, among others, testing the significant assumptions underlying the performance conditions (e.g., certain targets related to growth in comparable restaurant sales and average restaurant margin) and testing the completeness and accuracy of the underlying data. We evaluated management’s significant assumptions by comparing the assumptions to current market and economic trends, historical results of the Company’s business, and to other relevant factors. We additionally performed a sensitivity analysis of the significant assumptions to evaluate the change in the fair value of the stock awards subject to performance conditions resulting from changes in the assumptions. We also evaluated the adequacy of the Company’s stock-based compensation disclosures included in Notes 1 and 9 in relation to these matters.
+  1463: outstanding debt nor committed credit facilities, secured or otherwise, we estimate this rate based on prevailing financial market conditions, comparable company and credit analysis, and management judgment.
+  2040: In connection with the TCJA, a one-time transition tax is assessed on total post-1986 accumulated foreign earnings and profits that were previously deferred from U.S. income taxes, the amount of those earnings held in cash, and other specified assets and foreign tax pools. Based on our analysis of our total post-1986 accumulated foreign earnings and profits that were previously deferred from U.S. income taxes, the amount of those earnings held in cash, and other specified assets and foreign tax pools, we have determined a one-time transition tax of $
+  2455: On January 28, 2016, we were served with a Federal Grand Jury Subpoena from the U.S. District Court for the Central District of California in connection with an official criminal investigation being conducted by the U.S. Attorney’s Office for the Central District of California, in conjunction with the U.S. Food and Drug Administration’s Office of Criminal Investigations. The subpoena required the production of documents and information related to company-wide food safety matters dating back to January 1, 2013. Since then we have received additional subpoenas requesting information related to illness incidents associated with several of our restaurants, and we may receive additional subpoenas in the future related to illness incidents at these or other restaurants. We have cooperated with the investigation, and we are in discussions with the U.S. Attorney's Office in an effort to resolve this matter through a settlement. We believe that if a settlement is reached, it will contain both monetary and non-monetary elements, including a deferred prosecution agreement and additional undertakings by the Company. We have reserved a total of $
+  2456: million in connection with this investigation, which we believe is a reasonable estimate of the amount we may be expected to pay to settle this matter. Based on discussions to date, we are hopeful that a settlement can be reached; however, there can be no assurance that a settlement will be reached or as to the ultimate timing or monetary or non-monetary terms of such a settlement.
+  2539: Management’s Annual Report on Internal Control over Financial Reporting
+  2556: The Company’s management is responsible for maintaining effective internal control over financial reporting and for its assessment of the effectiveness of internal control over financial reporting included in the accompanying Management’s Annual Report on Internal Control over Financial Reporting. Our responsibility is to express an opinion on the Company’s internal control over financial reporting based on our audit. We are a public accounting firm registered with the PCAOB and are required to be independent with respect to the Company in accordance with the U.S. federal securities laws and the applicable rules and regulations of the Securities and Exchange Commission and the PCAOB.
+
+====================================================================================================
+ITEM_7 | CMG | 2019-02-08 | 105809019000007
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\CMG\000105809019000007.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+    89: Item 7.
+    90: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+   120: This report includes statements of our expectations, intentions, plans and beliefs that constitute “forward-looking statements” within the meaning of Section 27A of the Securities Act of 1933, as amended (the “Securities Act”), and Section 21E of the Securities Exchange Act of 1934, as amended (the “Exchange Act”), and that are intended to come within the safe harbor protection provided by those sections. These statements, which involve risks and uncertainties, relate to the discussion of our business strategies and our expectations concerning future operations, margins, profitability, trends, liquidity and capital resources and to analyses and other information that are based on forecasts of future results and estimates of amounts not yet determinable. Forward-looking statements include, among others, statements about the potential impact of catering and delivery offerings and technology initiatives; statements regarding the effectiveness of our food safety systems and procedures; projections of comparable restaurant sales increases and sales trends we expect for 2019; estimates of restructuring and restaurant closure costs and accelerated depreciation to be recognized in 2019; forecasts of the number of restaurants we expect to open; forecasts of trends in general and administrative expenses, restaurant development costs, and other expenses for 2019; estimates of expected effective tax rates for the year; statements about possible repurchases of our common stock; projections of planned capital expenditures; and other statements of our expectations and plans. We have used words such as “may,” “will,” “should,” “expect,” “intend,” “plan,” “anticipate,” “believe,” “think,” “estimate,” “seek,” “expect,” “predict,” “could,” “project,” “potential” and other similar terms and phrases, including references to assumptions, in this report to identify forward-looking statements. These forward-looking statements are made based on expectations and beliefs concerning future events affecting us and are subject to risks and uncertainties relating to our operations and business environments, all of which are difficult to predict and many of which are beyond our control, that could cause our actual results to differ materially from those matters expressed or implied by these forward-looking statements. Such risks and uncertainties include those listed in Item 1A. “Risk Factors,” and elsewhere in this report.
+   146: Maintaining the high levels of quality and safety we expect in our restaurants depends in part on our ability to acquire high-quality, fresh ingredients and other necessary supplies that meet our specifications from reliable suppliers. Our 24 independently owned and operated regional distribution centers purchase from various suppliers we carefully select based on quality and the suppliers’ understanding of our mission. We work closely with our suppliers and seek to develop mutually beneficial long-term relationships with them. We use a mix of forward, fixed and formula pricing protocols, and our distribution centers purchase within the pricing guidelines and protocols we have established with suppliers. We’ve also sought to increase, where practical, the number of suppliers for our ingredients to help mitigate pricing volatility and supply shortages. In addition, we closely monitor industry news, trade tariffs and other issues, weather, exchange rates, foreign demand, crises and other world events that may affect our ingredient prices. Certain key ingredients (including beef, pork, chicken, beans, rice, sour cream, cheese, and tortillas) are purchased from a small number of suppliers. For a discussion of risks related to our supply chain, see
+   178: For a discussion of risks related to our
+   200: We believe restaurant site selection is critical to our long-term success and growth strategy. As a result, we devote substantial time and effort to carefully evaluate each potential restaurant location. Our site selection process is led by our internal team of real estate managers and includes external real estate brokers with expertise in specific markets, as well as support from an internal real estate strategy and research group. We thoroughly assess the surrounding trade area, demographic and business information within that area, and available information on competitors and other restaurants. Based on this analysis, including utilization of predictive modeling using proprietary formulas, we determine projected sales and targeted return on investment for each potential restaurant site. We have been successful in a number of different types of locations, such as
+   203: For a discussion of risks related to our opening of new restaurants and expansion into new real estate types, see “
+   209: Although in 2019 our focus will remain on thoughtfully growing the Chipotle brand, we believe that the fundamental principles on which our restaurants are based – finding better ingredients, preparing them using classic techniques in front of our guests, and serving them in an interactive format with great teams dedicated to providing an excellent dining experience – can be adapted to cuisines other than the food served at Chipotle. We have invested in innovative concepts such as Pizzeria Locale, a fast-casual pizza restaurant that has two restaurants in Denver, Colorado. For a discussion of risks related to Pizzeria Locale and our possible investment in new concepts, see
+   222: in Item 1A. “Risk Factors,” as well as Note 13. “Commitments and Contingencies” in Item 8. “Financial Statements and Supplementary Data,” for further discussion of the payment card security incident in 2017, related legal proceedings, and other risks associated with our information systems.
+   234: Seasonal factors influencing our business are described under the heading “Quarterly Financial Data/Seasonality” in Item 7. “Management’s Discussion and Analysis of Financial Condition and Results of Operations.”
+   362: As described elsewhere in this report, our plans call for a significant number of new restaurants, new employees, new suppliers, and new systems to support our business strategies. Our existing restaurant management systems, financial and management controls, information systems and personnel may be inadequate to support our expansion, and managing our growth effectively will require us to continue to enhance these systems, procedures and controls, as well as to hire, train and retain general managers, crew and corporate staff. We also are continuing to attempt to improve our field management in an effort to improve restaurant operations
+   477: above, for additional discussion of these types of claims. From time to time, we also face claims alleging that technology we use in our business infringes patents held by third parties. In addition, the restaurant industry has been subject to a growing number of claims based on the nutritional content of food products and other disclosure and advertising practices. We have been subject to a number of these actions and may be subject to additional actions of this type in the future. We are also undergoing government investigations and have been sued in two shareholder class action lawsuits, each as described elsewhere in this report, including in Note 13. “Commitments and Contingencies” in our consolidated financial statements included in Item 8. “Financial Statements and Supplementary Data,” and these matters may be particularly expensive to defend and/or resolve.
+   484: In April 2017, our information security team detected unauthorized activity on the network that supports payment processing for our restaurants, and the ensuing investigation detected malware designed to access payment card data from cards used at point-of-sale devices at most of our restaurants, primarily in the period from March 24, 2017 through April 18, 2017. We removed the malware from our systems and continue to work to enhance our security measures, including a planned implementation of new payment processing technology in substantially all of our restaurants during 2019. However, we expect to be subject to payment card network assessments and may incur regulatory fines or penalties, for which our insurance coverage is limited, and as a result, we recorded a $30 million estimated liability, of which approximately $29 million remained in accrued liabilities as of December 31, 2018. We may ultimately be subject to liabilities greater than or less than the amount accrued. See Note 13. “Commitments and Contingencies” included in Item 8. “Financial Statements and Supplementary Data,” for further discussion of potential liabilities and pending litigation filed against us in connection with this incident.
+   663: The following graph compares the cumulative annual stockholders return on our common stock from December 31, 2013 through December 31, 2018 to that of the total return index for the S&P 500 and the S&P 500 Restaurants Index assuming an investment of $100 on December 31, 2013. In calculating total annual stockholder return, reinvestment of dividends, if any, is assumed. The indices are included for comparative purposes only. They do not necessarily reflect management’s opinion that such indices are an appropriate measure of the relative performance of our common stock. This graph is not “soliciting material,” is not deemed filed with the Securities and Exchange Commission and is not to be incorporated by reference in any of our filings under the Securities Act or the Exchange Act, whether made before or after the date hereof and irrespective of any general incorporation language in any such filing.
+   669: Our selected consolidated financial data shown below should be read together with Item 7. “Management’s Discussion and Analysis of Financial Condition and Results of Operations” and our consolidated financial statements and respective notes included in Item 8. “Financial Statements and Supplementary Data.” The data shown below are not necessarily indicative of results to be expected for any future period (dollar and share amounts in thousands, except per share data).
+   819: . MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS
+   820: You should read the following discussion together with Item 6. “Selected Financial Data” and our consolidated financial statements and related notes included in Item 8. “Financial Statements and Supplementary Data.” The discussion contains forward-looking statements involving risks, uncertainties and assumptions that could cause our results to differ materially from expectations. See “Cautionary Note Regarding Forward-Looking Statements.” Factors that might cause such differences include those described in Item 1A. “Risk Factors” and elsewhere in this report.
+  1203: Our provision for income taxes requires the use of estimates in determining the timing and amounts of deductible and taxable items including impacts on effective tax rates, deferred tax items and valuation allowances based on our management’s interpretation and application of complex tax laws and accounting guidance. We establish reserves for uncertain tax positions for material, known tax exposures relating to deductions, transactions and other matters involving some uncertainty as to the measurement and recognition of the item. While we believe that our reserves are adequate, issues raised by a tax authority may be finally resolved at an amount different than the related reserve and could materially increase or decrease our income tax provision in the current and/or future periods.
+  2206: In connection with the TCJA, a one-time transition tax is assessed on total post-1986 accumulated foreign earnings and profits that were previously deferred from U.S. income taxes, the amount of those earnings held in cash, and other specified assets and foreign tax pools. Based on our analysis of our total post-1986 accumulated foreign earnings and profits that were previously deferred from U.S. income taxes, the amount of those earnings held in cash, and other specified assets and foreign tax pools, we have determined a one-time transition tax of $0.
+  2730: Management’s Annual Report on Internal Control over Financial Reporting
+  2752: The Company’s management is responsible for maintaining effective internal control over financial reporting and for its assessment of the effectiveness of internal control over financial reporting included in the accompanying Management’s Annual Report on Internal Control over Financial Reporting. Our responsibility is to express an opinion on the Company’s internal control over financial reporting based on our audit. We are a public accounting firm registered with the PCAOB and are required to be independent with respect to the Company in accordance with the U.S. federal securities laws and the applicable rules and regulations of the Securities and Exchange Commission and the PCAOB.
+
+====================================================================================================
+ITEM_7 | NTAP | 2018-06-19 | 156459018015820
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\NTAP\000156459018015820.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+    87: Item 7
+    88: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+   129: All forward-looking statements included in this document are inherently uncertain as they are based on management’s current expectations and assumptions concerning future events, and are subject to numerous known and unknown risks and uncertainties. Therefore, actual events and results may differ materially from these forward-looking statements. Factors that could cause actual results to differ materially from those described herein include, but are not limited to:
+   179: NetApp delivers a Data Fabric built for the data-driven world. Our Data Fabric simplifies and integrates data management across clouds and on-premises to accelerate digital transformation, enabling our customers to manage, secure, and protect their data at the scale needed to accommodate the exponential data growth of the digital world. The Data Fabric delivers integrated data management services and applications for data visibility and insights, data access and control, and data protection and security.
+   189: The Cloud Volumes ONTAP storage data management service is based on the familiar and reliable ONTAP data management software, bringing data protection and storage efficiency features to cloud-based storage. Cloud Volumes ONTAP allows customers to build an enterprise storage service on Amazon Web Services (AWS) or Microsoft Azure with the flexibility to pay for only what a customer needs, when it needs it. Whether customers want to move traditional database applications or legacy NAS applications to the cloud, Cloud Volumes ONTAP provides the data access, insights, and control along the way.
+   196: OnCommand Management Software and Management Integration Tools
+   197: The NetApp OnCommand® storage management software portfolio incorporates a broad range of data management tools for NetApp and multivendor storage. These products enable customers to maintain control of their data regardless of where it resides in a hybrid cloud environment, to drive efficiency using software management tools designed to work together, and to gain flexibility.
+   198: NetApp OnCommand Insight management software delivers consistent insight across the data center, so organizations can monitor, manage, and optimize hybrid IT multivendor storage, compute, and switching infrastructures.
+   218: NetApp All Flash FAS (AFF) systems address enterprise storage requirements with high performance, superior flexibility, and best-in-class data management. Built on ONTAP data management software, AFF systems speed up business without compromising on the efficiency, reliability, or flexibility of IT operations. As an enterprise-grade all-flash array, it accelerates, manages, and protects business-critical data and enables an easy and risk-free transition to flash. Designed specifically for flash, the AFF A-Series all-flash systems deliver industry-leading performance, capacity density, scalability, security, and network connectivity in dense form factors. With the addition of a new entry-level system, the new AFF A-Series family extends enterprise-grade flash to midsize businesses and to fit any budget.
+   226: ONTAP 9 is the next generation of the industry’s leading enterprise data management software. It combines new levels of simplicity and flexibility with powerful data management capabilities and storage efficiencies. With ONTAP 9, customers can build a hybrid cloud that is the foundation of a Data Fabric. ONTAP 9 provides flexibility to design and deploy a storage environment across the widest range of architectures—engineered systems, software-defined storage (SDS), and the cloud—spanning flash and disk infrastructures. AFF systems running ONTAP 9 are optimized specifically for flash. ONTAP 9 also enables FAS hybrid storage systems to deliver flash-accelerated performance that is balanced with HDD economies.
+   231: NetApp SnapCenter Backup Management Software
+   244: NetApp and our ecosystem of partners deliver a full portfolio of professional and technical services that enable customers to gain the end-to-end expertise and insight needed to succeed and accelerate digital transformations. Our services experts help organizations create a Data Fabric strategy, aligned to their business strategy, to drive innovation and deliver improved business results across cloud and on-premises environments. We collaborate with our customers to accelerate digital transformation with the right expertise to envision, deploy, and operate NetApp data management solutions. NetApp Services experts deliver proactive and predictive intelligence for optimizing the way organizations manage their solutions throughout the data lifecycle.
+   246: Operational Support Services ensure our products operate efficiently and benefit from the most up-to-date software to help customers minimize downtime for systems running business-critical applications. Our services organization also delivers actionable intelligence for managing and optimizing data management solutions with proactive and predictive technology.
+   275: We are committed to the success of our customers and partners, to delivering value to our stockholders, and to positively affecting the communities where our employees work and live. We firmly believe that we can accomplish these objectives concurrently with our commitment to sustainability. We are committed to the prevention of pollution; efficient use of natural resources; and minimizing, relative to the growth of the company, the environmental impacts from our operations, products, and services, as well as complying with laws and regulations related to these areas. Our environmental management system provides the framework for setting, monitoring, and continuously improving our environmental goals and objectives.
+   277: We are also subject to other federal, state, and local regulations regarding workplace safety and protection of the environment. Various international, federal, state, and local provisions regulate the use and discharge of certain hazardous materials used in the manufacture of our products. Failure to comply with environmental regulations in the future could cause us to incur substantial costs or subject us to business interruptions. We believe we are substantially compliant with all applicable environmental laws. All of our products meet the requirements of the Registration, Evaluation, Authorisation and Restriction of Chemicals (REACH); Waste Electrical and Electronic Equipment (WEEE); Restriction of Hazardous Substances (RoHS); and China RoHS directives. We have maintained an environmental management system since December 2004. As part of ISO 14001 requirements, we set local environmental performance goals such as reducing energy use per square foot and minimizing waste generated on site, that are aligned with our overall corporate strategy. We also conduct periodic reviews and are subject to third-party audits of our operations, and we monitor environmental legislation and requirements to help make sure we are taking necessary measures to remain in compliance with applicable laws, not only in our operations but also for our products.
+   316: The information included elsewhere in this Annual Report on Form 10-K should be considered and understood in the context of the following risk factors, which describe circumstances that may materially harm our future business, operating results or financial condition. The following discussion reflects our current judgment regarding the most significant risks we face. These risks can and will change in the future.
+   318: Our industry and the markets in which we compete have historically experienced significant growth due to the increase in the demand for storage and data management solutions by consumers, enterprises and government bodies around the world, and the resultant purchases of storage and data management solutions to address this demand. However, despite continued data growth, the networked storage hardware market experienced a decline in each of the last three calendar years due to a combination of customers delaying purchases in the face of technology transitions, increasing adoption of Cloud environments built on commodity hardware, increased storage efficiency, and changing economic and business environments. While customers are navigating through their IT transformations, which leverage modern architectures and hybrid cloud environments, they are also reducing IT budgets, looking for simpler solutions, and rethinking how they consume IT. This evolution is diverting spending towards transformational projects and architectures like flash, hybrid cloud, IT as a service, converged infrastructure, and software defined storage. Our business may be adversely impacted if we are unable to keep pace with rapid industry, technological or market changes or if our Data Fabric strategy is not accepted in the marketplace. As a result of these and other factors discussed in the report, our revenue may decline as it did in fiscal years 2015, 2016 and 2017, on a year-over year basis. The future impact of these trends on both short-term and long-term growth patterns is uncertain. If the general historical rate of industry growth declines, if the growth rates of the specific markets in which we compete decline, and/or if the consumption model of storage changes and our new and existing products, services and solutions do not receive customer acceptance, our business, operating results and financial condition could suffer.
+   488: For a discussion of legal proceedings, see Note 18 – Commitments and Contingencies of the Notes to Consolidated Financial Statements.
+   610: The following selected consolidated financial data set forth below was derived from our historical audited consolidated financial statements and should be read in conjunction with Item 7 – Management’s Discussion and Analysis of Financial Condition and Results of Operations and Item 8 – Financial Statements and Supplementary Data, and other financial data included elsewhere in this Annual Report on Form 10-K. Our historical results of operations are not indicative of our future results of operations.
+   691: Management’s Discussion and Anal
+   693: The following discussion of our financial condition and results of operations should be read together with the financial statements and the accompanying notes set forth under Item 8. – Financial Statements and Supplementary Data. The following discussion also contains trend information and other forward-looking statements that involve a number of risks and uncertainties. The Risk Factors set forth in Item 1A. – Risk Factors are hereby incorporated into the discussion by reference.
+   697: NetApp delivers a Data Fabric built for the data-driven world. Our Data Fabric simplifies and integrates data management across clouds and on-premises to accelerate digital transformation, enabling our customers to manage, secure and protect their data at the scale needed to accommodate the exponential data growth of the digital world. It delivers integrated data management services and applications for data visibility and insights, data access and control, and data protection and security.
+   787: We periodically perform an excess and obsolete analysis of our inventory.
+   866: Discussion and Analysis of Results of Operations
+  1073: As of April 27, 2018, we have not fully completed the accounting for the tax impacts of the TCJA and, in connection with SAB 118, have recorded provisional tax charges based on reasonable estimates for the remeasurement of deferred tax assets and liabilities based on the new corporate rate and for the transition tax on our total post-1986 foreign earnings and profits (E&P). The TCJA also includes provisions for a global minimum tax on intangible low-taxed income (GMT) of foreign subsidiaries, a base erosion anti-abuse tax on certain intercompany payments, and beneficial tax treatment for foreign derived intangible income. These provisions will be effective for us beginning in our fiscal 2019. We will continue to refine provisional balances and make adjustments during the measurement period based on the issuance of further regulatory guidance, changes in interpretations, and the collection and analysis of additional information; these adjustments could be material to our financial statements. The provisional amounts recorded during the current year are explained below.
+  1085: We continue to monitor the progress of ongoing discussions with tax authorities and the impact, if any, of the expected expiration of the
+  1086: statute of limitations in various taxing jurisdictions. We engage in continuous discussion and negotiation with taxing authorities regarding tax matters in multiple jurisdictions. We believe that within the next 12 months, it is reasonably possible that either certain audits will conclude, certain statutes of limitations will lapse, or both. As a result of uncertainties regarding tax audits and their possible outcomes, an estimate of the range of possible impacts to unrecognized tax benefits in the next twelve months cannot be made at this time.
+  1296: Some of the amounts in the table above are based on management’s estimates and assumptions, including the commitment duration, the possibility of renewal or termination, anticipated actions by management and third parties and other factors. Because these estimates and assumptions are subjective, our actual future obligations may vary from those reflected in the table.
+  1815: We sell our products primarily to large organizations in different industries and geographies. We do not require collateral or other security to support accounts receivable. In addition, we maintain an allowance for potential credit losses. To reduce credit risk, we perform ongoing credit evaluations on our customers’ financial condition. We establish an allowance for doubtful accounts based upon factors surrounding the credit risk of customers, historical trends and other information and, to date, such losses have been within management’s expectations. Concentrations of credit risk with respect to trade accounts receivable are limited due to the wide variety of customers who are dispersed across many geographic regions.
+  1827: On August 4, 2017, we acquired all of the outstanding shares of Greenqloud ehf., a privately-held provider of cloud management software based in Iceland, for $51 million in cash, of which we preliminarily allocated $10 million to developed technology, $38 million to goodwill, and the remainder to other assets.
+
+====================================================================================================
+ITEM_7 | PAYX | 2016-07-22 | 72353116000046
+status=boundary_uncertain | words=16229 | start=191.0 | end=1691.0 | method=title_only | boundary=item_7a_start | score=36.0
+file=data\processed\10k\PAYX\000072353116000046.txt
+
+--- START: line 191 ---
+       187: “
+       188: Risk Factors
+       189: ”
+       190: and throughout Part II, Item 7
+>>>    191: “
+       192: Management’s Discussion and Analysis of Financial Condition and Results of Operations
+       193: ”
+       194: of this Annual Report on Form 10
+       195: ‐
+
+--- END: line 1691 ---
+      1687: nsolidated Financial Statements
+      1688: contained in Item
+      1689: 8 of this Form 10-K
+      1690: for further discussion of our reserve for uncertain tax positions
+>>>   1691: m 7A.
+      1692: Quantitative and Qualitative Disclosures About Market Risk
+      1693: Market Risk Factors
+      1694: Changes in interest rates and interest rate risk:
+      1695: Funds held for clients are primarily comprised of short-term funds and available-for-sale securities. Corporate investments are primarily comprised of available-for-sale securities. As a result of our investing activities, we are exposed to changes in interest rates that may materially affect our results of operations and financial position. Changes in interest rates will impact the earnings potential of future investments and will cause fluctuations in the fair value of our longer-term available-for-sale securities. We follow an investment strategy of protecting principal and optimizing liquidity. A substantial portion of our portfolios is invested in high credit quality securities with AAA and AA ratings and A-1/P-1 ratings on short-term securities. We invest predominately in municipal bonds including general obligation bonds, pre-refunded bonds that are secured by a U.S. government escrow, and essential services revenue bonds
+
+====================================================================================================
+ITEM_7 | TDY | 2025-02-21 | 109428525000053
+status=boundary_uncertain | words=23150 | start=228.0 | end=1177.0 | method=explicit_item_fallback | boundary=item_7a_start | score=24.0
+file=data\processed\10k\TDY\000109428525000053.txt
+
+--- START: line 228 ---
+       224: We own and control various intellectual property rights, including patents, trade secrets, confidential information, trademarks, trade names, and copyrights. We license patents, technology and other intellectual property rights owned and controlled by others. Similarly, other companies license patents, technology and other intellectual property rights owned and controlled by us. We do not consider any single patent or trademark, or any group of them, essential either to Teledyne’s business as a whole or to any one of our reportable segments. The annual royalties received or paid under license agreements are not significant to any of our reportable segments or to our overall operations.
+       225: Patents, patent applications and license agreements will expire or terminate over time by operation of law, in accordance with their terms or otherwise. We do not expect the expiration or termination of these patents, patent applications and license agreements to have a material adverse effect on our business, results of operations or financial condition.
+       226: Environment and Other Government Regulations
+       227: Information with respect to environmental matters is set forth under “Other Matters – Environmental” of “
+>>>    228: Item 7
+       229: . Management’s Discussion and Analysis of Results of Operation and Financial Condition” and Note
+       230: . No material capital expenditures relating to environmental compliance are presently anticipated. See Note
+       231: for additional discussion of other government regulations.
+       232: Sustainability
+
+--- END: line 1177 ---
+      1173: negatively affects the markets of our commercial aviation businesses. Lower aircraft production rates at Boeing or Airbus could result in reduced sales of our commercial aerospace products. In addition, financial market fluctuations affect the value of the company’s pension assets. Changes in the policies of the United States and foreign governments, including economic sanctions or in regard to support for Ukraine, could result, over time, in reductions or realignment in defense or other government spending and further changes in programs in which the company participates.
+      1174: While the company’s growth strategy includes possible acquisitions, we cannot provide any assurance as to when, if or on what terms any acquisitions will be made. Acquisitions involve various inherent risks, such as, among others, our ability to integrate acquired businesses, retain key management and customers and achieve identified financial and operating synergies. There are additional risks associated with acquiring, owning and operating businesses internationally, including those arising from U.S. and foreign government policy changes or actions and exchange rate fluctuations.
+      1175: We continue to take action to assure compliance with the internal controls, disclosure controls and other requirements of the Sarbanes-Oxley Act of 2002. While we believe our control systems are effective, there are inherent limitations in all control systems, and misstatements due to error or fraud may occur and may not be detected.
+      1176: Additional information concerning factors that could cause actual results to differ materially from those projected in the forward-looking statements is contained beginning on page
+>>>   1177: of this Form 10-K under the caption “Risk Factors; Cautionary Statement as to Forward-Looking Statements.” Forward-looking statements are generally accompanied by words such as “estimate”, “project”, “predict”, “believes” or “expect”, that convey the uncertainty of future events or outcomes. We assume no obligation to publicly update or revise any forward-looking statements, whether as a result of new information or otherwise.
+      1178: Item 7A. Quantitative and Qualitative Disclosures About Market Risk
+      1179: The information required by this item is included in this Report under the caption “Other Matters - Market Risk Disclosures” of “Item
+      1180: . Management’s Discussion and Analysis of Financial Condition and Results of Operation.”
+      1181: Item 8.
+
+====================================================================================================
+ITEM_7 | ECHO | 2025-02-27 | 155837025001663
+status=boundary_uncertain | words=42166 | start=527.0 | end=2457.0 | method=explicit_item_fallback | boundary=item_7a_start | score=27.0
+file=data\processed\10k\ECHO\000155837025001663.txt
+
+--- START: line 527 ---
+       523: and “
+       524: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations – Trends in our Pay-TV Segment
+       525: ” in this Annual Report on Form 10-K for further information.
+       526: Mergers and acquisitions, joint ventures and alliances among cable television providers, telecommunications companies, programming providers and others may result in, among other things, greater scale and financial leverage and increase the availability of offerings from providers capable of bundling video, broadband and/or wireless services in competition with our services and may exacerbate the risks described herein. Such providers may be able to, among other things, utilize their increased leverage over third-party content owners and programmers to withhold online rights from us and reduce the price they pay for programming at the expense of other MVPDs, including us; thwart our ability to compete in the wireless market, by, among other things, refuse to enter into data roaming agreements; underutilize key orbital spectrum resources that could be more efficiently used by us; foreclose or degrade our online video offerings at various points in the broadband pipe; and impose data caps on consumers who access our online video offerings. See “
+>>>    527: Item 7. Management’s Discussion and Analysis of Financial Condition and Results of Operations – Trends in our Pay-TV Segment – Programming
+       528: ” in this Annual Report on Form 10-K for further information.
+       529: We believe that the availability and extent of programming, including, but not limited to, unique programming services such as foreign language, sports programming and original content, and other value-added services such as access to video via mobile devices, continue to be significant factors in consumers’ choice among pay-TV providers. Other pay-TV providers may have more successfully marketed and promoted their programming packages and value-added services and may also be better equipped and have greater resources to increase their programming offerings and value-added services to respond to increasing consumer demand.
+       530: We may be required to make substantial additional investments in infrastructure to respond to competitive pressure to deliver enhanced programming and other value-added services, and there can be no assurance that we will be able to compete effectively with offerings from other pay-TV providers.
+       531: Furthermore, this increasingly competitive environment may require us to increase subscriber acquisition and retention spending or accept lower subscriber activations and higher subscriber churn. Increasingly, we must seek to attract a greater proportion of new subscribers from our competitors’ existing subscriber bases rather than from first-time purchasers of pay-TV services. In addition, because other pay-TV providers may be seeking to attract a greater proportion of their new subscribers from our existing subscriber base, we may be required to increase retention spending and/or provide greater discounts or credits to acquire and retain subscribers who may spend less on our services. Our SLING TV subscribers on average purchase lower-priced programming services than do DISH TV subscribers. Accordingly, an increase in SLING TV subscribers has a negative impact on our Pay-TV average monthly revenue per subscriber (“Pay-TV ARPU”). If our Pay-TV ARPU decreases or does not increase commensurate with increases in programming or other costs, our margins may be reduced and the long-term value of a subscriber would then decrease and could have a material adverse effect on our business, results of operations and financial condition.
+
+--- END: line 2457 ---
+      2453: Although we believe our assumptions, judgments and estimates are reasonable, changes in tax laws or our interpretation of tax laws and the resolution of any tax audits could significantly impact the amounts provided for income taxes in our consolidated financial statements.
+      2454: Contingent Liabilities
+      2455: A significant amount of management judgment is required in determining when, or if, an accrual should be recorded for a contingency and the amount of such accrual. Estimates generally are developed in consultation with counsel and are based on an analysis of potential outcomes. Due to the uncertainty of determining the likelihood of a future event occurring and the potential financial statement impact of such an event, it is possible that upon further development or resolution of a contingent matter, a charge could be recorded in a future period to “Selling, general and administrative expenses” or “Litigation expense” on our Consolidated Statements of Operations and Comprehensive Income (Loss) that would be material to our consolidated results of operations and financial condition.
+      2456: New Accounting Pronouncements
+>>>   2457: See Note 2 in the Notes to our Consolidated Financial Statements in this Annual Report on Form 10-K for further information.
+      2458: Item 7A.
+      2459: QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK
+      2460: Market Risks Associated with Financial Instruments
+      2461: Our investments and debt are exposed to market risks, discussed below.
+
+====================================================================================================
+ITEM_7 | AWK | 2019-02-19 | 141063619000041
+status=boundary_uncertain | words=20251 | start=252.0 | end=821.0 | method=explicit_item | boundary=item_7a_start | score=26.0
+file=data\processed\10k\AWK\000141063619000041.txt
+
+--- START: line 252 ---
+       248: Includes other operating revenues consisting primarily of miscellaneous utility charges, fees and rents.
+       249: Our “Top Seven States” are determined based upon operating revenues.
+       250: Includes our utilities in the following states: Georgia, Hawaii, Iowa, Kentucky, Maryland, Michigan, New York, Tennessee and Virginia.
+       251: See
+>>>    252: Item 7—Management’s Discussion and Analysis of Financial Condition and Results of Operations
+       253: Note 20—Segment Information
+       254: in the Notes to Consolidated Financial Statements for additional information.
+       255: Customers
+       256: Our
+
+--- END: line 821 ---
+       817: $72 million
+       818: $32 million
+       819: $303 million
+       820: , respectively. We can provide no assurance that we will be able to access the debt capital markets on favorable terms, if at all. Moreover, if new debt is added to our current debt levels, the related risks we now face could intensify, limiting our ability to refinance existing debt on favorable terms.
+>>>    821: In an attempt to manage our exposure to interest rate risk associated with our issuance of variable and fixed rate debt, we have entered into, and in the future may enter into, financial derivative instruments, including without limitation, interest rate swaps, forward starting swaps, swaptions and U.S. Treasury lock agreements. See
+       822: Item 7A—Quantitative and Qualitative Disclosures About Market Risk
+       823: . However, these efforts may not be effective to fully mitigate interest rate risk, and may expose us to other risks and uncertainties, including quarterly “mark to market” valuation risk associated with these instruments, that could negatively and materially affect our financial condition, results of operations and cash flows.
+       824: We will depend primarily on cash flows from operations to fund our expenses and to pay the principal and interest on our outstanding debt. Therefore, our ability to pay our expenses and satisfy our debt service obligations depends on our future performance, which will be affected by financial, business, economic, competitive, legislative (including tax initiatives and reforms, and other similar legislation or regulation), regulatory and other factors largely beyond our control. If we do not have sufficient cash flows to pay the principal and interest on our outstanding debt, we may be required to refinance all or part of our existing debt, reduce capital investments, sell assets, borrow additional funds or sell additional equity. In addition, if our business does not generate sufficient cash flows from operations, or if we are unable to incur indebtedness sufficient to enable us to fund our liquidity needs, we may be unable to plan for or respond to changes in our business, which could cause our financial condition, operating results and prospects to be affected adversely.
+       825: Our inability to access the capital or financial markets or other events could affect our ability to meet our liquidity needs at reasonable cost and our ability to meet long-term commitments, which could adversely affect our financial condition and results of operations.
+
+====================================================================================================
+ITEM_7 | AWK | 2018-02-20 | 141063618000076
+status=boundary_uncertain | words=15011 | start=448.0 | end=807.0 | method=explicit_item | boundary=item_7a_start | score=27.0
+file=data\processed\10k\AWK\000141063618000076.txt
+
+--- START: line 448 ---
+       444: Keystone Clearwater Solutions, LLC (“Keystone”), which provides customized water service and management solutions for natural gas exploration and production companies and customers in the municipal water services market.
+       445: Military Services Group
+       446: Our Military Services Group has been granted contracts to operate on
+       447: military bases under 50-year contracts with the U.S. government as part of its Utility Privatization Program. See
+>>>    448: Item 7—Management’s Discussion and Analysis of Financial Condition and Results of Operations
+       449: —Strategic Focus and 2017 Achievements—Growth for additional information. The scope of these contracts generally includes the O&M of the bases’ water and wastewater systems and a capital program focused on asset replacement and, in certain instances, systems expansion. The replacement of assets assumed when a contract is awarded to the Company is funded from the contract fee. At times, new assets are required to support the base’s mission and the construction of these assets are funded by the U.S. government as additional work under the contract. The current capital program does not use the Company’s equity or debt borrowings; however, we may make limited short-term working capital investments under these contracts and some working capital is used to fund work-in-process until paid by the U.S. government.
+       450: The contract price for
+       451: nine
+       452: of our contracts with the U.S. government is subject to redetermination two years after commencement of operations, and every three years thereafter. Price redetermination is a contract mechanism to periodically adjust the service fee in the next period to reflect changes in contract obligations and anticipated market conditions. The remaining
+
+--- END: line 807 ---
+       803: $322 million
+       804: $170 million
+       805: $51 million
+       806: , respectively. We can provide no assurance that we will be able to access the debt capital markets on favorable terms, if at all. Moreover, if new debt is added to our current debt levels, the related risks we now face could intensify, limiting our ability to refinance existing debt on favorable terms.
+>>>    807: In an attempt to manage our exposure to interest rate risk associated with our issuance of variable and fixed-rate debt, we have entered into, and in the future may enter into, financial derivative instruments, including without limitation, interest rate swaps, forward starting swaps, swaptions and U.S. Treasury lock agreements. See
+       808: Item 7A—Quantitative and Qualitative Disclosures About Market Risk
+       809: . However, these efforts may not be effective to fully mitigate interest rate risk, and may expose us to other risks and uncertainties, including quarterly “mark to market” valuation risk associated with these instruments, that could negatively and materially affect our financial condition, results of operations and cash flows.
+       810: We will depend primarily on cash flows from operations to fund our expenses and to pay the principal and interest on our outstanding debt. Therefore, our ability to pay our expenses and satisfy our debt service obligations depends on our future performance, which will be affected by financial, business, economic, competitive, legislative (including tax initiatives and reforms, and other similar legislation or regulation), regulatory and other factors largely beyond our control. If we do not have sufficient cash flows to pay the principal and interest on our outstanding debt, we may be required to refinance all or part of our existing debt, reduce capital investments, sell assets, borrow additional funds or sell additional equity. In addition, if our business does not generate sufficient cash flows from operations, or if we are unable to incur indebtedness sufficient to enable us to fund our liquidity needs, we may be unable to plan for or respond to changes in our business, which could cause our financial condition, operating results and prospects to be affected adversely.
+       811: Our inability to access the capital or financial markets or other events could affect our ability to meet our liquidity needs at reasonable cost and our ability to meet long-term commitments, which could adversely affect our financial condition and results of operations.
+
+====================================================================================================
+ITEM_7A | ORCL | 2017-06-27 | 119312517214833
+status=heading_not_found | words=0 | start=nan | end=nan | method=nan | boundary=nan | score=nan
+file=data\processed\10k\ORCL\000119312517214833.txt
+
+--- START: NONE ---
+
+--- END: NONE ---
+
+--- POSSIBLE HEADING MATCHES ---
+    72: The aggregate market value of the voting stock held by non-affiliates of the registrant was $120,972,065,000 based on the number of shares
+    88: Risk Factors
+    99: Market for Registrants Common Equity, Related Stockholder Matters and Issuer Purchases of Equity Securities
+   104: Item 7A.
+   105: Quantitative and Qualitative Disclosures About Market Risk
+   174: current expectations and projections about future events. These forward-looking statements are subject to risks, uncertainties and assumptions about our business that could affect our future results and could cause those results or other outcomes to
+   175: differ materially from those expressed or implied in the forward-looking statements. Factors that might cause or contribute to such differences include, but are not limited to, those discussed in Risk Factors included elsewhere in this
+   179: information, future events or risks, except to the extent required by applicable securities laws. If we do update one or more forward-looking statements, no inference should be drawn that we will make additional updates with respect to those or
+   180: other forward-looking statements. New information, future events or risks could cause the forward-looking events we discuss in this Annual Report not to occur. You should not place undue reliance on these forward-looking statements, which reflect
+   226: consistent with the changing market dynamics that we have experienced. As a result, during fiscal 2017, we updated our operating segments. Managements Discussion and Analysis of Financial Condition and Results of Operations and Note 16 of
+   237: increased at a greater rate for cloud-based IT deployment models relative to on-premise IT deployment models. To address this demand, we have increased our investment in and focus on the development, marketing and sale of our cloud-based
+   246: designed to reduce the risk, cost and complexity of our customers IT infrastructures, while supporting customer choice with flexible deployment models that readily enable agility, compatibility and extendibility.
+   252: Our applications technologies are marketed, sold and delivered through our cloud and on-premise software business.
+   262: environments, reduce time to implementation and risk, and enable customers to focus resources on business growth opportunities.
+   293: Oracle Risk Management Cloud, which enables organizations to document risks and enforce controls as an integral part of their ERP cloud deployment.
+   299: Oracle Marketing Cloud, which is designed to personalize customer experiences on a consistent platform and to increase customer engagement, advocacy
+   300: and revenue generating possibilities using cross-channel, content and social marketing solutions with integrated data management and activation;
+   332: designed to enable organizations to leverage consumer data to inform and measure marketing strategies and programs. Oracle Data Cloud includes Oracle Data as a Service (DaaS), which is an offering that provides a centralized way to source, manage
+   333: and furnish external data to business users through a cloud service for marketing and customer intelligence purposes.
+   337: automate core business functions across the enterprise, including human capital and talent management; ERP; customer experience and customer relationship management; financial management and governance, risk and compliance; procurement; project
+   345: Oracle platform technologies are marketed, sold and delivered through our cloud and on-premise software business. Our comprehensive platform technologies including database, middleware and development
+   352: customers IT capacity requirements, satisfy their planning and procurement needs, support their business applications with a standardized platform architecture, reduce their risk of data loss and IT infrastructure downtime and efficiently
+   373: low cost, rapidly deployable, flexible and interoperable services model that Oracle manages and maintains on the customers behalf. We believe that we can market and sell our PaaS and IaaS offerings together to help customers migrate their
+   374: extensive installed base of on-premise platform and infrastructure technologies to the Oracle Cloud while at the same time reaching a broader ecosystem of developers and partners. We also believe we can market our PaaS and IaaS services to small and
+   391: solutions and to create innovative services faster with greater agility and reduced risk.
+   410: Oracle Cloud IaaS offerings are substantially marketed, sold and delivered through our software and cloud business and include our Oracle
+   572: Oracle NoSQL Database and optionally integrating that data with Oracle Databases. The key components of a big data platform are integrated into the Oracle Big Data Appliance to reduce deployment, integration and management risks in comparison to
+   649: To produce our hardware products that we market and sell to third-party
+   656: continue to evaluate potential risks of disruption to our supply chain operations. Refer to Risk Factors included in Item 1A within this Annual Report for additional discussion of the challenges we encounter with respect to the
+   657: sources and availability of supplies for our products and the related risks to our business.
+
+====================================================================================================
+ITEM_7A | DE | 2024-12-12 | 155837024016169
+status=boundary_uncertain | words=0 | start=2216.0 | end=nan | method=heading_pattern | boundary=uncertain | score=37.0
+file=data\processed\10k\DE\000155837024016169.txt
+
+--- START: line 2216 ---
+      2212: 60,476
+      2213: 56,767
+      2214: 57,180
+      2215: * Attributable to Deere & Company
+>>>   2216: FINANCIAL INSTRUMENT MARKET RISK INFORMATION
+      2217: We are naturally exposed to various interest rate and foreign currency risks. As a result, we enter into derivative transactions to manage this exposure and not for speculative purposes.
+      2218: From time to time, we enter into interest rate swap agreements to manage our interest rate exposure. We also have foreign currency exposures at some of our foreign and domestic operations related to buying, selling, and financing in currencies other than the functional currencies. We have entered into derivative agreements related to the management of these foreign currency transaction risks.
+      2219: Interest Rate Risk
+      2220: Results of Operations
+
+--- END: NONE ---
+
+====================================================================================================
+ITEM_7A | DE | 2023-12-15 | 155837023019812
+status=boundary_uncertain | words=0 | start=2223.0 | end=nan | method=heading_pattern | boundary=uncertain | score=37.0
+file=data\processed\10k\DE\000155837023019812.txt
+
+--- START: line 2223 ---
+      2219: 57,180
+      2220: 59,623
+      2221: * Attributable to Deere & Company
+      2222: .
+>>>   2223: FINANCIAL INSTRUMENT MARKET RISK INFORMATION
+      2224: We are naturally exposed to various interest rate and foreign currency risks. As a result, we enter into derivative transactions to manage this exposure and not for speculative purposes.
+      2225: From time to time, we enter into interest rate swap agreements to manage our interest rate exposure. We also have foreign currency exposures at some of our foreign and domestic operations related to buying, selling, and financing in currencies other than the functional currencies. We have entered into derivative agreements related to the management of these foreign currency transaction risks.
+      2226: Interest Rate Risk
+      2227: Results of Operations
+
+--- END: NONE ---
+
+====================================================================================================
+ITEM_7A | DE | 2022-12-15 | 155837022018703
+status=boundary_uncertain | words=0 | start=1599.0 | end=nan | method=heading_pattern | boundary=uncertain | score=35.0
+file=data\processed\10k\DE\000155837022018703.txt
+
+--- START: line 1599 ---
+      1595: Primarily reclassification of receivables related to the sale of equipment.
+      1596: Reclassification of direct lease agreements with retail customers.
+      1597: Reclassification of sales incentive accruals on receivables sold to financial services
+      1598: Elimination and reclassification of the effects of financial services partial financing of the construction and forestry retail locations sales and subsequent collection of those amounts.
+>>>   1599: FINANCIAL INSTRUMENT MARKET RISK INFORMATION
+      1600: The company is naturally exposed to various interest rate and foreign currency risks. As a result, the company enters into derivative transactions to manage certain of these exposures that arise in the normal course of business and not for the purpose of creating speculative positions or trading. The company’s financial services operations manage the relationship of the types and amounts of their funding sources to their receivable and lease portfolio in an effort to diminish risk due to interest rate and foreign currency fluctuations while responding to favorable financing opportunities. In addition, the company has interest rate exposure at certain equipment operations units for sales incentive programs. Accordingly, from time to time, these operations enter into interest rate swap agreements to manage their interest rate exposure. The company also has foreign currency exposures at some of its foreign and domestic operations related to buying, selling, and financing in currencies other than the functional currencies. The company has entered into derivative agreements related to the management of these foreign currency transaction risks.
+      1601: Interest Rate Risk
+      1602: Interest rates rose in 2022 and further central bank policy rate increases are projected in 2023. Rising interest rates have historically impacted the company’s borrowings sooner than the benefit is realized from the financing receivable and equipment on operating lease portfolios. As a result, the company’s financial services operations experienced spread compression in 2022. If interest rates continue to rise, the company expects to continue experiencing spread compression in 2023.
+      1603: Quarterly, the company uses a combination of cash flow models to assess the sensitivity of its financial instruments with interest rate exposure to changes in market interest rates. The models calculate the effect of adjusting interest rates as follows: cash flows for financing receivables are discounted at the current prevailing rate for each receivable portfolio, cash flows for marketable securities are discounted at the applicable benchmark yield curve plus market credit spreads, cash flows for unsecured borrowings are discounted at the applicable benchmark yield curve plus market credit spreads for similarly rated borrowers, cash flows for securitized borrowings are discounted at the swap yield curve plus a market credit spread for similarly rated borrowers, and cash flows for interest rate swaps are projected and discounted using forward rates from the swap yield curve at the repricing dates. The net impact in these financial instruments’ fair values which would be caused by increasing or decreasing the interest rates by 10 percent from the market rates at October 30, 2022 and October 31, 2021 would have been approximately $50 million and $20 million, respectively.
+
+--- END: NONE ---
+
+====================================================================================================
+ITEM_7A | CAH | 2022-08-11 | 72137122000058
+status=boundary_uncertain | words=16279 | start=836.0 | end=1308.0 | method=heading_pattern | boundary=item_8 | score=39.0
+file=data\processed\10k\CAH\000072137122000058.txt
+
+--- START: line 836 ---
+       832: of the "Notes to Consolidated Financial Statements" for more information.
+       833: The sum of the components and certain computations may reflect rounding adjustments.
+       834: We apply varying tax rates depending on the item's nature and tax jurisdiction where it is incurred.
+       835: Explanation and Reconciliation of Non-GAAP Financial Measures
+>>>    836: Quantitative and Qualitative Disclosures About Market Risk
+       837: We are exposed to cash flow and earnings fluctuations as a result of certain market risks. These market risks primarily relate to foreign exchange, interest rate, and commodity price-related changes. We maintain a hedging program to manage volatility related to some of these market exposures which employs operational, economic, and derivative financial instruments in order to mitigate risk. See
+       838: Note 1
+       839: and
+       840: Note 10
+
+--- END: line 1308 ---
+      1304: /s/
+      1305: Ernst & Young LLP
+      1306: We have served as the Company's auditor since 2002.
+      1307: Grandview Heights, Ohio
+>>>   1308: August 11, 2022
+      1309: Financial Statements
+      1310: Financial Statements and Supplementary Data
+      1311: Page
+      1312: Consolidated Financial Statements and Schedule:
+
+====================================================================================================
+ITEM_7A | VMC | 2018-02-27 | 139600918000011
+status=boundary_uncertain | words=395 | start=4744.0 | end=4783.0 | method=explicit_item | boundary=item_8 | score=24.0
+file=data\processed\10k\VMC\000139600918000011.txt
+
+--- START: line 4744 ---
+      4740: FORWARD-LOOKING STATEMENTS
+      4741: The foregoing discussion and analysis, as well as certain information contained elsewhere in this Annual Report, contain
+      4742: forward-looking statements
+      4743: within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended, and are intended to be covered by the safe harbor created thereby. See the discussion in Safe Harbor Statement under the Private Securities Litigation Reform Act of 1995 in Part I, above.
+>>>   4744: ITEM 7A
+      4745: QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK
+      4746: MARKET RISK
+      4747: We are exposed to certain market risks arising from transactions that are entered into in the normal course of business.
+      4748: To
+
+--- END: line 4783 ---
+      4779: approximately
+      4780: 236.9
+      4781: million.
+      4782: We are exposed to certain economic risks related to the costs of our pension and other postretirement benefit plans. These economic risks include changes in the discount rate for high-quality bonds and the expected return on plan assets. The impact of a change in these assumptions on our annual pension and other postretirement benefit
+>>>   4783: costs is discussed in greater detail within the Critical Accounting Policies section of this Annual Report.
+      4784: ITEM 8
+      4785: FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA
+      4786: REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM
+      4787: To t
+
+====================================================================================================
+ITEM_7A | VMC | 2017-02-24 | 139600917000005
+status=boundary_uncertain | words=398 | start=4397.0 | end=4429.0 | method=explicit_item | boundary=item_8 | score=24.0
+file=data\processed\10k\VMC\000139600917000005.txt
+
+--- START: line 4397 ---
+      4393: FORWARD-LOOKING STATEMENTS
+      4394: The foregoing discussion and analysis, as well as certain information contained elsewhere in this Annual Report, contain
+      4395: forward-looking statements
+      4396: within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended, and are intended to be covered by the safe harbor created thereby. See the discussion in Safe Harbor Statement under the Private Securities Litigation Reform Act of 1995 in Part I, above.
+>>>   4397: ITEM 7A
+      4398: QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK
+      4399: MARKET RISK
+      4400: We are exposed to certain market risks arising from transactions that are entered into in the normal course of business.
+      4401: To
+
+--- END: line 4429 ---
+      4425: million. The estimated fair value was determined by averaging several asking price quotes for the publicly traded notes and assuming par value for the remainder of the debt. The fair value estimate is based on information available as of the balance sheet date. The effect of a decline in interest rates of one percentage point would increase the fair value of our debt by
+      4426: approximately
+      4427: 104.9
+      4428: million.
+>>>   4429: We are exposed to certain economic risks related to the costs of our pension and other postretirement benefit plans. These economic risks include changes in the discount rate for high-quality bonds and the expected return on plan assets. The impact of a change in these assumptions on our annual pension and other postretirement benefit costs is discussed in greater detail within the Critical Accounting Policies section of this Annual Report.
+      4430: ITEM 8
+      4431: FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA
+      4432: REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM
+      4433: To t
+
+====================================================================================================
+ITEM_7A | VMC | 2016-02-25 | 139600916000044
+status=boundary_uncertain | words=390 | start=3966.0 | end=3983.0 | method=explicit_item | boundary=item_8 | score=26.0
+file=data\processed\10k\VMC\000139600916000044.txt
+
+--- START: line 3966 ---
+      3962: FORWARD-LOOKING STATEMENTS
+      3963: The foregoing discussion and analysis, as well as certain information contained elsewhere in this Annual Report, contain
+      3964: forward-looking statements
+      3965: within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended, and are intended to be covered by the safe harbor created thereby. See the discussion in Safe Harbor Statement under the Private Securities Litigation Reform Act of 1995 in Part I, above.
+>>>   3966: ITEM 7A
+      3967: QUANTITATIVE AND QUALITATIVE DISCLOSURES ABOUT MARKET RISK
+      3968: We are exposed to certain market risks arising from transactions that are entered into in the normal course of business. In order to manage these market risks, we may utilize derivative financial instruments. We do not enter into derivative financial instruments for speculative or trading purposes.
+      3969: As discussed in the Liquidity and Financial Resources section of
+      3970: Item 7 "Management’s Discussion and Analysis of Financial Condition and Results of Operations,"
+
+--- END: line 3983 ---
+      3979: 1,980.5
+      3980: million. The estimated fair value was determined by averaging several asking price quotes for the publicly traded notes and assuming par value for the remainder of the debt. The fair value estimate is based on information available as of the balance sheet date. The effect of a decline in interest rates of one percentage point would increase the fair value of our debt by $
+      3981: 111.4
+      3982: million.
+>>>   3983: We are exposed to certain economic risks related to the costs of our pension and other postretirement benefit plans. These economic risks include changes in the discount rate for high-quality bonds and the expected return on plan assets. The impact of a change in these assumptions on our annual pension and other postretirement benefit costs is discussed in greater detail within the Critical Accounting Policies section of this Annual Report.
+      3984: ITEM 8
+      3985: FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA
+      3986: REPORT OF INDEPENDENT REGISTERED PUBLIC ACCOUNTING FIRM
+      3987: The Board of Directors and Shareholders of Vulcan Materials Company:
+
+====================================================================================================
+ITEM_7A | CCL | 2021-01-26 | 81509721000027
+status=boundary_uncertain | words=0 | start=4144.0 | end=nan | method=heading_pattern | boundary=uncertain | score=35.0
+file=data\processed\10k\CCL\000081509721000027.txt
+
+--- START: line 4144 ---
+      4140: Share Repurchase Program
+      4141: Under a share repurchase program effective 2004, we had been authorized to repurchase Carnival Corporation common stock and Carnival plc ordinary shares (the “Repurchase Program”). On June 15, 2020, to enhance our liquidity and comply with restrictions in our recent financing transactions, the Boards of Directors terminated the Repurchase Program.
+      4142: Off-Balance Sheet Arrangements
+      4143: We are not a party to any off-balance sheet arrangements, including guarantee contracts, retained or contingent interests, certain derivative instruments and variable interest entities that either have, or are reasonably likely to have, a current or future material effect on our consolidated financial statements.
+>>>   4144: Quantitative and Qualitative Disclosures About Market Risk
+      4145: For a discussion of our hedging strategies and market risks, see the discussion below and the consolidated financial statements.
+      4146: Fuel Price Risks
+      4147: Substantially all our exposure to market risk for changes in fuel prices relates to the consumption of fuel on our ships. We have been installing Advanced Air Quality Systems on our ships, which are aiding in partially mitigating the financial impact from the ECAs and global 0.5% sulfur requirements.
+      4148: Foreign Currency Exchange Rate Risks
+
+--- END: NONE ---
