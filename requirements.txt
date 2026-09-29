@@ -1,6 +1,10 @@
 requests
 pandas
+numpy
+scipy
+statsmodels
+streamlit
+openpyxl
 beautifulsoup4
 lxml
 tqdm
-jupyter

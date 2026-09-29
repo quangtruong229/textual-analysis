@@ -56,3 +56,6 @@ data/metadata/sections_10k_v2.csv
 # Large regenerable event-study long-form data
 data/metadata/event_study_final/estimation_ar_long.csv
 data/metadata/event_study_final/event_ar_long.csv
+
+# Rebuilt estimation-window rows are large and can be regenerated locally.
+analysis_outputs/event_study/estimation_ar_long.csv
