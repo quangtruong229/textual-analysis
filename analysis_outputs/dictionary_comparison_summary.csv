@@ -1,0 +1,2 @@
+﻿n_comparable_filings,n_opposite_sign,share_opposite_sign,n_lm_negative_harvard_positive,n_both_positive,n_both_negative,n_either_zero,mean_lm_net_prop,mean_harvard_net_prop,median_harvard_minus_lm,interpretation_limit
+971,861,0.8867147270854789,861,88,14,8,-0.005691442405904259,0.01606478044995461,0.021812620734063003,Score disagreement is not proof either dictionary is correct; raw context unavailable.

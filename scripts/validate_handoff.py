@@ -1,0 +1,117 @@
+"""Validate the UI data contract and write a checksum manifest.
+
+Run after the calculation scripts. This reads existing results; it does not
+re-estimate tone, CAR, or regressions.
+"""
+
+from __future__ import annotations
+
+import hashlib
+import json
+from pathlib import Path
+import sys
+
+import pandas as pd
+
+
+ROOT = Path(__file__).resolve().parents[1]
+OUT = ROOT / "handoff"
+FILES = {
+    "firm_year": "analysis_outputs/tone_firm_year.csv",
+    "dictionary_summary": "analysis_outputs/dictionary_comparison_summary.csv",
+    "dictionary_filings": "analysis_outputs/dictionary_comparison_filings.csv",
+    "event_filing": "analysis_outputs/event_study/event_filing_results.csv",
+    "event_daily": "analysis_outputs/event_study/event_daily_summary.csv",
+    "event_windows": "analysis_outputs/event_study/event_study_summary.csv",
+    "regression": "analysis_outputs/regression/regression_results.csv",
+    "c2_regression": "analysis_outputs/c2_reduced_results.csv",
+    "missing_filings": "analysis_outputs/missing_filings.csv",
+}
+
+
+def digest(path: Path) -> str:
+    h = hashlib.sha256()
+    with path.open("rb") as stream:
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def require(condition: bool, message: str) -> None:
+    if not condition:
+        raise AssertionError(message)
+
+
+def main() -> None:
+    sys.stdout.reconfigure(encoding="utf-8")
+    tables = {}
+    for name, relative in FILES.items():
+        path = ROOT / relative
+        require(path.is_file(), f"Missing {relative}")
+        tables[name] = pd.read_csv(path, dtype={"accession_number": str, "cik": str})
+
+    panel = tables["firm_year"]
+    keys = ["ticker", "filing_date"]
+    require(len(panel) == 1000, "Expected 1000 filing rows")
+    require(not panel.duplicated(keys).any(), "Duplicate company-date in firm-year panel")
+    require(not panel.duplicated(["ticker", "filing_year"]).any(), "Duplicate company-filing-year")
+    require(panel.ticker.nunique() == 100, "Expected 100 companies")
+    require((panel.groupby("ticker").size() == 10).all(), "Expected 10 filings per company")
+    require(set(panel.filing_year) == set(range(2016, 2026)), "Filing-year range changed")
+    require(panel.filing_year.eq(pd.to_datetime(panel.filing_date).dt.year).all(), "Filing year/date mismatch")
+    require(panel.report_year.eq(pd.to_datetime(panel.report_date).dt.year).all(), "Report year/date mismatch")
+    require(panel.sec_url.str.startswith("https://www.sec.gov/Archives/edgar/data/").all(), "Bad SEC URL")
+    require(panel.has_method_score.eq(panel.lm_net_prop.notna()).all(), "Tone flag inconsistent")
+    require(panel.has_event_car.eq(panel.CAR_m1_p1.notna()).all(), "CAR flag inconsistent")
+    require(int(panel.has_method_score.sum()) == 971, "Expected 971 tone rows")
+    require(int(panel.has_event_car.sum()) == 969, "Expected 969 event rows")
+
+    comparison = tables["dictionary_filings"]
+    require(len(comparison) == 971 and not comparison.duplicated(keys).any(), "Dictionary keys changed")
+    require(comparison.opposite_sign.eq(comparison.lm_net_prop.mul(comparison.harvard_net_prop).lt(0)).all(),
+            "Dictionary sign flag inconsistent")
+    require(int(comparison.opposite_sign.sum()) == int(tables["dictionary_summary"].n_opposite_sign.iloc[0]),
+            "Dictionary summary disagrees with filing rows")
+
+    events = tables["event_filing"]
+    require(len(events) == 969 and not events.duplicated(keys).any(), "Event keys changed")
+    require(len(tables["event_windows"]) == 4, "Expected four CAR windows")
+    require(tables["event_windows"].N.eq(969).all(), "Event window N differs")
+    require(len(tables["event_daily"]) == 11, "Expected event days -5 through +5")
+    require(set(tables["event_daily"].event_time) == set(range(-5, 6)), "Event-day axis changed")
+
+    for name in ("regression", "c2_regression"):
+        table = tables[name]
+        require(table.p_hc3_two_sided.dropna().between(0, 1).all(), f"Invalid HC3 p-values in {name}")
+        require(table.p_cluster_two_sided.dropna().between(0, 1).all(), f"Invalid cluster p-values in {name}")
+    require(len(tables["regression"]) == 76, "Expected 76 C1/C3/C4 rows")
+    require(len(tables["c2_regression"]) == 24, "Expected 24 reduced C2 rows")
+    require(tables["c2_regression"].n.eq(862).all(), "Reduced C2 sample changed")
+
+    files = {}
+    for name, relative in FILES.items():
+        path = ROOT / relative
+        files[name] = {
+            "path": relative.replace("\\", "/"),
+            "rows": int(len(tables[name])),
+            "sha256": digest(path),
+            "columns": list(tables[name].columns),
+        }
+    manifest = {
+        "contract_version": 1,
+        "date_axis": "filing_year = calendar year of filing_date; report_year is separate",
+        "return_units": "CAR, CAAR, AAR are decimal returns: 0.01 = 1%",
+        "tone_units": "LM and Harvard proportional tone are ratios, not percentages",
+        "missing_rule": "NaN/blank means unavailable; never coerce to zero",
+        "full_sample_models": "Regression CSVs describe their saved samples; UI filters do not refit them",
+        "files": files,
+    }
+    OUT.mkdir(exist_ok=True)
+    target = OUT / "manifest.json"
+    target.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"Handoff PASS: 1000 filings, 971 tone, 969 CAR, 862 C2; {len(files)} tables")
+    print(f"Wrote {target}")
+
+
+if __name__ == "__main__":
+    main()

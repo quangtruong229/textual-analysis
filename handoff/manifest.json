@@ -1,0 +1,211 @@
+{
+  "contract_version": 1,
+  "date_axis": "filing_year = calendar year of filing_date; report_year is separate",
+  "return_units": "CAR, CAAR, AAR are decimal returns: 0.01 = 1%",
+  "tone_units": "LM and Harvard proportional tone are ratios, not percentages",
+  "missing_rule": "NaN/blank means unavailable; never coerce to zero",
+  "full_sample_models": "Regression CSVs describe their saved samples; UI filters do not refit them",
+  "files": {
+    "firm_year": {
+      "path": "analysis_outputs/tone_firm_year.csv",
+      "rows": 1000,
+      "sha256": "e5ef1086012c1ec1e98b305a8459e067e3b66b0f9312eeb36e6be50972956909",
+      "columns": [
+        "ticker",
+        "company_name",
+        "cik",
+        "filing_year",
+        "report_year",
+        "filing_date",
+        "report_date",
+        "accession_number",
+        "sec_url",
+        "item_7_mda_lm_status",
+        "item_7_mda_total_words",
+        "item_7_mda_positive_count",
+        "item_7_mda_negative_count",
+        "item_7_mda_uncertainty_count",
+        "item_7_mda_net_tone",
+        "lm_net_prop",
+        "lm_net_ratio",
+        "lm_net_tfidf",
+        "lm_negated_positive_count",
+        "lm_negated_negative_count",
+        "harvard_net_prop",
+        "harvard_net_tfidf",
+        "event_date",
+        "CAR_m1_p1",
+        "CAR_0_p3",
+        "CAR_m3_p3",
+        "CAR_m5_p5",
+        "has_item7_tone",
+        "has_method_score",
+        "has_event_car"
+      ]
+    },
+    "dictionary_summary": {
+      "path": "analysis_outputs/dictionary_comparison_summary.csv",
+      "rows": 1,
+      "sha256": "d40d8daa3e77ba602ac3e1ce3810dc3f7f829f7be6445481999c6832a5537d45",
+      "columns": [
+        "n_comparable_filings",
+        "n_opposite_sign",
+        "share_opposite_sign",
+        "n_lm_negative_harvard_positive",
+        "n_both_positive",
+        "n_both_negative",
+        "n_either_zero",
+        "mean_lm_net_prop",
+        "mean_harvard_net_prop",
+        "median_harvard_minus_lm",
+        "interpretation_limit"
+      ]
+    },
+    "dictionary_filings": {
+      "path": "analysis_outputs/dictionary_comparison_filings.csv",
+      "rows": 971,
+      "sha256": "9f02e5176ef8668ca34d47b0271424d8613e403f0d87c829612dbc8d48f8779a",
+      "columns": [
+        "ticker",
+        "company_name",
+        "filing_date",
+        "report_date",
+        "accession_number",
+        "lm_net_prop",
+        "harvard_net_prop",
+        "opposite_sign",
+        "harvard_minus_lm"
+      ]
+    },
+    "event_filing": {
+      "path": "analysis_outputs/event_study/event_filing_results.csv",
+      "rows": 969,
+      "sha256": "a36b5784fd4a7e29471ef27db7356f57f771eb493a705421eb7410b52ea33bd7",
+      "columns": [
+        "ticker",
+        "yahoo_ticker",
+        "filing_date",
+        "event_date",
+        "event_date_shift",
+        "accession_number",
+        "alpha",
+        "beta",
+        "residual_var",
+        "residual_sd",
+        "market_mean_estimation",
+        "market_sxx_estimation",
+        "n_estimation",
+        "CAR_m1_p1",
+        "CAR_m1_p1_var",
+        "CAR_m1_p1_se",
+        "CAR_0_p3",
+        "CAR_0_p3_var",
+        "CAR_0_p3_se",
+        "CAR_m3_p3",
+        "CAR_m3_p3_var",
+        "CAR_m3_p3_se",
+        "CAR_m5_p5",
+        "CAR_m5_p5_var",
+        "CAR_m5_p5_se"
+      ]
+    },
+    "event_daily": {
+      "path": "analysis_outputs/event_study/event_daily_summary.csv",
+      "rows": 11,
+      "sha256": "8f7edf2ad9831ce01d2487e1e54169367078018509156bad7346f00418907dab",
+      "columns": [
+        "event_time",
+        "AAR",
+        "N",
+        "BW_Z",
+        "BW_p"
+      ]
+    },
+    "event_windows": {
+      "path": "analysis_outputs/event_study/event_study_summary.csv",
+      "rows": 4,
+      "sha256": "aac7384153e6b4c6fc56cd1ff440d5fe108d65213f0d68bb5fe1212407cc84b4",
+      "columns": [
+        "N",
+        "CAAR",
+        "Var_CAAR",
+        "SE_CAAR",
+        "MacKinlay_Z",
+        "MacKinlay_p",
+        "Sign_positive",
+        "Sign_negative",
+        "Sign_zero",
+        "Sign_Z",
+        "Sign_p",
+        "window",
+        "window_start",
+        "window_end",
+        "model",
+        "Brown_Warner_Z",
+        "Brown_Warner_p",
+        "BW_estimation_AAR_mean",
+        "BW_estimation_AAR_sd"
+      ]
+    },
+    "regression": {
+      "path": "analysis_outputs/regression/regression_results.csv",
+      "rows": 76,
+      "sha256": "963d5380285b5333f2155419b9124a8936cf31c8ab9086cc055cb8a4d3c61001",
+      "columns": [
+        "section",
+        "model",
+        "score_definition",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "t_hc3",
+        "p_hc3_two_sided",
+        "p_hc3_one_sided_positive",
+        "se_cluster",
+        "t_cluster",
+        "p_cluster_two_sided",
+        "p_cluster_one_sided_positive",
+        "r_squared",
+        "adj_r_squared",
+        "error"
+      ]
+    },
+    "c2_regression": {
+      "path": "analysis_outputs/c2_reduced_results.csv",
+      "rows": 24,
+      "sha256": "2fd6e7dd877ad3e6d800370781d66cea45debdee0617e4fc54c559ea5dfb1561",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided",
+        "r_squared",
+        "controls_omitted"
+      ]
+    },
+    "missing_filings": {
+      "path": "analysis_outputs/missing_filings.csv",
+      "rows": 31,
+      "sha256": "2dabe711587dfb99658df397028e6159d5f143df5a6b2f72ff91fc8a703e64c7",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "accession_number",
+        "item_7_mda_status",
+        "has_tone",
+        "has_event"
+      ]
+    }
+  }
+}

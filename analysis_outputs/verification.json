@@ -1,0 +1,74 @@
+{
+  "source_sha256": {
+    "data\\market_data\\daily_prices.csv": "39c777b6bed301faf2f4e85ef39d14345a9c62005f7a8cd07409043163bb0f5c",
+    "data\\metadata\\filings_2016_2025.csv": "3e701d5c6bdec10321aedc9646c9b67f0d8c7152364313a93c9e0be9a236b73b",
+    "data\\metadata\\tone_method_item7.csv": "4bcaa3df8c7b49eadb399a60db3a36c3c6c2367b274ae1a8e09e73dc0c2dd9c1",
+    "data\\metadata\\controls\\controls_item7.csv": "d2e3402ca3eb58f85fe5dba9e99caa231000ab80d70edbb1d2db447ca93719ba"
+  },
+  "input_filings": 1000,
+  "input_firms": 100,
+  "tone_rows": 971,
+  "event_rows": 969,
+  "missing_tone": 29,
+  "missing_event": 31,
+  "c2_complete_cases": 862,
+  "c2_firms": 96,
+  "firm_year_rows": 1000,
+  "dictionary_opposite_sign": 861,
+  "table_comparisons": {
+    "event_filing_results": {
+      "same": true,
+      "rows": 969,
+      "mismatches": {}
+    },
+    "event_daily_summary": {
+      "same": true,
+      "rows": 11,
+      "mismatches": {}
+    },
+    "event_study_summary": {
+      "same": true,
+      "rows": 4,
+      "mismatches": {}
+    },
+    "regression_results": {
+      "same": true,
+      "rows": 76,
+      "mismatches": {}
+    },
+    "regression_sample": {
+      "same": true,
+      "rows": 969,
+      "mismatches": {}
+    }
+  },
+  "tone_arithmetic": {
+    "lm": {
+      "checked": 971,
+      "mismatches": 0
+    },
+    "harvard": {
+      "checked": 971,
+      "mismatches": 0
+    }
+  },
+  "car_arithmetic": {
+    "CAR_m1_p1": {
+      "checked": 969,
+      "mismatches": 0
+    },
+    "CAR_0_p3": {
+      "checked": 969,
+      "mismatches": 0
+    },
+    "CAR_m3_p3": {
+      "checked": 969,
+      "mismatches": 0
+    },
+    "CAR_m5_p5": {
+      "checked": 969,
+      "mismatches": 0
+    }
+  },
+  "raw_10k_text_in_zip": false
+}
