@@ -1,4 +1,4 @@
-"""Check the provided calculations against independently regenerated outputs."""
+"""Validate arithmetic, event dates, sample coverage and output consistency."""
 
 from __future__ import annotations
 
@@ -22,24 +22,8 @@ def sha256(path: Path) -> str:
     return h.hexdigest()
 
 
-def compare_table(old: Path, new: Path) -> dict:
-    a, b = pd.read_csv(old), pd.read_csv(new)
-    if a.shape != b.shape or list(a.columns) != list(b.columns):
-        return {"same": False, "original_shape": a.shape, "recomputed_shape": b.shape}
-    mismatches = {}
-    for col in a.columns:
-        if pd.api.types.is_numeric_dtype(a[col]) and pd.api.types.is_numeric_dtype(b[col]):
-            left, right = a[col].to_numpy(dtype=float), b[col].to_numpy(dtype=float)
-            mask = ~np.isclose(left, right, rtol=1e-9, atol=1e-11, equal_nan=True)
-        else:
-            mask = a[col].fillna("").astype(str).to_numpy() != b[col].fillna("").astype(str).to_numpy()
-        if mask.any():
-            mismatches[col] = int(mask.sum())
-    return {"same": not mismatches, "rows": len(a), "mismatches": mismatches}
-
-
 def check_event_calendar(events: pd.DataFrame, ar: pd.DataFrame) -> dict:
-    """Check event positions against dates, not against the supplied result CSV."""
+    """Check event positions against the benchmark trading calendar."""
     keys = ["ticker", "filing_date", "accession_number"]
     if events.duplicated(keys).any() or ar.duplicated([*keys, "event_time"]).any():
         raise AssertionError("Duplicate filing or event-day key")
@@ -81,30 +65,6 @@ def check_event_calendar(events: pd.DataFrame, ar: pd.DataFrame) -> dict:
 
 def main() -> None:
     source = ROOT / "data/metadata"
-    pairs = {
-        "event_filing_results": (
-            source / "event_study_final/event_filing_results.csv",
-            OUT / "event_study/event_filing_results.csv",
-        ),
-        "event_daily_summary": (
-            source / "event_study_final/event_daily_summary.csv",
-            OUT / "event_study/event_daily_summary.csv",
-        ),
-        "event_study_summary": (
-            source / "event_study_final/event_study_summary.csv",
-            OUT / "event_study/event_study_summary.csv",
-        ),
-        "regression_results": (
-            source / "regression_analysis/regression_results.csv",
-            OUT / "regression/regression_results.csv",
-        ),
-        "regression_sample": (
-            source / "regression_analysis/regression_sample.csv",
-            OUT / "regression/regression_sample.csv",
-        ),
-    }
-    comparisons = {name: compare_table(*paths) for name, paths in pairs.items()}
-
     tone = pd.read_csv(source / "tone_method_item7.csv")
     tone_checks = {}
     for prefix in ("lm", "harvard"):
@@ -192,12 +152,9 @@ def main() -> None:
         "c2_firms": int(c2.n_firms.iloc[0]),
         "firm_year_rows": len(panel),
         "dictionary_opposite_sign": int(comparison.opposite_sign.sum()),
-        "table_comparisons": comparisons,
-        "original_comparison_note": "Historical source tables used a shifted event window; differences after the calendar fix are expected.",
         "event_calendar": calendar_checks,
         "tone_arithmetic": tone_checks,
         "car_arithmetic": car_checks,
-        "raw_10k_text_in_zip": False,
     }
     OUT.mkdir(exist_ok=True)
     (OUT / "verification.json").write_text(

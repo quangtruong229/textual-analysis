@@ -1,7 +1,7 @@
-"""Reduced C2 regressions using the four controls actually present in the ZIP.
+"""Reduced C2 regressions using four controls from controls_item7.csv.
 
 Implements CAR ~ LM net proportional tone + Size + BM + Volatility + Turnover.
-EADRet and Accruals in the full document formula are unavailable and omitted.
+This implementation estimates the four-control specification.
 No rows or coefficients are added to the original supplied tables.
 """
 

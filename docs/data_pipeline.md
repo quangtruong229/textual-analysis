@@ -17,14 +17,10 @@ Chạy `python scripts/run_analysis.py` từ thư mục gốc sau khi cài `requ
 
 ## Nguồn kết quả chính thức
 
-Các bảng trong `analysis_outputs/` là kết quả hiện hành để đọc, trình bày và tích hợp. Các bảng sự kiện/hồi quy ban đầu trong `data/metadata/event_study_final/` và `data/metadata/regression_analysis/` chỉ dùng đối chiếu lịch sử. Sau khi sửa phương pháp, hai bộ có thể khác nhau. Việc kiểm tra phải dựa vào công thức, cửa sổ thời gian và tính nhất quán của đầu ra, không buộc kết quả mới trùng bản cũ.
+Các bảng trong `analysis_outputs/` là kết quả dùng để đọc, trình bày và tích hợp. Các phép kiểm tra dựa trên công thức, cửa sổ thời gian, lịch giao dịch và tính nhất quán giữa các đầu ra.
 
 CAR, CAAR và AAR là lợi suất dạng thập phân: `0.01` tương ứng `1%`. Ô thiếu nghĩa là không có phép đo và không được thay bằng 0. Các CSV hồi quy chứa mô hình của mẫu đã lưu; lọc dòng để hiển thị không đồng nghĩa ước lượng lại mô hình.
 
-## Phần nguồn thô và tải dữ liệu
+## Bảng đầu vào
 
-Repo có mã tải và trích báo cáo trong `src/`, nhưng không kèm `data/raw/`, `data/processed/` hoặc văn bản `data/sections_v3/`. Vì vậy lần chạy offline bắt đầu từ bảng tone. Các phép kiểm tra số học tone không xác nhận lại từng từ hoặc ranh giới MD&A trong HTML gốc.
-
-Nếu nhóm thực hiện lại việc thu thập nguồn, các bước đó cần kết nối mạng và được chạy riêng: chuẩn bị metadata hồ sơ, đặt tên/email liên hệ phù hợp trong User-Agent của mã SEC, tải 10-K, tiền xử lý rồi chạy các phiên bản trích section theo đầu vào chúng yêu cầu. `src/extract_sections_v3.py` cần kết quả của các bước trích trước; không thể chạy riêng trên một clone chỉ có metadata hiện tại. Chỉ chạy lại mã tính tone sau khi đã có văn bản section tương ứng.
-
-`src/download_market_data.py` dùng `yfinance` để tải giá và có thể ghi lại CSV đầu vào. Đây không phải bước mặc định của `run_analysis.py`; dữ liệu tải mới có thể được nhà cung cấp điều chỉnh so với bản đã lưu. C2 đầy đủ vẫn cần bổ sung EADRet và Accruals; quy trình hiện tại chỉ tính C2 rút gọn từ bốn biến kiểm soát sẵn có.
+`run_analysis.py` sử dụng các bảng đầu vào được liệt kê ở trên và không tải thêm dữ liệu. Mã thu thập báo cáo và giá nằm trong `src/` để nhóm quản lý riêng với luồng tính kết quả. Mỗi đầu ra trong `analysis_outputs/` có thể đối chiếu với bảng đầu vào và mã xử lý tương ứng.

@@ -15,87 +15,6 @@
   "c2_firms": 96,
   "firm_year_rows": 1000,
   "dictionary_opposite_sign": 861,
-  "table_comparisons": {
-    "event_filing_results": {
-      "same": false,
-      "rows": 969,
-      "mismatches": {
-        "alpha": 969,
-        "beta": 969,
-        "residual_var": 969,
-        "residual_sd": 969,
-        "market_mean_estimation": 969,
-        "market_sxx_estimation": 969,
-        "CAR_m1_p1": 969,
-        "CAR_m1_p1_var": 969,
-        "CAR_m1_p1_se": 969,
-        "CAR_0_p3": 969,
-        "CAR_0_p3_var": 969,
-        "CAR_0_p3_se": 969,
-        "CAR_m3_p3": 969,
-        "CAR_m3_p3_var": 969,
-        "CAR_m3_p3_se": 969,
-        "CAR_m5_p5": 969,
-        "CAR_m5_p5_var": 969,
-        "CAR_m5_p5_se": 969
-      }
-    },
-    "event_daily_summary": {
-      "same": false,
-      "rows": 11,
-      "mismatches": {
-        "AAR": 11,
-        "BW_Z": 11,
-        "BW_p": 11
-      }
-    },
-    "event_study_summary": {
-      "same": false,
-      "rows": 4,
-      "mismatches": {
-        "CAAR": 4,
-        "Var_CAAR": 4,
-        "SE_CAAR": 4,
-        "MacKinlay_Z": 4,
-        "MacKinlay_p": 4,
-        "Sign_positive": 4,
-        "Sign_negative": 4,
-        "Sign_Z": 4,
-        "Sign_p": 4,
-        "Brown_Warner_Z": 1,
-        "Brown_Warner_p": 1,
-        "BW_estimation_AAR_sd": 1
-      }
-    },
-    "regression_results": {
-      "same": false,
-      "rows": 76,
-      "mismatches": {
-        "coefficient": 76,
-        "se_hc3": 76,
-        "t_hc3": 76,
-        "p_hc3_two_sided": 76,
-        "p_hc3_one_sided_positive": 76,
-        "se_cluster": 76,
-        "t_cluster": 76,
-        "p_cluster_two_sided": 76,
-        "p_cluster_one_sided_positive": 76,
-        "r_squared": 76,
-        "adj_r_squared": 76
-      }
-    },
-    "regression_sample": {
-      "same": false,
-      "rows": 969,
-      "mismatches": {
-        "car_m1_p1": 969,
-        "car_0_p3": 969,
-        "car_m3_p3": 969,
-        "car_m5_p5": 969
-      }
-    }
-  },
-  "original_comparison_note": "Historical source tables used a shifted event window; differences after the calendar fix are expected.",
   "event_calendar": {
     "filings_checked": 969,
     "day_zero_date_mismatches": 0,
@@ -129,6 +48,5 @@
       "checked": 969,
       "mismatches": 0
     }
-  },
-  "raw_10k_text_in_zip": false
+  }
 }

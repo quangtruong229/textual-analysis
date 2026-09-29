@@ -1,14 +1,13 @@
-# Đối chiếu phần tính toán với yêu cầu Đề án 5
+# Kiểm tra bộ kết quả tính toán
 
-Đánh giá này dựa trên bốn nội dung cốt lõi trong đề bài và dữ liệu đang có trong repo. Phạm vi là phần xử lý và tính toán; UI/UX, thuyết trình và các phần việc của thành viên khác được đánh giá riêng. Kết quả hiện hành nằm ở `analysis_outputs/`; các bảng kết quả ban đầu trong `data/metadata/` chỉ dùng đối chiếu lịch sử.
+Bộ kết quả hiện hành nằm trong `analysis_outputs/`. Chạy `python scripts/run_analysis.py` để tạo lại các bảng từ dữ liệu đầu vào và thực hiện kiểm tra tự động. `verification.json` ghi số quan sát, phép đối chiếu và mã SHA-256 của các bảng đầu vào.
 
-| Nội dung yêu cầu | Hiện trạng phần tính toán | Minh chứng | Việc còn thiếu |
-| --- | --- | --- | --- |
-| Thu thập báo cáo SEC 10-K | Có metadata 1.000 filing của 100 công ty, mỗi công ty 10 năm **nộp** 2016–2025; có URL SEC trong bảng bàn giao | `data/metadata/filings_2016_2025.csv`, `tone_firm_year.csv`, mã tải ở `src/download_10k.py` | ZIP không chứa HTML 10-K gốc, không thể kiểm chứng lại mọi bước trích từ nguồn local |
-| Làm sạch, đếm tích cực/tiêu cực/bất định theo LM | Có từ điển LM, mã xử lý và 971 bảng tone Item 7 dùng được; 29 hồ sơ bị loại có trạng thái rõ | `data/dictionary/`, `src/build_method_scores.py`, `data/metadata/lm_tone.csv`, `missing_filings.csv` | Thiếu văn bản MD&A đã trích, nên chưa chạy lại A1–A3 từ chữ gốc; kiểm tra hiện tại chỉ xác nhận số học từ bảng đếm đã cho |
-| Tone theo doanh nghiệp và năm | Đã xuất panel 1.000 hàng theo **năm nộp**, trong đó 971 tone hợp lệ; 100 công ty đều có hàng cho từng năm nộp 2016–2025 | `tone_firm_year.csv` | Không trình bày 29 tone thiếu như số 0. Năm nộp khác năm tài chính; 66 filing nộp 2016 báo cáo kỳ kết thúc 2015 |
-| Nghiên cứu sự kiện AR/CAR | Tính lại từ bảng giá được cung cấp cho các hồ sơ đủ lịch sử ước lượng, xuất bốn cửa sổ CAR và AR từng ngày | `event_study/`, `verification.json` | Đọc số sự kiện và kết quả kiểm tra từ bộ đầu ra hiện hành; loại hồ sơ thiếu lịch sử giá theo quy tắc đã công bố |
-| Từ điển tổng quát so với LM | So sánh 971 filing theo cùng bảng tone đầu vào; xuất mức độ đồng thuận/trái dấu và hồi quy C4 | `dictionary_comparison_summary.csv`, `dictionary_comparison_filings.csv`, `regression/regression_results.csv` | Chưa có kiểm định thủ công trên ngữ cảnh gốc hoặc nhãn chuẩn để khẳng định trường hợp nào là phân loại sai |
-| Tone và phản ứng thị trường | Có hồi quy C1/C3/C4 tính lại và C2 rút gọn với HC3, cụm công ty; đầu ra và mẫu rõ ràng | `regression/`, `c2_reduced_results.csv`, `c2_reduced_sample.csv` | C2 đầy đủ thiếu EADRet và Accruals; không được gọi bản rút gọn là đầy đủ. Không suy luận nhân quả từ hệ số |
+| Nội dung | Bảng kết quả | Kiểm tra |
+| --- | --- | --- |
+| Hồ sơ và tone theo công ty–năm nộp | `tone_firm_year.csv` | 1.000 hồ sơ, 100 công ty, một hàng cho mỗi công ty và năm nộp 2016–2025; 971 hàng có tone |
+| Nghiên cứu sự kiện | `event_study/event_filing_results.csv`, `event_ar_long.csv`, `event_study_summary.csv` | 969 hồ sơ có CAR; 969 ngày `0` khớp ngày sự kiện; 10.659 hàng AR khớp lịch phiên thị trường; CAR bằng tổng AR của từng cửa sổ |
+| So sánh từ điển | `dictionary_comparison_filings.csv`, `dictionary_comparison_summary.csv` | 971 hồ sơ có cả điểm LM và Harvard IV-4; số học tone tỷ lệ khớp các cột đếm từ |
+| Hồi quy C1/C3/C4 | `regression/regression_results.csv`, `regression_sample.csv` | 969 quan sát trong mẫu hồi quy; hệ số và mẫu gắn với bốn cửa sổ CAR |
+| C2 với bốn biến kiểm soát | `c2_reduced_results.csv`, `c2_reduced_sample.csv` | 862 quan sát thuộc 96 công ty; dùng Size, BM, Volatility và Turnover |
 
-**Kết luận:** Phần tính toán có các bảng kết quả chính để trình bày nghiên cứu thực nghiệm trong phạm vi dữ liệu được cung cấp. Trước khi sử dụng kết quả, chạy `python scripts/run_analysis.py` và xem các kiểm tra trong `verification.json`. **Chưa thể cam kết toàn bộ đề án đã hoàn thành** chỉ dựa vào các bảng này: tái lập tone từ văn bản nguồn, minh họa lỗi từ điển theo ngữ cảnh, báo cáo học thuật và thuyết trình còn cần đầu vào hoặc phần việc tương ứng của nhóm. Giới hạn thiếu HTML/MD&A và C2 rút gọn phải được giữ khi diễn giải.
+`missing_filings.csv` và `event_study/event_exclusions.csv` ghi trạng thái hồ sơ không có đủ số đo cho từng bước. Ô trống trong bảng kết quả là dữ liệu không có số đo, không được thay bằng 0. `filing_year` là năm nộp hồ sơ; `report_year` là năm kết thúc kỳ báo cáo.

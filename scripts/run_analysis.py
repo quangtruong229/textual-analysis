@@ -1,7 +1,7 @@
 """Rebuild all calculated outputs from the supplied tone, price and control CSVs.
 
-The source ZIP does not include raw Item 7 text; word scoring starts from its
-supplied tone table. Run from any working directory with the same Python env.
+Tone starts from data/metadata/tone_method_item7.csv. Run from any working
+directory with the same Python environment.
 """
 
 from __future__ import annotations

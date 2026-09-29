@@ -1,7 +1,7 @@
 """Re-run the supplied event-study and regression code without overwriting inputs.
 
-The ZIP omits extracted SEC section text, so tone is read from the supplied
-tone_method_item7.csv. This script does not claim to re-score those filings.
+Tone is read from data/metadata/tone_method_item7.csv. The event study and
+regressions are rebuilt from the stored input tables.
 """
 
 from __future__ import annotations

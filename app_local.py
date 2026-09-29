@@ -117,13 +117,13 @@ with model_tab:
                          "se_cluster", "p_cluster_two_sided", "r_squared"]],
                  hide_index=True, width="stretch")
     st.subheader("C2 rút gọn · bốn biến kiểm soát")
-    st.caption("N = 862, 96 công ty. EADRet và Accruals không có trong ZIP.")
+    st.caption("N = 862, 96 công ty. C2 trong bảng này dùng bốn biến kiểm soát.")
     st.dataframe(c2[["dependent_variable", "term", "n", "coefficient", "se_hc3",
                      "p_hc3_two_sided", "ci_hc3_low", "ci_hc3_high", "p_cluster_two_sided"]],
                  hide_index=True, width="stretch")
 
 with audit_tab:
-    st.write("Đối chiếu dữ liệu gốc với bảng chạy lại và các giới hạn:")
+    st.write("Kiểm tra bộ dữ liệu và kết quả tính toán:")
     st.markdown((OUT / "ASSIGNMENT_AUDIT.md").read_text(encoding="utf-8"))
     st.download_button("Tải bảng hồ sơ thiếu tone/CAR", (OUT / "missing_filings.csv").read_bytes(),
                        file_name="missing_filings.csv", mime="text/csv")

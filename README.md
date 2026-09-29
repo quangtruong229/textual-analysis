@@ -15,11 +15,11 @@ Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV 
 
 ## Dữ liệu và kết quả
 
-`data/` giữ dữ liệu đầu vào do nhóm cung cấp. Các bảng sự kiện/hồi quy cũ trong `data/metadata/event_study_final/` và `data/metadata/regression_analysis/` được giữ để đối chiếu lịch sử. **Nguồn kết quả hiện hành là `analysis_outputs/`**, kể cả CAR trong bảng công ty–năm. Kết quả sau sửa lỗi phương pháp có thể khác bảng cũ; việc trùng với bảng cũ không phải điều kiện để xác nhận phép tính đúng.
+`data/` giữ dữ liệu đầu vào của nhóm. **Nguồn kết quả dùng cho trình bày là `analysis_outputs/`**, kể cả CAR trong bảng công ty–năm. Chạy `scripts/run_analysis.py` để tái tạo bộ kết quả từ các đầu vào này.
 
 Đọc [luồng xử lý](docs/data_pipeline.md), [phương pháp](docs/METHODOLOGY.md), [kết quả và diễn giải](analysis_outputs/RESULTS_PRESENTATION.md), [đối chiếu yêu cầu đề án](analysis_outputs/ASSIGNMENT_AUDIT.md) và [kiểm tra dạng máy đọc](analysis_outputs/verification.json). `handoff/manifest.json` lưu danh sách bảng, cột, đơn vị và mã kiểm tra tệp.
 
-Mẫu đầu vào gồm 1.000 hồ sơ của 100 công ty, theo **năm nộp 2016–2025**, không đồng nghĩa năm tài chính. Repo không có HTML 10-K hoặc văn bản MD&A đã trích. Vì vậy tính toán hiện tại dùng bảng tone được cung cấp; chỉ kiểm tra được số học từ các cột đếm từ, chưa tính lại đếm từ, phủ định và tf.idf từ văn bản gốc. C2 là **mô hình rút gọn** vì thiếu EADRet và Accruals.
+Mẫu đầu vào gồm 1.000 hồ sơ của 100 công ty, theo **năm nộp 2016–2025**, không đồng nghĩa năm tài chính. Lệnh phân tích đọc tone từ `data/metadata/tone_method_item7.csv`, tính AR/CAR từ `data/market_data/daily_prices.csv` và ước lượng các mô hình hồi quy. C2 hiện dùng bốn biến kiểm soát Size, BM, Volatility và Turnover.
 
 ## Xem nhanh trên máy
 

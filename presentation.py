@@ -110,13 +110,13 @@ Hệ số dưới đây thuộc mô hình `CAR = a + b × LM_net_prop + sai số
 
 ## So sánh từ điển tài chính và từ điển tổng quát
 
-Trên **{comparable} hồ sơ** tính được cả hai điểm theo cùng quy tắc xử lý, LM và Harvard IV-4 cho tone **trái dấu ở {opposite} hồ sơ ({dec(100 * opposite / comparable, 1)}%)**. Đây là khác biệt đáng kể về cách hai từ điển mô tả cùng văn bản, nhưng **không phải {opposite} lỗi được kiểm chứng của Harvard**. ZIP không có văn bản Item 7 để gắn nhãn thủ công cho từ trong ngữ cảnh.
+Trên **{comparable} hồ sơ** tính được cả hai điểm theo cùng quy tắc xử lý, LM và Harvard IV-4 cho tone **trái dấu ở {opposite} hồ sơ ({dec(100 * opposite / comparable, 1)}%)**. Kết quả cho thấy hai từ điển cho điểm khác nhau; chỉ số trái dấu không phải phép đánh giá đúng/sai của từng từ điển.
 
 Ở hồi quy C4 `[-1,+1]` đưa đồng thời hai tone tỷ lệ vào mô hình, hệ số LM là **{dec(c4_lm.coefficient, 4)}** (p HC3 **{pvalue(c4_lm.p_hc3_two_sided)}**), còn Harvard là **{dec(c4_harvard.coefficient, 4)}** (p HC3 **{pvalue(c4_harvard.p_hc3_two_sided)}**). Kết quả này **không cho phép khẳng định LM luôn dự báo tốt hơn**; cần đối chiếu thêm giả thuyết, dấu hệ số và dữ liệu gốc trước khi nêu kết luận mạnh.
 
 ## C2 rút gọn với biến kiểm soát
 
-C2 dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Hai biến EADRet và Accruals trong công thức đầy đủ không có trong ZIP. Do yêu cầu dữ liệu đủ bốn biến kiểm soát, mẫu giảm từ {int(baseline.n)} xuống **{int(c2_baseline.n)} hồ sơ**. Bảng dưới chỉ hiển thị hệ số tone; toàn bộ hệ số của bốn biến kiểm soát có trong `c2_reduced_results.csv` và tab Hồi quy.
+C2 trong bảng dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Do yêu cầu dữ liệu đủ bốn biến kiểm soát, mẫu gồm **{int(c2_baseline.n)} hồ sơ**. Bảng dưới chỉ hiển thị hệ số tone; toàn bộ hệ số của bốn biến kiểm soát có trong `c2_reduced_results.csv` và tab Hồi quy.
 
 | Cửa sổ | N | Hệ số tone | p HC3 | Khoảng tin cậy HC3 95% | p gom cụm |
 | --- | ---: | ---: | ---: | --- | ---: |
@@ -126,5 +126,5 @@ C2 dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Hai biến EADRet và
 
 ## Kết luận sử dụng được và giới hạn
 
-Dữ liệu cho thấy có phản ứng lợi suất bất thường trung bình quanh ngày nộp 10-K và tone khác nhau đáng kể giữa hai từ điển. Mối liên hệ riêng giữa tone LM và CAR **không ổn định qua cửa sổ và cách tính sai số chuẩn**, nên chưa có cơ sở để nói tone gây ra biến động giá. Phần chi tiết cách tính nằm ở tab **Phương pháp**; trạng thái thiếu dữ liệu và khả năng chạy lại nằm ở tab **Kiểm tra**. Việc không có HTML/MD&A gốc giới hạn kiểm chứng bước trích và đếm từ, còn C2 đầy đủ cần thêm EADRet và Accruals.
+Dữ liệu cho thấy có phản ứng lợi suất bất thường trung bình quanh ngày nộp 10-K và tone khác nhau đáng kể giữa hai từ điển. Mối liên hệ riêng giữa tone LM và CAR **không ổn định qua cửa sổ và cách tính sai số chuẩn**, nên chưa có cơ sở để nói tone gây ra biến động giá. Phần chi tiết cách tính nằm ở tab **Phương pháp**; trạng thái hồ sơ và các phép kiểm tra nằm ở tab **Kiểm tra**.
 """

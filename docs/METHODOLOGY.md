@@ -6,7 +6,7 @@ Nghiên cứu hỏi liệu giọng điệu trong phần **Item 7 – Management�
 
 ## 2. Từ báo cáo sang biến tone
 
-`src/download_10k.py`, `src/preprocess_10k.py` và `src/extract_sections_v3.py` là chuỗi mã gốc để tải, làm sạch và trích Item 7. Bản ZIP đang dùng chỉ có metadata và bảng điểm, **không có HTML 10-K hoặc văn bản Item 7 đã trích**. Do đó phiên chạy hiện tại bắt đầu từ `data/metadata/tone_method_item7.csv`; không tuyên bố đã chạy lại việc đọc báo cáo từ chữ gốc.
+`src/download_10k.py`, `src/preprocess_10k.py` và `src/extract_sections_v3.py` mô tả các bước tải, làm sạch và trích Item 7. Phiên phân tích trong repo bắt đầu từ bảng điểm `data/metadata/tone_method_item7.csv`; mã nghiên cứu sự kiện dùng bảng này làm đầu vào.
 
 Từ điển tài chính Loughran–McDonald (LM) và từ điển tổng quát Harvard IV-4 nằm trong `data/dictionary/`. Theo `src/build_method_scores.py`, văn bản được tách thành token chữ và chuyển thành chữ hoa. Với mỗi từ tích cực/tiêu cực, nếu `NOT`, `NO` hoặc `NEVER` xuất hiện trong ba token đứng trước, từ đó không được cộng vào nhóm tích cực/tiêu cực. Bảng tone lưu cả số từ bị loại vì phủ định.
 
@@ -16,7 +16,7 @@ Với một báo cáo có `W` token, `P` lần xuất hiện từ tích cực v�
 
 Đặc tả đối chứng `net_ratio = (positive_prop − negative_prop) / (positive_prop + negative_prop)` chỉ xác định khi mẫu số khác 0. Cách tính tf.idf dùng `idf_j = log(số văn bản / số văn bản chứa từ j)` và trọng số tần suất `1 + log(tf)` trước khi chuẩn hóa theo `1 + log(W)`. Điểm LM và Harvard được xây trên cùng quy tắc xử lý trong mã này. Bảng `lm_tone.csv` còn có số từ bất định; bảng `tone_method_item7.csv` chứa các điểm dùng cho so sánh và hồi quy.
 
-Trong 1.000 hồ sơ, 971 có Item 7 đủ điều kiện tính tone. 29 hồ sơ không được gán tone bằng 0: 20 `too_short`, 6 `boundary_uncertain`, 3 `heading_not_found`. `tone_firm_year.csv` giữ đủ 1.000 hàng và đánh dấu trạng thái từng hồ sơ. Do thiếu văn bản gốc, kiểm tra hiện nay xác nhận công thức `P/W − N/W` trên 971 hàng, nhưng không xác nhận từng lần đếm từ hoặc phạm vi Item 7.
+Trong 1.000 hồ sơ, 971 có Item 7 đủ điều kiện tính tone. 29 hồ sơ không được gán tone bằng 0: 20 `too_short`, 6 `boundary_uncertain`, 3 `heading_not_found`. `tone_firm_year.csv` giữ đủ 1.000 hàng và đánh dấu trạng thái từng hồ sơ. Kiểm tra số học xác nhận công thức `P/W − N/W` trên 971 hàng của bảng điểm đầu vào.
 
 ## 3. Nghiên cứu sự kiện AR và CAR
 
@@ -37,7 +37,7 @@ Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa s
 - **C1:** `CAR_i = a + b·Score_i + ε_i`, lần lượt dùng LM net proportional, LM net ratio, LM net tf.idf và các điểm Harvard tương ứng.
 - **C3:** `CAR_i = a + b·LM_positive_i + c·LM_negative_i + ε_i`.
 - **C4:** `CAR_i = a + b·LM_net_i + c·Harvard_net_i + ε_i`, với phiên bản tỷ lệ và tf.idf.
-- **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch theo mã gốc. Bộ công thức C2 đầy đủ còn EADRet và Accruals; hai biến đó không có trong ZIP nên không được bịa hoặc thay thế.
+- **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch theo mã gốc. Đặc tả đang ước lượng gồm bốn biến kiểm soát này.
 
 C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; còn 862 hồ sơ thuộc 96 công ty. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu. Bộ controls được cung cấp sẵn; mã tạo nó nhân giá Yahoo `close` với cổ phiếu lưu hành lịch sử để tính Size/BM. Chưa xác minh được quy ước điều chỉnh chia tách của giá và số cổ phiếu tương ứng, nên cần kiểm toán thêm trước khi diễn giải mạnh hệ số C2.
 
@@ -45,6 +45,6 @@ Hệ số hồi quy mô tả **mối liên hệ trong mẫu**, không chứng mi
 
 ## 5. Kiểm tra và khả năng chạy lại
 
-`scripts/run_analysis.py` chạy toàn bộ các bước theo thứ tự, mặc định tính lại nghiên cứu sự kiện từ bảng giá, rồi chạy hồi quy, tạo bảng công ty–năm và xuất kết quả. `scripts/verify_recalculation.py` kiểm tra ngày `0`, số ngày cửa sổ, số học tone, tổng AR thành CAR và độ phủ bảng công ty–năm. Nó còn ghi mức khác biệt với các bảng cũ trong ZIP để truy vết; **không dùng sự trùng khớp với bản cũ làm tiêu chí đúng**. Trước khi sửa, toàn bộ 969 dòng ngày `0` trong bản cũ lệch một phiên so với ngày sự kiện đã ghi. Sau sửa, 969/969 dòng khớp. Kết quả kiểm tra và SHA-256 của đầu vào nằm trong `analysis_outputs/verification.json`.
+`scripts/run_analysis.py` chạy toàn bộ các bước theo thứ tự, mặc định tính lại nghiên cứu sự kiện từ bảng giá, rồi chạy hồi quy, tạo bảng công ty–năm và xuất kết quả. `scripts/verify_recalculation.py` kiểm tra ngày `0`, số ngày cửa sổ, số học tone, tổng AR thành CAR và độ phủ bảng công ty–năm. Kết quả kiểm tra hiện hành có 969/969 ngày `0` khớp ngày sự kiện. Chi tiết và SHA-256 của đầu vào nằm trong `analysis_outputs/verification.json`.
 
-Bộ công thức tham chiếu là `docs/Cong_thuc_dinh_luong.docx`. Các bước không có dữ liệu đầu vào cần thiết, đặc biệt việc đọc HTML/MD&A và C2 đầy đủ, được nêu là giới hạn thay vì được đánh dấu hoàn thành.
+Bộ công thức tham chiếu là `docs/Cong_thuc_dinh_luong.docx`; các bảng kết quả ghi rõ đặc tả và mẫu thực tế được ước lượng.
