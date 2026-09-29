@@ -20,15 +20,15 @@ Trong 1.000 hồ sơ, 971 có Item 7 đủ điều kiện tính tone. 29 hồ s�
 
 ## 3. Nghiên cứu sự kiện AR và CAR
 
-Giá đóng cửa đã điều chỉnh và lợi suất ngày nằm trong `data/market_data/daily_prices.csv`; chỉ số thị trường là `^GSPC`. `src/event_study_final.py` nối ngày giao dịch cổ phiếu với chỉ số. Ngày sự kiện `t=0` là ngày nộp nếu có phiên giao dịch; nếu không, mã chọn phiên đầu tiên sau ngày nộp. Dữ liệu hiện tại báo cáo không có hồ sơ nào phải dịch sang phiên sau.
+Giá đóng cửa đã điều chỉnh và lợi suất ngày nằm trong `data/market_data/daily_prices.csv`; chỉ số thị trường là `^GSPC`. `src/event_study_final.py` dùng các phiên của chỉ số làm lịch chuẩn rồi ghép lợi suất cổ phiếu theo ngày, giữ nguyên phiên bị thiếu để kiểm tra. Ngày sự kiện `t=0` là ngày nộp nếu có phiên giao dịch; nếu không, mã chọn phiên đầu tiên sau ngày nộp. Dữ liệu hiện tại không có hồ sơ nào phải dịch sang phiên sau. CSV chỉ có **ngày** nộp, không có giờ SEC chấp nhận hồ sơ; vì vậy không xác định được hồ sơ nộp sau giờ đóng cửa có nên chuyển sang phiên kế tiếp hay không.
 
 Mỗi hồ sơ cần đủ **239 phiên ước lượng** từ `t=−244` đến `t=−6`, tách khỏi vùng sự kiện `t=−5` đến `t=+5`. Hồi quy mô hình thị trường trên cửa sổ ước lượng cho `α_i` và `β_i`:
 
 `R_i,t = α_i + β_i R_m,t + ε_i,t`.
 
-Lợi suất bất thường của hồ sơ `i` tại ngày tương đối `t` là `AR_i,t = R_i,t − (α_i + β_i R_m,t)`. `CAR_i[a,b]` là tổng AR từ `a` đến `b`. Bốn cửa sổ được xuất: `[-1,+1]`, `[0,+3]`, `[-3,+3]` và `[-5,+5]`. Phương sai CAR dùng phương sai phần dư mô hình thị trường cộng phần điều chỉnh ước lượng theo mã và bộ công thức của nhóm; mã giả định hiệp phương sai phần dư giữa các ngày bằng 0 cho bước cộng phương sai. Bảng `event_ar_long.csv` lưu AR từng ngày để kiểm tra lại tổng CAR.
+Lợi suất bất thường của hồ sơ `i` tại ngày tương đối `t` là `AR_i,t = R_i,t − (α_i + β_i R_m,t)`. `CAR_i[a,b]` là tổng AR từ `a` đến `b`. Bốn cửa sổ được xuất: `[-1,+1]`, `[0,+3]`, `[-3,+3]` và `[-5,+5]`. Phương sai CAR dùng **xấp xỉ B4** trong bộ công thức nhóm: `Var(CAR_i[a,b]) ≈ (b−a+1) × σ²_ε,i`. Đây là xấp xỉ cho cửa sổ ước lượng dài; không bao gồm sai số do ước lượng α/β. Bảng `event_ar_long.csv` lưu AR từng ngày để kiểm tra tổng CAR và xác nhận ngày `0` trùng ngày sự kiện.
 
-Trong 971 hồ sơ có tone, 969 đủ lịch sử giá; hai hồ sơ bị loại có lý do `insufficient_estimation_history`. `event_study_summary.csv` báo CAAR trung bình, thống kê MacKinlay và kiểm định dấu cho cả bốn cửa sổ; thống kê Brown–Warner nhiều ngày được báo cho `[-5,+5]`. Các p-value này kiểm tra **phản ứng trung bình quanh ngày nộp**, chưa kiểm tra riêng vai trò của tone.
+Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa sổ ước lượng; hai hồ sơ bị loại được ghi tại `event_study/event_exclusions.csv`. `event_study_summary.csv` báo CAAR trung bình, thống kê MacKinlay và kiểm định dấu cho cả bốn cửa sổ; thống kê Brown–Warner nhiều ngày được báo cho `[-5,+5]`. Các p-value này kiểm tra **phản ứng trung bình quanh ngày nộp**, chưa kiểm tra riêng vai trò của tone.
 
 ## 4. Hồi quy liên hệ tone với CAR
 
@@ -39,12 +39,12 @@ Trong 971 hồ sơ có tone, 969 đủ lịch sử giá; hai hồ sơ bị loạ
 - **C4:** `CAR_i = a + b·LM_net_i + c·Harvard_net_i + ε_i`, với phiên bản tỷ lệ và tf.idf.
 - **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch theo mã gốc. Bộ công thức C2 đầy đủ còn EADRet và Accruals; hai biến đó không có trong ZIP nên không được bịa hoặc thay thế.
 
-C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; còn 862 hồ sơ thuộc 96 công ty. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu.
+C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; còn 862 hồ sơ thuộc 96 công ty. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu. Bộ controls được cung cấp sẵn; mã tạo nó nhân giá Yahoo `close` với cổ phiếu lưu hành lịch sử để tính Size/BM. Chưa xác minh được quy ước điều chỉnh chia tách của giá và số cổ phiếu tương ứng, nên cần kiểm toán thêm trước khi diễn giải mạnh hệ số C2.
 
 Hệ số hồi quy mô tả **mối liên hệ trong mẫu**, không chứng minh tone gây biến động giá. Bốn cửa sổ và nhiều đặc tả được trình bày cùng nhau; không chọn riêng mô hình có p-value nhỏ để đổi kết luận chính.
 
 ## 5. Kiểm tra và khả năng chạy lại
 
-`scripts/recompute_from_supplied.py --force-event` chạy lại nghiên cứu sự kiện từ bảng giá rồi hồi quy C1/C3/C4. `scripts/calculate_c2_controls.py` tính C2 rút gọn. `scripts/build_firm_year_panel.py` và `scripts/summarize_dictionary_comparison.py` tạo các bảng bàn giao. `scripts/verify_recalculation.py` so năm bảng tính lại với bản có sẵn trong ZIP, kiểm tra số học tone, tổng AR thành CAR và độ phủ bảng công ty–năm. Kết quả kiểm tra và SHA-256 của đầu vào nằm trong `analysis_outputs/verification.json`.
+`scripts/run_analysis.py` chạy toàn bộ các bước theo thứ tự, mặc định tính lại nghiên cứu sự kiện từ bảng giá, rồi chạy hồi quy, tạo bảng công ty–năm và xuất kết quả. `scripts/verify_recalculation.py` kiểm tra ngày `0`, số ngày cửa sổ, số học tone, tổng AR thành CAR và độ phủ bảng công ty–năm. Nó còn ghi mức khác biệt với các bảng cũ trong ZIP để truy vết; **không dùng sự trùng khớp với bản cũ làm tiêu chí đúng**. Trước khi sửa, toàn bộ 969 dòng ngày `0` trong bản cũ lệch một phiên so với ngày sự kiện đã ghi. Sau sửa, 969/969 dòng khớp. Kết quả kiểm tra và SHA-256 của đầu vào nằm trong `analysis_outputs/verification.json`.
 
 Bộ công thức tham chiếu là `docs/Cong_thuc_dinh_luong.docx`. Các bước không có dữ liệu đầu vào cần thiết, đặc biệt việc đọc HTML/MD&A và C2 đầy đủ, được nêu là giới hạn thay vì được đánh dấu hoàn thành.

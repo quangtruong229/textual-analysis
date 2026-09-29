@@ -63,7 +63,7 @@ def main() -> None:
         "harvard_net_prop", "harvard_net_tfidf",
     ]], "tone_method")
 
-    event = pd.read_csv(DATA / "event_study_final/event_filing_results.csv",
+    event = pd.read_csv(ROOT / "analysis_outputs/event_study/event_filing_results.csv",
                         dtype={"accession_number": str})
     event["accession_key"] = normalized_accession(event.accession_number)
     panel = checked_join(panel, event[[

@@ -10,12 +10,12 @@ CAAR là CAR trung bình của các hồ sơ trong mẫu. Bảng này kiểm tra
 
 | Cửa sổ giao dịch | N | CAAR | Z MacKinlay | p MacKinlay | p kiểm định dấu |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| [-1,+1] | 969 | 0,403% | 4,225 | <0,0001 | 0,0430 |
-| [0,+3] | 969 | 0,345% | 3,129 | 0,0018 | 0,0773 |
-| [-3,+3] | 969 | 0,593% | 4,074 | <0,0001 | 0,3193 |
-| [-5,+5] | 969 | 0,746% | 4,086 | <0,0001 | 0,0430 |
+| [-1,+1] | 969 | 0,519% | 5,471 | <0,0001 | 0,1013 |
+| [0,+3] | 969 | 0,444% | 4,056 | <0,0001 | 0,1483 |
+| [-3,+3] | 969 | 0,588% | 4,059 | <0,0001 | 0,1672 |
+| [-5,+5] | 969 | 0,766% | 4,221 | <0,0001 | 0,3515 |
 
-Chẳng hạn ở cửa sổ `[-1,+1]`, CAAR = **0,403%** và p MacKinlay = **<0,0001**. Điều này cho thấy lợi suất bất thường trung bình khác 0 theo phép kiểm định đó. Nó không cho biết phần nào do giọng điệu báo cáo, công bố lợi nhuận gần thời điểm đó, hay tin khác.
+Chẳng hạn ở cửa sổ `[-1,+1]`, CAAR = **0,519%** và p MacKinlay = **<0,0001**. Điều này cho thấy lợi suất bất thường trung bình khác 0 theo phép kiểm định đó. Nó không cho biết phần nào do giọng điệu báo cáo, công bố lợi nhuận gần thời điểm đó, hay tin khác.
 
 ## Tone LM và CAR: hồi quy C1
 
@@ -23,18 +23,18 @@ Hệ số dưới đây thuộc mô hình `CAR = a + b × LM_net_prop + sai số
 
 | Cửa sổ | N | Hệ số b | p HC3 hai phía | p gom cụm công ty |
 | --- | ---: | ---: | ---: | ---: |
-| [-1,+1] | 969 | -0,3535 | 0,0833 | 0,1768 |
-| [0,+3] | 969 | -0,1522 | 0,4239 | 0,3302 |
-| [-3,+3] | 969 | -0,5589 | 0,0353 | 0,0587 |
-| [-5,+5] | 969 | -0,5562 | 0,1173 | 0,1268 |
+| [-1,+1] | 969 | -0,3719 | 0,0991 | 0,1235 |
+| [0,+3] | 969 | -0,4214 | 0,0481 | 0,1122 |
+| [-3,+3] | 969 | -0,6549 | 0,0155 | 0,0379 |
+| [-5,+5] | 969 | -0,5685 | 0,0922 | 0,0889 |
 
-Ở `[-1,+1]`, hệ số **-0,3535**, p HC3 **0,0833** và p gom cụm **0,1768**. Với ngưỡng 5%, đặc tả này **chưa cho bằng chứng thống kê đủ mạnh** rằng tone LM dự báo CAR. Cửa sổ `[-3,+3]` có p HC3 **0,0353**, nhưng p gom cụm là **0,0587**; kết luận phụ thuộc cách tính sai số chuẩn và cửa sổ được chọn. Vì có nhiều đặc tả, không nên coi một p-value đơn lẻ là xác nhận chắc chắn.
+Ở `[-1,+1]`, hệ số **-0,3719**, p HC3 **0,0991** và p gom cụm **0,1235**. Với ngưỡng 5%, đặc tả này **chưa cho bằng chứng thống kê đủ mạnh** rằng tone LM dự báo CAR. Cửa sổ `[-3,+3]` có p HC3 **0,0155**, nhưng p gom cụm là **0,0379**; kết luận phụ thuộc cách tính sai số chuẩn và cửa sổ được chọn. Vì có nhiều đặc tả, không nên coi một p-value đơn lẻ là xác nhận chắc chắn.
 
 ## So sánh từ điển tài chính và từ điển tổng quát
 
 Trên **971 hồ sơ** tính được cả hai điểm theo cùng quy tắc xử lý, LM và Harvard IV-4 cho tone **trái dấu ở 861 hồ sơ (88,7%)**. Đây là khác biệt đáng kể về cách hai từ điển mô tả cùng văn bản, nhưng **không phải 861 lỗi được kiểm chứng của Harvard**. ZIP không có văn bản Item 7 để gắn nhãn thủ công cho từ trong ngữ cảnh.
 
-Ở hồi quy C4 `[-1,+1]` đưa đồng thời hai tone tỷ lệ vào mô hình, hệ số LM là **-0,0857** (p HC3 **0,7319**), còn Harvard là **-0,6256** (p HC3 **0,0162**). Kết quả này **không cho phép khẳng định LM luôn dự báo tốt hơn**; cần đối chiếu thêm giả thuyết, dấu hệ số và dữ liệu gốc trước khi nêu kết luận mạnh.
+Ở hồi quy C4 `[-1,+1]` đưa đồng thời hai tone tỷ lệ vào mô hình, hệ số LM là **-0,0781** (p HC3 **0,7700**), còn Harvard là **-0,6868** (p HC3 **0,0091**). Kết quả này **không cho phép khẳng định LM luôn dự báo tốt hơn**; cần đối chiếu thêm giả thuyết, dấu hệ số và dữ liệu gốc trước khi nêu kết luận mạnh.
 
 ## C2 rút gọn với biến kiểm soát
 
@@ -42,12 +42,12 @@ C2 dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Hai biến EADRet và
 
 | Cửa sổ | N | Hệ số tone | p HC3 | Khoảng tin cậy HC3 95% | p gom cụm |
 | --- | ---: | ---: | ---: | --- | ---: |
-| [-1,+1] | 862 | -0,1033 | 0,6358 | [-0,5308; 0,3242] | 0,7019 |
-| [0,+3] | 862 | -0,0520 | 0,8063 | [-0,4681; 0,3640] | 0,8218 |
-| [-3,+3] | 862 | -0,3553 | 0,2207 | [-0,9239; 0,2133] | 0,2803 |
-| [-5,+5] | 862 | -0,1630 | 0,6658 | [-0,9024; 0,5764] | 0,6633 |
+| [-1,+1] | 862 | -0,3180 | 0,1656 | [-0,7676; 0,1316] | 0,2327 |
+| [0,+3] | 862 | -0,1981 | 0,3884 | [-0,6484; 0,2521] | 0,5011 |
+| [-3,+3] | 862 | -0,3883 | 0,1862 | [-0,9640; 0,1874] | 0,2278 |
+| [-5,+5] | 862 | -0,1817 | 0,6261 | [-0,9129; 0,5494] | 0,5842 |
 
-Ở `[-1,+1]`, hệ số tone C2 là **-0,1033**, p HC3 **0,6358**. Đây là mô hình **rút gọn**, và sự khác biệt với C1 vừa phản ánh thêm biến kiểm soát vừa phản ánh mẫu nhỏ hơn; không thể tách hai tác động chỉ bằng hai bảng này.
+Ở `[-1,+1]`, hệ số tone C2 là **-0,3180**, p HC3 **0,1656**. Đây là mô hình **rút gọn**, và sự khác biệt với C1 vừa phản ánh thêm biến kiểm soát vừa phản ánh mẫu nhỏ hơn; không thể tách hai tác động chỉ bằng hai bảng này.
 
 ## Kết luận sử dụng được và giới hạn
 
