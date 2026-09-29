@@ -151,22 +151,11 @@ def car_variance_market_model(
     start,
     end,
 ):
-    """
-    MacKinlay Eq. 8 + Eq. 11 approximation.
+    """B4 in the supplied formula document: Var(CAR) ~= L * sigma_e^2.
 
-    Var(AR_it) =
-        sigma_e^2 *
-        [
-            1 + 1/L1 +
-            (Rm_t - mean(Rm))^2 /
-            sum((Rm - mean(Rm))^2)
-        ]
-
-    Then:
-        Var(CAR_i) = sum Var(AR_it)
-
-    Cross-day covariance is assumed zero under the standard
-    market-model error assumptions.
+    This is MacKinlay Eq. 11's large-estimation-window approximation.
+    Do not sum individual forecast variances: estimated alpha/beta induce
+    cross-day forecast covariance, even when the underlying errors are iid.
     """
 
     subset = event[
@@ -177,42 +166,7 @@ def car_variance_market_model(
     if subset.empty:
         return np.nan
 
-    sigma_e2 = float(
-        model["residual_var"]
-    )
-
-    L1 = float(
-        model["n_estimation"]
-    )
-
-    rm_mean = float(
-        model["market_mean"]
-    )
-
-    sxx = float(
-        model["market_sxx"]
-    )
-
-    market_part = (
-        1.0
-        + 1.0 / L1
-        + (
-            (
-                subset["market_return"]
-                - rm_mean
-            ) ** 2
-            / sxx
-        )
-    )
-
-    var_ar = (
-        sigma_e2
-        * market_part
-    )
-
-    return float(
-        var_ar.sum()
-    )
+    return float(len(subset) * model["residual_var"])
 
 
 # ============================================================
@@ -275,10 +229,13 @@ def process_filing(
         }
     )
 
-    merged = firm.merge(
-        market,
+    # Use the benchmark's trading calendar, retaining missing firm returns.
+    # Dropping rows would silently compress event time and move CAR windows.
+    merged = market.merge(
+        firm,
         on="date",
-        how="inner",
+        how="left",
+        validate="one_to_one",
     )
 
     merged = (
@@ -286,11 +243,6 @@ def process_filing(
         .sort_values("date")
         .reset_index(drop=True)
     )
-
-    merged = merged[
-        merged["firm_return"].notna()
-        & merged["market_return"].notna()
-    ].copy()
 
     if merged.empty:
         return None, None, None, "no_returns"
@@ -371,6 +323,10 @@ def process_filing(
         event_end_idx + 1
     ].copy()
 
+    for frame, window in ((estimation, "estimation"), (event, "event")):
+        if not np.isfinite(frame[["firm_return", "market_return"]].to_numpy(float)).all():
+            return None, None, None, f"missing_returns_in_{window}_calendar"
+
     if len(estimation) != 239:
         return (
             None,
@@ -439,9 +395,7 @@ def process_filing(
         "ticker": ticker_raw,
         "yahoo_ticker": ticker,
         "filing_date": filing_date,
-        "event_date": event["date"].iloc[EVENT_START * -1]
-        if False
-        else merged.loc[
+        "event_date": merged.loc[
             event_idx,
             "date"
         ],
@@ -545,6 +499,9 @@ def process_filing(
         event_idx,
         "date"
     ]
+
+    if event.loc[event.event_time.eq(0), "date"].iloc[0] != result["event_date"]:
+        raise AssertionError("Event day zero must match the declared event date")
 
     return (
         result,
@@ -848,6 +805,7 @@ def main():
     estimation_rows = []
 
     failures = {}
+    failure_rows = []
 
     for i, filing in tone.iterrows():
 
@@ -898,6 +856,12 @@ def main():
                 failures.get(status, 0)
                 + 1
             )
+            failure_rows.append({
+                "ticker": filing["ticker"],
+                "filing_date": filing["filing_date"],
+                "accession_number": filing["accession_number"],
+                "event_exclusion_reason": status,
+            })
 
         if (
             (i + 1) % 100
@@ -1029,6 +993,12 @@ def main():
         FILING_OUT,
         index=False,
         encoding="utf-8-sig",
+    )
+
+    pd.DataFrame(failure_rows, columns=[
+        "ticker", "filing_date", "accession_number", "event_exclusion_reason",
+    ]).to_csv(
+        OUT_DIR / "event_exclusions.csv", index=False, encoding="utf-8-sig",
     )
 
     event_df.to_csv(

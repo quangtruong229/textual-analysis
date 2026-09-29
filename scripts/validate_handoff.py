@@ -21,6 +21,7 @@ FILES = {
     "dictionary_summary": "analysis_outputs/dictionary_comparison_summary.csv",
     "dictionary_filings": "analysis_outputs/dictionary_comparison_filings.csv",
     "event_filing": "analysis_outputs/event_study/event_filing_results.csv",
+    "event_exclusions": "analysis_outputs/event_study/event_exclusions.csv",
     "event_daily": "analysis_outputs/event_study/event_daily_summary.csv",
     "event_windows": "analysis_outputs/event_study/event_study_summary.csv",
     "regression": "analysis_outputs/regression/regression_results.csv",
@@ -75,6 +76,11 @@ def main() -> None:
 
     events = tables["event_filing"]
     require(len(events) == 969 and not events.duplicated(keys).any(), "Event keys changed")
+    excluded = tables["event_exclusions"]
+    require(len(excluded) == 2 and not excluded.duplicated(keys).any(), "Event exclusions changed")
+    require(excluded.event_exclusion_reason.notna().all(), "Event exclusions need reasons")
+    require(not excluded.set_index(keys).index.isin(events.set_index(keys).index).any(),
+            "Excluded event also appears in valid event results")
     require(len(tables["event_windows"]) == 4, "Expected four CAR windows")
     require(tables["event_windows"].N.eq(969).all(), "Event window N differs")
     require(len(tables["event_daily"]) == 11, "Expected event days -5 through +5")

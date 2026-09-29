@@ -8,3 +8,4 @@ openpyxl
 beautifulsoup4
 lxml
 tqdm
+yfinance
