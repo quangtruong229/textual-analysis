@@ -160,6 +160,53 @@
         "BW_estimation_AAR_sd"
       ]
     },
+    "event_extended": {
+      "path": "analysis_outputs/event_study/extended_window_tests.csv",
+      "rows": 4,
+      "sha256": "9cce91cb512e559b56375cac306a1b4c4c52ec324ef82abb320629bfd3f533b7",
+      "columns": [
+        "window",
+        "window_start",
+        "window_end",
+        "n_event_days",
+        "caar",
+        "estimation_aar_sd",
+        "brown_warner_z",
+        "brown_warner_p",
+        "rho_1",
+        "rho_2",
+        "rho_3",
+        "autocorr_se",
+        "autocorr_z",
+        "autocorr_p"
+      ]
+    },
+    "corrado_daily": {
+      "path": "analysis_outputs/event_study/corrado_daily.csv",
+      "rows": 11,
+      "sha256": "a279927c3cc5deb2147a094c53b7fea04efe097dcde004294d915bbfd99b5e6b",
+      "columns": [
+        "event_time",
+        "n",
+        "mean_rank",
+        "expected_rank",
+        "estimation_rank_sd",
+        "corrado_z",
+        "corrado_p"
+      ]
+    },
+    "theoretical_power": {
+      "path": "analysis_outputs/event_study/theoretical_power.csv",
+      "rows": 12,
+      "sha256": "a74a28c825316d5dc889d84bf471898f839ec14c60b8ca032e358a4549674c4e",
+      "columns": [
+        "window",
+        "assumed_caar",
+        "baseline_se",
+        "alpha_two_sided",
+        "theoretical_power"
+      ]
+    },
     "regression": {
       "path": "analysis_outputs/regression/regression_results.csv",
       "rows": 76,

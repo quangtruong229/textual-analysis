@@ -23,13 +23,81 @@ def pvalue(value: float) -> str:
     return "<0,0001" if float(value) < 0.0001 else dec(value, 4)
 
 
+def financial_implications(regression: pd.DataFrame, c2: pd.DataFrame,
+                           event_summary: pd.DataFrame, daily: pd.DataFrame | None = None) -> str:
+    """Describe observed directions without turning associations into causal claims."""
+    model = "C3_CAR_0_p3_LM_PosNeg"
+    def coefficient(term: str):
+        rows = regression.loc[regression.model.eq(model) & regression.term.eq(term)]
+        if len(rows) != 1:
+            raise ValueError(f"Missing {model}: {term}")
+        return rows.iloc[0]
+
+    def direction(row, expected_positive: bool, label: str) -> str:
+        beta = float(row.coefficient)
+        sign = "tăng" if beta > 0 else "giảm"
+        effect_pp = beta  # A 0.01 tone increase changes decimal CAR by 0.01*beta.
+        both = float(row.p_hc3_two_sided) < .05 and float(row.p_cluster_two_sided) < .05
+        expected = beta > 0 if expected_positive else beta < 0
+        if both and expected:
+            verdict = "cùng chiều kỳ vọng của giả thuyết"
+        elif both:
+            verdict = "ngược chiều kỳ vọng của giả thuyết"
+        else:
+            verdict = "chưa có bằng chứng ổn định ở ngưỡng 5% với cả hai loại sai số chuẩn"
+        return (f"{label} tăng 1 điểm phần trăm đi kèm CAR [0,+3] {sign} khoảng "
+                f"{dec(abs(effect_pp), 3)} điểm phần trăm trong hồi quy C3 (p HC3 "
+                f"{pvalue(row.p_hc3_two_sided)}, p theo cụm "
+                f"{pvalue(row.p_cluster_two_sided)}); dấu ước lượng {verdict}.")
+
+    pos = direction(coefficient("lm_positive_prop"), True, "Tone tích cực LM dạng tỷ lệ")
+    neg = direction(coefficient("lm_negative_prop"), False, "Tone tiêu cực LM dạng tỷ lệ")
+    car = event_summary.loc[event_summary.window.eq("CAR_0_p3")].iloc[0]
+    ar_sentence = ""
+    if daily is not None:
+        day0 = daily.loc[daily.event_time.eq(0)]
+        if len(day0) == 1:
+            ar = float(day0.iloc[0].AAR)
+            ar_sentence = f" AR trung bình ngày 0 là {dec(100 * ar, 3)}%."
+    controls = c2.loc[c2.dependent_variable.eq("car_0_p3") &
+                      c2.term.isin(["size", "bm", "volatility", "turnover"])]
+    significant = controls.loc[(controls.p_hc3_two_sided < .05) &
+                               (controls.p_cluster_two_sided < .05)]
+    if significant.empty:
+        control_sentence = "Không biến kiểm soát nào có p < 0,05 theo cả HC3 và cụm công ty trong C2 [0,+3]."
+    else:
+        descriptions = [f"{r.term} ({'dương' if r.coefficient > 0 else 'âm'})" for r in significant.itertuples()]
+        control_sentence = ("Trong C2 rút gọn [0,+3], các biến kiểm soát có p < 0,05 "
+                            "theo cả HC3 và cụm công ty là " + ", ".join(descriptions) + ".")
+    return (f"CAR trung bình [0,+3] của mẫu là {dec(100 * car.CAAR, 3)}%.{ar_sentence} "
+            "Đây là phản ứng chung quanh công bố, chưa quy cho tone.\n\n"
+            f"{pos}\n\n{neg}\n\n{control_sentence} "
+            "Các hệ số là quan hệ trong mẫu; không suy ra giao dịch sinh lời hay tác động nhân quả. "
+            "Word Power chưa được tính từ văn bản gốc, nên H1 viết theo ScorePos Word Power chưa được kiểm định.")
+
+
 def results_markdown(
     panel: pd.DataFrame,
     comparison_summary: pd.Series,
     event_summary: pd.DataFrame,
     regression: pd.DataFrame,
     c2: pd.DataFrame,
+    daily: pd.DataFrame | None = None,
+    extended: pd.DataFrame | None = None,
 ) -> str:
+    implications = financial_implications(regression, c2, event_summary, daily)
+    extended_text = ""
+    if extended is not None:
+        rows = []
+        for r in extended.itertuples():
+            rows.append(f"| {WINDOW_LABELS[r.window]} | {dec(r.brown_warner_z, 3)} | "
+                        f"{pvalue(r.brown_warner_p)} | {pvalue(r.autocorr_p)} |")
+        extended_text = ("\n\n## Kiểm định bổ sung\n\n"
+                         "Brown–Warner A.11 và bản hiệu chỉnh tự tương quan B7 được tính cho cả bốn cửa sổ. "
+                         "Corrado được tính theo từng ngày; bảng sức mạnh B8 là kịch bản lý thuyết cho CAAR, "
+                         "không phải sức mạnh kiểm định H1 tone.\n\n"
+                         "| Cửa sổ | Z Brown–Warner | p Brown–Warner | p sau hiệu chỉnh B7 |\n"
+                         "| --- | ---: | ---: | ---: |\n" + "\n".join(rows))
     event_rows = []
     for _, row in event_summary.iterrows():
         event_rows.append(
@@ -106,7 +174,7 @@ Hệ số dưới đây thuộc mô hình `CAR = a + b × LM_net_prop + sai số
 | --- | ---: | ---: | ---: | ---: |
 {chr(10).join(c1_rows)}
 
-Ở `[-1,+1]`, hệ số **{dec(baseline.coefficient, 4)}**, p HC3 **{pvalue(baseline.p_hc3_two_sided)}** và p gom cụm **{pvalue(baseline.p_cluster_two_sided)}**. Với ngưỡng 5%, đặc tả này **chưa cho bằng chứng thống kê đủ mạnh** rằng tone LM dự báo CAR. Cửa sổ `[-3,+3]` có p HC3 **{pvalue(longer.p_hc3_two_sided)}**, nhưng p gom cụm là **{pvalue(longer.p_cluster_two_sided)}**; kết luận phụ thuộc cách tính sai số chuẩn và cửa sổ được chọn. Vì có nhiều đặc tả, không nên coi một p-value đơn lẻ là xác nhận chắc chắn.
+Ở `[-1,+1]`, hệ số **{dec(baseline.coefficient, 4)}**, p HC3 **{pvalue(baseline.p_hc3_two_sided)}** và p gom cụm **{pvalue(baseline.p_cluster_two_sided)}**. Với ngưỡng 5%, đặc tả này **chưa cho bằng chứng thống kê đủ mạnh** rằng tone LM dự báo CAR. Ở `[-3,+3]`, hệ số mang dấu âm và có p HC3 **{pvalue(longer.p_hc3_two_sided)}**, p gom cụm **{pvalue(longer.p_cluster_two_sided)}**. Kết quả giữa các cửa sổ không nhất quán; vì có nhiều đặc tả, không nên coi một p-value đơn lẻ là xác nhận chắc chắn.
 
 ## So sánh từ điển tài chính và từ điển tổng quát
 
@@ -124,7 +192,8 @@ C2 trong bảng dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Do yêu 
 
 Ở `[-1,+1]`, hệ số tone C2 là **{dec(c2_baseline.coefficient, 4)}**, p HC3 **{pvalue(c2_baseline.p_hc3_two_sided)}**. Đây là mô hình **rút gọn**, và sự khác biệt với C1 vừa phản ánh thêm biến kiểm soát vừa phản ánh mẫu nhỏ hơn; không thể tách hai tác động chỉ bằng hai bảng này.
 
-## Kết luận sử dụng được và giới hạn
+## Hàm ý tài chính theo kết quả hiện tại
 
-Dữ liệu cho thấy có phản ứng lợi suất bất thường trung bình quanh ngày công bố 10-K và tone khác nhau đáng kể giữa hai từ điển. Mối liên hệ riêng giữa tone LM và CAR **không ổn định qua cửa sổ và cách tính sai số chuẩn**, nên chưa có cơ sở để nói tone gây ra biến động giá. Phần chi tiết cách tính nằm ở tab **Phương pháp**; trạng thái hồ sơ và các phép kiểm tra nằm ở tab **Kiểm tra**.
+{implications}
+{extended_text}
 """

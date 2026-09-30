@@ -7,11 +7,12 @@ Chạy `python scripts/run_analysis.py` từ thư mục gốc sau khi cài `requ
 | Bước | Đầu vào | Xử lý và đầu ra hiện hành |
 | --- | --- | --- |
 | Nghiên cứu sự kiện | `data/metadata/tone_method_item7.csv`, `data/metadata/filing_acceptance.csv`, `data/market_data/daily_prices.csv` | `scripts/recompute_from_supplied.py --force-event` gán ngày 0 theo giờ SEC chấp nhận hồ sơ và giờ đóng cửa NYSE, tính mô hình thị trường, AR và CAR; ghi `analysis_outputs/event_study/` |
+| Kiểm định sự kiện bổ sung | AR của 239 ngày ước lượng và 11 ngày sự kiện | `scripts/extended_event_tests.py` ghi Brown–Warner cho bốn cửa sổ, B7, Corrado theo ngày và bảng B8 lý thuyết vào `analysis_outputs/event_study/` |
 | Hồi quy C1/C3/C4 | Bảng tone được cung cấp và CAR vừa tính | Cùng lệnh trên chạy `src/regression_analysis.py`; ghi kết quả, mẫu và thống kê mô tả vào `analysis_outputs/regression/` |
 | C2 rút gọn | Mẫu hồi quy hiện hành và `data/metadata/controls/controls_item7.csv` | `scripts/calculate_c2_controls.py` ghép Size, BM, Volatility, Turnover; giá và số cổ phiếu được đưa về cùng cơ sở chia tách bằng `data/market_data/stock_splits.csv`; ghi `analysis_outputs/c2_reduced_results.csv` và `c2_reduced_sample.csv` |
 | Bảng công ty–năm nộp | Metadata hồ sơ, bảng tone được cung cấp và CAR hiện hành | `scripts/build_firm_year_panel.py` giữ toàn bộ hồ sơ, đánh dấu phần có/thiếu tone và CAR; ghi `analysis_outputs/tone_firm_year.csv` |
 | So sánh từ điển | `data/metadata/tone_method_item7.csv` | `scripts/summarize_dictionary_comparison.py` xuất bảng từng hồ sơ và tổng hợp LM/Harvard vào `analysis_outputs/` |
-| Kiểm tra và trình bày | Các đầu vào và đầu ra trên | Các script kiểm tra số học, khóa và độ phủ dữ liệu, tổng AR thành CAR, sự nhất quán giữa các bảng; lưu `analysis_outputs/verification.json`, `handoff/manifest.json` và `analysis_outputs/RESULTS_PRESENTATION.md` |
+| Kiểm tra và trình bày | Các đầu vào và đầu ra trên | Các script kiểm tra số học, khóa và độ phủ dữ liệu, tổng AR thành CAR, sự nhất quán giữa các bảng; hàm ý tài chính được tạo lại từ hệ số và p-value hiện hành; lưu `analysis_outputs/verification.json`, `handoff/manifest.json` và `analysis_outputs/RESULTS_PRESENTATION.md` |
 
 `run_analysis.py` quản lý thứ tự các bước. Nếu một bước lỗi, cần xử lý lỗi đó trước khi sử dụng đầu ra; không ghép bảng mới và bảng cũ thành một bộ kết quả.
 

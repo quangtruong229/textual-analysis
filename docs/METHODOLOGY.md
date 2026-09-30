@@ -8,6 +8,8 @@ Nghiên cứu hỏi liệu giọng điệu trong phần **Item 7 – Management�
 
 `src/download_10k.py`, `src/preprocess_10k.py` và `src/extract_sections_v3.py` mô tả các bước tải, làm sạch và trích Item 7. Phiên phân tích trong repo bắt đầu từ bảng điểm `data/metadata/tone_method_item7.csv`; mã nghiên cứu sự kiện dùng bảng này làm đầu vào.
 
+**Word Power chưa có trong đầu ra hiện hành.** Theo Jegadeesh–Wu (2013, Eq. 4–8), cần số lần xuất hiện của *từng từ* trong *từng báo cáo*, CAR để ước lượng trọng số từ và bước ước lượng ngoài năm đang kiểm định. Bảng tone được cung cấp chỉ giữ tổng số từ tích cực/tiêu cực và điểm tỷ lệ/tf.idf; không thể suy ngược ma trận tần suất từng từ. Vì vậy không được đặt tên `lm_positive_prop` hay `lm_positive_tfidf` là `ScorePos` Word Power. [Bài gốc Jegadeesh–Wu](https://repository.upenn.edu/bitstreams/caf9d0c9-0de5-475a-ac72-f6e4ad3bfce5/download).
+
 Từ điển tài chính Loughran–McDonald (LM) và từ điển tổng quát Harvard IV-4 nằm trong `data/dictionary/`. Theo `src/build_method_scores.py`, văn bản được tách thành token chữ và chuyển thành chữ hoa. Với mỗi từ tích cực/tiêu cực, nếu `NOT`, `NO` hoặc `NEVER` xuất hiện trong ba token đứng trước, từ đó không được cộng vào nhóm tích cực/tiêu cực. Bảng tone lưu cả số từ bị loại vì phủ định.
 
 Với một báo cáo có `W` token, `P` lần xuất hiện từ tích cực và `N` lần xuất hiện từ tiêu cực sau quy tắc phủ định, chỉ số cơ sở là:
@@ -28,7 +30,9 @@ Mỗi hồ sơ cần đủ **239 phiên ước lượng** từ `t=−244` đến
 
 Lợi suất bất thường của hồ sơ `i` tại ngày tương đối `t` là `AR_i,t = R_i,t − (α_i + β_i R_m,t)`. `CAR_i[a,b]` là tổng AR từ `a` đến `b`. Bốn cửa sổ được xuất: `[-1,+1]`, `[0,+3]`, `[-3,+3]` và `[-5,+5]`. Phương sai CAR dùng **xấp xỉ B4** trong bộ công thức nhóm: `Var(CAR_i[a,b]) ≈ (b−a+1) × σ²_ε,i`. Đây là xấp xỉ cho cửa sổ ước lượng dài; không bao gồm sai số do ước lượng α/β. Bảng `event_ar_long.csv` lưu AR từng ngày để kiểm tra tổng CAR và xác nhận ngày `0` trùng ngày sự kiện.
 
-Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa sổ ước lượng; hai hồ sơ bị loại được ghi tại `event_study/event_exclusions.csv`. Trong 969 hồ sơ này, 466 có ngày sự kiện ở phiên sau ngày nộp chính thức. `event_study_summary.csv` báo CAAR trung bình, thống kê MacKinlay và kiểm định dấu cho cả bốn cửa sổ; thống kê Brown–Warner nhiều ngày được báo cho `[-5,+5]`. Các p-value này kiểm tra **phản ứng trung bình quanh ngày công bố**, chưa kiểm tra riêng vai trò của tone.
+Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa sổ ước lượng; hai hồ sơ bị loại được ghi tại `event_study/event_exclusions.csv`. Trong 969 hồ sơ này, 466 có ngày sự kiện ở phiên sau ngày nộp chính thức. `event_study_summary.csv` báo CAAR trung bình, thống kê MacKinlay và kiểm định dấu cho cả bốn cửa sổ; `extended_window_tests.csv` báo Brown–Warner nhiều ngày cho cả bốn cửa sổ. Các p-value này kiểm tra **phản ứng trung bình quanh ngày công bố**, chưa kiểm tra riêng vai trò của tone.
+
+`scripts/extended_event_tests.py` tính Brown–Warner A.11 cho cả bốn cửa sổ bằng tổng AAR chia cho độ lệch chuẩn AAR trong 239 ngày ước lượng nhân căn bậc hai độ dài cửa sổ. B7 ước lượng tự tương quan AAR ở độ trễ 1–3 theo trình tự; chỉ giữ độ trễ có ý nghĩa và dùng ma trận hiệp phương sai để hiệu chỉnh phương sai tổng AAR. Trong bộ mẫu này không có độ trễ nào được giữ, nên các thống kê B7 bằng Brown–Warner chưa hiệu chỉnh. `corrado_daily.csv` xếp hạng 250 AR của từng hồ sơ (239 ngày ước lượng và 11 ngày sự kiện), báo Z và p cho từng ngày tương đối; **không** gọi đây là Corrado đa ngày cho bốn CAR. `theoretical_power.csv` dùng xấp xỉ chuẩn hai phía với α = 5% và các mức CAAR giả định 0,25%, 0,5%, 1%; đây không phải power của hồi quy tone. [Brown–Warner (1985)](https://leeds-faculty.colorado.edu/bhagat/brownwarner1985.pdf), [MacKinlay (1997)](https://www.bu.edu/econ/files/2011/01/MacKinlay-1996-Event-Studies-in-Economics-and-Finance.pdf).
 
 ## 4. Hồi quy liên hệ tone với CAR
 
@@ -39,9 +43,13 @@ Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa s
 - **C4:** `CAR_i = a + b·LM_net_i + c·Harvard_net_i + ε_i`, với phiên bản tỷ lệ và tf.idf.
 - **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch. Giá Yahoo lịch sử và số cổ phiếu SEC được đưa về cùng cơ sở chia tách bằng `stock_splits.csv` trước khi tính Size, BM và Turnover.
 
+Nếu H1/H2 được viết đúng như đặc tả của nhóm với `ScorePos` Word Power và đủ sáu biến kiểm soát, các hồi quy hiện có **chưa kiểm định H1/H2 đó**. C3 chỉ là đối chứng dùng positive/negative tone dạng tỷ lệ, không có đủ sáu biến kiểm soát. Muốn giữ nguyên H1/H2 Word Power cần bổ sung văn bản Item 7 hoặc bảng tần suất từng từ theo hồ sơ, rồi ước lượng trọng số ngoài năm kiểm định; EADRet và Accruals cũng chưa có để chạy mô hình đầy đủ. Không diễn giải hệ số C3 như hệ số Word Power.
+
 C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; số quan sát và công ty được ghi trong `c2_reduced_results.csv`. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu.
 
 Hệ số hồi quy mô tả **mối liên hệ trong mẫu**, không chứng minh tone gây biến động giá. Bốn cửa sổ và nhiều đặc tả được trình bày cùng nhau; không chọn riêng mô hình có p-value nhỏ để đổi kết luận chính.
+
+Phần **Hàm ý tài chính** trong `presentation.py` được sinh lại từ CAAR/AR ngày 0, hệ số positive và negative tone của C3, p HC3/p gom cụm, và các biến kiểm soát C2 ở cửa sổ `[0,+3]`. Nó nêu chiều của mối liên hệ, mức thay đổi tương ứng khi tone tăng 1 điểm phần trăm và có/không có bằng chứng ở ngưỡng 5%; không chuyển hệ số hồi quy thành khuyến nghị giao dịch hoặc kết luận nhân quả.
 
 ## 5. Kiểm tra và khả năng chạy lại
 

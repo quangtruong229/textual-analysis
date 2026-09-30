@@ -28,7 +28,7 @@ Hệ số dưới đây thuộc mô hình `CAR = a + b × LM_net_prop + sai số
 | [-3,+3] | 969 | -0,7886 | 0,0034 | 0,0107 |
 | [-5,+5] | 969 | -0,3926 | 0,2676 | 0,2654 |
 
-Ở `[-1,+1]`, hệ số **-0,2727**, p HC3 **0,2130** và p gom cụm **0,2698**. Với ngưỡng 5%, đặc tả này **chưa cho bằng chứng thống kê đủ mạnh** rằng tone LM dự báo CAR. Cửa sổ `[-3,+3]` có p HC3 **0,0034**, nhưng p gom cụm là **0,0107**; kết luận phụ thuộc cách tính sai số chuẩn và cửa sổ được chọn. Vì có nhiều đặc tả, không nên coi một p-value đơn lẻ là xác nhận chắc chắn.
+Ở `[-1,+1]`, hệ số **-0,2727**, p HC3 **0,2130** và p gom cụm **0,2698**. Với ngưỡng 5%, đặc tả này **chưa cho bằng chứng thống kê đủ mạnh** rằng tone LM dự báo CAR. Ở `[-3,+3]`, hệ số mang dấu âm và có p HC3 **0,0034**, p gom cụm **0,0107**. Kết quả giữa các cửa sổ không nhất quán; vì có nhiều đặc tả, không nên coi một p-value đơn lẻ là xác nhận chắc chắn.
 
 ## So sánh từ điển tài chính và từ điển tổng quát
 
@@ -49,6 +49,24 @@ C2 trong bảng dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Do yêu 
 
 Ở `[-1,+1]`, hệ số tone C2 là **-0,1590**, p HC3 **0,4731**. Đây là mô hình **rút gọn**, và sự khác biệt với C1 vừa phản ánh thêm biến kiểm soát vừa phản ánh mẫu nhỏ hơn; không thể tách hai tác động chỉ bằng hai bảng này.
 
-## Kết luận sử dụng được và giới hạn
+## Hàm ý tài chính theo kết quả hiện tại
 
-Dữ liệu cho thấy có phản ứng lợi suất bất thường trung bình quanh ngày công bố 10-K và tone khác nhau đáng kể giữa hai từ điển. Mối liên hệ riêng giữa tone LM và CAR **không ổn định qua cửa sổ và cách tính sai số chuẩn**, nên chưa có cơ sở để nói tone gây ra biến động giá. Phần chi tiết cách tính nằm ở tab **Phương pháp**; trạng thái hồ sơ và các phép kiểm tra nằm ở tab **Kiểm tra**.
+CAR trung bình [0,+3] của mẫu là 0,465%. AR trung bình ngày 0 là 0,288%. Đây là phản ứng chung quanh công bố, chưa quy cho tone.
+
+Tone tích cực LM dạng tỷ lệ tăng 1 điểm phần trăm đi kèm CAR [0,+3] giảm khoảng 1,267 điểm phần trăm trong hồi quy C3 (p HC3 0,0224, p theo cụm 0,0282); dấu ước lượng ngược chiều kỳ vọng của giả thuyết.
+
+Tone tiêu cực LM dạng tỷ lệ tăng 1 điểm phần trăm đi kèm CAR [0,+3] tăng khoảng 0,168 điểm phần trăm trong hồi quy C3 (p HC3 0,4443, p theo cụm 0,4275); dấu ước lượng chưa có bằng chứng ổn định ở ngưỡng 5% với cả hai loại sai số chuẩn.
+
+Trong C2 rút gọn [0,+3], các biến kiểm soát có p < 0,05 theo cả HC3 và cụm công ty là size (âm). Các hệ số là quan hệ trong mẫu; không suy ra giao dịch sinh lời hay tác động nhân quả. Word Power chưa được tính từ văn bản gốc, nên H1 viết theo ScorePos Word Power chưa được kiểm định.
+
+
+## Kiểm định bổ sung
+
+Brown–Warner A.11 và bản hiệu chỉnh tự tương quan B7 được tính cho cả bốn cửa sổ. Corrado được tính theo từng ngày; bảng sức mạnh B8 là kịch bản lý thuyết cho CAAR, không phải sức mạnh kiểm định H1 tone.
+
+| Cửa sổ | Z Brown–Warner | p Brown–Warner | p sau hiệu chỉnh B7 |
+| --- | ---: | ---: | ---: |
+| [-1,+1] | 5,619 | <0,0001 | <0,0001 |
+| [0,+3] | 3,971 | <0,0001 | <0,0001 |
+| [-3,+3] | 3,963 | <0,0001 | <0,0001 |
+| [-5,+5] | 3,720 | 0,0002 | 0,0002 |
