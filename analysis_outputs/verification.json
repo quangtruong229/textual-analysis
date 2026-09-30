@@ -1,9 +1,11 @@
 {
   "source_sha256": {
     "data\\market_data\\daily_prices.csv": "39c777b6bed301faf2f4e85ef39d14345a9c62005f7a8cd07409043163bb0f5c",
+    "data\\market_data\\stock_splits.csv": "53f04da27dfea7760fb7ac5a5f9d7612a10c90382be9541ee59fcd060ea12e92",
     "data\\metadata\\filings_2016_2025.csv": "3e701d5c6bdec10321aedc9646c9b67f0d8c7152364313a93c9e0be9a236b73b",
+    "data\\metadata\\filing_acceptance.csv": "83b4656f59c81b3b2c861ea5a88f490734815035f0515a775ab9c0362ea42a2b",
     "data\\metadata\\tone_method_item7.csv": "4bcaa3df8c7b49eadb399a60db3a36c3c6c2367b274ae1a8e09e73dc0c2dd9c1",
-    "data\\metadata\\controls\\controls_item7.csv": "d2e3402ca3eb58f85fe5dba9e99caa231000ab80d70edbb1d2db447ca93719ba"
+    "data\\metadata\\controls\\controls_item7.csv": "c08fa0d3c6e81fa634e8c36ea7e8530eae1565bd471e7e33a370ddce34df6e56"
   },
   "input_filings": 1000,
   "input_firms": 100,
@@ -19,7 +21,9 @@
     "filings_checked": 969,
     "day_zero_date_mismatches": 0,
     "complete_11_day_windows": 969,
-    "rows_matching_market_calendar": 10659
+    "rows_matching_market_calendar": 10659,
+    "sec_timestamps_matched": 969,
+    "sessions_shifted_after_filing_date": 466
   },
   "tone_arithmetic": {
     "lm": {

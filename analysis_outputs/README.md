@@ -8,27 +8,27 @@ Bảng metadata gồm 100 công ty và 1.000 hồ sơ 10-K. Bảng Item 7 MD&A c
 
 `tone_firm_year.csv` giữ đủ 1.000 hàng theo **năm nộp** 2016–2025, một hàng cho mỗi công ty và năm nộp; tone có ở 971 hàng và CAR ở 969 hàng. `report_year` là năm kết thúc kỳ báo cáo, không đồng nghĩa `filing_year`: 66 hồ sơ nộp năm 2016 có ngày kết thúc kỳ trong năm 2015. Vì vậy không nên ghi mẫu này là 1.000 báo cáo **năm tài chính** 2016–2025.
 
-Mã `src/event_study_final.py` tính AR/CAR từ `daily_prices.csv` và `tone_method_item7.csv`. Mã `src/regression_analysis.py` dùng các CAR này để ước lượng hồi quy. Trong đầu ra hiện hành, cả 969 dòng ngày `0` trùng ngày sự kiện và mỗi hồ sơ có 11 ngày tương đối. Bảng AR từng ngày nằm ở `event_study/event_ar_long.csv`; tổng AR theo cả bốn cửa sổ bằng CAR lưu ở 969 hồ sơ. Tone tỷ lệ LM và Harvard tính từ số từ tích cực, tiêu cực và tổng từ cũng khớp cả 971 hàng. Chi tiết kiểm tra và SHA-256 đầu vào nằm ở `verification.json`.
+Mã `src/event_study_final.py` tính AR/CAR từ `daily_prices.csv`, `tone_method_item7.csv` và giờ SEC chấp nhận hồ sơ. Mã `src/regression_analysis.py` dùng các CAR này để ước lượng hồi quy. Trong đầu ra hiện hành, cả 969 dòng ngày `0` trùng ngày sự kiện; 466 hồ sơ chuyển sang phiên sau so với ngày nộp chính thức. Mỗi hồ sơ có 11 ngày tương đối. Bảng AR từng ngày nằm ở `event_study/event_ar_long.csv`; tổng AR theo cả bốn cửa sổ bằng CAR lưu ở 969 hồ sơ. Tone tỷ lệ LM và Harvard tính từ số từ tích cực, tiêu cực và tổng từ cũng khớp cả 971 hàng. Chi tiết kiểm tra và SHA-256 đầu vào nằm ở `verification.json`.
 
 ## Kết quả chính đã tính lại
 
-Hồi quy C1 theo tone LM tỷ lệ, CAR [-1,+1]: hệ số **-0,371931**, p hai phía HC3 **0,099111**, p theo cụm công ty **0,123529**, N = 969. Đây không phải bằng chứng ở ngưỡng 5% cho đặc tả này. Các đặc tả C1/C3/C4 và bốn cửa sổ nằm đầy đủ ở `regression/regression_results.csv` (76 dòng, gồm cả hằng số).
+Hồi quy C1 theo tone LM tỷ lệ, CAR [-1,+1]: hệ số **-0,272663**, p hai phía HC3 **0,212967**, p theo cụm công ty **0,269773**, N = 969. Đây không phải bằng chứng ở ngưỡng 5% cho đặc tả này. Các đặc tả C1/C3/C4 và bốn cửa sổ nằm đầy đủ ở `regression/regression_results.csv` (76 dòng, gồm cả hằng số).
 
 Trên 971 filing so sánh được, tone LM và Harvard IV-4 trái dấu ở **861 filing (88,7%)**. Bảng từng hồ sơ ở `dictionary_comparison_filings.csv` và tổng hợp ở `dictionary_comparison_summary.csv`. Chỉ số trái dấu cho thấy hai cách đo khác nhau; nó không phải số trường hợp đã xác định đúng/sai của từng từ điển.
 
-Theo bảng nghiên cứu sự kiện được chạy lại, CAAR [-1,+1] = **0,005189** (khoảng 0,519%), p MacKinlay = **0,000000045**, N = 969. Phương sai CAR dùng xấp xỉ B4 của tài liệu công thức: số phiên trong cửa sổ nhân phương sai phần dư mô hình thị trường. Bốn cửa sổ và các phép kiểm định nằm ở `event_study/event_study_summary.csv`. Đây là phản ứng trung bình quanh ngày nộp, không tự chứng minh tone là nguyên nhân.
+Theo bảng nghiên cứu sự kiện được chạy lại, CAAR [-1,+1] = **0,005699** (khoảng 0,570%), p MacKinlay = **0,00000000187**, N = 969. Phương sai CAR dùng xấp xỉ B4 của tài liệu công thức: số phiên trong cửa sổ nhân phương sai phần dư mô hình thị trường. Bốn cửa sổ và các phép kiểm định nằm ở `event_study/event_study_summary.csv`. Đây là phản ứng trung bình quanh ngày công bố, không tự chứng minh tone là nguyên nhân.
 
 ## C2 với biến kiểm soát có sẵn
 
-Mô hình `c2_reduced_results.csv` dùng bốn biến kiểm soát Size, BM, Volatility và Turnover. Ghép bằng ticker và ngày nộp đã chuẩn hóa (ngày trong bảng controls được ghi dưới dạng chuỗi tuple), giữ các hàng `status=success` và đủ dữ liệu. Mỗi cửa sổ có **862 quan sát thuộc 96 công ty**; 107/969 hàng không đủ bộ biến kiểm soát.
+Mô hình `c2_reduced_results.csv` dùng bốn biến kiểm soát Size, BM, Volatility và Turnover. Ghép bằng ticker và ngày nộp chuẩn `YYYY-MM-DD`, giữ các hàng `status=success` và đủ dữ liệu. Mỗi cửa sổ có **862 quan sát thuộc 96 công ty**; 107/969 hàng không đủ bộ biến kiểm soát.
 
 Mô hình: `CAR = const + b·LM_net_prop + Size + BM + Volatility + Turnover + sai số`. BM là tỷ số book-to-market đã lưu ở cột `bm`; không thay bằng `log_bm`. Sai số chuẩn HC3 và theo cụm công ty đều được xuất.
 
 | CAR | Hệ số tone | p HC3 hai phía | CI 95% HC3 | p theo cụm |
 | --- | ---: | ---: | --- | ---: |
-| [-1,+1] | -0,318030 | 0,165640 | [-0,767647; 0,131588] | 0,232724 |
-| [0,+3] | -0,198126 | 0,388443 | [-0,648381; 0,252129] | 0,501069 |
-| [-3,+3] | -0,388284 | 0,186191 | [-0,963972; 0,187405] | 0,227767 |
-| [-5,+5] | -0,181740 | 0,626133 | [-0,912900; 0,549420] | 0,584202 |
+| [-1,+1] | -0,158993 | 0,473118 | [-0,593358; 0,275372] | 0,552013 |
+| [0,+3] | -0,213287 | 0,351845 | [-0,662297; 0,235722] | 0,434193 |
+| [-3,+3] | -0,571753 | 0,039689 | [-1,116540; -0,026965] | 0,075941 |
+| [-5,+5] | 0,006216 | 0,986533 | [-0,715610; 0,728042] | 0,985423 |
 
-Chạy lại bằng `python scripts/run_analysis.py` như README repo. Các tệp trong `analysis_outputs/` là đầu ra hiện hành; các bảng đầu vào trong `data/metadata/` được giữ nguyên.
+Chạy lại bằng `python scripts/run_analysis.py` như README repo. Các tệp trong `analysis_outputs/` là đầu ra hiện hành; `filing_acceptance.csv`, `controls_item7.csv` và lịch chia tách là đầu vào cho bản tính này.

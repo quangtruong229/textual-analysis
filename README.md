@@ -11,7 +11,7 @@ python -m pip install -r requirements.txt
 python scripts/run_analysis.py
 ```
 
-Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV có sẵn trong repo**. Mặc định lệnh này tính lại nghiên cứu sự kiện từ bảng giá, chạy C1/C3/C4 và C2 rút gọn, tạo bảng công ty–năm và so sánh từ điển, rồi kiểm tra tính nhất quán và xuất kết quả. Thứ tự chạy được quản lý trong `scripts/run_analysis.py`; không cần chạy rời từng bước. Tính AR/CAR từ gần 280.000 hàng giá sẽ lâu hơn riêng bước hồi quy C2. Terminal hiển thị tiến trình; các bảng đầy đủ được lưu trong `analysis_outputs/`.
+Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV có sẵn trong repo**. Mặc định lệnh này tính lại nghiên cứu sự kiện từ bảng giá và giờ SEC chấp nhận hồ sơ, chạy C1/C3/C4 và C2 rút gọn, tạo bảng công ty–năm và so sánh từ điển, rồi kiểm tra tính nhất quán và xuất kết quả. Thứ tự chạy được quản lý trong `scripts/run_analysis.py`; không cần chạy rời từng bước. Tính AR/CAR từ gần 280.000 hàng giá sẽ lâu hơn riêng bước hồi quy C2. Terminal hiển thị tiến trình; các bảng đầy đủ được lưu trong `analysis_outputs/`.
 
 ## Dữ liệu và kết quả
 
@@ -19,7 +19,7 @@ Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV 
 
 Đọc [luồng xử lý](docs/data_pipeline.md), [phương pháp](docs/METHODOLOGY.md), [kết quả và diễn giải](analysis_outputs/RESULTS_PRESENTATION.md), [đối chiếu yêu cầu đề án](analysis_outputs/ASSIGNMENT_AUDIT.md) và [kiểm tra dạng máy đọc](analysis_outputs/verification.json). `handoff/manifest.json` lưu danh sách bảng, cột, đơn vị và mã kiểm tra tệp.
 
-Mẫu đầu vào gồm 1.000 hồ sơ của 100 công ty, theo **năm nộp 2016–2025**, không đồng nghĩa năm tài chính. Lệnh phân tích đọc tone từ `data/metadata/tone_method_item7.csv`, tính AR/CAR từ `data/market_data/daily_prices.csv` và ước lượng các mô hình hồi quy. C2 hiện dùng bốn biến kiểm soát Size, BM, Volatility và Turnover.
+Mẫu đầu vào gồm 1.000 hồ sơ của 100 công ty, theo **năm nộp 2016–2025**, không đồng nghĩa năm tài chính. Lệnh phân tích đọc tone từ `data/metadata/tone_method_item7.csv`, giờ công bố từ `data/metadata/filing_acceptance.csv`, tính AR/CAR từ `data/market_data/daily_prices.csv` và ước lượng các mô hình hồi quy. C2 dùng bốn biến kiểm soát Size, BM, Volatility và Turnover; lịch chia tách ở `data/market_data/stock_splits.csv` giữ giá và số cổ phiếu trên cùng một cơ sở.
 
 ## Xem nhanh trên máy
 

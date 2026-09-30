@@ -9,3 +9,4 @@ beautifulsoup4
 lxml
 tqdm
 yfinance
+exchange_calendars

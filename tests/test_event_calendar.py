@@ -51,6 +51,25 @@ def filing_on(date: pd.Timestamp) -> dict:
 
 
 class EventCalendarTests(unittest.TestCase):
+    def test_sec_acceptance_after_close_uses_next_session(self) -> None:
+        anchor, source = EVENT_STUDY.event_anchor(
+            pd.Timestamp("2020-01-07"), "2020-01-07T22:00:00Z"
+        )
+        self.assertEqual(anchor, pd.Timestamp("2020-01-08"))
+        self.assertEqual(source, "sec_acceptance_time")
+
+    def test_sec_acceptance_before_close_uses_same_session(self) -> None:
+        anchor, _ = EVENT_STUDY.event_anchor(
+            pd.Timestamp("2020-01-07"), "2020-01-07T20:00:00Z"
+        )
+        self.assertEqual(anchor, pd.Timestamp("2020-01-07"))
+
+    def test_early_close_uses_next_session(self) -> None:
+        anchor, _ = EVENT_STUDY.event_anchor(
+            pd.Timestamp("2020-11-27"), "2020-11-27T18:30:00Z"
+        )
+        self.assertEqual(anchor, pd.Timestamp("2020-11-30"))
+
     def assert_successful_calendar(self, filing_date: pd.Timestamp, index: int) -> None:
         dates, prices = synthetic_prices()
         result, event, estimation, status = EVENT_STUDY.process_filing(

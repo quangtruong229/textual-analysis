@@ -3,6 +3,7 @@ import math
 
 import numpy as np
 import pandas as pd
+import exchange_calendars as xcals
 from scipy.stats import norm
 
 
@@ -17,6 +18,7 @@ TONE_PATH = Path(
 PRICE_PATH = Path(
     "data/market_data/daily_prices.csv"
 )
+ACCEPTANCE_PATH = Path("data/metadata/filing_acceptance.csv")
 
 OUT_DIR = Path(
     "data/metadata/event_study_final"
@@ -28,6 +30,7 @@ DAILY_OUT = OUT_DIR / "event_daily_summary.csv"
 SUMMARY_OUT = OUT_DIR / "event_study_summary.csv"
 
 BENCHMARK = "^GSPC"
+NYSE = xcals.get_calendar("XNYS", start="2015-01-01", end="2026-01-31")
 
 EST_START = -244
 EST_END = -6
@@ -62,6 +65,21 @@ def two_sided_p(z):
     return float(
         2.0 * norm.sf(abs(z))
     )
+
+
+def event_anchor(filing_date, accepted_at_utc):
+    """First NYSE session able to reflect the SEC acceptance timestamp."""
+    if pd.isna(accepted_at_utc) or not str(accepted_at_utc).strip():
+        return filing_date, "filing_date_only"
+    accepted = pd.Timestamp(accepted_at_utc)
+    if accepted.tzinfo is None:
+        raise ValueError("SEC acceptance timestamp must include UTC timezone")
+    accepted = accepted.tz_convert("UTC")
+    eastern_date = accepted.tz_convert("America/New_York").date()
+    session = NYSE.date_to_session(pd.Timestamp(eastern_date), direction="next")
+    if session.date() == eastern_date and accepted >= NYSE.session_close(session):
+        session = NYSE.next_session(session)
+    return pd.Timestamp(session.date()), "sec_acceptance_time"
 
 
 # ============================================================
@@ -188,6 +206,9 @@ def process_filing(
     filing_date = pd.Timestamp(
         filing["filing_date"]
     )
+    anchor_date, event_date_source = event_anchor(
+        filing_date, filing.get("accepted_at_utc", pd.NA)
+    )
 
     firm = prices[
         prices["ticker"] == ticker
@@ -252,12 +273,12 @@ def process_filing(
     # --------------------------------------------------------
 
     exact = merged[
-        merged["date"] == filing_date
+        merged["date"] == anchor_date
     ]
 
     if exact.empty:
         future = merged[
-            merged["date"] >= filing_date
+            merged["date"] >= anchor_date
         ]
 
         if future.empty:
@@ -272,14 +293,12 @@ def process_filing(
             future.index[0]
         )
 
-        event_shift = 1
-
     else:
         event_idx = int(
             exact.index[0]
         )
 
-        event_shift = 0
+    event_shift = int(merged.loc[event_idx, "date"] != filing_date)
 
     est_start_idx = (
         event_idx + EST_START
@@ -400,6 +419,8 @@ def process_filing(
             "date"
         ],
         "event_date_shift": event_shift,
+        "event_date_source": event_date_source,
+        "accepted_at_utc": filing.get("accepted_at_utc", pd.NA),
         "accession_number": filing[
             "accession_number"
         ],
@@ -776,6 +797,15 @@ def main():
             "accession_number": str,
         },
     )
+    acceptance = pd.read_csv(ACCEPTANCE_PATH, dtype={"accession_number": str})
+    tone["accession_key"] = tone["accession_number"].str.replace("-", "", regex=False)
+    acceptance["accession_key"] = acceptance["accession_number"].str.replace("-", "", regex=False)
+    tone = tone.merge(
+        acceptance[["accession_key", "accepted_at_utc"]],
+        on="accession_key", how="left", validate="one_to_one"
+    )
+    if tone["accepted_at_utc"].isna().any():
+        raise ValueError("SEC acceptance timestamps are missing for tone filings")
 
     prices = pd.read_csv(
         PRICE_PATH,
@@ -876,6 +906,8 @@ def main():
     filing_df = pd.DataFrame(
         filings
     )
+    if not filing_df.empty and not filing_df["event_date_source"].eq("sec_acceptance_time").all():
+        raise AssertionError("Event study did not use SEC acceptance time for every filing")
 
     event_df = pd.concat(
         event_rows,

@@ -20,7 +20,7 @@ Trong 1.000 hồ sơ, 971 có Item 7 đủ điều kiện tính tone. 29 hồ s�
 
 ## 3. Nghiên cứu sự kiện AR và CAR
 
-Giá đóng cửa đã điều chỉnh và lợi suất ngày nằm trong `data/market_data/daily_prices.csv`; chỉ số thị trường là `^GSPC`. `src/event_study_final.py` dùng các phiên của chỉ số làm lịch chuẩn rồi ghép lợi suất cổ phiếu theo ngày, giữ nguyên phiên bị thiếu để kiểm tra. Ngày sự kiện `t=0` là ngày nộp nếu có phiên giao dịch; nếu không, mã chọn phiên đầu tiên sau ngày nộp. Dữ liệu hiện tại không có hồ sơ nào phải dịch sang phiên sau. CSV chỉ có **ngày** nộp, không có giờ SEC chấp nhận hồ sơ; vì vậy không xác định được hồ sơ nộp sau giờ đóng cửa có nên chuyển sang phiên kế tiếp hay không.
+Giá đóng cửa đã điều chỉnh và lợi suất ngày nằm trong `data/market_data/daily_prices.csv`; chỉ số thị trường là `^GSPC`. `src/event_study_final.py` dùng các phiên của chỉ số làm lịch chuẩn rồi ghép lợi suất cổ phiếu theo ngày, giữ nguyên phiên bị thiếu để kiểm tra. Giờ chấp nhận từng hồ sơ nằm trong `data/metadata/filing_acceptance.csv` từ SEC. Ngày sự kiện `t=0` là phiên NYSE đang mở nếu hồ sơ được chấp nhận trước giờ đóng cửa phiên đó; nếu sau giờ đóng cửa hoặc ngoài ngày giao dịch, mã chọn phiên kế tiếp. Lịch NYSE xử lý cả các phiên đóng cửa sớm.
 
 Mỗi hồ sơ cần đủ **239 phiên ước lượng** từ `t=−244` đến `t=−6`, tách khỏi vùng sự kiện `t=−5` đến `t=+5`. Hồi quy mô hình thị trường trên cửa sổ ước lượng cho `α_i` và `β_i`:
 
@@ -28,7 +28,7 @@ Mỗi hồ sơ cần đủ **239 phiên ước lượng** từ `t=−244` đến
 
 Lợi suất bất thường của hồ sơ `i` tại ngày tương đối `t` là `AR_i,t = R_i,t − (α_i + β_i R_m,t)`. `CAR_i[a,b]` là tổng AR từ `a` đến `b`. Bốn cửa sổ được xuất: `[-1,+1]`, `[0,+3]`, `[-3,+3]` và `[-5,+5]`. Phương sai CAR dùng **xấp xỉ B4** trong bộ công thức nhóm: `Var(CAR_i[a,b]) ≈ (b−a+1) × σ²_ε,i`. Đây là xấp xỉ cho cửa sổ ước lượng dài; không bao gồm sai số do ước lượng α/β. Bảng `event_ar_long.csv` lưu AR từng ngày để kiểm tra tổng CAR và xác nhận ngày `0` trùng ngày sự kiện.
 
-Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa sổ ước lượng; hai hồ sơ bị loại được ghi tại `event_study/event_exclusions.csv`. `event_study_summary.csv` báo CAAR trung bình, thống kê MacKinlay và kiểm định dấu cho cả bốn cửa sổ; thống kê Brown–Warner nhiều ngày được báo cho `[-5,+5]`. Các p-value này kiểm tra **phản ứng trung bình quanh ngày nộp**, chưa kiểm tra riêng vai trò của tone.
+Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa sổ ước lượng; hai hồ sơ bị loại được ghi tại `event_study/event_exclusions.csv`. Trong 969 hồ sơ này, 466 có ngày sự kiện ở phiên sau ngày nộp chính thức. `event_study_summary.csv` báo CAAR trung bình, thống kê MacKinlay và kiểm định dấu cho cả bốn cửa sổ; thống kê Brown–Warner nhiều ngày được báo cho `[-5,+5]`. Các p-value này kiểm tra **phản ứng trung bình quanh ngày công bố**, chưa kiểm tra riêng vai trò của tone.
 
 ## 4. Hồi quy liên hệ tone với CAR
 
@@ -37,9 +37,9 @@ Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa s
 - **C1:** `CAR_i = a + b·Score_i + ε_i`, lần lượt dùng LM net proportional, LM net ratio, LM net tf.idf và các điểm Harvard tương ứng.
 - **C3:** `CAR_i = a + b·LM_positive_i + c·LM_negative_i + ε_i`.
 - **C4:** `CAR_i = a + b·LM_net_i + c·Harvard_net_i + ε_i`, với phiên bản tỷ lệ và tf.idf.
-- **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch theo mã gốc. Đặc tả đang ước lượng gồm bốn biến kiểm soát này.
+- **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch. Giá Yahoo lịch sử và số cổ phiếu SEC được đưa về cùng cơ sở chia tách bằng `stock_splits.csv` trước khi tính Size, BM và Turnover.
 
-C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; còn 862 hồ sơ thuộc 96 công ty. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu. Bộ controls được cung cấp sẵn; mã tạo nó nhân giá Yahoo `close` với cổ phiếu lưu hành lịch sử để tính Size/BM. Chưa xác minh được quy ước điều chỉnh chia tách của giá và số cổ phiếu tương ứng, nên cần kiểm toán thêm trước khi diễn giải mạnh hệ số C2.
+C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; số quan sát và công ty được ghi trong `c2_reduced_results.csv`. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu.
 
 Hệ số hồi quy mô tả **mối liên hệ trong mẫu**, không chứng minh tone gây biến động giá. Bốn cửa sổ và nhiều đặc tả được trình bày cùng nhau; không chọn riêng mô hình có p-value nhỏ để đổi kết luận chính.
 
