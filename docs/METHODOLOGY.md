@@ -51,7 +51,19 @@ Hệ số hồi quy mô tả **mối liên hệ trong mẫu**, không chứng mi
 
 Phần **Hàm ý tài chính** trong `presentation.py` được sinh lại từ CAAR/AR ngày 0, hệ số positive và negative tone của C3, p HC3/p gom cụm, và các biến kiểm soát C2 ở cửa sổ `[0,+3]`. Nó nêu chiều của mối liên hệ, mức thay đổi tương ứng khi tone tăng 1 điểm phần trăm và có/không có bằng chứng ở ngưỡng 5%; không chuyển hệ số hồi quy thành khuyến nghị giao dịch hoặc kết luận nhân quả.
 
-## 5. Kiểm tra và khả năng chạy lại
+## 5. Kiểm định độ vững và mô hình mở rộng từ dữ liệu hiện có
+
+`scripts/optional_robustness.py` xuất kết quả đầy đủ và giải thích tại `analysis_outputs/ROBUSTNESS_RESULTS.md`:
+
+- **B6:** chuẩn hóa CAR từng hồ sơ bằng độ lệch chuẩn AR trong 239 phiên ước lượng và căn bậc hai độ dài cửa sổ; cộng thống kê dưới giả định độc lập chéo. Đối chứng phương sai cắt ngang dùng `N⁻² Σ(CARᵢ − CAAR)²` theo Eq. 21 trong bộ công thức. Hai phép này kiểm tra CAAR trung bình, không kiểm định tone.
+- **C5 rút gọn:** `LM_net_prop` phụ thuộc vào Size, BM, Volatility, Turnover và tone của đúng năm nộp trước. Chỉ chuẩn hóa các biến giải thích trên mẫu hoàn chỉnh. Thiếu EADRet/Accruals nên chưa phải Eq. 11 đầy đủ.
+- **C6:** cộng AR theo mô hình thị trường từ phiên +5 đến +5, +10 hoặc +22, rồi hồi quy từng CAR sau sự kiện theo `LM_net_prop`. Ngày +5 nằm trong cả ba cửa sổ theo cách viết Eq. 17 của nhóm. Không điền 0 cho phiên thiếu; mẫu của từng cửa sổ được ghi riêng.
+- **C7:** hồi quy cắt ngang AR ngày 0 theo `LM_net_prop` và bốn biến kiểm soát với HC3 và sai số chuẩn cụm công ty. Phiên bản CAR tương ứng đã có trong C2 rút gọn; không báo lại như một ước lượng độc lập mới.
+- **C8:** ước lượng hồi quy cắt ngang CAR `[0,+3]` riêng cho từng năm nộp 2016–2025, rồi lấy trung bình 10 hệ số năm, sai số chuẩn từ độ phân tán giữa các năm và p theo t với 9 bậc tự do. Có đặc tả C1 tone tỷ lệ và C2 bốn biến kiểm soát, chưa có Word Power/C2 đầy đủ.
+
+Các p-value vẫn nhạy với sự kiện trùng ngày, phụ thuộc chéo giữa công ty, chọn cửa sổ và số năm chỉ bằng 10. Không chọn một kết quả mở rộng có p nhỏ để thay kết luận chính.
+
+## 6. Kiểm tra và khả năng chạy lại
 
 `scripts/run_analysis.py` chạy toàn bộ các bước theo thứ tự, mặc định tính lại nghiên cứu sự kiện từ bảng giá, rồi chạy hồi quy, tạo bảng công ty–năm và xuất kết quả. `scripts/verify_recalculation.py` kiểm tra ngày `0`, số ngày cửa sổ, số học tone, tổng AR thành CAR và độ phủ bảng công ty–năm. Kết quả kiểm tra hiện hành có 969/969 ngày `0` khớp ngày sự kiện. Chi tiết và SHA-256 của đầu vào nằm trong `analysis_outputs/verification.json`.
 

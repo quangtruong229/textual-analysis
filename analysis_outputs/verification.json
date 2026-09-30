@@ -30,6 +30,14 @@
     "corrado_days": 11,
     "power_scenarios": 12
   },
+  "optional_robustness": {
+    "b6_windows": 4,
+    "c5_filings": 769,
+    "c6_windows": 3,
+    "c6_long_window_filings": 963,
+    "c7_filings": 862,
+    "c8_years": 10
+  },
   "tone_arithmetic": {
     "lm": {
       "checked": 971,

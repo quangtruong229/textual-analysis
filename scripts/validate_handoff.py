@@ -27,6 +27,15 @@ FILES = {
     "event_extended": "analysis_outputs/event_study/extended_window_tests.csv",
     "corrado_daily": "analysis_outputs/event_study/corrado_daily.csv",
     "theoretical_power": "analysis_outputs/event_study/theoretical_power.csv",
+    "b6_robustness": "analysis_outputs/event_study/b6_robustness_tests.csv",
+    "c5_reduced": "analysis_outputs/c5_reduced_results.csv",
+    "c5_sample": "analysis_outputs/c5_reduced_sample.csv",
+    "c6_delayed": "analysis_outputs/c6_delayed_results.csv",
+    "delayed_filings": "analysis_outputs/event_study/delayed_filing_results.csv",
+    "c7_cross_section": "analysis_outputs/c7_cross_section_results.csv",
+    "c7_sample": "analysis_outputs/c7_cross_section_sample.csv",
+    "c8_annual": "analysis_outputs/c8_annual_coefficients.csv",
+    "c8_summary": "analysis_outputs/c8_fama_macbeth_summary.csv",
     "regression": "analysis_outputs/regression/regression_results.csv",
     "c2_regression": "analysis_outputs/c2_reduced_results.csv",
     "missing_filings": "analysis_outputs/missing_filings.csv",
@@ -94,8 +103,15 @@ def main() -> None:
             "Corrado daily coverage changed")
     require(len(tables["theoretical_power"]) == 12,
             "Expected three theoretical effect scenarios per CAR window")
+    require(set(tables["b6_robustness"].window) == set(tables["event_windows"].window),
+            "B6 windows do not match CAR windows")
+    require(len(tables["delayed_filings"]) == len(events), "C6 filing coverage changed")
+    require(tables["c8_annual"].filing_year.nunique() == 10, "C8 needs ten years")
+    require(tables["c8_summary"].n_years.eq(10).all(), "C8 year count mismatch")
+    require(len(tables["c7_sample"]) == int(tables["c2_regression"].n.iloc[0]),
+            "C7 control sample changed")
 
-    for name in ("regression", "c2_regression"):
+    for name in ("regression", "c2_regression", "c5_reduced", "c6_delayed", "c7_cross_section"):
         table = tables[name]
         require(table.p_hc3_two_sided.dropna().between(0, 1).all(), f"Invalid HC3 p-values in {name}")
         require(table.p_cluster_two_sided.dropna().between(0, 1).all(), f"Invalid cluster p-values in {name}")

@@ -20,6 +20,8 @@ Theo bảng nghiên cứu sự kiện được chạy lại, CAAR [-1,+1] = **0,
 
 Brown–Warner A.11 và B7 cho cả bốn cửa sổ nằm ở `event_study/extended_window_tests.csv`; Corrado theo từng ngày ở `corrado_daily.csv`; B8 theo ba mức CAAR giả định ở `theoretical_power.csv`. Không dùng bảng B8 như power của H1 tone. Bảng tone tổng hợp không có tần suất từng từ, nên chưa tính được Word Power ngoài mẫu và chưa kiểm định H1 được viết theo ScorePos Word Power.
 
+Các kiểm định B6 và đặc tả C5–C8 từ dữ liệu đang có nằm trong `event_study/b6_robustness_tests.csv`, `c5_reduced_results.csv`, `c6_delayed_results.csv`, `c7_cross_section_results.csv` và `c8_fama_macbeth_summary.csv`; bảng mẫu/hệ số theo năm nằm cạnh chúng. Đọc `ROBUSTNESS_RESULTS.md` để biết rõ cửa sổ, số quan sát, công thức rút gọn và giới hạn.
+
 ## C2 với biến kiểm soát có sẵn
 
 Mô hình `c2_reduced_results.csv` dùng bốn biến kiểm soát Size, BM, Volatility và Turnover. Ghép bằng ticker và ngày nộp chuẩn `YYYY-MM-DD`, giữ các hàng `status=success` và đủ dữ liệu. Mỗi cửa sổ có **862 quan sát thuộc 96 công ty**; 107/969 hàng không đủ bộ biến kiểm soát.
