@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10-K Quantitative Textual Analysis | Fintech Research Lab</title>
+    <meta name="description"
+        content="Nền tảng phân tích định lượng giọng điệu Item 7 MD&A trong hồ sơ 10-K và phản ứng giá cổ phiếu (100 công ty NYSE/Nasdaq, 2016–2025, Benchmark S&P 500).">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- KaTeX 0.16.11 Mathematical Typesetting -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+
+    <!-- Chart.js 4.4.7 + Hammer.js + Chart.js Zoom Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hammerjs@2.0.8/hammer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-zoom@2.0.1/dist/chartjs-plugin-zoom.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Skip link for keyboard accessibility (WCAG 2.1 AA) -->
+    <a href="#main-content" class="skip-link">Chuyển đến nội dung chính</a>
+
+    <div class="app-layout">
+        <!-- ============================================ -->
+        <!-- FINTECH SIDEBAR NAVIGATION (Desktop 260px)  -->
+        <!-- ============================================ -->
+        <aside class="app-sidebar" id="app-sidebar" aria-label="Menu điều hướng nghiên cứu">
+            <div class="sidebar-brand">
+                <div class="brand-logo" aria-hidden="true">
+                    <svg class="icon-svg brand-icon" viewBox="0 0 24 24" width="22" height="22" fill="none"
+                        stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
+                    </svg>
+                </div>
+                <div class="brand-titles">
+                    <span class="brand-name">TEXTUAL ANALYSIS IN FINANCE</span>
+                    <span class="brand-tag">QUANT RESEARCH LAB</span>
+                </div>
+            </div>
+
+            <div class="sidebar-scope-badge" title="Phạm vi thị trường của mẫu nghiên cứu">
+                <span class="pulse-indicator" aria-hidden="true"></span>
+                <span class="scope-text">NYSE / NASDAQ 100</span>
+                <span class="benchmark-pill">^GSPC</span>
+            </div>
+
+            <nav class="sidebar-menu" role="tablist" aria-label="Các phân hệ phân tích">
+                <div class="menu-group-header">PHÂN TÍCH THỰC NGHIỆM</div>
+
+                <button class="nav-item active" id="tab-btn-overview" data-tab="overview" role="tab"
+                    aria-selected="true" aria-controls="tab-overview">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                        <rect width="7" height="5" x="3" y="16" rx="1" />
+                    </svg>
+                    <span class="nav-label">Tổng quan</span>
+                    <span class="nav-count">100 Mã</span>
+                </button>
+
+                <button class="nav-item" id="tab-btn-event" data-tab="event" role="tab" aria-selected="false"
+                    aria-controls="tab-event">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18" />
+                        <polyline points="17 6 23 6 23 12" />
+                    </svg>
+                    <span class="nav-label">Nghiên cứu sự kiện</span>
+                    <span class="nav-count">AAR/CAAR</span>
+                </button>
+
+                <button class="nav-item" id="tab-btn-regression" data-tab="regression" role="tab" aria-selected="false"
+                    aria-controls="tab-regression">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="18" y1="20" x2="18" y2="10" />
+                        <line x1="12" y1="20" x2="12" y2="4" />
+                        <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                    <span class="nav-label">Hồi quy OLS</span>
+                    <span class="nav-count">C1–C4</span>
+                </button>
+
+                <button class="nav-item" id="tab-btn-dictionary" data-tab="dictionary" role="tab" aria-selected="false"
+                    aria-controls="tab-dictionary">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                        <path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z" />
+                        <path d="M7 21h10" />
+                        <path d="M12 3v18" />
+                        <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2" />
+                    </svg>
+                    <span class="nav-label">So sánh từ điển</span>
+                    <span class="nav-count">88.7% trái</span>
+                </button>
+
+                <div class="menu-group-header">DỮ LIỆU & KIỂM TOÁN</div>
+
+                <button class="nav-item" id="tab-btn-filings" data-tab="filings" role="tab" aria-selected="false"
+                    aria-controls="tab-filings">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                        <polyline points="14 2 14 8 20 8" />
+                        <line x1="16" y1="13" x2="8" y2="13" />
+                        <line x1="16" y1="17" x2="8" y2="17" />
+                        <polyline points="10 9 9 9 8 9" />
+                    </svg>
+                    <span class="nav-label">Hồ sơ 10-K</span>
+                    <span class="nav-count">1.000 hồ sơ</span>
+                </button>
+
+                <button class="nav-item" id="tab-btn-method" data-tab="method" role="tab" aria-selected="false"
+                    aria-controls="tab-method">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                    </svg>
+                    <span class="nav-label">Phương pháp luận</span>
+                </button>
+
+                <button class="nav-item" id="tab-btn-audit" data-tab="audit" role="tab" aria-selected="false"
+                    aria-controls="tab-audit">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        <polyline points="9 12 11 14 15 10" />
+                    </svg>
+                    <span class="nav-label">Kiểm tra & Audit</span>
+                    <span class="nav-count count-ok">0 sai lệch</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button type="button" class="theme-toggle-btn" id="theme-toggle"
+                    aria-label="Chuyển đổi giao diện sáng/tối" title="Chuyển đổi Sáng ngà / Tối">
+                    <svg class="icon-svg icon-sun" viewBox="0 0 24 24" width="15" height="15" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <circle cx="12" cy="12" r="5" />
+                        <line x1="12" y1="1" x2="12" y2="3" />
+                        <line x1="12" y1="21" x2="12" y2="23" />
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                        <line x1="1" y1="12" x2="3" y2="12" />
+                        <line x1="21" y1="12" x2="23" y2="12" />
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                    </svg>
+                    <svg class="icon-svg icon-moon" viewBox="0 0 24 24" width="15" height="15" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        aria-hidden="true">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                    </svg>
+                    <span class="theme-text" id="theme-text">Chế độ Tối</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- ============================================ -->
+        <!-- MAIN APPLICATION CONTAINER                  -->
+        <!-- ============================================ -->
+        <div class="app-main">
+            <!-- TOPBAR UTILITY HEADER -->
+            <header class="app-topbar">
+                <button type="button" class="mobile-menu-btn" id="mobile-toggle" aria-label="Mở menu điều hướng">
+                    <svg class="icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <line x1="3" y1="12" x2="21" y2="12" />
+                        <line x1="3" y1="6" x2="21" y2="6" />
+                        <line x1="3" y1="18" x2="21" y2="18" />
+                    </svg>
+                </button>
+
+                <div class="topbar-breadcrumbs">
+                    <span class="crumb-root">Nghiên cứu Định lượng</span>
+                    <span class="crumb-separator" aria-hidden="true">/</span>
+                    <span class="crumb-active" id="topbar-crumb">Tổng quan</span>
+                </div>
+
+                <div class="topbar-chips" aria-label="Thông số phạm vi nghiên cứu">
+                    <div class="meta-chip">
+                        <span class="chip-label">Mẫu:</span>
+                        <span class="chip-val">2016–2025</span>
+                    </div>
+                    <div class="meta-chip">
+                        <span class="chip-label">Đơn vị:</span>
+                        <span class="chip-val">10-K / Năm nộp</span>
+                    </div>
+                    <div class="meta-chip">
+                        <span class="chip-label">Benchmark:</span>
+                        <span class="chip-val">S&amp;P 500 (^GSPC)</span>
+                    </div>
+                </div>
+
+                <div class="topbar-actions">
+                    <button type="button" class="btn-topbar-action" id="btn-topbar-export"
+                        title="Xuất dữ liệu 10-K ra CSV">
+                        <svg class="icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                            <polyline points="7 10 12 15 17 10" />
+                            <line x1="12" y1="15" x2="12" y2="3" />
+                        </svg>
+                        <span>Xuất CSV</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- MAIN SCROLLABLE CONTENT AREA -->
+            <main id="main-content" class="main-content" tabindex="-1">
+
+                <!-- ============================================ -->
+                <!-- TAB: OVERVIEW (Tổng quan)                    -->
+                <!-- ============================================ -->
+                <section id="tab-overview" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-overview">
+                    <div class="page-header">
+                        <div class="page-title-wrap">
+                            <h2 class="page-title">Tổng quan Nghiên cứu &amp; Kết quả Thực nghiệm</h2>
+                            <p class="page-desc">
+                                Đánh giá mối liên hệ giữa giọng điệu trong Item 7 — MD&amp;A của báo cáo thường niên
+                                10-K và phản ứng giá cổ phiếu quanh ngày nộp.
+                                Đơn vị quan sát: <strong>một hồ sơ 10-K của một công ty tại một năm nộp</strong> (tối đa
+                                1 quan sát / năm).
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- KPI Metrics Cards -->
+                    <div class="cards" id="overview-cards"></div>
+
+                    <!-- Bento Grid: Key Findings with Direct Evidence Links -->
+                    <div class="findings-grid">
+                        <div class="finding-card">
+                            <div class="finding-header">
+                                <span class="finding-tag tag-event">Phản ứng giá</span>
+                                <span class="finding-stat">+0.519%</span>
+                            </div>
+                            <h4 class="finding-title">CAAR khác 0 quanh ngày nộp 10-K</h4>
+                            <p class="finding-desc">
+                                Lợi suất bất thường tích lũy bình quân tại cửa sổ [-1, +1] đạt +0.519% với ý nghĩa thống
+                                kê cao (p &lt; 0.0001, Z MacKinlay = 6.467).
+                            </p>
+                            <a href="#event" class="finding-link" onclick="activateTab('event')">Xem kiểm định sự kiện
+                                &rarr;</a>
+                        </div>
+
+                        <div class="finding-card">
+                            <div class="finding-header">
+                                <span class="finding-tag tag-reg">Hồi quy OLS</span>
+                                <span class="finding-stat">p = 0.0991</span>
+                            </div>
+                            <h4 class="finding-title">Tone không ổn định qua các mô hình</h4>
+                            <p class="finding-desc">
+                                Hệ số tone LM net_prop trong C1 [-1, +1] có p_HC3 = 0.0991 (chỉ có ý nghĩa cận biên 10%,
+                                không đạt 5%). Không xem đây là tín hiệu giao dịch.
+                            </p>
+                            <a href="#regression" class="finding-link" onclick="activateTab('regression')">Xem bảng hồi
+                                quy C1–C4 &rarr;</a>
+                        </div>
+
+                        <div class="finding-card">
+                            <div class="finding-header">
+                                <span class="finding-tag tag-dict">Từ điển</span>
+                                <span class="finding-stat">88.7% Trái dấu</span>
+                            </div>
+                            <h4 class="finding-title">LM chuyên ngành đối chứng Harvard IV-4</h4>
+                            <p class="finding-desc">
+                                861 / 971 hồ sơ cho điểm trái dấu do từ điển Harvard gắn nhãn tích cực cho nhiều thuật
+                                ngữ tài chính thận trọng. LM phản ánh chính xác ngữ cảnh.
+                            </p>
+                            <a href="#dictionary" class="finding-link" onclick="activateTab('dictionary')">Xem Scatter
+                                Plot có Zoom &rarr;</a>
+                        </div>
+
+                        <div class="finding-card">
+                            <div class="finding-header">
+                                <span class="finding-tag tag-audit">Toàn vẹn</span>
+                                <span class="finding-stat">0 Sai lệch</span>
+                            </div>
+                            <h4 class="finding-title">Dữ liệu xác thực SHA-256</h4>
+                            <p class="finding-desc">
+                                Toàn bộ số liệu hiển thị được đọc trực tiếp từ các file CSV đầu ra; 100% ngày t=0 khớp
+                                lịch giao dịch S&amp;P 500, không sai lệch số học.
+                            </p>
+                            <a href="#audit" class="finding-link" onclick="activateTab('audit')">Xem bảng kiểm toán
+                                &rarr;</a>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="grid-2">
+                        <div class="chart-box">
+                            <div class="chart-header-row">
+                                <h3 class="chart-title">CAAR trung bình theo 4 cửa sổ sự kiện</h3>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="chart-caar"></canvas>
+                            </div>
+                            <p class="chart-note">Đơn vị: %. CAAR = CAR trung bình toàn mẫu (0.01 = 1%). Bốn cửa sổ:
+                                [-1,+1], [0,+3], [-3,+3], [-5,+5].</p>
+                        </div>
+
+                        <div class="chart-box">
+                            <div class="chart-header-row">
+                                <h3 class="chart-title">Phễu độ phủ mẫu qua các giai đoạn phân tích</h3>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="chart-coverage"></canvas>
+                            </div>
+                            <p class="chart-note">Mẫu giảm dần từ 1.000 hồ sơ gốc &rarr; 971 có tone Item 7 &rarr; 969
+                                có đủ giá &rarr; 862 đủ 4 biến kiểm soát C2.</p>
+                        </div>
+                    </div>
+
+                    <div class="note note-info">
+                        <div class="note-title">Lưu ý Học thuật &amp; Giới hạn Nghiên cứu:</div>
+                        CAAR khác 0 chứng minh có phản ứng giá trung bình quanh thời điểm nộp 10-K, <strong>không chứng
+                            minh giọng điệu MD&amp;A là nguyên nhân</strong>. Phản ứng có thể bị chi phối bởi thông tin
+                        kết quả kinh doanh công bố cùng kỳ, bất đối xứng thông tin, hoặc các yếu tố vĩ mô. Kết quả mang
+                        tính mô tả thực nghiệm, không phải khuyến nghị đầu tư.
+                    </div>
+
+                    <h3>Bảng tổng hợp CAAR và kiểm định thống kê</h3>
+                    <div class="table-wrap" id="overview-event-table"></div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- TAB: EVENT STUDY (Nghiên cứu sự kiện)        -->
+                <!-- ============================================ -->
+                <section id="tab-event" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-event">
+                    <div class="page-header">
+                        <div class="page-title-wrap">
+                            <h2 class="page-title">Nghiên cứu Sự kiện: Phản ứng Giá quanh Ngày nộp 10-K</h2>
+                            <p class="page-desc">
+                                Mô hình thị trường ước lượng trên 239 phiên (t = −244 đến −6) với chỉ số đối chuẩn
+                                S&amp;P 500 (^GSPC).
+                                Mẫu sự kiện: <strong>N = <span id="event-n">969</span> hồ sơ</strong> (2 hồ sơ bị loại
+                                vì không đủ lịch sử giá).
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="note">
+                        <strong>Phân biệt khái niệm then chốt:</strong>
+                        <em>AR (Lợi suất bất thường ngày)</em> &ne; <em>CAR (Tích lũy theo từng hồ sơ)</em> &ne;
+                        <em>CAAR (Trung bình toàn mẫu)</em>.
+                        Kiểm định MacKinlay (cross-sectional) và Sign test (phi tham số) đo lường phản ứng trung bình
+                        quanh ngày nộp.
+                    </div>
+
+                    <h3>CAAR và kiểm định thống kê — Bốn cửa sổ</h3>
+                    <div class="table-wrap" id="event-summary-table"></div>
+
+                    <!-- AAR Chart with On-Chart Zoom Toolbar -->
+                    <div class="chart-box" id="box-aar">
+                        <div class="chart-header-row">
+                            <h3 class="chart-title">Lợi suất bất thường trung bình từng ngày (AAR) từ t = −5 đến +5</h3>
+                            <div class="chart-zoom-controls">
+                                <span class="zoom-hint">Cuộn chuột để zoom / kéo để pan</span>
+                                <button type="button" class="btn-zoom" id="btn-aar-zoomin"
+                                    title="Phóng to AAR">+</button>
+                                <button type="button" class="btn-zoom" id="btn-aar-zoomout"
+                                    title="Thu nhỏ AAR">−</button>
+                                <button type="button" class="btn-zoom" id="btn-aar-reset" title="Đặt lại góc nhìn AAR">⟲
+                                    Reset</button>
+                            </div>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="chart-aar"></canvas>
+                        </div>
+                        <p class="chart-note">Đơn vị trục Y: % (AAR &times; 100). Ngày t = 0 là ngày nộp hồ sơ. Điểm đen
+                            đậm thể hiện ngày nộp 10-K. Brown-Warner Z kiểm định từng ngày.</p>
+                    </div>
+
+                    <!-- NEW: Individual CAR [-1, +1] Distribution (Fintech Requirement) -->
+                    <div class="chart-box" id="chart-car-dist-box">
+                        <div class="chart-header-row">
+                            <h3 class="chart-title">Phân phối Lợi suất Bất thường Tích lũy CAR [-1, +1] (N = 969 hồ sơ)
+                            </h3>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="chart-car-dist"></canvas>
+                        </div>
+                        <p class="chart-note">Phân phối thực nghiệm của CAR [-1, +1] từng hồ sơ. Thể hiện sự biến thiên
+                            mạnh giữa các công ty (từ âm sâu đến dương cao).</p>
+                    </div>
+
+                    <h3>Kiểm định Brown-Warner theo ngày (t = −5 đến +5)</h3>
+                    <div class="table-wrap" id="event-daily-table"></div>
+
+                    <h3>Hồ sơ bị loại khỏi mẫu sự kiện</h3>
+                    <p class="section-subtitle">2 hồ sơ có điểm tone Item 7 nhưng không đủ 239 phiên giá trong cửa sổ
+                        ước lượng.</p>
+                    <div class="table-wrap" id="event-exclusions-table"></div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- TAB: REGRESSION (Hồi quy định lượng)         -->
+                <!-- ============================================ -->
+                <section id="tab-regression" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-regression">
+                    <div class="page-header">
+                        <div class="page-title-wrap">
+                            <h2 class="page-title">Mô hình Hồi quy OLS: Mối liên hệ Tone MD&amp;A và CAR</h2>
+                            <p class="page-desc">
+                                Kiểm tra thực nghiệm mối liên hệ giữa các thước đo giọng điệu và CAR.
+                                Báo cáo đồng thời sai số chuẩn <strong>HC3 (robust)</strong> và <strong>gom cụm theo
+                                    công ty (clustered)</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="note">
+                        <strong>Quy chuẩn báo cáo định lượng:</strong>
+                        Hệ số mô tả mối liên hệ thống kê trong mẫu thực nghiệm, <em>không khẳng định quan hệ nhân
+                            quả</em>.
+                        Giá trị $p = 0.0991$ trong mô hình C1 [-1, +1] chỉ có ý nghĩa cận biên ở mức 10%, không có ý
+                        nghĩa ở mức 5%.
+                        Mô hình C2 rút gọn gồm 862 hồ sơ thuộc 96 công ty (đòi hỏi đủ 4 biến kiểm soát).
+                    </div>
+
+                    <div class="controls-row">
+                        <div class="control-group">
+                            <label for="reg-model">Nhóm mô hình</label>
+                            <select id="reg-model">
+                                <option value="C1">C1 — Tone đơn biến (LM net_prop, net_ratio, TF-IDF)</option>
+                                <option value="C3">C3 — Positive + Negative riêng biệt</option>
+                                <option value="C4">C4 — LM đối chứng Harvard IV-4</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="reg-window">Cửa sổ CAR</label>
+                            <select id="reg-window">
+                                <option value="all">Tất cả cửa sổ</option>
+                                <option value="CAR_m1_p1">[-1, +1]</option>
+                                <option value="CAR_0_p3">[0, +3]</option>
+                                <option value="CAR_m3_p3">[-3, +3]</option>
+                                <option value="CAR_m5_p5">[-5, +5]</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- NEW: Coefficient Plot with 95% Confidence Intervals -->
+                    <div class="chart-box" id="chart-reg-coef-box">
+                        <div class="chart-header-row">
+                            <h3 class="chart-title">Biểu đồ Hệ số Hồi quy Tone &amp; Khoảng tin cậy 95% (C1 vs C2)</h3>
+                        </div>
+                        <div class="canvas-container">
+                            <canvas id="chart-reg-coef"></canvas>
+                        </div>
+                        <p class="chart-note">Thanh ngang thể hiện khoảng tin cậy 95% (CI HC3). Nếu khoảng tin cậy chứa
+                            0, hệ số không có ý nghĩa thống kê ở mức 5%.</p>
+                    </div>
+
+                    <h3 id="reg-title">C1 — CAR ~ LM net proportional tone</h3>
+                    <div class="table-wrap" id="reg-table"></div>
+
+                    <h3>C2 rút gọn — Tone LM + 4 biến kiểm soát (Size, BM, Volatility, Turnover)</h3>
+                    <p class="section-subtitle">
+                        Mô hình:
+                        <code>CAR = const + LM_net_prop + Size + BM + Volatility + Turnover + &epsilon;</code>.<br>
+                        Mẫu gồm <strong><span id="c2-n">862</span> hồ sơ thuộc <span id="c2-firms">96</span> công
+                            ty</strong>.
+                        Bảng tóm tắt hiển thị hệ số <code>lm_net_prop</code>. Bảng đầy đủ mọi biến kiểm soát có tại tab
+                        Kiểm tra &amp; Audit.
+                    </p>
+                    <div class="table-wrap" id="c2-table"></div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- TAB: DICTIONARY (So sánh từ điển)           -->
+                <!-- ============================================ -->
+                <section id="tab-dictionary" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-dictionary">
+                    <div class="page-header">
+                        <div class="page-title-wrap">
+                            <h2 class="page-title">So sánh Từ điển: Loughran-McDonald (LM) và Harvard IV-4</h2>
+                            <p class="page-desc">
+                                LM là <strong>từ điển chính</strong> thiết kế chuyên biệt cho tài chính.
+                                Harvard IV-4 là từ điển tổng quát đóng vai trò <strong>đối chứng độ nhạy</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Metrics cards -->
+                    <div class="cards" id="dict-cards"></div>
+
+                    <div class="note note-info">
+                        <strong>Phát hiện thực nghiệm:</strong> Tỷ lệ trái dấu <strong>88.7% (861 / 971 hồ sơ)</strong>
+                        chứng minh sự khác biệt bản chất giữa từ điển tổng quát và từ điển tài chính. Harvard IV-4 phân
+                        loại các từ mang tính thận trọng trong 10-K thành tích cực, dẫn tới điểm trung bình dương
+                        (+0.0076), trong khi LM cho điểm trung bình âm (-0.0084).
+                    </div>
+
+                    <div class="grid-2">
+                        <!-- Scatter Chart with Full Zoom & Pan Controls -->
+                        <div class="chart-box" id="box-scatter">
+                            <div class="chart-header-row">
+                                <h3 class="chart-title">Tương quan LM net_prop và Harvard net_prop (N = <span
+                                        id="scatter-n">971</span>)</h3>
+                                <div class="chart-zoom-controls">
+                                    <span class="zoom-hint">Cuộn chuột để zoom / kéo để pan</span>
+                                    <button type="button" class="btn-zoom" id="btn-scatter-zoomin"
+                                        title="Phóng to Scatter">+</button>
+                                    <button type="button" class="btn-zoom" id="btn-scatter-zoomout"
+                                        title="Thu nhỏ Scatter">−</button>
+                                    <button type="button" class="btn-zoom" id="btn-scatter-reset"
+                                        title="Đặt lại góc nhìn Scatter">⟲ Reset</button>
+                                </div>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="chart-scatter"></canvas>
+                            </div>
+                            <p class="chart-note">
+                                ● Cùng dấu (xanh) · ◇ Trái dấu (cam). Đường nét đứt xám: trục x=0, y=0. Đường chấm xanh:
+                                phân giác y = x.
+                                <strong>Nhấp vào điểm bất kỳ</strong> để kiểm tra hồ sơ chi tiết.
+                            </p>
+                        </div>
+
+                        <!-- Histogram Chart -->
+                        <div class="chart-box">
+                            <div class="chart-header-row">
+                                <h3 class="chart-title">Phân phối chênh lệch điểm số (Harvard &minus; LM)</h3>
+                            </div>
+                            <div class="canvas-container">
+                                <canvas id="chart-hist"></canvas>
+                            </div>
+                            <p class="chart-note">Độ lệch dương lớn (trung vị dương) khẳng định Harvard luôn lạc quan
+                                hơn LM trên cùng báo cáo MD&amp;A.</p>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Inspector Card (when point clicked) -->
+                    <div class="scatter-inspect-card" id="scatter-inspect-card" aria-live="polite">
+                        <div class="inspect-empty">
+                            <svg class="icon-svg" viewBox="0 0 24 24" width="20" height="20" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <circle cx="11" cy="11" r="8" />
+                                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                            </svg>
+                            <span><strong>Khám phá tương tác:</strong> Nhấp vào bất kỳ điểm dữ liệu nào trên biểu đồ
+                                phân tán phía trên để xem chi tiết hồ sơ 10-K, điểm số LM vs Harvard, và phản ứng giá
+                                CAR.</span>
+                        </div>
+                    </div>
+
+                    <h3>Chi tiết so sánh từng hồ sơ công ty–năm</h3>
+                    <div class="controls-row">
+                        <div class="control-group">
+                            <label for="dict-ticker">Mã công ty</label>
+                            <select id="dict-ticker">
+                                <option value="">Tất cả công ty</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="dict-sign">Trạng thái dấu</label>
+                            <select id="dict-sign">
+                                <option value="">Tất cả</option>
+                                <option value="true">Trái dấu (861)</option>
+                                <option value="false">Cùng dấu (110)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-reset" id="dict-reset" aria-label="Đặt lại bộ lọc từ điển">
+                            <svg class="icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                <path d="M3 3v5h5" />
+                            </svg>
+                            Đặt lại
+                        </button>
+                        <button type="button" class="btn-export" id="dict-export"
+                            aria-label="Xuất dữ liệu so sánh ra CSV">
+                            <svg class="icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            Xuất CSV
+                        </button>
+                        <span class="filter-count" id="dict-count" aria-live="polite"></span>
+                    </div>
+                    <div class="table-wrap" id="dict-filings-table"></div>
+                    <div class="pagination" id="dict-pag"></div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- TAB: FILINGS (Hồ sơ 10-K Panel 1.000)        -->
+                <!-- ============================================ -->
+                <section id="tab-filings" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-filings">
+                    <div class="page-header">
+                        <div class="page-title-wrap">
+                            <h2 class="page-title">Bảng Dữ liệu Panel 1.000 Hồ sơ 10-K (2016–2025)</h2>
+                            <p class="page-desc">
+                                Mỗi hàng đại diện cho một lần nộp 10-K.
+                                Năm nộp (filing_year) phân biệt với năm tài chính (report_year).
+                                Ô trống (—) thể hiện giá trị không có số đo, <strong>tuyệt đối không ép về 0</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Filters -->
+                    <div class="controls-row">
+                        <div class="control-group">
+                            <label for="fil-search">Tìm nhanh</label>
+                            <input type="search" id="fil-search" class="search-input"
+                                placeholder="Mã Ticker hoặc tên công ty..."
+                                aria-label="Tìm kiếm theo mã ticker hoặc tên công ty">
+                        </div>
+                        <div class="control-group">
+                            <label for="fil-ticker">Công ty</label>
+                            <select id="fil-ticker">
+                                <option value="">Tất cả (100)</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="fil-year">Năm nộp</label>
+                            <select id="fil-year">
+                                <option value="">Tất cả (2016–2025)</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="fil-status">Trạng thái Item 7</label>
+                            <select id="fil-status">
+                                <option value="">Tất cả</option>
+                                <option value="has">Có tone (971)</option>
+                                <option value="miss">Thiếu tone (29)</option>
+                            </select>
+                        </div>
+                        <div class="control-group">
+                            <label for="fil-tone">Tín hiệu Tone (Signal)</label>
+                            <select id="fil-tone">
+                                <option value="">Tất cả tín hiệu (1.000 hồ sơ)</option>
+                                <option value="pos">🟢 Tích cực (LM net_prop > 0)</option>
+                                <option value="zero">⚪ Trung tính (LM net_prop = 0)</option>
+                                <option value="neg">🔴 Tiêu cực (LM net_prop < 0)</option>
+                                <option value="miss">⚠️ Thiếu tone Item 7 (29)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-reset" id="fil-reset" aria-label="Đặt lại bộ lọc hồ sơ">
+                            <svg class="icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                                <path d="M3 3v5h5" />
+                            </svg>
+                            Đặt lại
+                        </button>
+                        <button type="button" class="btn-export" id="fil-export"
+                            aria-label="Xuất dữ liệu 10-K lọc ra file CSV">
+                            <svg class="icon-svg" viewBox="0 0 24 24" width="14" height="14" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                aria-hidden="true">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            Xuất CSV
+                        </button>
+                        <span class="filter-count" id="fil-count" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Dynamic Micro-Stats Bar -->
+                    <div class="micro-stats" id="fil-micro-stats" aria-label="Thống kê nhanh bộ lọc hồ sơ"></div>
+                    <div class="note note-info" id="fil-tone-note" style="display:none">
+                        <strong>Quy ước Phân loại Tín hiệu Báo cáo:</strong> Tín hiệu được gán theo quy ước trực quan từ
+                        dấu toán học của chỉ số <code>LM net_prop</code>:
+                        🟢 <strong>Tích cực</strong> (net_prop &gt; 0, 88 hồ sơ / 8.8%),
+                        ⚪ <strong>Trung tính</strong> (net_prop = 0, 8 hồ sơ / 0.8%),
+                        🔴 <strong>Tiêu cực</strong> (net_prop &lt; 0, 875 hồ sơ / 87.5%), và
+                        ⚠️ <strong>Thiếu tone</strong> (29 hồ sơ / 2.9% — giữ nguyên nhãn thiếu, không ép về 0).
+                        Theo Loughran &amp; McDonald (2011), phần lớn hồ sơ 10-K có tone âm vì văn bản tài chính bắt
+                        buộc công bố nhiều yếu tố rủi ro và điều khoản thận trọng. Biến giải thích trong mô hình hồi quy
+                        kinh lượng vẫn là biến liên tục.
+                    </div>
+
+                    <div class="table-wrap" id="filings-table"></div>
+                    <div class="pagination" id="fil-pag"></div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- TAB: METHODOLOGY (Phương pháp luận)          -->
+                <!-- ============================================ -->
+                <section id="tab-method" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-method">
+                    <div class="page-header">
+                        <div class="page-title-wrap">
+                            <h2 class="page-title">Phương pháp Luận &amp; Công thức Định lượng</h2>
+                            <p class="page-desc">
+                                Đặc tả toán học và kinh lượng học chính xác theo đề cương nghiên cứu, dựa trên 4 công
+                                trình kinh điển:
+                                <strong>Brown &amp; Warner (1985)</strong>, <strong>MacKinlay (1997)</strong>,
+                                <strong>Loughran &amp; McDonald (2011)</strong> và <strong>Jegadeesh &amp; Wu
+                                    (2013)</strong>.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Scope & Observation Unit Card -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <span class="method-badge">QUY MÔ &amp; MẪU NGHIÊN CỨU</span>
+                            <h3 class="method-step-title">Phạm vi Thị trường &amp; Đơn vị Quan sát Thực nghiệm</h3>
+                        </div>
+                        <p>
+                            Nghiên cứu kiểm định mối quan hệ giữa giọng điệu văn bản trong phần <strong>Item 7
+                                (Management’s Discussion and Analysis — MD&amp;A)</strong>
+                            của báo cáo thường niên 10-K với phản ứng giá cổ phiếu niêm yết trên các sở giao dịch chứng
+                            khoán Hoa Kỳ (NYSE / Nasdaq).
+                        </p>
+                        <div class="method-grid-chips">
+                            <div class="method-chip"><strong>Đơn vị quan sát:</strong> 1 hồ sơ 10-K tại một ngày nộp
+                                (tối đa 1 quan sát / công ty / năm nộp)</div>
+                            <div class="method-chip"><strong>Mẫu nghiên cứu:</strong> 100 doanh nghiệp niêm yết lớn trên
+                                NYSE / Nasdaq</div>
+                            <div class="method-chip"><strong>Giai đoạn nộp:</strong> 2016–2025 (10 năm, tổng cộng 1.000
+                                hồ sơ)</div>
+                            <div class="method-chip"><strong>Benchmark thị trường:</strong> S&amp;P 500 Index (ticker:
+                                <code>^GSPC</code>)
+                            </div>
+                        </div>
+                        <p class="method-footnote">
+                            <em>Lưu ý phân biệt thời gian:</em> Năm nộp hồ sơ (<code>filing_year</code>) khác với năm
+                            tài chính (<code>report_year</code>).
+                            Ví dụ, 66 hồ sơ nộp trong quý 1 năm 2016 có niên độ tài chính kết thúc vào năm 2015.
+                        </p>
+                    </div>
+
+                    <!-- PHAN A: NLP & TONE -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <span class="method-badge badge-nlp">PHẦN A · NLP &amp; ĐO LƯỜNG GIỌNG ĐIỆU</span>
+                            <h3 class="method-step-title">Biến đổi Văn bản Item 7 thành Chỉ số Giọng điệu (Tone Scores)
+                            </h3>
+                        </div>
+
+                        <h4>A1. Tiền xử lý &amp; Quy tắc Phủ định (Negation Rule) [Bắt buộc]</h4>
+                        <p>
+                            Văn bản Item 7 được bóc tách từ hồ sơ 10-K thô, làm sạch HTML/XBRL, tách token chữ và chuẩn
+                            hóa chữ hoa.
+                            Áp dụng <strong>Quy tắc phủ định 3 từ</strong> (Jegadeesh &amp; Wu 2013, mục 3): Nếu các từ
+                            phủ định
+                            <code>NOT</code>, <code>NO</code> hoặc <code>NEVER</code> xuất hiện trong phạm vi 3 token
+                            đứng liền trước một từ thuộc từ điển,
+                            từ đó sẽ bị loại khỏi nhóm tích cực hoặc tiêu cực tương ứng.
+                        </p>
+
+                        <h4>A2. Tone theo Trọng số Tỷ lệ Proportional Weighting (Loughran &amp; McDonald 2011) [Bắt
+                            buộc]</h4>
+                        <p>Phương pháp cơ sở chuẩn hóa theo tổng dung lượng từ của hồ sơ $a_i$ ($W$):</p>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$Pos_i = \sum_{j \in Pos} \frac{F_{i,j}}{a_i}, \qquad Neg_i = \sum_{j \in Neg}
+                                \frac{F_{i,j}}{a_i}$$
+                            </div>
+                            <div class="formula-math">
+                                $$net\_prop_i = Pos_i - Neg_i$$
+                            </div>
+                            <div class="formula-math">
+                                $$net\_ratio_i = \frac{Pos_i - Neg_i}{Pos_i + Neg_i} \qquad (\text{xác định khi } Pos_i
+                                + Neg_i > 0)$$
+                            </div>
+                            <div class="formula-params">
+                                <span class="param-item"><strong>$F_{i,j}$:</strong> Số lần từ $j$ xuất hiện trong Item
+                                    7 của hồ sơ $i$ (sau khi trừ các từ bị phủ định).</span>
+                                <span class="param-item"><strong>$a_i$:</strong> Tổng số từ hợp lệ trong văn bản Item 7
+                                    của hồ sơ $i$.</span>
+                                <span class="param-item"><strong>$Pos, Neg$:</strong> Tập từ vựng tích cực / tiêu cực từ
+                                    từ điển tài chính Loughran–McDonald (2011).</span>
+                            </div>
+                        </div>
+
+                        <h4>A3. Trọng số Tần suất Nghịch đảo tf.idf (Jegadeesh &amp; Wu 2013, Eq. 1–3) [Bắt buộc]</h4>
+                        <p>Phương pháp điều chỉnh độ phổ biến của từ vựng qua toàn bộ tập văn bản:</p>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$w_j^{idf} = \log\left(\frac{N}{df_j}\right)$$
+                            </div>
+                            <div class="formula-math">
+                                $$w_{i,j}^{tf.idf} = \begin{cases} \dfrac{1 + \log(tf_{i,j})}{1 + \log(a_i)} \cdot
+                                w_j^{idf} & \text{nếu } tf_{i,j} > 0 \\ 0 & \text{ngược lại} \end{cases}$$
+                            </div>
+                            <div class="formula-math">
+                                $$Score_i^{tf.idf} = \frac{1}{1 + \log(a_i)} \sum_{j=1}^J w_{i,j}^{tf.idf}$$
+                            </div>
+                            <div class="formula-params">
+                                <span class="param-item"><strong>$N$:</strong> Tổng số văn bản trong toàn mẫu ($N =
+                                    1.000$).</span>
+                                <span class="param-item"><strong>$df_j$:</strong> Document frequency — số văn bản trong
+                                    mẫu có chứa từ $j$ ít nhất một lần.</span>
+                                <span class="param-item"><strong>$tf_{i,j}$:</strong> Tần suất thô của từ $j$ trong văn
+                                    bản $i$.</span>
+                            </div>
+                        </div>
+
+                        <h4>A4. Quy ước Phân loại Tín hiệu Trực quan (Visual Signal Convention)</h4>
+                        <p>
+                            Dữ liệu định lượng trong kinh lượng học là biến số thực liên tục. Nhằm hỗ trợ người dùng lọc
+                            nhanh hồ sơ, giao diện quy ước 3 trạng thái tín hiệu dựa trên dấu toán học của chỉ số
+                            <code>LM net_prop</code>:
+                        </p>
+                        <div class="signal-explainer-grid">
+                            <div class="signal-card signal-pos">
+                                <div class="sig-title"><span class="badge badge-signal-pos">▲ Tích cực</span></div>
+                                <div class="sig-condition"><code>LM net_prop &gt; 0</code></div>
+                                <div class="sig-count"><strong>88 hồ sơ</strong> (8.8% mẫu)</div>
+                                <div class="sig-desc">Số từ tích cực chiếm tỷ trọng lớn hơn số từ tiêu cực trong Item 7.
+                                </div>
+                            </div>
+                            <div class="signal-card signal-neu">
+                                <div class="sig-title"><span class="badge badge-signal-neu">● Trung tính</span></div>
+                                <div class="sig-condition"><code>LM net_prop = 0</code></div>
+                                <div class="sig-count"><strong>8 hồ sơ</strong> (0.8% mẫu)</div>
+                                <div class="sig-desc">Tỷ lệ từ tích cực và tiêu cực hoàn toàn triệt tiêu nhau.</div>
+                            </div>
+                            <div class="signal-card signal-neg">
+                                <div class="sig-title"><span class="badge badge-signal-neg">▼ Tiêu cực</span></div>
+                                <div class="sig-condition"><code>LM net_prop &lt; 0</code></div>
+                                <div class="sig-count"><strong>875 hồ sơ</strong> (87.5% mẫu)</div>
+                                <div class="sig-desc">Số từ tiêu cực áp đảo số từ tích cực. Theo Loughran &amp; McDonald
+                                    (2011), báo cáo 10-K chứa nhiều lưu ý rủi ro pháp lý và dự phòng, do đó phần lớn hồ
+                                    sơ có tone thuần âm.</div>
+                            </div>
+                            <div class="signal-card signal-miss">
+                                <div class="sig-title"><span class="badge badge-miss">— Thiếu tone</span></div>
+                                <div class="sig-condition"><code>null</code> (Item 7 không trích xuất)</div>
+                                <div class="sig-count"><strong>29 hồ sơ</strong> (2.9% mẫu)</div>
+                                <div class="sig-desc">20 hồ sơ văn bản quá ngắn (<code>too_short</code>), 6 ranh giới
+                                    không rõ (<code>boundary_uncertain</code>), 3 không tìm thấy tiêu đề
+                                    (<code>heading_not_found</code>). Không ép về 0.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHAN B: EVENT STUDY -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <span class="method-badge badge-event">PHẦN B · NGHIÊN CỨU SỰ KIỆN TÀI CHÍNH</span>
+                            <h3 class="method-step-title">Mô hình Lợi suất Bất thường (AR) &amp; Tích lũy (CAR)</h3>
+                        </div>
+
+                        <h4>B1. Trục Thời gian &amp; Định chuẩn Giờ nộp SEC EDGAR [Bắt buộc]</h4>
+                        <p>
+                            Thời điểm nộp $\tau = 0$ được xác định dựa trên mốc chấp thuận hồ sơ
+                            (<code>accepted_at_utc</code>) từ SEC EDGAR.
+                            <strong>Quy tắc đóng cửa 16:00 ET:</strong> Nếu hồ sơ được nộp sau 16:00 ET (kết thúc phiên
+                            NYSE) hoặc vào ngày nghỉ,
+                            ngày sự kiện $\tau = 0$ được tự động dời sang phiên giao dịch kế tiếp (trong mẫu có 466/969
+                            phiên được dời chính xác).
+                        </p>
+                        <div class="event-timeline-diagram">
+                            <div class="timeline-seg timeline-est">
+                                <span class="tl-title">Cửa sổ ước lượng (Estimation Window)</span>
+                                <span class="tl-range">$\tau = -244$ đến $\tau = -6$</span>
+                                <span class="tl-len">Độ dài $L_1 = 239$ phiên giao dịch</span>
+                            </div>
+                            <div class="timeline-gap">Tách biệt hoàn toàn, không chồng lấn</div>
+                            <div class="timeline-seg timeline-evt">
+                                <span class="tl-title">Cửa sổ sự kiện (Event Window)</span>
+                                <span class="tl-range">$\tau = -5$ đến $\tau = +5$ (với ngày công bố $\tau = 0$)</span>
+                                <span class="tl-len">4 cửa sổ con: $[-1, +1]$, $[0, +3]$, $[-3, +3]$, $[-5, +5]$</span>
+                            </div>
+                        </div>
+
+                        <h4>B2. Mô hình Thị trường (Market Model - MacKinlay 1997; Brown &amp; Warner 1985) [Bắt buộc]
+                        </h4>
+                        <p>Ước lượng OLS lợi suất kỳ vọng trên $L_1 = 239$ phiên giao dịch trước ngày sự kiện:</p>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$R_{i,\tau} = \alpha_i + \beta_i R_{m,\tau} + \varepsilon_{i,\tau}, \qquad \tau \in
+                                [-244, -6]$$
+                            </div>
+                            <div class="formula-math">
+                                $$\beta_i = \frac{\sum_{\tau=-244}^{-6} (R_{i,\tau} - \mu_i)(R_{m,\tau} -
+                                \mu_m)}{\sum_{\tau=-244}^{-6} (R_{m,\tau} - \mu_m)^2}, \qquad \alpha_i = \mu_i - \beta_i
+                                \mu_m$$
+                            </div>
+                            <div class="formula-math">
+                                $$\sigma_{\varepsilon_i}^2 = \frac{1}{L_1 - 2} \sum_{\tau=-244}^{-6} \left(R_{i,\tau} -
+                                \alpha_i - \beta_i R_{m,\tau}\right)^2$$
+                            </div>
+                            <div class="formula-params">
+                                <span class="param-item"><strong>$R_{i,\tau}$:</strong> Lợi suất logarit theo ngày của
+                                    cổ phiếu doanh nghiệp $i$ tại ngày $\tau$.</span>
+                                <span class="param-item"><strong>$R_{m,\tau}$:</strong> Lợi suất logarit theo ngày của
+                                    chỉ số đại diện thị trường S&amp;P 500 (^GSPC).</span>
+                                <span class="param-item"><strong>$\mu_i, \mu_m$:</strong> Lợi suất bình quân mẫu trong
+                                    cửa sổ ước lượng 239 ngày.</span>
+                                <span class="param-item"><strong>$\sigma_{\varepsilon_i}^2$:</strong> Phương sai phần dư
+                                    đặc thù của doanh nghiệp $i$.</span>
+                            </div>
+                        </div>
+
+                        <h4>B3. Lợi suất Bất thường (AR) &amp; Lợi suất Bất thường Tích lũy (CAR) (MacKinlay Eq. 7, 10)
+                            [Bắt buộc]</h4>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$AR_{i,\tau} = R_{i,\tau} - (\alpha_i + \beta_i R_{m,\tau})$$
+                            </div>
+                            <div class="formula-math">
+                                $$CAR_i[\tau_1, \tau_2] = \sum_{\tau=\tau_1}^{\tau_2} AR_{i,\tau}$$
+                            </div>
+                        </div>
+
+                        <h4>B4. Phương sai CAR &amp; Xấp xỉ Chuẩn hóa B4 (MacKinlay Eq. 8, 11) [Bắt buộc]</h4>
+                        <p>
+                            Phương sai chính xác của $AR_{i,\tau}$ bao gồm phương sai phần dư và sai số ước lượng hệ số
+                            $\alpha, \beta$:
+                        </p>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$\sigma^2(AR_{i,\tau}) = \sigma_{\varepsilon_i}^2 + \frac{1}{L_1} \left(1 +
+                                \frac{(R_{m,\tau} - \mu_m)^2}{\sigma_m^2}\right) \sigma_{\varepsilon_i}^2$$
+                            </div>
+                            <p class="formula-desc">
+                                Vì độ dài cửa sổ ước lượng $L_1 = 239$ phiên là rất lớn, thành phần thứ hai
+                                $\frac{1}{L_1} \to 0$. Áp dụng <strong>Xấp xỉ B4</strong>:
+                            </p>
+                            <div class="formula-math">
+                                $$Var(CAR_i[\tau_1, \tau_2]) \approx (\tau_2 - \tau_1 + 1) \cdot
+                                \sigma_{\varepsilon_i}^2 = L \cdot \sigma_{\varepsilon_i}^2$$
+                            </div>
+                        </div>
+
+                        <h4>B5. Tổng hợp Toàn Mẫu &amp; Lợi suất Tích lũy Bình quân CAAR (MacKinlay Eq. 13–18) [Bắt
+                            buộc]</h4>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$\overline{AR}_\tau = \frac{1}{N} \sum_{i=1}^N AR_{i,\tau}, \qquad
+                                Var(\overline{AR}_\tau) = \frac{1}{N^2} \sum_{i=1}^N \sigma_{\varepsilon_i}^2$$
+                            </div>
+                            <div class="formula-math">
+                                $$CAAR[\tau_1, \tau_2] = \frac{1}{N} \sum_{i=1}^N CAR_i[\tau_1, \tau_2] =
+                                \sum_{\tau=\tau_1}^{\tau_2} \overline{AR}_\tau$$
+                            </div>
+                            <div class="formula-math">
+                                $$Var(CAAR[\tau_1, \tau_2]) = \frac{1}{N^2} \sum_{i=1}^N Var(CAR_i[\tau_1, \tau_2]) =
+                                \frac{L}{N^2} \sum_{i=1}^N \sigma_{\varepsilon_i}^2$$
+                            </div>
+                        </div>
+
+                        <h4>B6. Các Phép Kiểm định Thống kê Ý nghĩa (Statistical Tests)</h4>
+                        <div class="formula-box">
+                            <p><strong>1. Kiểm định tham số chuẩn hóa (MacKinlay Eq. 20):</strong></p>
+                            <div class="formula-math">
+                                $$\theta_1 = \frac{CAAR[\tau_1, \tau_2]}{\sqrt{Var(CAAR[\tau_1, \tau_2])}} \sim
+                                \mathcal{N}(0, 1)$$
+                            </div>
+
+                            <p><strong>2. Kiểm định phương sai cắt ngang (Cross-sectional Test, MacKinlay Eq.
+                                    21):</strong></p>
+                            <p class="formula-desc">Phòng ngừa hiện tượng phương sai biến động tăng mạnh quanh ngày sự
+                                kiện:</p>
+                            <div class="formula-math">
+                                $$Var_{CS}(CAAR) = \frac{1}{N(N-1)} \sum_{i=1}^N \left(CAR_i[\tau_1, \tau_2] -
+                                CAAR[\tau_1, \tau_2]\right)^2$$
+                            </div>
+
+                            <p><strong>3. Kiểm định phi tham số dấu (Sign Test, MacKinlay Eq. 23):</strong></p>
+                            <div class="formula-math">
+                                $$\theta_2 = \frac{N^+ - 0.5 N}{0.5 \sqrt{N}} \sim \mathcal{N}(0, 1)$$
+                            </div>
+                            <div class="formula-params">
+                                <span class="param-item"><strong>$N^+$:</strong> Số doanh nghiệp có $CAR_i &gt; 0$ trong
+                                    cửa sổ sự kiện đang xét.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PHAN C: ECONOMETRIC REGRESSIONS -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <span class="method-badge badge-reg">PHẦN C · MÔ HÌNH HỒI QUY KINH LƯỢNG</span>
+                            <h3 class="method-step-title">Kiểm định Mối liên hệ Giọng điệu Item 7 và Phản ứng Thị trường
+                            </h3>
+                        </div>
+
+                        <p>
+                            Để trả lời câu hỏi <em>"Giọng điệu MD&amp;A có giải thích được phản ứng giá cổ phiếu
+                                không?"</em>, nghiên cứu thực hiện 4 đặc tả OLS theo Jegadeesh &amp; Wu (2013).
+                            Toàn bộ sai số chuẩn được ước lượng bằng <strong>White HC3 Heteroskedasticity-Consistent
+                                SE</strong> và <strong>Clustered SE</strong> gom cụm theo công ty (MacKinlay Eq. 26–27).
+                        </p>
+
+                        <h4>C1. Mô hình Đơn biến (Jegadeesh &amp; Wu Eq. 12) [Bắt buộc]</h4>
+                        <p>Kiểm tra độ nhạy của CAR đối với 3 định nghĩa tone khác nhau:</p>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$CAR_i[\tau_1, \tau_2] = a + b \cdot Score_i + \varepsilon_i$$
+                            </div>
+                            <div class="formula-desc">
+                                Giả thuyết thống kê: $H_0: b = 0$ đối nghịch với $H_A: b > 0$ (nếu Score mang ý nghĩa
+                                "càng cao càng tích cực").
+                                Được chạy độc lập cho 3 biến: <code>net_prop</code>, <code>net_ratio</code> và
+                                <code>net_tfidf</code>.
+                            </div>
+                        </div>
+
+                        <h4>C2. Mô hình Đa biến có Biến Kiểm soát (Jegadeesh &amp; Wu Eq. 14) [Bắt buộc]</h4>
+                        <p>Cô lập ảnh hưởng của giọng điệu khỏi các đặc tính tài chính cơ bản:</p>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$CAR_i = a + \beta \cdot Score_i + b \cdot Size_i + c \cdot BM_i + d \cdot Volatility_i
+                                + e \cdot Turnover_i + \varepsilon_i$$
+                            </div>
+                            <div class="formula-params">
+                                <span class="param-item"><strong>$Score_i$:</strong> Điểm giọng điệu
+                                    <code>LM net_prop</code> của Item 7.</span>
+                                <span class="param-item"><strong>$Size_i$:</strong> $\ln(\text{Vốn hóa thị trường})$ tại
+                                    ngày công bố (giá Yahoo đóng cửa nhân số cổ phiếu SEC sau khi xử lý chia
+                                    tách).</span>
+                                <span class="param-item"><strong>$BM_i$:</strong> Book-to-Market — Tỷ số vốn chủ sở hữu
+                                    sổ sách trên vốn hóa thị trường.</span>
+                                <span class="param-item"><strong>$Volatility_i$:</strong> Độ lệch chuẩn sai số phần dư
+                                    $\sigma_{\varepsilon_i}$ từ mô hình thị trường trong cửa sổ ước lượng 239
+                                    ngày.</span>
+                                <span class="param-item"><strong>$Turnover_i$:</strong> $\ln(\text{Khối lượng giao dịch
+                                    bình quân} / \text{Số cổ phiếu lưu hành})$.</span>
+                            </div>
+                            <p class="formula-desc">
+                                <em>Quy tắc mẫu C2:</em> Mô hình chỉ giữ các hồ sơ có đầy đủ cả 4 biến kiểm soát và Item
+                                7 thành công ($N = 862$ hồ sơ / 99 công ty).
+                            </p>
+                        </div>
+
+                        <h4>C3. Tách rời Tone Tích cực và Tiêu cực (Jegadeesh &amp; Wu Eq. 15–16)</h4>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$CAR_i = a + \beta \cdot Positive\_prop_i + \gamma \cdot Negative\_prop_i +
+                                \varepsilon_i$$
+                            </div>
+                            <p class="formula-desc">
+                                Kiểm định tính bất đối xứng: Liệu thị trường phản ứng nhạy hơn với từ tiêu cực
+                                ($\gamma$) so với từ tích cực ($\beta$) hay không.
+                            </p>
+                        </div>
+
+                        <h4>C4. Đối chứng Từ điển Chuyên ngành vs. Từ điển Tổng quát (Jegadeesh &amp; Wu Eq. 13) [Bắt
+                            buộc]</h4>
+                        <div class="formula-box">
+                            <div class="formula-math">
+                                $$CAR_i = a + b \cdot Score_i^{LM} + c \cdot Score_i^{Harvard} + \varepsilon_i$$
+                            </div>
+                            <p class="formula-desc">
+                                So sánh từ điển tài chính Loughran–McDonald với từ điển tổng quát Harvard IV-4 nhằm
+                                chứng minh từ điển tổng quát tạo sai lệch do gán nhãn tích cực cho các thuật ngữ rủi
+                                ro/thuế.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- PHAN D: SUMMARY TABLE & SCIENTIFIC PRINCIPLES -->
+                    <div class="method-card">
+                        <div class="method-header">
+                            <span class="method-badge">PHẦN D · KÝ HIỆU &amp; NGUYÊN TẮC HỌC THUẬT</span>
+                            <h3 class="method-step-title">Danh mục Ký hiệu Toán học &amp; Giới hạn Khoa học</h3>
+                        </div>
+
+                        <div class="table-wrap">
+                            <table class="data-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ký hiệu</th>
+                                        <th>Đơn vị / Thang đo</th>
+                                        <th>Ý nghĩa Khoa học</th>
+                                        <th>Nguồn tham chiếu</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>$R_{i,\tau}$</td>
+                                        <td>Số thập phân ($0.01 = 1\%$)</td>
+                                        <td>Lợi suất logarit ngày của cổ phiếu $i$ tại ngày $\tau$</td>
+                                        <td>MacKinlay (1997)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$AR_{i,\tau}$</td>
+                                        <td>Số thập phân ($0.01 = 1\%$)</td>
+                                        <td>Lợi suất bất thường ngày (Abnormal Return)</td>
+                                        <td>MacKinlay Eq. 7</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$CAR_i$</td>
+                                        <td>Số thập phân ($0.01 = 1\%$)</td>
+                                        <td>Lợi suất bất thường tích lũy (Cumulative Abnormal Return)</td>
+                                        <td>MacKinlay Eq. 10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$CAAR$</td>
+                                        <td>Số thập phân ($0.01 = 1\%$)</td>
+                                        <td>Lợi suất bất thường tích lũy bình quân toàn mẫu</td>
+                                        <td>MacKinlay Eq. 15</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$L_1$</td>
+                                        <td>239 phiên</td>
+                                        <td>Độ dài cửa sổ ước lượng mô hình thị trường</td>
+                                        <td>Brown &amp; Warner (1985)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$L_2$</td>
+                                        <td>11 phiên</td>
+                                        <td>Độ dài cửa sổ sự kiện bao quát $[-5, +5]$</td>
+                                        <td>Brown &amp; Warner (1985)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$Pos, Neg$</td>
+                                        <td>Tỷ lệ từ ($W_{cat}/W$)</td>
+                                        <td>Tỷ trọng số từ tích cực / tiêu cực trong Item 7</td>
+                                        <td>Loughran &amp; McDonald (2011)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$net\_prop$</td>
+                                        <td>Số thực $[-1, 1]$</td>
+                                        <td>Hiệu số $Pos - Neg$; đo lường giọng điệu ròng cơ sở</td>
+                                        <td>Loughran &amp; McDonald (2011)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>$p_{HC3}$</td>
+                                        <td>Xác suất $[0, 1]$</td>
+                                        <td>P-value hiệu chỉnh sai số chuẩn vững White HC3</td>
+                                        <td>MacKinlay Eq. 26–27</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="note note-info" style="margin-top:1.25rem">
+                            <div class="note-title">Nguyên tắc Học thuật &amp; Giới hạn Nghiên cứu:</div>
+                            <ul>
+                                <li><strong>Tương quan không phải nhân quả:</strong> Mối liên hệ có ý nghĩa thống kê
+                                    giữa tone và CAR không đồng nghĩa giọng điệu là nguyên nhân gây biến động giá cổ
+                                    phiếu.</li>
+                                <li><strong>Không gán ép dữ liệu thiếu:</strong> 29 hồ sơ thiếu Item 7 MD&amp;A và 2 hồ
+                                    sơ thiếu giá giao dịch được giữ nguyên mã <code>missing / null</code>, tuyệt đối
+                                    không gán bằng 0.</li>
+                                <li><strong>Toàn vẹn số liệu:</strong> Toàn bộ giá trị trong báo cáo này được trích xuất
+                                    nguyên vẹn từ các file CSV đầu ra trong <code>analysis_outputs/</code> mà không qua
+                                    bất kỳ khâu xử lý nhân tạo nào.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============================================ -->
+                <!-- TAB: AUDIT (Kiểm tra & Toàn vẹn Dữ liệu)     -->
+                <!-- ============================================ -->
+                <section id="tab-audit" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-audit">
+                    <div class="page-header">
+                        <div class="page-title-wrap">
+                            <h2 class="page-title">Kiểm toán Dữ liệu: SHA-256 &amp; Tính Nhất quán Số học</h2>
+                            <p class="page-desc">Mọi giá trị được hiển thị từ file CSV gốc trong
+                                <code>analysis_outputs/</code>. Không có phép tính toán lại ngoài trình duyệt.
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3>Data Contract Manifest (handoff/manifest.json)</h3>
+                    <div class="table-wrap" id="audit-manifest-table"></div>
+
+                    <h3>Mã băm SHA-256 xác thực các bảng kết quả đầu vào</h3>
+                    <div class="table-wrap" id="audit-sha-table"></div>
+
+                    <h3>Kết quả kiểm tra tính nhất quán số học (Verification)</h3>
+                    <div class="table-wrap" id="audit-arith-table"></div>
+
+                    <h3>31 hồ sơ không đạt điều kiện (Missing / Excluded)</h3>
+                    <p class="section-subtitle">29 hồ sơ thiếu Item 7 MD&amp;A và 2 hồ sơ không đủ 239 phiên giá để ước
+                        lượng mô hình thị trường.</p>
+                    <div class="table-wrap" id="audit-missing-table"></div>
+
+                    <h3>Mô hình C2 rút gọn — Chi tiết toàn bộ hệ số (Kèm biến kiểm soát)</h3>
+                    <p class="section-subtitle">Hệ số OLS của LM_net_prop cùng 4 biến kiểm soát: Size, BM, Volatility,
+                        Turnover.</p>
+                    <div class="controls-row">
+                        <div class="control-group">
+                            <label for="c2-full-window">Cửa sổ CAR</label>
+                            <select id="c2-full-window">
+                                <option value="all">Tất cả cửa sổ</option>
+                                <option value="car_m1_p1">[-1, +1]</option>
+                                <option value="car_0_p3">[0, +3]</option>
+                                <option value="car_m3_p3">[-3, +3]</option>
+                                <option value="car_m5_p5">[-5, +5]</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-wrap" id="c2-full-table"></div>
+
+                    <div class="note note-info">
+                        <strong>Khả năng tái lập kết quả:</strong> Chạy <code>python scripts/run_analysis.py</code> từ
+                        thư mục gốc để tái tạo kết quả từ dữ liệu thô.
+                        Giao diện này đọc từ <code>data.js</code> được tạo bởi
+                        <code>python webapp/build_data.py</code>.<br>
+                        Thời điểm tạo data.js: <strong id="audit-gen-date"></strong>
+                    </div>
+                </section>
+
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="site-footer">
+                <div class="footer-content">
+                    <span>Nguồn dữ liệu: <strong>SEC EDGAR (10-K Filings)</strong> &amp; <strong>Yahoo Finance (^GSPC
+                            Benchmark)</strong></span>
+                    <span class="footer-sep">&bull;</span>
+                    <span>Từ điển: <strong>Loughran-McDonald (2011)</strong> &amp; <strong>Harvard IV-4</strong></span>
+                    <span class="footer-sep">&bull;</span>
+                    <span>Phần mềm đọc trực tiếp CSV từ <code>analysis_outputs/</code></span>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Toast Feedback Container (WCAG status announcement) -->
+    <div id="toast-container" class="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Embedded Data & Application Logic -->
+    <script src="data.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
