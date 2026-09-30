@@ -9,7 +9,7 @@
     "firm_year": {
       "path": "analysis_outputs/tone_firm_year.csv",
       "rows": 1000,
-      "sha256": "20ac2a7b755c74c2ba577ad486a2f6ad7b567a5a0b2782ada5b41ef0f011a5f9",
+      "sha256": "de2c4114dc673f38517be8fef757e7ffd75aa8f48244260d97e1e7527b6be655",
       "columns": [
         "ticker",
         "company_name",
@@ -80,13 +80,15 @@
     "event_filing": {
       "path": "analysis_outputs/event_study/event_filing_results.csv",
       "rows": 969,
-      "sha256": "5e302da9edd5f6b24238cd737f334341b850519e1b1be342c010e1ada269b113",
+      "sha256": "bd829ae1c2926fd109b6813a242f42494f87563ed667d3f42e22f915012b4cb8",
       "columns": [
         "ticker",
         "yahoo_ticker",
         "filing_date",
         "event_date",
         "event_date_shift",
+        "event_date_source",
+        "accepted_at_utc",
         "accession_number",
         "alpha",
         "beta",
@@ -123,7 +125,7 @@
     "event_daily": {
       "path": "analysis_outputs/event_study/event_daily_summary.csv",
       "rows": 11,
-      "sha256": "0fa2d44b80b9ab18e2e3e4799c807e68c82a05227cd863da9b38e9c957b2a353",
+      "sha256": "fa4ae41e9c501b4b6d72bc64583eb56cb51914bf40045a3104664198a99168cd",
       "columns": [
         "event_time",
         "AAR",
@@ -135,7 +137,7 @@
     "event_windows": {
       "path": "analysis_outputs/event_study/event_study_summary.csv",
       "rows": 4,
-      "sha256": "e904056a2883749c16c018a646a749ec76f05b6b236022292d78735e5a1fc8ef",
+      "sha256": "a529d5864cf30c00b710190a0c53ad459313dadd9365c3b0c4b51c639601de89",
       "columns": [
         "N",
         "CAAR",
@@ -161,7 +163,7 @@
     "regression": {
       "path": "analysis_outputs/regression/regression_results.csv",
       "rows": 76,
-      "sha256": "cf1da13b4a7699c0b45d4b92831482fe6badab49f5518e3186b6e13b839b18cd",
+      "sha256": "12e70105becbcec82f196a87b35634c77b44d9f710854198bcd5f1c39d431c5a",
       "columns": [
         "section",
         "model",
@@ -187,7 +189,7 @@
     "c2_regression": {
       "path": "analysis_outputs/c2_reduced_results.csv",
       "rows": 24,
-      "sha256": "f01c8b95fbdc6dd01dd74344e7dc797bc8cc9cc145ec6642048b69471f408f55",
+      "sha256": "1a5add4550f041d1b0834090f75d191afc9b5a2d319d6a3e16517b6183f3627e",
       "columns": [
         "model",
         "dependent_variable",

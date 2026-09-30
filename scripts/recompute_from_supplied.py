@@ -9,6 +9,7 @@ from __future__ import annotations
 import importlib.util
 import argparse
 from pathlib import Path
+import shutil
 import sys
 
 
@@ -43,6 +44,10 @@ def main(force_event: bool = False) -> None:
     if force_event or not event.FILING_OUT.exists():
         print("[1/2] Recomputing event study from supplied daily prices and tone rows...", flush=True)
         event.main()
+        metadata_event_dir = ROOT / "data/metadata/event_study_final"
+        metadata_event_dir.mkdir(parents=True, exist_ok=True)
+        for name in ("event_filing_results.csv", "event_daily_summary.csv", "event_study_summary.csv"):
+            shutil.copyfile(event_dir / name, metadata_event_dir / name)
     else:
         print("[1/2] Using existing recomputed event table; pass --force-event to recalculate.", flush=True)
 

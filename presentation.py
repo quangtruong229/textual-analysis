@@ -88,7 +88,7 @@ def results_markdown(
 
 Danh sách đầu vào gồm **{len(panel):,} hồ sơ của {panel.ticker.nunique()} công ty**, mỗi công ty có một báo cáo cho từng **năm nộp** 2016–2025. Item 7 đủ điều kiện tạo điểm tone ở **{int(panel.has_method_score.sum())} hồ sơ**; **{int(panel.has_event_car.sum())} hồ sơ** có thêm AR/CAR. C2 rút gọn còn **{int(c2_baseline.n)} hồ sơ thuộc {int(c2_baseline.n_firms)} công ty** sau khi đòi hỏi đủ bốn biến kiểm soát. Có {report_year_2015} hồ sơ nộp năm 2016 với kỳ báo cáo kết thúc năm 2015; vì vậy “năm nộp” phải được phân biệt với “năm tài chính”.
 
-## Phản ứng giá quanh ngày nộp 10-K
+## Phản ứng giá quanh ngày công bố 10-K
 
 CAAR là CAR trung bình của các hồ sơ trong mẫu. Bảng này kiểm tra phản ứng trung bình quanh sự kiện, **không phải** hệ số của tone.
 
@@ -126,5 +126,5 @@ C2 trong bảng dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Do yêu 
 
 ## Kết luận sử dụng được và giới hạn
 
-Dữ liệu cho thấy có phản ứng lợi suất bất thường trung bình quanh ngày nộp 10-K và tone khác nhau đáng kể giữa hai từ điển. Mối liên hệ riêng giữa tone LM và CAR **không ổn định qua cửa sổ và cách tính sai số chuẩn**, nên chưa có cơ sở để nói tone gây ra biến động giá. Phần chi tiết cách tính nằm ở tab **Phương pháp**; trạng thái hồ sơ và các phép kiểm tra nằm ở tab **Kiểm tra**.
+Dữ liệu cho thấy có phản ứng lợi suất bất thường trung bình quanh ngày công bố 10-K và tone khác nhau đáng kể giữa hai từ điển. Mối liên hệ riêng giữa tone LM và CAR **không ổn định qua cửa sổ và cách tính sai số chuẩn**, nên chưa có cơ sở để nói tone gây ra biến động giá. Phần chi tiết cách tính nằm ở tab **Phương pháp**; trạng thái hồ sơ và các phép kiểm tra nằm ở tab **Kiểm tra**.
 """

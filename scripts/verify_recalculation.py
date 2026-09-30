@@ -81,7 +81,31 @@ def main() -> None:
 
     events = pd.read_csv(OUT / "event_study/event_filing_results.csv", dtype={"accession_number": str})
     ar = pd.read_csv(OUT / "event_study/event_ar_long.csv", dtype={"accession_number": str})
+    if not events.event_date_source.eq("sec_acceptance_time").all():
+        raise AssertionError("Some event dates did not use SEC acceptance time")
+    if events.accepted_at_utc.isna().any():
+        raise AssertionError("SEC acceptance timestamps are missing")
     calendar_checks = check_event_calendar(events, ar)
+    calendar_checks["sec_timestamps_matched"] = len(events)
+    calendar_checks["sessions_shifted_after_filing_date"] = int(events.event_date_shift.sum())
+
+    controls = pd.read_csv(source / "controls/controls_item7.csv")
+    if pd.to_datetime(controls.filing_date, format="%Y-%m-%d", errors="coerce").isna().any():
+        raise AssertionError("Control filing dates are not ISO dates")
+    with_shares = controls.dropna(subset=["shares_outstanding", "shares_split_adjusted", "split_factor"])
+    if not np.isclose(
+        with_shares.shares_split_adjusted,
+        with_shares.shares_outstanding * with_shares.split_factor,
+        rtol=1e-9,
+    ).all():
+        raise AssertionError("Split-adjusted shares do not match SEC shares and split factor")
+    with_cap = controls.dropna(subset=["price_tminus1", "shares_split_adjusted", "market_cap_tminus1"])
+    if not np.isclose(
+        with_cap.market_cap_tminus1,
+        with_cap.price_tminus1 * with_cap.shares_split_adjusted,
+        rtol=1e-9,
+    ).all():
+        raise AssertionError("Market cap uses a different share basis than the historical price")
     car_checks = {}
     for label, lo, hi in (("CAR_m1_p1", -1, 1), ("CAR_0_p3", 0, 3),
                           ("CAR_m3_p3", -3, 3), ("CAR_m5_p5", -5, 5)):
@@ -138,7 +162,9 @@ def main() -> None:
     summary = {
         "source_sha256": {str(p.relative_to(ROOT)): sha256(p) for p in [
             ROOT / "data/market_data/daily_prices.csv",
+            ROOT / "data/market_data/stock_splits.csv",
             source / "filings_2016_2025.csv",
+            source / "filing_acceptance.csv",
             source / "tone_method_item7.csv",
             source / "controls/controls_item7.csv",
         ]},

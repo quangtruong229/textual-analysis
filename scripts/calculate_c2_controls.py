@@ -28,10 +28,9 @@ def main() -> None:
     sample = pd.read_csv(SAMPLE, dtype={"ticker": str, "filing_date": str})
     controls = pd.read_csv(CONTROLS, dtype={"ticker": str, "filing_date": str})
     sample["filing_date"] = sample["filing_date"].str[:10]
-    # The supplied controls CSV serializes dates as "('YYYY-MM-DD',)".
-    controls["filing_date"] = controls["filing_date"].str.extract(
-        r"(\d{4}-\d{2}-\d{2})", expand=False
-    )
+    controls["filing_date"] = pd.to_datetime(
+        controls["filing_date"], format="%Y-%m-%d", errors="raise"
+    ).dt.strftime("%Y-%m-%d")
     cols = ["ticker", "filing_date", "status", *PREDICTORS[1:]]
     if controls.duplicated(["ticker", "filing_date"]).any():
         raise ValueError("Duplicate control rows by ticker and filing date")

@@ -62,6 +62,8 @@ EVENT_PATH = Path(
     "data/metadata/event_study_final/event_filing_results.csv"
 )
 PRICE_PATH = Path("data/market_data/daily_prices.csv")
+SPLITS_PATH = Path("data/market_data/stock_splits.csv")
+COVERAGE_PATH = Path("data/market_data/stock_split_coverage.csv")
 
 OUT_DIR = Path("data/metadata/controls")
 OUTPUT_PATH = OUT_DIR / "controls_item7.csv"
@@ -76,7 +78,7 @@ REQUEST_TIMEOUT = 30
 
 USER_AGENT = os.environ.get(
     "SEC_USER_AGENT",
-    "textual-analysis-research/1.0 (research@example.com)",
+    "",
 )
 
 
@@ -103,6 +105,9 @@ def get_sec_facts(cik: str) -> dict:
                 return json.load(fh)
         except Exception:
             pass
+
+    if not USER_AGENT:
+        raise RuntimeError("Set SEC_USER_AGENT to a project name and contact email")
 
     url = SEC_URL.format(cik=cik10)
 
@@ -194,7 +199,7 @@ def iter_fact_entries(
 def choose_shares(
     facts: dict,
     filing_date: pd.Timestamp,
-) -> tuple[float | None, str, str]:
+) -> tuple[float | None, str, str, str]:
 
     """
     Prefer DEI cover-page shares outstanding.
@@ -225,7 +230,7 @@ def choose_shares(
         source = "us-gaap_CommonStockSharesOutstanding"
 
     if not candidates:
-        return None, source, "missing"
+        return None, source, "missing", ""
 
     valid = []
 
@@ -266,7 +271,7 @@ def choose_shares(
         )
 
     if not valid:
-        return None, source, "no_valid_10k_fact"
+        return None, source, "no_valid_10k_fact", ""
 
     # Prefer latest as-of date, then latest filed date.
     valid.sort(
@@ -274,9 +279,9 @@ def choose_shares(
         reverse=True,
     )
 
-    _, _, value, _ = valid[0]
+    asof, _, value, _ = valid[0]
 
-    return value, source, "ok"
+    return value, source, "ok", asof.strftime("%Y-%m-%d")
 
 
 BOOK_EQUITY_TAGS = [
@@ -413,6 +418,18 @@ def previous_trading_price(
         float(price),
         str(row["date"].date()),
     )
+
+
+def split_factor(splits: pd.DataFrame, ticker: str, shares_asof: str,
+                 last_price_date: pd.Timestamp) -> float:
+    """Align historical SEC shares with Yahoo's split-adjusted Close/Volume."""
+    asof = pd.Timestamp(shares_asof)
+    relevant = splits.loc[
+        splits["ticker"].eq(ticker)
+        & splits["date"].gt(asof)
+        & splits["date"].le(last_price_date), "ratio"
+    ]
+    return float(relevant.prod()) if not relevant.empty else 1.0
 
 
 def compute_turnover(
@@ -641,6 +658,15 @@ def main() -> int:
         PRICE_PATH
     )
 
+    coverage = pd.read_csv(COVERAGE_PATH)
+    required_tickers = set(filings["ticker"].astype(str).str.upper().str.strip())
+    checked = set(coverage.loc[coverage.status.eq("ok"), "ticker"])
+    if not required_tickers.issubset(checked):
+        raise ValueError("Missing verified split history for some companies")
+    splits = pd.read_csv(SPLITS_PATH)
+    splits["date"] = pd.to_datetime(splits["date"])
+    last_price_date = pd.to_datetime(prices["date"]).max()
+
     filings["filing_date"] = pd.to_datetime(
         filings["filing_date"],
         errors="coerce",
@@ -744,10 +770,12 @@ def main() -> int:
             "filing_date": (
                 filing_date.strftime("%Y-%m-%d")
                 if pd.notna(filing_date)
-                else "",
+                else ""
             ),
             "cik": cik_map.get(ticker),
             "shares_outstanding": np.nan,
+            "shares_split_adjusted": np.nan,
+            "split_factor": np.nan,
             "shares_source": "",
             "shares_status": "",
             "shares_asof": "",
@@ -816,7 +844,7 @@ def main() -> int:
             rows.append(row)
             continue
 
-        shares, shares_source, shares_status = (
+        shares, shares_source, shares_status, shares_asof = (
             choose_shares(
                 facts,
                 filing_date,
@@ -830,66 +858,12 @@ def main() -> int:
         )
         row["shares_source"] = shares_source
         row["shares_status"] = shares_status
+        row["shares_asof"] = shares_asof
 
-        # Find shares as-of date
         if shares is not None:
-
-            share_candidates = []
-
-            for tag_tax, tag_name in [
-                (
-                    "dei",
-                    "EntityCommonStockSharesOutstanding",
-                ),
-                (
-                    "us-gaap",
-                    "CommonStockSharesOutstanding",
-                ),
-            ]:
-
-                for x in iter_fact_entries(
-                    facts,
-                    tag_tax,
-                    tag_name,
-                ):
-
-                    if x.get("_unit") != "shares":
-                        continue
-
-                    try:
-                        end = pd.Timestamp(
-                            x["end"]
-                        )
-                        filed = pd.Timestamp(
-                            x["filed"]
-                        )
-                        val = float(
-                            x["val"]
-                        )
-                    except Exception:
-                        continue
-
-                    if (
-                        filed <= filing_date
-                        and end <= filing_date
-                        and val > 0
-                    ):
-                        share_candidates.append(
-                            (
-                                end,
-                                filed,
-                                val,
-                            )
-                        )
-
-            if share_candidates:
-                share_candidates.sort(
-                    reverse=True
-                )
-                row["shares_asof"] = (
-                    share_candidates[0][0]
-                    .strftime("%Y-%m-%d")
-                )
+            factor = split_factor(splits, ticker, shares_asof, last_price_date)
+            row["split_factor"] = factor
+            row["shares_split_adjusted"] = shares * factor
 
         # ----------------------------------------------------
         # Price t-1
@@ -919,7 +893,7 @@ def main() -> int:
         if shares is not None:
 
             market_cap = (
-                price * shares
+                price * row["shares_split_adjusted"]
             )
 
             if market_cap > 0:
@@ -989,7 +963,7 @@ def main() -> int:
             ) = compute_turnover(
                 stock_df,
                 filing_date,
-                shares,
+                row["shares_split_adjusted"],
             )
 
             row["turnover_raw"] = (
