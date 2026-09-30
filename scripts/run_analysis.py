@@ -27,6 +27,7 @@ def main() -> None:
         ("extended_event_tests.py", []),
         ("calculate_c2_controls.py", []),
         ("build_firm_year_panel.py", []),
+        ("optional_robustness.py", []),
         ("summarize_dictionary_comparison.py", []),
         ("export_presentation.py", []),
         ("verify_recalculation.py", []),

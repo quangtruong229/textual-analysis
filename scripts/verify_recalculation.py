@@ -99,6 +99,25 @@ def main() -> None:
         raise AssertionError("Invalid extended-test p-values")
     if not power.theoretical_power.between(0, 1).all():
         raise AssertionError("Invalid theoretical power values")
+    b6 = pd.read_csv(OUT / "event_study/b6_robustness_tests.csv")
+    delayed = pd.read_csv(OUT / "event_study/delayed_filing_results.csv")
+    c5 = pd.read_csv(OUT / "c5_reduced_results.csv")
+    c6 = pd.read_csv(OUT / "c6_delayed_results.csv")
+    c7 = pd.read_csv(OUT / "c7_cross_section_results.csv")
+    c8 = pd.read_csv(OUT / "c8_fama_macbeth_summary.csv")
+    if set(b6.window) != set(extended.window) or len(delayed) != len(events):
+        raise AssertionError("B6/C6 event coverage changed")
+    if delayed[["car_p5_p5", "car_p5_p10", "car_p5_p22"]].notna().sum().ne(
+            [969, 969, 963]).any():
+        raise AssertionError("C6 complete-case coverage changed")
+    if not c5.n.eq(769).all() or not c7.n.eq(862).all():
+        raise AssertionError("C5/C7 sample coverage changed")
+    if not c8.n_years.eq(10).all():
+        raise AssertionError("C8 needs ten annual coefficients")
+    if not b6[["standardized_p", "cross_sectional_p"]].stack().between(0, 1).all():
+        raise AssertionError("Invalid B6 p-values")
+    if not c6[["p_hc3_two_sided", "p_cluster_two_sided"]].stack().between(0, 1).all():
+        raise AssertionError("Invalid C6 p-values")
     original_bw = pd.read_csv(OUT / "event_study/event_study_summary.csv")
     original_bw = original_bw.loc[original_bw.window.eq("CAR_m5_p5")].iloc[0]
     updated_bw = extended.loc[extended.window.eq("CAR_m5_p5")].iloc[0]
@@ -198,6 +217,11 @@ def main() -> None:
         "extended_event_tests": {"brown_warner_windows": len(extended),
                                  "corrado_days": len(corrado),
                                  "power_scenarios": len(power)},
+        "optional_robustness": {"b6_windows": len(b6), "c5_filings": int(c5.n.iloc[0]),
+                                "c6_windows": int(c6.dependent_variable.nunique()),
+                                "c6_long_window_filings": int(delayed.car_p5_p22.notna().sum()),
+                                "c7_filings": int(c7.n.iloc[0]),
+                                "c8_years": int(c8.n_years.iloc[0])},
         "tone_arithmetic": tone_checks,
         "car_arithmetic": car_checks,
     }

@@ -207,6 +207,160 @@
         "theoretical_power"
       ]
     },
+    "b6_robustness": {
+      "path": "analysis_outputs/event_study/b6_robustness_tests.csv",
+      "rows": 4,
+      "sha256": "454d2394100a319fdb475d8b3336392cc8dbc0cf11d8f95a29e4df54f7065b1e",
+      "columns": [
+        "window",
+        "n",
+        "caar",
+        "standardized_z",
+        "standardized_p",
+        "cross_sectional_se",
+        "cross_sectional_z",
+        "cross_sectional_p"
+      ]
+    },
+    "c5_reduced": {
+      "path": "analysis_outputs/c5_reduced_results.csv",
+      "rows": 6,
+      "sha256": "50541d472e5b88026cf7494b81bb79d725e2a632d5046b6c7c4b68d84d345f58",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided"
+      ]
+    },
+    "c5_sample": {
+      "path": "analysis_outputs/c5_reduced_sample.csv",
+      "rows": 769,
+      "sha256": "af4d2ad7a678cb3378e48141c52182f8011c1dddb3022bfde1bfcf2cae738783",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "filing_year",
+        "lm_net_prop",
+        "lag_tone",
+        "lag_year",
+        "status",
+        "size",
+        "bm",
+        "volatility",
+        "turnover",
+        "z_size",
+        "z_bm",
+        "z_volatility",
+        "z_turnover",
+        "z_lag_tone"
+      ]
+    },
+    "c6_delayed": {
+      "path": "analysis_outputs/c6_delayed_results.csv",
+      "rows": 6,
+      "sha256": "31ac5f907ec3ebea50400f0a4bc23daf6bc3ad1bef212ccd1cdf718fc21c8695",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided"
+      ]
+    },
+    "delayed_filings": {
+      "path": "analysis_outputs/event_study/delayed_filing_results.csv",
+      "rows": 969,
+      "sha256": "dc4f7b0a5346ce9e5930927d876035fead28f7ada9f68880eb60bf6bdc8008e2",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "accession_number",
+        "car_p5_p5",
+        "car_p5_p10",
+        "car_p5_p22"
+      ]
+    },
+    "c7_cross_section": {
+      "path": "analysis_outputs/c7_cross_section_results.csv",
+      "rows": 6,
+      "sha256": "64ecc1e767a116b55d0a095b2858f5cb06c22657d66c0b8a391a5bbc784a6b87",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided"
+      ]
+    },
+    "c7_sample": {
+      "path": "analysis_outputs/c7_cross_section_sample.csv",
+      "rows": 862,
+      "sha256": "4368a3b51660f27096a9fcf17317b02edd5f48e9e682be275c16c41add8ccef6",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "car_m1_p1",
+        "car_0_p3",
+        "car_m3_p3",
+        "car_m5_p5",
+        "lm_net_prop",
+        "size",
+        "bm",
+        "volatility",
+        "turnover",
+        "ar_day0"
+      ]
+    },
+    "c8_annual": {
+      "path": "analysis_outputs/c8_annual_coefficients.csv",
+      "rows": 80,
+      "sha256": "9634a06ff4d909fdacdaea70018aa10af5743ad5558a16e979606e43258adb69",
+      "columns": [
+        "model",
+        "filing_year",
+        "term",
+        "n",
+        "coefficient"
+      ]
+    },
+    "c8_summary": {
+      "path": "analysis_outputs/c8_fama_macbeth_summary.csv",
+      "rows": 8,
+      "sha256": "5a30c373fe98dbafd6276a0d0a3d97a0cf915961c6ecdc4b2d6479f4006dfbab",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n_years",
+        "mean_coefficient",
+        "se_across_years",
+        "t_stat",
+        "p_two_sided"
+      ]
+    },
     "regression": {
       "path": "analysis_outputs/regression/regression_results.csv",
       "rows": 76,

@@ -15,6 +15,8 @@ Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV 
 
 Lệnh này cũng tính Brown–Warner cho bốn cửa sổ, kiểm tra tự tương quan B7, Corrado theo ngày và sức mạnh kiểm định lý thuyết B8. Các bảng nằm trong `analysis_outputs/event_study/`. Word Power chưa tính được từ CSV tone tổng hợp vì thiếu tần suất của từng từ theo từng báo cáo; các hồi quy hiện hành dùng tone tỷ lệ/tf.idf, không được gọi là kiểm định H1 Word Power.
 
+Lệnh còn xuất các kiểm định độ vững B6 và đặc tả C5–C8 có thể ước lượng từ dữ liệu hiện có. Đọc [`analysis_outputs/ROBUSTNESS_RESULTS.md`](analysis_outputs/ROBUSTNESS_RESULTS.md) trước khi dùng các bảng: C5/C7 và một đặc tả C8 là mô hình rút gọn; C6 dùng các phiên `[+5,+5]`, `[+5,+10]`, `[+5,+22]` và loại hồ sơ thiếu giá trong từng cửa sổ. Không dùng các kết quả này thay cho Word Power hoặc C2 đầy đủ.
+
 ## Dữ liệu và kết quả
 
 `data/` giữ dữ liệu đầu vào của nhóm. **Nguồn kết quả dùng cho trình bày là `analysis_outputs/`**, kể cả CAR trong bảng công ty–năm. Chạy `scripts/run_analysis.py` để tái tạo bộ kết quả từ các đầu vào này.
