@@ -1,0 +1,20 @@
+SEC ACCRUAL INPUT PROFILING COMPLETE
+Filings profiled: 1000
+Companies profiled: 100
+Cache files available: 100
+Candidate fact rows written: 162577
+Unique concepts in inventory: 5322
+
+Files:
+  company_structure.csv
+  concept_inventory.csv
+  filing_coverage.csv
+  filing_candidate_facts.csv
+  target_concept_usage.csv
+  discovery_concepts.csv
+  profiling_summary.txt
+
+Important:
+  filing_coverage.csv contains exactly one row per selected filing.
+  Dates are handled as ISO strings to avoid expensive per-fact datetime parsing.
+  Candidate facts obey fact.filed <= filing.filing_date.

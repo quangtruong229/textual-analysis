@@ -486,6 +486,18 @@ def calculate_scores(
         pos_tfidf_score
         - neg_tfidf_score
     )
+    # --------------------------------------------------------
+    # A4 WORD POWER (TF-IDF weighted lexical power)
+    # --------------------------------------------------------
+
+    word_power_positive = pos_tfidf
+
+    word_power_negative = neg_tfidf
+
+    word_power_net = (
+        word_power_positive
+        - word_power_negative
+    )
 
     return {
         "total_words": total_words,
@@ -507,6 +519,9 @@ def calculate_scores(
         "positive_tfidf": pos_tfidf_score,
         "negative_tfidf": neg_tfidf_score,
         "net_tfidf": net_tfidf_score,
+        "word_power_positive": word_power_positive,
+        "word_power_negative": word_power_negative,
+        "word_power_net": word_power_net,
     }
 
 

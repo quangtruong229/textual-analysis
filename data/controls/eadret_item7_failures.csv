@@ -1,0 +1,10 @@
+ticker,cik,tenk_filing_date,tenk_report_date,tenk_accession,tenk_acceptance_datetime_utc,announcement_accession,announcement_filing_date,announcement_report_date,acceptance_datetime_utc,acceptance_datetime_et,announcement_session,event_start,event_end,event_rule,session_close_utc,window_dates,stock_return,market_return,eadret,status,note
+ECHO,0001415404,2016-02-24,2015-12-31,0001104659-16-099355,2016-02-24T11:03:32+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2018-02-22,2017-12-31,0001415404-18-000005,2018-02-22T00:48:40+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2019-02-21,2018-12-31,0001415404-19-000003,2019-02-21T01:04:45+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2020-02-20,2019-12-31,0001415404-20-000005,2020-02-20T12:57:39+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2021-02-23,2020-12-31,0001415404-21-000005,2021-02-23T01:08:08+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2022-02-24,2021-12-31,0001415404-22-000005,2022-02-23T23:57:38+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2023-02-23,2022-12-31,0001415404-23-000005,2023-02-22T22:59:27+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2024-02-29,2023-12-31,0001558370-24-002209,2024-02-29T22:01:16+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,
+ECHO,0001415404,2025-02-27,2024-12-31,0001558370-25-001663,2025-02-27T11:02:08+00:00,,,,,,,-1,1,,,,,,,no_valid_prior_earnings_announcement,

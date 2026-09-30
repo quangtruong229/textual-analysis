@@ -1,0 +1,11 @@
+ticker,cik,tenk_filing_date,tenk_accession,candidate_accession,candidate_filing_date,candidate_acceptance,items,days_from_10k,relation_to_10k_acceptance,audit_note
+ECHO,0001415404,2016-02-24,0001104659-16-099355,0001104659-16-099424,2016-02-24,2016-02-24T13:05:13+00:00,"2.02,9.01",0,after_10k_acceptance,
+ECHO,0001415404,2018-02-22,0001415404-18-000005,0001415404-17-000002,2017-01-31,2017-01-31T21:58:28+00:00,"1.01,2.02,7.01,9.01",-387,before_10k_acceptance,
+ECHO,0001415404,2018-02-22,0001415404-18-000005,0001415404-17-000012,2017-02-24,2017-02-24T13:14:25+00:00,"2.02,9.01",-363,before_10k_acceptance,
+ECHO,0001415404,2019-02-21,0001415404-19-000003,,,,,,,No Item 2.02 candidate within -400/+10 days
+ECHO,0001415404,2020-02-20,0001415404-20-000005,,,,,,,No Item 2.02 candidate within -400/+10 days
+ECHO,0001415404,2021-02-23,0001415404-21-000005,,,,,,,No Item 2.02 candidate within -400/+10 days
+ECHO,0001415404,2022-02-24,0001415404-22-000005,,,,,,,No Item 2.02 candidate within -400/+10 days
+ECHO,0001415404,2023-02-23,0001415404-23-000005,,,,,,,No Item 2.02 candidate within -400/+10 days
+ECHO,0001415404,2024-02-29,0001558370-24-002209,,,,,,,No Item 2.02 candidate within -400/+10 days
+ECHO,0001415404,2025-02-27,0001558370-25-001663,,,,,,,No Item 2.02 candidate within -400/+10 days

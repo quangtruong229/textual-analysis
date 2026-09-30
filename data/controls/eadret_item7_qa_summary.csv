@@ -1,0 +1,9 @@
+metric,value
+total_filings,1000.0
+success,991.0
+failures,9.0
+success_rate,0.991
+status::success,991.0
+status::no_valid_prior_earnings_announcement,9.0
+event_rule::after_actual_close_to_next_session,508.0
+event_rule::same_session_before_or_at_actual_close,483.0
