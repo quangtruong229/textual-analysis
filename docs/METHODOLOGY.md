@@ -43,7 +43,7 @@ Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa s
 - **C4:** `CAR_i = a + b·LM_net_i + c·Harvard_net_i + ε_i`, với phiên bản tỷ lệ và tf.idf.
 - **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch. Giá Yahoo lịch sử và số cổ phiếu SEC được đưa về cùng cơ sở chia tách bằng `stock_splits.csv` trước khi tính Size, BM và Turnover.
 
-Nếu H1/H2 được viết đúng như đặc tả của nhóm với `ScorePos` Word Power và đủ sáu biến kiểm soát, các hồi quy hiện có **chưa kiểm định H1/H2 đó**. C3 chỉ là đối chứng dùng positive/negative tone dạng tỷ lệ, không có đủ sáu biến kiểm soát. Muốn giữ nguyên H1/H2 Word Power cần bổ sung văn bản Item 7 hoặc bảng tần suất từng từ theo hồ sơ, rồi ước lượng trọng số ngoài năm kiểm định; EADRet và Accruals cũng chưa có để chạy mô hình đầy đủ. Không diễn giải hệ số C3 như hệ số Word Power.
+Nếu H1/H2 được viết với `ScorePos` Word Power, các hồi quy hiện có **chưa kiểm định H1/H2 đó**. C3 dùng positive/negative tone dạng tỷ lệ; bản bổ sung đã có sáu biến kiểm soát nhưng vẫn chưa có Word Power. Muốn giữ nguyên H1/H2 Word Power cần bổ sung văn bản Item 7 hoặc bảng tần suất từng từ theo hồ sơ, rồi ước lượng trọng số ngoài năm kiểm định. Không diễn giải hệ số tone tỷ lệ như hệ số Word Power.
 
 C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; số quan sát và công ty được ghi trong `c2_reduced_results.csv`. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu.
 
@@ -56,14 +56,22 @@ Phần **Hàm ý tài chính** trong `presentation.py` được sinh lại từ 
 `scripts/optional_robustness.py` xuất kết quả đầy đủ và giải thích tại `analysis_outputs/ROBUSTNESS_RESULTS.md`:
 
 - **B6:** chuẩn hóa CAR từng hồ sơ bằng độ lệch chuẩn AR trong 239 phiên ước lượng và căn bậc hai độ dài cửa sổ; cộng thống kê dưới giả định độc lập chéo. Đối chứng phương sai cắt ngang dùng `N⁻² Σ(CARᵢ − CAAR)²` theo Eq. 21 trong bộ công thức. Hai phép này kiểm tra CAAR trung bình, không kiểm định tone.
-- **C5 rút gọn:** `LM_net_prop` phụ thuộc vào Size, BM, Volatility, Turnover và tone của đúng năm nộp trước. Chỉ chuẩn hóa các biến giải thích trên mẫu hoàn chỉnh. Thiếu EADRet/Accruals nên chưa phải Eq. 11 đầy đủ.
+- **C5 rút gọn:** `LM_net_prop` phụ thuộc vào Size, BM, Volatility, Turnover và tone của đúng năm nộp trước. Chỉ chuẩn hóa các biến giải thích trên mẫu hoàn chỉnh. Bản sáu controls với EADRet/Accruals được xuất riêng ở mục 6.
 - **C6:** cộng AR theo mô hình thị trường từ phiên +5 đến +5, +10 hoặc +22, rồi hồi quy từng CAR sau sự kiện theo `LM_net_prop`. Ngày +5 nằm trong cả ba cửa sổ theo cách viết Eq. 17 của nhóm. Không điền 0 cho phiên thiếu; mẫu của từng cửa sổ được ghi riêng.
 - **C7:** hồi quy cắt ngang AR ngày 0 theo `LM_net_prop` và bốn biến kiểm soát với HC3 và sai số chuẩn cụm công ty. Phiên bản CAR tương ứng đã có trong C2 rút gọn; không báo lại như một ước lượng độc lập mới.
 - **C8:** ước lượng hồi quy cắt ngang CAR `[0,+3]` riêng cho từng năm nộp 2016–2025, rồi lấy trung bình 10 hệ số năm, sai số chuẩn từ độ phân tán giữa các năm và p theo t với 9 bậc tự do. Có đặc tả C1 tone tỷ lệ và C2 bốn biến kiểm soát, chưa có Word Power/C2 đầy đủ.
 
 Các p-value vẫn nhạy với sự kiện trùng ngày, phụ thuộc chéo giữa công ty, chọn cửa sổ và số năm chỉ bằng 10. Không chọn một kết quả mở rộng có p nhỏ để thay kết luận chính.
 
-## 6. Kiểm tra và khả năng chạy lại
+## 6. EADRet, Accruals và mô hình sáu biến kiểm soát
+
+Hai CSV `data/metadata/controls/eadret_item7.csv` và `accruals_item7.csv` được chép nguyên từ nhánh `finalize-eadret-accruals`, commit `0ee574c`. Script `calculate_full_controls.py` kiểm tra đủ 1.000 khóa hồ sơ, accession 10-K, kỳ báo cáo, thứ tự thời gian của thông báo lợi nhuận và số học từng biến. `EADRet` là lợi suất ba ngày quanh 8-K Item 2.02 trừ lợi suất `^GSPC`; 991 hồ sơ có giá trị. Accruals là công thức Sloan trên các thành phần SEC Company Facts chia cho tài sản bình quân. Có 571 hàng `PASS`, 341 `WARN`, 88 `STRUCTURAL_MISSING`; mô hình chính chỉ dùng `PASS`, không diễn giải giá trị số ở hàng `WARN` là đã xác minh.
+
+Bốn controls Size, BM, Volatility, Turnover được giữ theo **định nghĩa và dữ liệu của nhánh main**. Bảng `controls_item7_final6.csv` ở nhánh nguồn dùng các quy tắc đo lường khác nên không thay thế trực tiếp. Giao với mẫu CAR và bốn controls hiện hành còn 481 hồ sơ của 71 công ty. Trên cùng 481 hàng, script ước lượng C2 bốn controls đối chứng, C2 sáu controls, C3 positive/negative tone sáu controls; C5 thêm tone năm trước còn 431 hàng. Hệ số HC3 và cụm công ty được xuất ở `analysis_outputs/`, cùng báo cáo `FULL_CONTROLS_REVIEW.md`. Đây là bộ **đủ sáu controls** với tone LM dạng tỷ lệ; H1 viết theo ScorePos Word Power vẫn chưa được kiểm định.
+
+Nhánh nguồn có các cột đặt tên `word_power`, nhưng trong `src/build_method_scores.py` chúng bằng tổng TF-IDF chưa chuẩn hóa, không có bước ước lượng trọng số từ theo phản ứng thị trường. Vì vậy không nhập các cột đó hoặc nhận là Word Power. Các CSV mới cho phép tính lại hồi quy offline, nhưng bước dựng `EADRet`/`Accruals` từ toàn bộ nguồn SEC vẫn cần kiểm toán riêng nếu muốn tái lập từ dữ liệu gốc.
+
+## 7. Kiểm tra và khả năng chạy lại
 
 `scripts/run_analysis.py` chạy toàn bộ các bước theo thứ tự, mặc định tính lại nghiên cứu sự kiện từ bảng giá, rồi chạy hồi quy, tạo bảng công ty–năm và xuất kết quả. `scripts/verify_recalculation.py` kiểm tra ngày `0`, số ngày cửa sổ, số học tone, tổng AR thành CAR và độ phủ bảng công ty–năm. Kết quả kiểm tra hiện hành có 969/969 ngày `0` khớp ngày sự kiện. Chi tiết và SHA-256 của đầu vào nằm trong `analysis_outputs/verification.json`.
 

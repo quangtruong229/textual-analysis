@@ -35,4 +35,4 @@ AR ngày 0 được hồi quy theo LM net tỷ lệ và bốn biến kiểm soá
 
 Hồi quy cắt ngang riêng cho từng năm 2016–2025, sau đó lấy trung bình **10 hệ số năm** và tính sai số chuẩn từ độ phân tán giữa các năm (t với 9 bậc tự do). Dùng CAR `[0,+3]`. Đặc tả C1 tỷ lệ: hệ số tone trung bình = -0.2800, p = 0.1708; đặc tả C2 rút gọn: -0.2888, p = 0.1094. Chỉ có 10 năm, nên sức mạnh kiểm định hạn chế; cả hai mô hình không dùng Word Power.
 
-Các CSV trong `analysis_outputs/` và `analysis_outputs/event_study/` lưu toàn bộ hệ số, p-value, cỡ mẫu và hồ sơ. Word Power, C2/C5 đầy đủ, kiểm tra ngữ cảnh từng từ và khả năng tái tạo bước xử lý văn bản vẫn cần dữ liệu gốc bổ sung.
+Các CSV trong `analysis_outputs/` và `analysis_outputs/event_study/` lưu toàn bộ hệ số, p-value, cỡ mẫu và hồ sơ. C2/C5 sáu controls từ hai bảng mới được tính riêng bởi `calculate_full_controls.py` và giải thích ở `FULL_CONTROLS_REVIEW.md`. Word Power, kiểm tra ngữ cảnh từng từ và khả năng tái tạo bước xử lý văn bản vẫn cần dữ liệu gốc bổ sung.

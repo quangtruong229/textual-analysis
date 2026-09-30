@@ -5,7 +5,9 @@
     "data\\metadata\\filings_2016_2025.csv": "3e701d5c6bdec10321aedc9646c9b67f0d8c7152364313a93c9e0be9a236b73b",
     "data\\metadata\\filing_acceptance.csv": "83b4656f59c81b3b2c861ea5a88f490734815035f0515a775ab9c0362ea42a2b",
     "data\\metadata\\tone_method_item7.csv": "4bcaa3df8c7b49eadb399a60db3a36c3c6c2367b274ae1a8e09e73dc0c2dd9c1",
-    "data\\metadata\\controls\\controls_item7.csv": "c08fa0d3c6e81fa634e8c36ea7e8530eae1565bd471e7e33a370ddce34df6e56"
+    "data\\metadata\\controls\\controls_item7.csv": "c08fa0d3c6e81fa634e8c36ea7e8530eae1565bd471e7e33a370ddce34df6e56",
+    "data\\metadata\\controls\\eadret_item7.csv": "dc82663347768fab679da12c269ddc3f8a15e0a108c28176513c1e20b7325738",
+    "data\\metadata\\controls\\accruals_item7.csv": "0f89ec9536c0dbc738d73abb05b3ff4a1036aa3075363f8a7bf38f341639ca65"
   },
   "input_filings": 1000,
   "input_firms": 100,
@@ -15,6 +17,21 @@
   "missing_event": 31,
   "c2_complete_cases": 862,
   "c2_firms": 96,
+  "full_controls": {
+    "input_filings": 1000,
+    "eadret_success": 991,
+    "accruals_pass": 571,
+    "accruals_warn": 341,
+    "accruals_structural_missing": 88,
+    "eadret_arithmetic_mismatches": 0,
+    "accession_mismatches": 0,
+    "report_date_mismatches": 0,
+    "current_four_control_sample": 862,
+    "six_control_complete_cases": 481,
+    "six_control_firms": 71,
+    "c5_six_control_complete_cases": 431,
+    "c5_six_control_firms": 71
+  },
   "firm_year_rows": 1000,
   "dictionary_opposite_sign": 861,
   "event_calendar": {

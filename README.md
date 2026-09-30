@@ -11,11 +11,13 @@ python -m pip install -r requirements.txt
 python scripts/run_analysis.py
 ```
 
-Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV có sẵn trong repo**. Mặc định lệnh này tính lại nghiên cứu sự kiện từ bảng giá và giờ SEC chấp nhận hồ sơ, chạy C1/C3/C4 và C2 rút gọn, tạo bảng công ty–năm và so sánh từ điển, rồi kiểm tra tính nhất quán và xuất kết quả. Thứ tự chạy được quản lý trong `scripts/run_analysis.py`; không cần chạy rời từng bước. Tính AR/CAR từ gần 280.000 hàng giá sẽ lâu hơn riêng bước hồi quy C2. Terminal hiển thị tiến trình; các bảng đầy đủ được lưu trong `analysis_outputs/`.
+Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV có sẵn trong repo**. Mặc định lệnh này tính lại nghiên cứu sự kiện từ bảng giá và giờ SEC chấp nhận hồ sơ, chạy C1/C3/C4, C2 bốn controls và C2/C3/C5 sáu controls từ dữ liệu bổ sung, tạo bảng công ty–năm, rồi kiểm tra tính nhất quán và xuất kết quả. Thứ tự chạy được quản lý trong `scripts/run_analysis.py`; không cần chạy rời từng bước. Tính AR/CAR từ gần 280.000 hàng giá sẽ lâu hơn riêng bước hồi quy. Terminal hiển thị tiến trình; các bảng đầy đủ được lưu trong `analysis_outputs/`.
 
 Lệnh này cũng tính Brown–Warner cho bốn cửa sổ, kiểm tra tự tương quan B7, Corrado theo ngày và sức mạnh kiểm định lý thuyết B8. Các bảng nằm trong `analysis_outputs/event_study/`. Word Power chưa tính được từ CSV tone tổng hợp vì thiếu tần suất của từng từ theo từng báo cáo; các hồi quy hiện hành dùng tone tỷ lệ/tf.idf, không được gọi là kiểm định H1 Word Power.
 
 Lệnh còn xuất các kiểm định độ vững B6 và đặc tả C5–C8 có thể ước lượng từ dữ liệu hiện có. Đọc [`analysis_outputs/ROBUSTNESS_RESULTS.md`](analysis_outputs/ROBUSTNESS_RESULTS.md) trước khi dùng các bảng: C5/C7 và một đặc tả C8 là mô hình rút gọn; C6 dùng các phiên `[+5,+5]`, `[+5,+10]`, `[+5,+22]` và loại hồ sơ thiếu giá trong từng cửa sổ. Không dùng các kết quả này thay cho Word Power hoặc C2 đầy đủ.
+
+Hai bảng `EADRet` và `Accruals` mới từ nhánh `finalize-eadret-accruals` được ghép vào **một đặc tả sáu biến kiểm soát riêng**, giữ nguyên bốn controls và CAR hiện hành. Chỉ dùng `Accruals` trạng thái `PASS`; mẫu C2 sáu controls còn 481 hồ sơ thuộc 71 công ty. Đọc [`analysis_outputs/FULL_CONTROLS_REVIEW.md`](analysis_outputs/FULL_CONTROLS_REVIEW.md) để xem kết quả và đối chứng bốn controls trên cùng 481 hồ sơ. Điểm tone vẫn là LM dạng tỷ lệ, chưa phải Word Power.
 
 ## Dữ liệu và kết quả
 

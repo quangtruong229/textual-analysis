@@ -22,6 +22,8 @@ Brown–Warner A.11 và B7 cho cả bốn cửa sổ nằm ở `event_study/exte
 
 Các kiểm định B6 và đặc tả C5–C8 từ dữ liệu đang có nằm trong `event_study/b6_robustness_tests.csv`, `c5_reduced_results.csv`, `c6_delayed_results.csv`, `c7_cross_section_results.csv` và `c8_fama_macbeth_summary.csv`; bảng mẫu/hệ số theo năm nằm cạnh chúng. Đọc `ROBUSTNESS_RESULTS.md` để biết rõ cửa sổ, số quan sát, công thức rút gọn và giới hạn.
 
+Các bảng `c2_matched4_results.csv`, `c2_full6_results.csv`, `c3_posneg_full6_results.csv` và `c5_full6_results.csv` dùng `EADRet` cùng Accruals trạng thái `PASS` mới bổ sung. Đọc `FULL_CONTROLS_REVIEW.md` và `full_controls_qa.json` để biết nguồn, quy tắc chọn mẫu 481 hồ sơ và giới hạn; không nhầm các mô hình tone tỷ lệ này với Word Power.
+
 ## C2 với biến kiểm soát có sẵn
 
 Mô hình `c2_reduced_results.csv` dùng bốn biến kiểm soát Size, BM, Volatility và Turnover. Ghép bằng ticker và ngày nộp chuẩn `YYYY-MM-DD`, giữ các hàng `status=success` và đủ dữ liệu. Mỗi cửa sổ có **862 quan sát thuộc 96 công ty**; 107/969 hàng không đủ bộ biến kiểm soát.

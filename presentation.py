@@ -192,6 +192,8 @@ C2 trong bảng dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Do yêu 
 
 Ở `[-1,+1]`, hệ số tone C2 là **{dec(c2_baseline.coefficient, 4)}**, p HC3 **{pvalue(c2_baseline.p_hc3_two_sided)}**. Đây là mô hình **rút gọn**, và sự khác biệt với C1 vừa phản ánh thêm biến kiểm soát vừa phản ánh mẫu nhỏ hơn; không thể tách hai tác động chỉ bằng hai bảng này.
 
+Mô hình với **đủ sáu biến kiểm soát** dùng EADRet và Accruals trạng thái `PASS` được báo riêng tại [FULL_CONTROLS_REVIEW.md](FULL_CONTROLS_REVIEW.md). Bảng này còn 481 hồ sơ; điểm tone vẫn là LM dạng tỷ lệ, không phải Word Power.
+
 ## Hàm ý tài chính theo kết quả hiện tại
 
 {implications}
