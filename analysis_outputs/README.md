@@ -18,6 +18,8 @@ Trên 971 filing so sánh được, tone LM và Harvard IV-4 trái dấu ở **8
 
 Theo bảng nghiên cứu sự kiện được chạy lại, CAAR [-1,+1] = **0,005699** (khoảng 0,570%), p MacKinlay = **0,00000000187**, N = 969. Phương sai CAR dùng xấp xỉ B4 của tài liệu công thức: số phiên trong cửa sổ nhân phương sai phần dư mô hình thị trường. Bốn cửa sổ và các phép kiểm định nằm ở `event_study/event_study_summary.csv`. Đây là phản ứng trung bình quanh ngày công bố, không tự chứng minh tone là nguyên nhân.
 
+Brown–Warner A.11 và B7 cho cả bốn cửa sổ nằm ở `event_study/extended_window_tests.csv`; Corrado theo từng ngày ở `corrado_daily.csv`; B8 theo ba mức CAAR giả định ở `theoretical_power.csv`. Không dùng bảng B8 như power của H1 tone. Bảng tone tổng hợp không có tần suất từng từ, nên chưa tính được Word Power ngoài mẫu và chưa kiểm định H1 được viết theo ScorePos Word Power.
+
 ## C2 với biến kiểm soát có sẵn
 
 Mô hình `c2_reduced_results.csv` dùng bốn biến kiểm soát Size, BM, Volatility và Turnover. Ghép bằng ticker và ngày nộp chuẩn `YYYY-MM-DD`, giữ các hàng `status=success` và đủ dữ liệu. Mỗi cửa sổ có **862 quan sát thuộc 96 công ty**; 107/969 hàng không đủ bộ biến kiểm soát.

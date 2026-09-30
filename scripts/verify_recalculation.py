@@ -88,6 +88,22 @@ def main() -> None:
     calendar_checks = check_event_calendar(events, ar)
     calendar_checks["sec_timestamps_matched"] = len(events)
     calendar_checks["sessions_shifted_after_filing_date"] = int(events.event_date_shift.sum())
+    extended = pd.read_csv(OUT / "event_study/extended_window_tests.csv")
+    corrado = pd.read_csv(OUT / "event_study/corrado_daily.csv")
+    power = pd.read_csv(OUT / "event_study/theoretical_power.csv")
+    if set(extended.window) != {"CAR_m1_p1", "CAR_0_p3", "CAR_m3_p3", "CAR_m5_p5"}:
+        raise AssertionError("Extended tests do not cover four CAR windows")
+    if set(corrado.event_time) != set(range(-5, 6)):
+        raise AssertionError("Corrado rank test does not cover eleven event days")
+    if not extended[["brown_warner_p", "autocorr_p"]].stack().between(0, 1).all():
+        raise AssertionError("Invalid extended-test p-values")
+    if not power.theoretical_power.between(0, 1).all():
+        raise AssertionError("Invalid theoretical power values")
+    original_bw = pd.read_csv(OUT / "event_study/event_study_summary.csv")
+    original_bw = original_bw.loc[original_bw.window.eq("CAR_m5_p5")].iloc[0]
+    updated_bw = extended.loc[extended.window.eq("CAR_m5_p5")].iloc[0]
+    if not np.isclose(original_bw.Brown_Warner_Z, updated_bw.brown_warner_z):
+        raise AssertionError("Brown–Warner eleven-day calculation changed")
 
     controls = pd.read_csv(source / "controls/controls_item7.csv")
     if pd.to_datetime(controls.filing_date, format="%Y-%m-%d", errors="coerce").isna().any():
@@ -179,6 +195,9 @@ def main() -> None:
         "firm_year_rows": len(panel),
         "dictionary_opposite_sign": int(comparison.opposite_sign.sum()),
         "event_calendar": calendar_checks,
+        "extended_event_tests": {"brown_warner_windows": len(extended),
+                                 "corrado_days": len(corrado),
+                                 "power_scenarios": len(power)},
         "tone_arithmetic": tone_checks,
         "car_arithmetic": car_checks,
     }

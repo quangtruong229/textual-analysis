@@ -24,6 +24,9 @@ FILES = {
     "event_exclusions": "analysis_outputs/event_study/event_exclusions.csv",
     "event_daily": "analysis_outputs/event_study/event_daily_summary.csv",
     "event_windows": "analysis_outputs/event_study/event_study_summary.csv",
+    "event_extended": "analysis_outputs/event_study/extended_window_tests.csv",
+    "corrado_daily": "analysis_outputs/event_study/corrado_daily.csv",
+    "theoretical_power": "analysis_outputs/event_study/theoretical_power.csv",
     "regression": "analysis_outputs/regression/regression_results.csv",
     "c2_regression": "analysis_outputs/c2_reduced_results.csv",
     "missing_filings": "analysis_outputs/missing_filings.csv",
@@ -85,6 +88,12 @@ def main() -> None:
     require(tables["event_windows"].N.eq(969).all(), "Event window N differs")
     require(len(tables["event_daily"]) == 11, "Expected event days -5 through +5")
     require(set(tables["event_daily"].event_time) == set(range(-5, 6)), "Event-day axis changed")
+    require(set(tables["event_extended"].window) == set(tables["event_windows"].window),
+            "Brown–Warner/B7 windows do not match CAR windows")
+    require(set(tables["corrado_daily"].event_time) == set(range(-5, 6)),
+            "Corrado daily coverage changed")
+    require(len(tables["theoretical_power"]) == 12,
+            "Expected three theoretical effect scenarios per CAR window")
 
     for name in ("regression", "c2_regression"):
         table = tables[name]

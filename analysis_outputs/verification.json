@@ -25,6 +25,11 @@
     "sec_timestamps_matched": 969,
     "sessions_shifted_after_filing_date": 466
   },
+  "extended_event_tests": {
+    "brown_warner_windows": 4,
+    "corrado_days": 11,
+    "power_scenarios": 12
+  },
   "tone_arithmetic": {
     "lm": {
       "checked": 971,

@@ -29,6 +29,9 @@ required = [
     "analysis_outputs/dictionary_comparison_filings.csv",
     "analysis_outputs/event_study/event_study_summary.csv",
     "analysis_outputs/event_study/event_daily_summary.csv",
+    "analysis_outputs/event_study/extended_window_tests.csv",
+    "analysis_outputs/event_study/corrado_daily.csv",
+    "analysis_outputs/event_study/theoretical_power.csv",
     "analysis_outputs/regression/regression_results.csv",
     "analysis_outputs/c2_reduced_results.csv",
 ]
@@ -42,6 +45,9 @@ comparison_summary = read_csv("analysis_outputs/dictionary_comparison_summary.cs
 comparison = read_csv("analysis_outputs/dictionary_comparison_filings.csv")
 event_summary = read_csv("analysis_outputs/event_study/event_study_summary.csv")
 daily = read_csv("analysis_outputs/event_study/event_daily_summary.csv")
+extended = read_csv("analysis_outputs/event_study/extended_window_tests.csv")
+corrado = read_csv("analysis_outputs/event_study/corrado_daily.csv")
+power = read_csv("analysis_outputs/event_study/theoretical_power.csv")
 regression = read_csv("analysis_outputs/regression/regression_results.csv")
 c2 = read_csv("analysis_outputs/c2_reduced_results.csv")
 
@@ -65,7 +71,7 @@ with overview:
                  hide_index=True, width="stretch")
 
 with results_tab:
-    narrative = results_markdown(panel, comparison_summary, event_summary, regression, c2)
+    narrative = results_markdown(panel, comparison_summary, event_summary, regression, c2, daily, extended)
     st.markdown(narrative)
     st.download_button("Tải phần trình bày kết quả", narrative.encode("utf-8"),
                        file_name="Ket_qua_va_dien_giai.md", mime="text/markdown")
@@ -104,6 +110,11 @@ with dictionary_tab:
 with event_tab:
     st.write("Nghiên cứu sự kiện trên 969 filing có đủ tone và lịch sử giá.")
     st.dataframe(event_summary, hide_index=True, width="stretch")
+    st.write("Brown–Warner theo cửa sổ và hiệu chỉnh tự tương quan:")
+    st.dataframe(extended, hide_index=True, width="stretch")
+    st.write("Corrado theo ngày và sức mạnh lý thuyết:")
+    st.dataframe(corrado, hide_index=True, width="stretch")
+    st.dataframe(power, hide_index=True, width="stretch")
     st.write("Lợi suất bất thường trung bình theo ngày giao dịch tương đối:")
     st.line_chart(daily.set_index("event_time")["AAR"], x_label="Ngày giao dịch tương đối", y_label="AAR")
     st.dataframe(daily, hide_index=True, width="stretch")

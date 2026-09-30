@@ -21,8 +21,10 @@ def main() -> None:
     parser.add_argument("--reuse-event", action="store_true",
                         help="Use existing event CSVs; default recalculates from daily prices")
     args = parser.parse_args()
+    reuse_event = args.reuse_event and (ROOT / "analysis_outputs/event_study/estimation_ar_long.csv").exists()
     steps = [
-        ("recompute_from_supplied.py", [] if args.reuse_event else ["--force-event"]),
+        ("recompute_from_supplied.py", [] if reuse_event else ["--force-event"]),
+        ("extended_event_tests.py", []),
         ("calculate_c2_controls.py", []),
         ("build_firm_year_panel.py", []),
         ("summarize_dictionary_comparison.py", []),

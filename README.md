@@ -13,6 +13,8 @@ python scripts/run_analysis.py
 
 Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV có sẵn trong repo**. Mặc định lệnh này tính lại nghiên cứu sự kiện từ bảng giá và giờ SEC chấp nhận hồ sơ, chạy C1/C3/C4 và C2 rút gọn, tạo bảng công ty–năm và so sánh từ điển, rồi kiểm tra tính nhất quán và xuất kết quả. Thứ tự chạy được quản lý trong `scripts/run_analysis.py`; không cần chạy rời từng bước. Tính AR/CAR từ gần 280.000 hàng giá sẽ lâu hơn riêng bước hồi quy C2. Terminal hiển thị tiến trình; các bảng đầy đủ được lưu trong `analysis_outputs/`.
 
+Lệnh này cũng tính Brown–Warner cho bốn cửa sổ, kiểm tra tự tương quan B7, Corrado theo ngày và sức mạnh kiểm định lý thuyết B8. Các bảng nằm trong `analysis_outputs/event_study/`. Word Power chưa tính được từ CSV tone tổng hợp vì thiếu tần suất của từng từ theo từng báo cáo; các hồi quy hiện hành dùng tone tỷ lệ/tf.idf, không được gọi là kiểm định H1 Word Power.
+
 ## Dữ liệu và kết quả
 
 `data/` giữ dữ liệu đầu vào của nhóm. **Nguồn kết quả dùng cho trình bày là `analysis_outputs/`**, kể cả CAR trong bảng công ty–năm. Chạy `scripts/run_analysis.py` để tái tạo bộ kết quả từ các đầu vào này.
