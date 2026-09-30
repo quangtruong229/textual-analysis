@@ -29,3 +29,5 @@ CAR, CAAR và AAR là lợi suất dạng thập phân: `0.01` tương ứng `1%
 ## Bảng đầu vào
 
 `run_analysis.py` sử dụng các bảng đầu vào được liệt kê ở trên và không tải thêm dữ liệu. Mã thu thập báo cáo và giá nằm trong `src/` để nhóm quản lý riêng với luồng tính kết quả. Mỗi đầu ra trong `analysis_outputs/` có thể đối chiếu với bảng đầu vào và mã xử lý tương ứng.
+
+Corpus bổ sung được tạo bằng `scripts/fetch_item7_corpus.py --all` với `SEC_USER_AGENT` chứa tên nhóm và email liên hệ. Lệnh tải 1.000 HTML 10-K theo accession, đối chiếu văn bản sạch với `preprocessed_10k.csv`, trích 971 Item 7 theo ranh giới `sections_10k_v3.csv` và so số token với `tone_method_item7.csv`. `scripts/verify_item7_corpus.py` kiểm tra từng bảng tần suất từ và đếm LM/phủ định A1; bảng gộp `data/item7_corpus/item7_term_counts.csv.gz` cùng manifest và báo cáo xác minh được lưu trong Git. HTML, văn bản sạch và Item 7 gốc được giữ local, có thể tải lại từ URL trong manifest. Các kết quả hồi quy hiện hành chưa sử dụng corpus này để ước lượng Word Power.

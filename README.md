@@ -13,7 +13,7 @@ python scripts/run_analysis.py
 
 Sau bước cài thư viện, lệnh phân tích chạy **offline từ các CSV có sẵn trong repo**. Mặc định lệnh này tính lại nghiên cứu sự kiện từ bảng giá và giờ SEC chấp nhận hồ sơ, chạy C1/C3/C4, C2 bốn controls và C2/C3/C5 sáu controls từ dữ liệu bổ sung, tạo bảng công ty–năm, rồi kiểm tra tính nhất quán và xuất kết quả. Thứ tự chạy được quản lý trong `scripts/run_analysis.py`; không cần chạy rời từng bước. Tính AR/CAR từ gần 280.000 hàng giá sẽ lâu hơn riêng bước hồi quy. Terminal hiển thị tiến trình; các bảng đầy đủ được lưu trong `analysis_outputs/`.
 
-Lệnh này cũng tính Brown–Warner cho bốn cửa sổ, kiểm tra tự tương quan B7, Corrado theo ngày và sức mạnh kiểm định lý thuyết B8. Các bảng nằm trong `analysis_outputs/event_study/`. Word Power chưa tính được từ CSV tone tổng hợp vì thiếu tần suất của từng từ theo từng báo cáo; các hồi quy hiện hành dùng tone tỷ lệ/tf.idf, không được gọi là kiểm định H1 Word Power.
+Lệnh này cũng tính Brown–Warner cho bốn cửa sổ, kiểm tra tự tương quan B7, Corrado theo ngày và sức mạnh kiểm định lý thuyết B8. Các bảng nằm trong `analysis_outputs/event_study/`. Bộ tần suất từng từ theo hồ sơ đã được bổ sung riêng, nhưng chưa có bước ước lượng trọng số Word Power theo phản ứng thị trường; các hồi quy hiện hành vẫn dùng tone tỷ lệ/tf.idf và không được gọi là kiểm định H1 Word Power.
 
 Lệnh còn xuất các kiểm định độ vững B6 và đặc tả C5–C8 có thể ước lượng từ dữ liệu hiện có. Đọc [`analysis_outputs/ROBUSTNESS_RESULTS.md`](analysis_outputs/ROBUSTNESS_RESULTS.md) trước khi dùng các bảng: C5/C7 và một đặc tả C8 là mô hình rút gọn; C6 dùng các phiên `[+5,+5]`, `[+5,+10]`, `[+5,+22]` và loại hồ sơ thiếu giá trong từng cửa sổ. Không dùng các kết quả này thay cho Word Power hoặc C2 đầy đủ.
 
@@ -26,6 +26,12 @@ Hai bảng `EADRet` và `Accruals` mới từ nhánh `finalize-eadret-accruals` 
 Đọc [luồng xử lý](docs/data_pipeline.md), [phương pháp](docs/METHODOLOGY.md), [kết quả và diễn giải](analysis_outputs/RESULTS_PRESENTATION.md), [đối chiếu yêu cầu đề án](analysis_outputs/ASSIGNMENT_AUDIT.md) và [kiểm tra dạng máy đọc](analysis_outputs/verification.json). `handoff/manifest.json` lưu danh sách bảng, cột, đơn vị và mã kiểm tra tệp.
 
 Mẫu đầu vào gồm 1.000 hồ sơ của 100 công ty, theo **năm nộp 2016–2025**, không đồng nghĩa năm tài chính. Lệnh phân tích đọc tone từ `data/metadata/tone_method_item7.csv`, giờ công bố từ `data/metadata/filing_acceptance.csv`, tính AR/CAR từ `data/market_data/daily_prices.csv` và ước lượng các mô hình hồi quy. C2 dùng bốn biến kiểm soát Size, BM, Volatility và Turnover; lịch chia tách ở `data/market_data/stock_splits.csv` giữ giá và số cổ phiếu trên cùng một cơ sở.
+
+### Corpus Item 7 tải từ SEC
+
+`data/item7_corpus/manifest.csv` ghi URL SEC, accession, SHA-256 và trạng thái của 1.000 hồ sơ. `item7_term_counts.csv.gz` là bảng tần suất `ticker, filing_date, accession_number, term, count` cho 971 Item 7 đạt QA. `verification.json` đối chiếu tần suất và các đếm LM, gồm quy tắc phủ định A1, với bảng tone cũ. HTML 10-K gốc (khoảng 4,4 GB), văn bản sạch và Item 7 được giữ trong `data/raw/`, `data/processed/`, `data/sections_v3/` trên máy chạy, không đưa vào Git; có thể tải lại từ URL trong manifest.
+
+Để tái tạo corpus, đặt biến môi trường `SEC_USER_AGENT` bằng tên nhóm và email liên hệ thật, rồi chạy `python scripts/fetch_item7_corpus.py --all --workers 4` và `python scripts/verify_item7_corpus.py`. Mặc định không có `--all`, lệnh đầu chỉ thử 10 hồ sơ và ghi `pilot_manifest.csv`, không thay manifest toàn mẫu. Corpus này cung cấp đầu vào cho Word Power; việc ước lượng trọng số từ và kiểm định H1 vẫn là bước nghiên cứu riêng cần thiết kế chống dùng thông tin của năm kiểm định để tự dự đoán chính nó.
 
 ## Xem nhanh trên máy
 

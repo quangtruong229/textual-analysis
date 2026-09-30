@@ -6,9 +6,9 @@ Nghiên cứu hỏi liệu giọng điệu trong phần **Item 7 – Management�
 
 ## 2. Từ báo cáo sang biến tone
 
-`src/download_10k.py`, `src/preprocess_10k.py` và `src/extract_sections_v3.py` mô tả các bước tải, làm sạch và trích Item 7. Phiên phân tích trong repo bắt đầu từ bảng điểm `data/metadata/tone_method_item7.csv`; mã nghiên cứu sự kiện dùng bảng này làm đầu vào.
+`scripts/fetch_item7_corpus.py` tải HTML 10-K trực tiếp từ SEC theo accession, dùng `src/preprocess_10k.py` làm sạch và ranh giới Item 7 đã được thẩm định trong `sections_10k_v3.csv` để trích văn bản. HTML, văn bản sạch và Item 7 gốc nằm trên máy chạy, không đưa vào Git; manifest lưu URL và SHA-256. Bảng tần suất từ theo từng hồ sơ được chia sẻ dưới dạng `data/item7_corpus/item7_term_counts.csv.gz`. Phiên phân tích hồi quy hiện hành vẫn bắt đầu từ bảng điểm `data/metadata/tone_method_item7.csv`.
 
-**Word Power chưa có trong đầu ra hiện hành.** Theo Jegadeesh–Wu (2013, Eq. 4–8), cần số lần xuất hiện của *từng từ* trong *từng báo cáo*, CAR để ước lượng trọng số từ và bước ước lượng ngoài năm đang kiểm định. Bảng tone được cung cấp chỉ giữ tổng số từ tích cực/tiêu cực và điểm tỷ lệ/tf.idf; không thể suy ngược ma trận tần suất từng từ. Vì vậy không được đặt tên `lm_positive_prop` hay `lm_positive_tfidf` là `ScorePos` Word Power. [Bài gốc Jegadeesh–Wu](https://repository.upenn.edu/bitstreams/caf9d0c9-0de5-475a-ac72-f6e4ad3bfce5/download).
+**Word Power chưa có trong đầu ra hồi quy hiện hành.** Theo Jegadeesh–Wu (2013, Eq. 4–8), cần số lần xuất hiện của *từng từ* trong *từng báo cáo*, CAR để ước lượng trọng số từ và bước ước lượng ngoài năm đang kiểm định. Corpus mới đã cung cấp tần suất từ cho 971 hồ sơ, nhưng chưa có bước ước lượng trọng số và kiểm định ngoài mẫu; không được đặt tên `lm_positive_prop` hay `lm_positive_tfidf` là `ScorePos` Word Power. [Bài gốc Jegadeesh–Wu](https://repository.upenn.edu/bitstreams/caf9d0c9-0de5-475a-ac72-f6e4ad3bfce5/download).
 
 Từ điển tài chính Loughran–McDonald (LM) và từ điển tổng quát Harvard IV-4 nằm trong `data/dictionary/`. Theo `src/build_method_scores.py`, văn bản được tách thành token chữ và chuyển thành chữ hoa. Với mỗi từ tích cực/tiêu cực, nếu `NOT`, `NO` hoặc `NEVER` xuất hiện trong ba token đứng trước, từ đó không được cộng vào nhóm tích cực/tiêu cực. Bảng tone lưu cả số từ bị loại vì phủ định.
 
@@ -18,7 +18,7 @@ Với một báo cáo có `W` token, `P` lần xuất hiện từ tích cực v�
 
 Đặc tả đối chứng `net_ratio = (positive_prop − negative_prop) / (positive_prop + negative_prop)` chỉ xác định khi mẫu số khác 0. Cách tính tf.idf dùng `idf_j = log(số văn bản / số văn bản chứa từ j)` và trọng số tần suất `1 + log(tf)` trước khi chuẩn hóa theo `1 + log(W)`. Điểm LM và Harvard được xây trên cùng quy tắc xử lý trong mã này. Bảng `lm_tone.csv` còn có số từ bất định; bảng `tone_method_item7.csv` chứa các điểm dùng cho so sánh và hồi quy.
 
-Trong 1.000 hồ sơ, 971 có Item 7 đủ điều kiện tính tone. 29 hồ sơ không được gán tone bằng 0: 20 `too_short`, 6 `boundary_uncertain`, 3 `heading_not_found`. `tone_firm_year.csv` giữ đủ 1.000 hàng và đánh dấu trạng thái từng hồ sơ. Kiểm tra số học xác nhận công thức `P/W − N/W` trên 971 hàng của bảng điểm đầu vào.
+Trong 1.000 hồ sơ, 971 có Item 7 đủ điều kiện tính tone. 29 hồ sơ không được gán tone bằng 0: 20 `too_short`, 6 `boundary_uncertain`, 3 `heading_not_found`. `tone_firm_year.csv` giữ đủ 1.000 hàng và đánh dấu trạng thái từng hồ sơ. HTML gốc đã được tải lại cho cả 1.000 hồ sơ; 971 Item 7 được tái tạo và kiểm tra độc lập tổng token, tần suất từng từ, số từ LM tích cực/tiêu cực và số từ bị loại theo quy tắc phủ định A1, không có sai lệch trong `data/item7_corpus/verification.json`.
 
 ## 3. Nghiên cứu sự kiện AR và CAR
 
@@ -43,7 +43,7 @@ Trong 971 hồ sơ có tone, 969 có đủ lợi suất hợp lệ trong cửa s
 - **C4:** `CAR_i = a + b·LM_net_i + c·Harvard_net_i + ε_i`, với phiên bản tỷ lệ và tf.idf.
 - **C2 rút gọn:** `CAR_i = a + b·LM_net_prop_i + c·Size_i + d·BM_i + e·Volatility_i + f·Turnover_i + ε_i` từ `controls_item7.csv`. `Size` là log vốn hóa thị trường, `BM` là book-to-market lưu ở cột `bm`, `Volatility` là độ lệch chuẩn phần dư thị trường, và `Turnover` là log tỷ lệ giao dịch. Giá Yahoo lịch sử và số cổ phiếu SEC được đưa về cùng cơ sở chia tách bằng `stock_splits.csv` trước khi tính Size, BM và Turnover.
 
-Nếu H1/H2 được viết với `ScorePos` Word Power, các hồi quy hiện có **chưa kiểm định H1/H2 đó**. C3 dùng positive/negative tone dạng tỷ lệ; bản bổ sung đã có sáu biến kiểm soát nhưng vẫn chưa có Word Power. Muốn giữ nguyên H1/H2 Word Power cần bổ sung văn bản Item 7 hoặc bảng tần suất từng từ theo hồ sơ, rồi ước lượng trọng số ngoài năm kiểm định. Không diễn giải hệ số tone tỷ lệ như hệ số Word Power.
+Nếu H1/H2 được viết với `ScorePos` Word Power, các hồi quy hiện có **chưa kiểm định H1/H2 đó**. C3 dùng positive/negative tone dạng tỷ lệ; bản bổ sung đã có sáu biến kiểm soát nhưng vẫn chưa có Word Power. Corpus Item 7 và bảng tần suất từng từ hiện đã có; bước còn thiếu là ước lượng trọng số Word Power theo phản ứng thị trường trên tập huấn luyện tách khỏi năm kiểm định, rồi chạy lại hồi quy. Không diễn giải hệ số tone tỷ lệ như hệ số Word Power.
 
 C1/C3/C4 dùng OLS với sai số chuẩn HC3 và sai số chuẩn gom cụm theo công ty. C2 rút gọn cũng báo hai loại sai số chuẩn. C2 chỉ giữ hàng `status=success` và đủ tất cả biến; số quan sát và công ty được ghi trong `c2_reduced_results.csv`. Không so sánh p-value giữa C1 và C2 như thể hai mô hình dùng cùng một mẫu.
 

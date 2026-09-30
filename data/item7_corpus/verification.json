@@ -1,0 +1,17 @@
+{
+  "manifest_rows": 1000,
+  "verified_item7": 971,
+  "excluded_invalid_item7": 29,
+  "token_total": 11102368,
+  "term_rows": 1399773,
+  "checks": [
+    "per-word frequency",
+    "total words",
+    "LM positive",
+    "LM negative",
+    "A1 negated positive",
+    "A1 negated negative"
+  ],
+  "mismatch_count": 0,
+  "first_mismatches": []
+}

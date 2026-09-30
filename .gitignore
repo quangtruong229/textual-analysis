@@ -27,6 +27,9 @@ Thumbs.db
 data/sections/
 data/sections_v2/
 data/sections_v3/
+data/item7_corpus/terms/
+data/item7_corpus/pilot_manifest.csv
+data/item7_corpus/*.part
 
 # Event-study temporary/generated long-form data
 data/metadata/event_study/*
