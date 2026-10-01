@@ -378,7 +378,8 @@ def main() -> None:
     panel, matrices, lexicons = load_inputs()
     scores, weights, diagnostics = make_scores(panel, matrices, lexicons)
     scores.to_csv(OUT / "scores.csv", index=False)
-    weights.to_csv(OUT / "annual_weights.csv.gz", index=False, compression="gzip")
+    weights.to_csv(OUT / "annual_weights.csv.gz", index=False,
+                   compression={"method": "gzip", "mtime": 0})
     results, full = run_regressions(scores)
     results.to_csv(OUT / "regression_results.csv", index=False)
     full.to_csv(OUT / "six_control_sample.csv", index=False)
