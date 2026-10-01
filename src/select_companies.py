@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 import time
 
 import pandas as pd
@@ -14,20 +15,15 @@ END_DATE = "2025-12-31"
 
 TARGET_COMPANIES = 100
 
-# QUAN TRỌNG:
-# Thay email này bằng email thật của bạn.
-USER_AGENT = "truongungquang1@gmail.com"
+USER_AGENT = os.environ.get("SEC_USER_AGENT", "").strip()
 
 
 # ============================================================
 # PATHS
 # ============================================================
 
-DATA_DIR = Path("data")
+DATA_DIR = Path(__file__).resolve().parents[1] / "data"
 METADATA_DIR = DATA_DIR / "metadata"
-
-METADATA_DIR.mkdir(parents=True, exist_ok=True)
-
 
 # ============================================================
 # SEC HEADERS
@@ -50,6 +46,8 @@ DATA_HEADERS = {
 
 def get_json(url: str, headers: dict) -> dict:
     """Download JSON from SEC."""
+    if not headers.get("User-Agent"):
+        raise RuntimeError("Set SEC_USER_AGENT to a group name and contact email before requesting SEC data")
     response = requests.get(
         url,
         headers=headers,
@@ -192,6 +190,7 @@ def get_10k_filings(cik: str) -> list:
 # ============================================================
 
 def main():
+    METADATA_DIR.mkdir(parents=True, exist_ok=True)
 
     # --------------------------------------------------------
     # 1. Get SEC company list

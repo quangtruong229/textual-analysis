@@ -3,7 +3,7 @@
 Run from the repository root:
     python webapp/build_data.py
 
-Reads all results CSVs and writes webapp/data.js.
+Reads the result CSVs used by the webapp and writes webapp/data.js.
 No statistical recalculation is performed — every number shown on the
 UI comes directly from the saved CSV tables.
 """
@@ -12,12 +12,14 @@ from __future__ import annotations
 
 import csv
 import json
+import math
 from datetime import datetime
 from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "webapp" / "data.js"
+IDENTIFIERS = {"ticker", "cik", "accession_number", "sec_url"}
 
 
 def parse_value(v: str):
@@ -31,9 +33,11 @@ def parse_value(v: str):
         return False
     try:
         f = float(s)
+        if not math.isfinite(f):
+            return None
         if "." not in s and "e" not in s.lower() and f == int(f):
             return int(f)
-        return round(f, 10)
+        return f
     except (ValueError, TypeError):
         return s
 
@@ -44,9 +48,9 @@ def read_csv_typed(path: Path, columns: list[str] | None = None) -> list[dict]:
     with open(path, encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
             if columns:
-                rows.append({k: parse_value(row.get(k, "")) for k in columns})
+                rows.append({k: row.get(k, "") if k in IDENTIFIERS else parse_value(row.get(k, "")) for k in columns})
             else:
-                rows.append({k: parse_value(v) for k, v in row.items()})
+                rows.append({k: v if k in IDENTIFIERS else parse_value(v) for k, v in row.items()})
     return rows
 
 
@@ -81,6 +85,17 @@ def main() -> None:
 
     regression = read_csv_typed(a / "regression" / "regression_results.csv")
     c2 = read_csv_typed(a / "c2_reduced_results.csv")
+    extended = {
+        "c2Full6": "c2_full6_results.csv",
+        "c2Matched4": "c2_matched4_results.csv",
+        "wordPower": "word_power/regression_results.csv",
+        "b6": "event_study/b6_robustness_tests.csv",
+        "brownWarner": "event_study/extended_window_tests.csv",
+        "c5Full6": "c5_full6_results.csv",
+        "c6": "c6_delayed_results.csv",
+        "c7": "c7_cross_section_results.csv",
+        "c8": "c8_fama_macbeth_summary.csv",
+    }
 
     dict_summary_rows = read_csv_typed(a / "dictionary_comparison_summary.csv")
     dict_filings = read_csv_typed(a / "dictionary_comparison_filings.csv", [
@@ -105,6 +120,7 @@ def main() -> None:
         "eventFiling": event_filing,
         "regression": regression,
         "c2": c2,
+        **{key: read_csv_typed(a / path) for key, path in extended.items()},
         "dictSummary": dict_summary_rows[0] if dict_summary_rows else {},
         "dictFilings": dict_filings,
         "missing": missing,
@@ -122,7 +138,7 @@ def main() -> None:
     OUT.write_text(content, encoding="utf-8")
 
     kb = OUT.stat().st_size / 1024
-    print(f"Wrote {OUT.relative_to(ROOT)} ({kb:.0f} KB)")
+    print(f"Wrote {OUT} ({kb:.0f} KB)")
     for key in ("firmYear", "eventSummary", "eventFiling", "regression", "c2", "dictFilings", "missing"):
         print(f"  {key}: {len(data[key])} rows")
 
