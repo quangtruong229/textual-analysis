@@ -59,7 +59,7 @@
 
     --text-primary: var(--color-navy-900);
     --text-secondary: var(--color-slate-600);
-    --text-muted: var(--color-slate-400);
+    --text-muted: #5e6e82;
     --text-on-dark: var(--color-slate-100);
     --text-link: var(--color-blue-600);
 
@@ -120,7 +120,7 @@
 
     --text-primary: #f8fafc;
     --text-secondary: #94a3b8;
-    --text-muted: #64748b;
+    --text-muted: #a0afc4;
     --text-on-dark: #f8fafc;
     --text-link: #60a5fa;
 

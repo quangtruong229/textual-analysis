@@ -11,6 +11,7 @@ UI comes directly from the saved CSV tables.
 from __future__ import annotations
 
 import csv
+import hashlib
 import json
 import math
 from datetime import datetime
@@ -52,6 +53,33 @@ def read_csv_typed(path: Path, columns: list[str] | None = None) -> list[dict]:
             else:
                 rows.append({k: v if k in IDENTIFIERS else parse_value(v) for k, v in row.items()})
     return rows
+
+
+def compare_source_bytes(raw: bytes, expected: str) -> dict:
+    """Phân biệt khớp byte, khác xuống dòng và khác nội dung."""
+    current = hashlib.sha256(raw).hexdigest()
+    lf = raw.replace(b"\r\n", b"\n")
+    if current == expected:
+        status = "exact"
+    elif expected in {
+        hashlib.sha256(lf).hexdigest(),
+        hashlib.sha256(lf.replace(b"\n", b"\r\n")).hexdigest(),
+    }:
+        status = "line_endings_only"
+    else:
+        status = "mismatch"
+    return {"current_sha256": current, "status": status}
+
+
+def source_integrity(hashes: dict) -> dict:
+    """Ghi nhận đối chiếu nguồn tại thời điểm đóng gói, giữ nguyên mã băm gốc."""
+    result = {}
+    for name, expected in hashes.items():
+        path = ROOT / name.replace("\\", "/")
+        result[name] = compare_source_bytes(path.read_bytes(), expected) if path.is_file() else {
+            "current_sha256": None, "status": "missing",
+        }
+    return result
 
 
 def main() -> None:
@@ -114,6 +142,7 @@ def main() -> None:
         "generatedAt": datetime.now().isoformat(),
         "manifest": manifest,
         "verification": verification,
+        "sourceIntegrity": source_integrity(verification.get("source_sha256", {})),
         "firmYear": firm_year,
         "eventSummary": event_summary,
         "eventDaily": event_daily,
@@ -135,7 +164,7 @@ def main() -> None:
         f"// Built: {ts}\n"
         f"window.APP_DATA = {json.dumps(data, ensure_ascii=False)};\n"
     )
-    OUT.write_text(content, encoding="utf-8")
+    OUT.write_text(content, encoding="utf-8", newline="\n")
 
     kb = OUT.stat().st_size / 1024
     print(f"Wrote {OUT} ({kb:.0f} KB)")

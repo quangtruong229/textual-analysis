@@ -1,12 +1,15 @@
 """Ensure the committed static bundle reflects the current research outputs."""
 
 import csv
+import contextlib
+import hashlib
+import io
 import importlib.util
 import json
 from pathlib import Path
 import re
-import tempfile
 import unittest
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -62,14 +65,28 @@ class WebappBundleTest(unittest.TestCase):
         spec = importlib.util.spec_from_file_location("build_data", ROOT / "webapp/build_data.py")
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
-        with tempfile.TemporaryDirectory() as directory:
-            module.OUT = Path(directory) / "data.js"
+        # Đối chiếu trong bộ nhớ để không phụ thuộc quyền ghi thư mục tạm.
+        with patch.object(Path, "write_text") as write, contextlib.redirect_stdout(io.StringIO()):
             module.main()
-            fresh = json.loads(module.OUT.read_text(encoding="utf-8").split("window.APP_DATA = ", 1)[1].rsplit(";", 1)[0])
+        fresh = json.loads(write.call_args.args[0].split("window.APP_DATA = ", 1)[1].rsplit(";", 1)[0])
         committed = dict(self.bundle)
         committed.pop("generatedAt")
         fresh.pop("generatedAt")
         self.assertEqual(committed, fresh)
+
+    def test_source_integrity_distinguishes_content_from_line_endings(self) -> None:
+        spec = importlib.util.spec_from_file_location("build_data", ROOT / "webapp/build_data.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        lf = b"ticker,value\nABC,12\n"
+        crlf = lf.replace(b"\n", b"\r\n")
+        digest = lambda raw: hashlib.sha256(raw).hexdigest()
+        self.assertEqual(module.compare_source_bytes(lf, digest(lf))["status"], "exact")
+        self.assertEqual(module.compare_source_bytes(lf, digest(crlf))["status"], "line_endings_only")
+        self.assertEqual(module.compare_source_bytes(crlf, digest(lf))["status"], "line_endings_only")
+        self.assertEqual(module.compare_source_bytes(lf.replace(b"12", b"13"), digest(lf))["status"], "mismatch")
+        self.assertEqual(module.source_integrity({"absent-source-for-test.csv": digest(lf)})[
+            "absent-source-for-test.csv"]["status"], "missing")
 
     def test_extended_ui_options_have_data(self) -> None:
         html = (ROOT / "webapp/index.html").read_text(encoding="utf-8")

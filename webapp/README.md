@@ -32,8 +32,15 @@ Hoặc mở trực tiếp file `webapp/index.html` trong trình duyệt Chrome /
 - `index.html`: Cấu trúc giao diện web, tích hợp KaTeX và Chart.js.
 - `app.js`: Toàn bộ logic giao diện, phân loại tín hiệu tone, lọc dữ liệu, vẽ biểu đồ zoom/pan.
 - `style.css`: Hệ thống thiết kế Fintech (Design tokens, Dark/Light mode, animations).
+- `research.css`: Lớp trình bày nghiên cứu: tiêu đề, thẻ kết quả, bảng, bố cục mobile và tương phản sáng/tối.
 - `data.js`: Dữ liệu JSON tổng hợp từ các file kết quả CSV trong `analysis_outputs/`.
 - `build_data.py`: Script tự động đọc CSV và đóng gói thành `data.js`.
 - `PRODUCT_DESCRIPTION.md`: Phạm vi dữ liệu, phương pháp và giới hạn kết quả.
 
 `data.js` là bản đóng gói tại thời điểm chạy `build_data.py`; sau khi cập nhật CSV hoặc manifest, cần dựng lại file này và kiểm tra tab Hồi quy/Audit. Webapp không chạy hồi quy và không đọc trực tiếp HTML 10-K. Hệ số là kết quả toàn mẫu đã lưu; lọc bảng hồ sơ không ước lượng lại mô hình.
+
+CAAR, Z và p-value trong phần tổng quan được lấy từ dữ liệu đóng gói. Biểu đồ hệ số hiển thị C2 bốn biến kiểm soát; CI nằm trong tooltip và bảng. Histogram CAR tách riêng hai nhóm ngoài ±15%.
+
+Tab Audit giữ mã SHA-256 của lần chạy phân tích và đối chiếu với tệp nguồn tại thời điểm đóng gói: khớp byte, chỉ khác xuống dòng LF/CRLF, không khớp nội dung hoặc thiếu tệp. Đây không phải phép kiểm tra trực tiếp ổ đĩa khi mở trang.
+
+Kiểm tra từ thư mục `textual-analysis`: `python -m unittest discover -s tests -p test_webapp_bundle.py -v` và `node tests/test_webapp_runtime.cjs`.

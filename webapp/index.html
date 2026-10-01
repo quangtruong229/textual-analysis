@@ -8,6 +8,7 @@
     <meta name="description"
         content="Nền tảng phân tích định lượng giọng điệu Item 7 MD&A trong hồ sơ 10-K và phản ứng giá cổ phiếu (100 công ty NYSE/Nasdaq, 2016–2025, Benchmark S&P 500).">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="research.css">
 
     <!-- KaTeX 0.16.11 Mathematical Typesetting -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
@@ -137,7 +138,7 @@
                         <polyline points="9 12 11 14 15 10" />
                     </svg>
                     <span class="nav-label">Kiểm tra & Audit</span>
-                    <span class="nav-count count-ok">0 sai lệch</span>
+                    <span class="nav-count">SHA-256</span>
                 </button>
             </nav>
 
@@ -225,15 +226,22 @@
                 <!-- TAB: OVERVIEW (Tổng quan)                    -->
                 <!-- ============================================ -->
                 <section id="tab-overview" class="tab-panel active" role="tabpanel" aria-labelledby="tab-btn-overview">
-                    <div class="page-header">
+                    <div class="page-header research-header">
                         <div class="page-title-wrap">
-                            <h2 class="page-title">Tổng quan Nghiên cứu &amp; Kết quả Thực nghiệm</h2>
+                            <p class="page-eyebrow">NGHIÊN CỨU THỰC NGHIỆM / 2016–2025</p>
+                            <h1 class="page-title">Ngôn ngữ báo cáo.<br><span>Phản ứng thị trường.</span></h1>
                             <p class="page-desc">
                                 Đánh giá mối liên hệ giữa giọng điệu trong Item 7 — MD&amp;A của báo cáo thường niên
                                 10-K và phản ứng giá cổ phiếu quanh ngày nộp.
                                 Đơn vị quan sát: <strong>một hồ sơ 10-K của một công ty tại một năm nộp</strong> (tối đa
                                 1 quan sát / năm).
                             </p>
+                        </div>
+                        <div class="research-context" aria-label="Phạm vi nghiên cứu">
+                            <span class="context-label">PHẠM VI PHÂN TÍCH</span>
+                            <strong>Item 7 · MD&amp;A</strong>
+                            <span>Hồ sơ 10-K · NYSE / Nasdaq</span>
+                            <span class="context-footnote">Đối chuẩn S&amp;P 500</span>
                         </div>
                     </div>
 
@@ -245,13 +253,10 @@
                         <div class="finding-card">
                             <div class="finding-header">
                                 <span class="finding-tag tag-event">Phản ứng giá</span>
-                                <span class="finding-stat">+0.519%</span>
+                                <span class="finding-stat" id="finding-caar">—</span>
                             </div>
                             <h4 class="finding-title">CAAR khác 0 quanh ngày nộp 10-K</h4>
-                            <p class="finding-desc">
-                                Lợi suất bất thường tích lũy bình quân tại cửa sổ [-1, +1] đạt +0.519% với ý nghĩa thống
-                                kê cao (p &lt; 0.0001, Z MacKinlay = 6.467).
-                            </p>
+                            <p class="finding-desc" id="finding-event-desc"></p>
                             <a href="#event" class="finding-link" onclick="activateTab('event')">Xem kiểm định sự kiện
                                 &rarr;</a>
                         </div>
@@ -259,13 +264,10 @@
                         <div class="finding-card">
                             <div class="finding-header">
                                 <span class="finding-tag tag-reg">Hồi quy OLS</span>
-                                <span class="finding-stat">p = 0.0991</span>
+                                <span class="finding-stat" id="finding-tone-p">—</span>
                             </div>
                             <h4 class="finding-title">Tone không ổn định qua các mô hình</h4>
-                            <p class="finding-desc">
-                                Hệ số tone LM net_prop trong C1 [-1, +1] có p_HC3 = 0.0991 (chỉ có ý nghĩa cận biên 10%,
-                                không đạt 5%). Không xem đây là tín hiệu giao dịch.
-                            </p>
+                            <p class="finding-desc" id="finding-tone-desc"></p>
                             <a href="#regression" class="finding-link" onclick="activateTab('regression')">Xem bảng hồi
                                 quy C1–C4 &rarr;</a>
                         </div>
@@ -277,8 +279,8 @@
                             </div>
                             <h4 class="finding-title">LM chuyên ngành đối chứng Harvard IV-4</h4>
                             <p class="finding-desc">
-                                861 / 971 hồ sơ cho điểm trái dấu do từ điển Harvard gắn nhãn tích cực cho nhiều thuật
-                                ngữ tài chính thận trọng. LM phản ánh chính xác ngữ cảnh.
+                                861 / 971 hồ sơ cho điểm trái dấu. Đây là khác biệt giữa hai thước đo;
+                                chưa xác định từ điển nào đúng cho từng ngữ cảnh.
                             </p>
                             <a href="#dictionary" class="finding-link" onclick="activateTab('dictionary')">Xem Scatter
                                 Plot có Zoom &rarr;</a>
@@ -287,12 +289,12 @@
                         <div class="finding-card">
                             <div class="finding-header">
                                 <span class="finding-tag tag-audit">Toàn vẹn</span>
-                                <span class="finding-stat">0 Sai lệch</span>
+                                <span class="finding-stat" id="finding-integrity">—</span>
                             </div>
-                            <h4 class="finding-title">Dữ liệu xác thực SHA-256</h4>
+                            <h4 class="finding-title">Đối chiếu nguồn dữ liệu</h4>
                             <p class="finding-desc">
-                                Dữ liệu giao diện được đóng gói từ các bảng CSV đầu ra; 100% ngày t=0 khớp
-                                lịch giao dịch S&amp;P 500, không sai lệch số học.
+                                Kết quả đối chiếu SHA-256 được ghi nhận khi đóng gói webapp.
+                                Kiểm tra số học thuộc lần chạy phân tích được lưu trong Verification.
                             </p>
                             <a href="#audit" class="finding-link" onclick="activateTab('audit')">Xem bảng kiểm toán
                                 &rarr;</a>
@@ -380,8 +382,8 @@
                         <div class="canvas-container">
                             <canvas id="chart-aar"></canvas>
                         </div>
-                        <p class="chart-note">Đơn vị trục Y: % (AAR &times; 100). Ngày t = 0 là ngày nộp hồ sơ. Điểm đen
-                            đậm thể hiện ngày nộp 10-K. Brown-Warner Z kiểm định từng ngày.</p>
+                        <p class="chart-note">Đơn vị trục Y: % (AAR &times; 100). Ngày t = 0 là phiên sự kiện sau khi
+                            điều chỉnh thời điểm nộp và lịch giao dịch. Điểm đen đánh dấu phiên này. Brown-Warner Z kiểm định từng ngày.</p>
                     </div>
 
                     <!-- NEW: Individual CAR [-1, +1] Distribution (Fintech Requirement) -->
@@ -425,8 +427,7 @@
                         <strong>Quy chuẩn báo cáo định lượng:</strong>
                         Hệ số mô tả mối liên hệ thống kê trong mẫu thực nghiệm, <em>không khẳng định quan hệ nhân
                             quả</em>.
-                        Giá trị $p = 0.0991$ trong mô hình C1 [-1, +1] chỉ có ý nghĩa cận biên ở mức 10%, không có ý
-                        nghĩa ở mức 5%.
+                        <span id="reg-tone-inference"></span>
                         Mô hình C2 rút gọn gồm 862 hồ sơ thuộc 96 công ty (đòi hỏi đủ 4 biến kiểm soát).
                     </div>
 
@@ -454,13 +455,13 @@
                     <!-- NEW: Coefficient Plot with 95% Confidence Intervals -->
                     <div class="chart-box" id="chart-reg-coef-box">
                         <div class="chart-header-row">
-                            <h3 class="chart-title">Biểu đồ Hệ số Hồi quy Tone &amp; Khoảng tin cậy 95% (C1 vs C2)</h3>
+                            <h3 class="chart-title">Hệ số hồi quy C2 bốn biến kiểm soát — <span id="reg-coef-window">[-1, +1]</span></h3>
                         </div>
                         <div class="canvas-container">
                             <canvas id="chart-reg-coef"></canvas>
                         </div>
-                        <p class="chart-note">Thanh ngang thể hiện khoảng tin cậy 95% (CI HC3). Nếu khoảng tin cậy chứa
-                            0, hệ số không có ý nghĩa thống kê ở mức 5%.</p>
+                        <p class="chart-note">Thanh ngang thể hiện hệ số ước lượng C2. Khoảng tin cậy 95% HC3 nằm trong
+                            tooltip và bảng C2 bên dưới. Khi chọn tất cả cửa sổ, biểu đồ hiển thị [-1, +1].</p>
                     </div>
 
                     <h3 id="reg-title">C1 — CAR ~ LM net proportional tone</h3>
@@ -538,7 +539,7 @@
                                 <canvas id="chart-scatter"></canvas>
                             </div>
                             <p class="chart-note">
-                                ● Cùng dấu (xanh) · ◇ Trái dấu (cam). Đường nét đứt xám: trục x=0, y=0. Đường chấm xanh:
+                                ● Không trái dấu, gồm điểm bằng 0 (xanh) · ◇ Trái dấu (cam). Đường nét đứt xám: trục x=0, y=0. Đường chấm xanh:
                                 phân giác y = x.
                                 <strong>Nhấp vào điểm bất kỳ</strong> để kiểm tra hồ sơ chi tiết.
                             </p>
@@ -585,7 +586,7 @@
                             <select id="dict-sign">
                                 <option value="">Tất cả</option>
                                 <option value="true">Trái dấu (861)</option>
-                                <option value="false">Cùng dấu (110)</option>
+                                <option value="false">Không trái dấu (110, gồm điểm bằng 0)</option>
                             </select>
                         </div>
                         <button type="button" class="btn-reset" id="dict-reset" aria-label="Đặt lại bộ lọc từ điển">
@@ -1187,7 +1188,10 @@
                     <h3>Data Contract Manifest (handoff/manifest.json)</h3>
                     <div class="table-wrap" id="audit-manifest-table"></div>
 
-                    <h3>Mã băm SHA-256 xác thực các bảng kết quả đầu vào</h3>
+                    <h3>Đối chiếu SHA-256 của các bảng đầu vào</h3>
+                    <p class="section-subtitle">Mã băm gốc thuộc lần chạy phân tích. Mã băm hiện tại và trạng thái được
+                        tính khi đóng gói webapp, không kiểm tra trực tiếp tệp trên máy khi mở trang.
+                        “Chỉ khác xuống dòng” nghĩa là khớp sau khi đổi LF/CRLF; byte của tệp vẫn khác.</p>
                     <div class="table-wrap" id="audit-sha-table"></div>
 
                     <h3>Kết quả kiểm tra tính nhất quán số học (Verification)</h3>

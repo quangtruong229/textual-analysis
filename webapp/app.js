@@ -30,6 +30,21 @@ if (window.Chart) {
     Chart.defaults.plugins.tooltip.boxPadding = 5;
     Chart.defaults.plugins.tooltip.borderWidth = 1;
     Chart.defaults.plugins.tooltip.borderColor = "rgba(255, 255, 255, 0.1)";
+    // Áp dụng màu chữ và lưới cho cả biểu đồ mới tạo trong chế độ tối.
+    Chart.register({
+        id: "researchTheme",
+        beforeUpdate(chart) {
+            const dark = document.documentElement.getAttribute("data-theme") === "dark";
+            const text = dark ? "#a0afc4" : "#475569";
+            Object.values(chart.options.scales || {}).forEach(scale => {
+                if (scale.ticks) scale.ticks.color = text;
+                if (scale.title) scale.title.color = text;
+                if (scale.grid) scale.grid.color = dark ? "#28364b" : "#e2e8f0";
+            });
+            if (chart.options.plugins?.legend?.labels) chart.options.plugins.legend.labels.color = text;
+            if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) chart.options.animation = false;
+        },
+    });
 }
 
 /* ---- Window label map ---- */
@@ -183,6 +198,63 @@ function sigClass(p) {
     if (p < 0.05) return "sig-high";
     if (p < 0.10) return "sig-marginal";
     return "";
+}
+
+// Chuẩn hóa tên cửa sổ vì CSV và bộ lọc có thể khác chữ hoa/thường.
+function sameWindow(a, b) {
+    return String(a).toLowerCase() === String(b).toLowerCase();
+}
+
+function initFindings() {
+    const event = D.eventSummary.find(r => sameWindow(r.window, "car_m1_p1"));
+    const tone = D.regression.find(r => r.section === "C1" && r.term === "lm_net_prop"
+        && sameWindow(r.dependent_variable, "car_m1_p1"));
+    const setText = (id, text) => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = text;
+    };
+    if (event) {
+        setText("finding-caar", (event.CAAR > 0 ? "+" : "") + pct(event.CAAR));
+        setText("finding-event-desc", `CAAR tại cửa sổ [-1, +1] là ${pct(event.CAAR)}; ` +
+            `p MacKinlay ${pval(event.MacKinlay_p).startsWith("<") ? "" : "= "}${pval(event.MacKinlay_p)}, Z MacKinlay = ${fmt(event.MacKinlay_Z, 3)}.`);
+    }
+    if (tone) {
+        const p = tone.p_hc3_two_sided;
+        const inference = p == null || !Number.isFinite(p) ? "chưa có p-value hợp lệ"
+            : p < 0.05 ? "có ý nghĩa thống kê ở mức 5%"
+            : p < 0.10 ? "chỉ có ý nghĩa cận biên ở mức 10%, không đạt 5%"
+            : "không có ý nghĩa thống kê ở mức 10% hoặc 5%";
+        const text = `C1 LM net_prop [-1, +1]: p HC3 ${pval(p).startsWith("<") ? "" : "= "}${pval(p)}; ${inference}.`;
+        setText("finding-tone-p", `p ${pval(p).startsWith("<") ? "" : "= "}${pval(p)}`);
+        setText("finding-tone-desc", text + " Không xem đây là tín hiệu giao dịch.");
+        setText("reg-tone-inference", text);
+    }
+    const integrity = Object.values(D.sourceIntegrity || {});
+    const exact = integrity.filter(r => r.status === "exact").length;
+    const newline = integrity.filter(r => r.status === "line_endings_only").length;
+    setText("finding-integrity", integrity.length
+        ? `${exact}/${integrity.length} khớp byte; ${newline} khác xuống dòng`
+        : "Chưa đối chiếu nguồn");
+}
+
+// Tách riêng hai đuôi phân phối để không gán ngoại lệ vào khoảng hữu hạn.
+function carHistogram(values, nBins = 24, min = -0.15, max = 0.15) {
+    const step = (max - min) / nBins;
+    const bins = [
+        { lo: -Infinity, hi: min, label: `< ${pct(min, 2)}`, count: 0 },
+        ...Array.from({ length: nBins }, (_, i) => ({
+            lo: min + i * step, hi: min + (i + 1) * step,
+            label: `[${pct(min + i * step, 2)}; ${pct(min + (i + 1) * step, 2)}${i === nBins - 1 ? "]" : ")"}`,
+            count: 0,
+        })),
+        { lo: max, hi: Infinity, label: `> ${pct(max, 2)}`, count: 0 },
+    ];
+    values.filter(v => v != null && Number.isFinite(v)).forEach(v => {
+        const index = v < min ? 0 : v > max ? bins.length - 1
+            : 1 + Math.min(nBins - 1, Math.floor((v - min) / step));
+        bins[index].count++;
+    });
+    return bins;
 }
 
 /** Accessible sign symbol — not colour alone (WCAG 1.4.1 & point 10) */
@@ -492,7 +564,7 @@ function initOverview() {
                 </span>
             </div>
             <p class="card-value">${nTone.toLocaleString()}</p>
-            <p class="card-note">${fy.length - nTone} thiếu (has_item7_tone)</p>
+            <p class="card-note">${fy.length - nTone} hồ sơ thiếu tone</p>
         </div>
         <div class="card">
             <div class="card-top">
@@ -502,7 +574,7 @@ function initOverview() {
                 </span>
             </div>
             <p class="card-value">${nCar.toLocaleString()}</p>
-            <p class="card-note">${fy.length - nCar} thiếu (has_event_car)</p>
+            <p class="card-note">${fy.length - nCar} hồ sơ thiếu CAR</p>
         </div>
         <div class="card">
             <div class="card-top">
@@ -688,7 +760,7 @@ function initEventStudy() {
                         callbacks: {
                             title: ctx => {
                                 const t = daily[ctx[0].dataIndex].event_time;
-                                return t === 0 ? `Ngày t = 0 (Ngày nộp 10-K)` : `Ngày tương đối: t = ${t > 0 ? "+" + t : t}`;
+                                return t === 0 ? `Ngày t = 0 (Phiên sự kiện)` : `Ngày tương đối: t = ${t > 0 ? "+" + t : t}`;
                             },
                             label: ctx => {
                                 const r = daily[ctx.dataIndex];
@@ -708,7 +780,7 @@ function initEventStudy() {
                         grid: { color: "#e2e8f0" },
                     },
                     x: {
-                        title: { display: true, text: "Ngày giao dịch tương đối (t = 0 là ngày nộp)", font: { weight: "600" } },
+                        title: { display: true, text: "Ngày giao dịch tương đối (t = 0 là phiên sự kiện)", font: { weight: "600" } },
                         grid: { color: "#f8fafc" },
                     },
                 },
@@ -726,27 +798,12 @@ function initEventStudy() {
     const carCanvas = document.getElementById("chart-car-dist");
     if (carCanvas) {
         const carValues = D.firmYear.map(r => r.CAR_m1_p1).filter(v => v != null && isFinite(v));
-        const nBins = 24;
-        const minCar = -0.15;
-        const maxCar = 0.15;
-        const binStep = (maxCar - minCar) / nBins;
-        const carBins = Array.from({ length: nBins }, (_, i) => ({
-            lo: minCar + i * binStep,
-            hi: minCar + (i + 1) * binStep,
-            count: 0
-        }));
-
-        carValues.forEach(v => {
-            let idx = Math.floor((v - minCar) / binStep);
-            if (idx < 0) idx = 0;
-            if (idx >= nBins) idx = nBins - 1;
-            carBins[idx].count++;
-        });
+        const carBins = carHistogram(carValues);
 
         const cCar = new Chart(carCanvas, {
             type: "bar",
             data: {
-                labels: carBins.map(b => `${(b.lo * 100).toFixed(1)}%`),
+                labels: carBins.map(b => b.label),
                 datasets: [{
                     label: "Số hồ sơ 10-K",
                     data: carBins.map(b => b.count),
@@ -767,7 +824,7 @@ function initEventStudy() {
                         callbacks: {
                             title: ctx => {
                                 const b = carBins[ctx[0].dataIndex];
-                                return `Khoảng CAR: [${(b.lo * 100).toFixed(1)}%; ${(b.hi * 100).toFixed(1)}%]`;
+                                return `Khoảng CAR: ${b.label}`;
                             },
                             label: ctx => `Số lượng: ${ctx.parsed.y} hồ sơ (${((ctx.parsed.y / carValues.length) * 100).toFixed(1)}%)`
                         }
@@ -791,7 +848,7 @@ function initEventStudy() {
 
     // Daily table
     renderTable("event-daily-table", [
-        { label: "Ngày t", key: "event_time", num: true, center: true, fmt: v => v === 0 ? "<strong>0 (nộp)</strong>" : (v > 0 ? `+${v}` : `${v}`) },
+        { label: "Ngày t", key: "event_time", num: true, center: true, fmt: v => v === 0 ? "<strong>0 (sự kiện)</strong>" : (v > 0 ? `+${v}` : `${v}`) },
         { label: "AAR (%)", key: "AAR", num: true, fmt: v => pct(v) },
         { label: "N", key: "N", num: true },
         { label: "BW Z", key: "BW_Z", num: true, fmt: v => fmt(v, 3) },
@@ -816,7 +873,7 @@ function filterRegression() {
     const win = document.getElementById("reg-window").value;
 
     let rows = D.regression.filter(r => r.section === section && r.term !== "const");
-    if (win !== "all") rows = rows.filter(r => r.dependent_variable === win);
+    if (win !== "all") rows = rows.filter(r => sameWindow(r.dependent_variable, win));
 
     const titles = {
         C1: "C1 — CAR ~ Score (đơn biến, kiểm tra độ nhạy qua các định nghĩa tone)",
@@ -846,7 +903,9 @@ function renderRegressionCoefChart(windowKey = "CAR_m1_p1") {
     if (!canvas) return;
 
     // Filter C2 rows for selected window, excluding intercept 'const'
-    const rows = D.c2.filter(r => (r.dependent_variable === windowKey || r.dependent_variable === windowKey.toLowerCase() || (windowKey === "all" && r.dependent_variable === "CAR_m1_p1")) && r.term !== "const");
+    const selectedWindow = windowKey === "all" ? "CAR_m1_p1" : windowKey;
+    const rows = D.c2.filter(r => sameWindow(r.dependent_variable, selectedWindow) && r.term !== "const");
+    document.getElementById("reg-coef-window").textContent = WIN[selectedWindow] || selectedWindow;
     if (rows.length === 0) return;
 
     const termLabels = {
@@ -1088,7 +1147,7 @@ function renderDictPage() {
         { label: "LM net_prop", key: "lm_net_prop", num: true, sortable: true, fmt: v => signSpan(v) },
         { label: "Harvard net_prop", key: "harvard_net_prop", num: true, sortable: true, fmt: v => signSpan(v) },
         { label: "Harvard − LM", key: "harvard_minus_lm", num: true, sortable: true, fmt: v => fmt(v, 4) },
-        { label: "Trái dấu", key: "opposite_sign", center: true, sortable: true, fmt: v => v ? '<span class="badge badge-warn">Trái dấu</span>' : '<span class="badge badge-ok">Cùng dấu</span>' },
+        { label: "Trái dấu", key: "opposite_sign", center: true, sortable: true, fmt: v => v ? '<span class="badge badge-warn">Trái dấu</span>' : '<span class="badge badge-ok">Không trái dấu</span>' },
     ], info.rows, {
         currentSort: dictSort,
         onSort: (key) => {
@@ -1198,7 +1257,7 @@ function initDictionary() {
 
         const signBadge = f.opposite_sign
             ? '<span class="badge badge-warn">Trái dấu (LM &lt; 0, Harvard &gt; 0)</span>'
-            : '<span class="badge badge-ok">Cùng dấu</span>';
+            : '<span class="badge badge-ok">Không trái dấu</span>';
 
         const carVal = f.CAR_m1_p1 != null ? pct(f.CAR_m1_p1) : "—";
 
@@ -1267,7 +1326,7 @@ function initDictionary() {
             data: {
                 datasets: [
                     {
-                        label: "Cùng dấu (●)",
+                        label: "Không trái dấu (●, gồm điểm bằng 0)",
                         data: same,
                         backgroundColor: "rgba(37, 99, 235, 0.65)",
                         borderColor: "#1d4ed8",
@@ -1333,7 +1392,7 @@ function initDictionary() {
                                     `LM net_prop: ${f.lm_net_prop > 0 ? "+" : ""}${fmt(f.lm_net_prop, 4)}`,
                                     `Harvard net_prop: ${f.harvard_net_prop > 0 ? "+" : ""}${fmt(f.harvard_net_prop, 4)}`,
                                     `Chênh lệch (H − LM): ${fmt(f.harvard_minus_lm, 4)}`,
-                                    `Trạng thái: ${f.opposite_sign ? "Trái dấu" : "Cùng dấu"}`,
+                                    `Trạng thái: ${f.opposite_sign ? "Trái dấu" : "Không trái dấu"}`,
                                     `👉 Bấm điểm để xem thẻ chi tiết`
                                 ];
                             }
@@ -1749,10 +1808,13 @@ function initAudit() {
     ], fileEntries);
 
     // SHA-256 with Phosphor copy SVG button
-    const shaEntries = Object.entries(v.source_sha256 || {}).map(([path, hash]) => ({ path, hash }));
+    const shaEntries = Object.entries(v.source_sha256 || {}).map(([path, hash]) => ({
+        path, hash, current: D.sourceIntegrity?.[path]?.current_sha256,
+        status: D.sourceIntegrity?.[path]?.status,
+    }));
     renderTable("audit-sha-table", [
         { label: "Bảng đầu vào", key: "path", fmt: v => `<code>${v}</code>` },
-        { label: "Mã băm SHA-256", key: "hash", fmt: v => `
+        { label: "SHA-256 lần chạy phân tích", key: "hash", fmt: v => `
             <div class="hash-container">
                 <span class="hash-display">${v}</span>
                 <button type="button" class="copy-btn" data-hash="${v}" aria-label="Sao chép mã SHA-256">
@@ -1761,6 +1823,11 @@ function initAudit() {
                 </button>
             </div>
         `},
+        { label: "SHA-256 khi đóng gói", key: "current", fmt: value => value ? `<code>${value}</code>` : "—" },
+        { label: "Đối chiếu khi đóng gói", key: "status", fmt: value => ({
+            exact: "Khớp byte", line_endings_only: "Chỉ khác xuống dòng LF/CRLF",
+            mismatch: "Không khớp nội dung", missing: "Thiếu tệp nguồn",
+        }[value] || "Chưa đối chiếu") },
     ], shaEntries);
 
     // Add clipboard click handlers
@@ -1856,6 +1923,7 @@ function renderC2Full() {
 
 document.addEventListener("DOMContentLoaded", () => {
     initTheme();
+    initFindings();
     initNavigation();
     initOverview();
     initEventStudy();
