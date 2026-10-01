@@ -1,11 +1,11 @@
 # Webapp: Textual Analysis in Finance — Quant Research Lab
 
-> Nền tảng phân tích định lượng giọng điệu báo cáo 10-K (Item 7 MD&A) và phản ứng giá cổ phiếu (NYSE / Nasdaq 100, 2016–2025, Benchmark S&P 500).
+> Trang xem kết quả phân tích Item 7 của 1.000 hồ sơ 10-K, 100 công ty, năm nộp 2016–2025 và CAR với chỉ số đối chứng S&P 500.
 
 ---
 
 ## 📖 Tài liệu Sản phẩm Chi tiết
-Xem toàn bộ mô tả sản phẩm, tính năng cốt lõi và tính năng phụ chứng minh giá trị cho nhà đầu tư tại:
+Xem phạm vi dữ liệu, mô hình và giới hạn diễn giải tại:
 👉 **[PRODUCT_DESCRIPTION.md](PRODUCT_DESCRIPTION.md)**
 
 ---
@@ -15,6 +15,7 @@ Xem toàn bộ mô tả sản phẩm, tính năng cốt lõi và tính năng ph�
 ### Cách 1: Khởi động Local Web Server (Khuyên dùng)
 Từ thư mục gốc dự án (`textual-analysis`), mở terminal PowerShell và chạy:
 ```powershell
+python webapp/build_data.py
 python -m http.server 8000 --directory webapp
 ```
 Truy cập qua trình duyệt: **[http://localhost:8000](http://localhost:8000)**
@@ -33,4 +34,6 @@ Hoặc mở trực tiếp file `webapp/index.html` trong trình duyệt Chrome /
 - `style.css`: Hệ thống thiết kế Fintech (Design tokens, Dark/Light mode, animations).
 - `data.js`: Dữ liệu JSON tổng hợp từ các file kết quả CSV trong `analysis_outputs/`.
 - `build_data.py`: Script tự động đọc CSV và đóng gói thành `data.js`.
-- `PRODUCT_DESCRIPTION.md`: Bản mô tả sản phẩm toàn diện và tính ứng dụng thực chiến cho nhà đầu tư.
+- `PRODUCT_DESCRIPTION.md`: Phạm vi dữ liệu, phương pháp và giới hạn kết quả.
+
+`data.js` là bản đóng gói tại thời điểm chạy `build_data.py`; sau khi cập nhật CSV hoặc manifest, cần dựng lại file này và kiểm tra tab Hồi quy/Audit. Webapp không chạy hồi quy và không đọc trực tiếp HTML 10-K. Hệ số là kết quả toàn mẫu đã lưu; lọc bảng hồ sơ không ước lượng lại mô hình.

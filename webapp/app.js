@@ -971,6 +971,66 @@ function initRegression() {
         { label: "p cluster", key: "p_cluster_two_sided", num: true, fmt: v => pval(v), cls: r => sigClass(r.p_cluster_two_sided) },
         { label: "R²", key: "r_squared", num: true, fmt: v => fmt(v, 4) },
     ], c2tone);
+
+    document.getElementById("extended-model").addEventListener("change", renderExtendedResults);
+    renderExtendedResults();
+}
+
+function renderExtendedResults() {
+    const key = document.getElementById("extended-model").value;
+    let rows = D[key] || [];
+    const notes = {
+        wordPower: "H1/H2 chính, CAR [0,+3]. p một phía kiểm tra dấu kỳ vọng dương; trọng số từ tiêu cực dùng ridge. Các kết quả không đạt mức 5%.",
+        c2Full6: "LM tone tỷ lệ; sáu biến kiểm soát, 481 hồ sơ / 71 công ty. Đây không phải Word Power.",
+        c2Matched4: "Bốn biến kiểm soát ước lượng lại trên cùng 481 hồ sơ để so sánh công bằng với C2 sáu biến.",
+        b6: "Kiểm định chuẩn hóa và phương sai cắt ngang cho CAAR ở bốn cửa sổ; không kiểm định hệ số tone.",
+        brownWarner: "Brown–Warner và hiệu chỉnh tự tương quan B7 ở bốn cửa sổ; không kiểm định hệ số tone.",
+        c5Full6: "Các yếu tố quyết định tone; mẫu có tone năm trước và đủ sáu biến kiểm soát.",
+        c6: "Phản ứng chậm sau công bố, với các cửa sổ bắt đầu từ phiên +5.",
+        c7: "Hồi quy cắt ngang AR ngày 0; bảng gồm các đặc tả được tính riêng.",
+        c8: "Fama–MacBeth: trung bình hệ số qua 10 năm nộp; p hai phía."
+    };
+    document.getElementById("extended-note").textContent = notes[key] || "";
+
+    if (key === "wordPower") {
+        const primary = new Set(["C1_H1_WP_positive", "C1_H2_WP_negative",
+            "C2_H1_WP_positive_six_controls", "C2_H2_WP_negative_six_controls"]);
+        rows = rows.filter(r => primary.has(r.model) && r.dependent_variable === "car_0_p3" && r.term !== "const");
+    }
+    const columns = key === "b6" ? [
+        { label: "Cửa sổ", key: "window", fmt: v => WIN[v] || v },
+        { label: "N", key: "n", num: true },
+        { label: "CAAR", key: "caar", num: true, fmt: v => fmt(v, 6) },
+        { label: "z chuẩn hóa", key: "standardized_z", num: true, fmt: v => fmt(v, 4) },
+        { label: "p chuẩn hóa", key: "standardized_p", num: true, fmt: pval },
+        { label: "z phương sai cắt ngang", key: "cross_sectional_z", num: true, fmt: v => fmt(v, 4) },
+        { label: "p phương sai cắt ngang", key: "cross_sectional_p", num: true, fmt: pval }
+    ] : key === "brownWarner" ? [
+        { label: "Cửa sổ", key: "window", fmt: v => WIN[v] || v },
+        { label: "N ngày", key: "n_event_days", num: true },
+        { label: "CAAR", key: "caar", num: true, fmt: v => fmt(v, 6) },
+        { label: "Brown–Warner z", key: "brown_warner_z", num: true, fmt: v => fmt(v, 4) },
+        { label: "p Brown–Warner", key: "brown_warner_p", num: true, fmt: pval },
+        { label: "p tự tương quan", key: "autocorr_p", num: true, fmt: pval }
+    ] : key === "c8" ? [
+        { label: "Mô hình", key: "model" },
+        { label: "Biến phụ thuộc", key: "dependent_variable", fmt: v => WIN[v] || v },
+        { label: "Biến", key: "term" },
+        { label: "Số năm", key: "n_years", num: true },
+        { label: "Hệ số TB", key: "mean_coefficient", num: true, fmt: signSpan },
+        { label: "p hai phía", key: "p_two_sided", num: true, fmt: pval }
+    ] : [
+        { label: "Mô hình", key: "model" },
+        { label: "Cửa sổ / biến phụ thuộc", key: "dependent_variable", fmt: v => WIN[v] || v },
+        { label: "Biến", key: "term" },
+        { label: "N", key: "n", num: true },
+        { label: "Công ty", key: "n_firms", num: true },
+        { label: "Hệ số", key: "coefficient", num: true, fmt: signSpan },
+        { label: "p HC3", key: "p_hc3_two_sided", num: true, fmt: pval },
+        { label: "p cụm", key: "p_cluster_two_sided", num: true, fmt: pval },
+        ...(key === "wordPower" ? [{ label: "p HC3 một phía", key: "p_hc3_one_sided", num: true, fmt: pval }] : [])
+    ];
+    renderTable("extended-table", columns, rows);
 }
 
 /* ==========================================================
@@ -1047,6 +1107,10 @@ function renderDictPage() {
 function initDictionary() {
     const ds = D.dictSummary;
     const sharePct = ds.share_opposite_sign != null ? (ds.share_opposite_sign * 100).toFixed(1) + "%" : "—";
+    document.getElementById("dict-interpretation").textContent =
+        `${sharePct} (${ds.n_opposite_sign} / ${ds.n_comparable_filings} hồ sơ) có điểm LM và Harvard trái dấu. ` +
+        `Điểm trung bình LM là ${fmt(ds.mean_lm_net_prop, 4)}, Harvard là ${fmt(ds.mean_harvard_net_prop, 4)}. ` +
+        "Đây là khác biệt giữa hai thước đo; chưa xác định từ điển nào đúng cho từng ngữ cảnh.";
 
     document.getElementById("dict-cards").innerHTML = `
         <div class="card">
@@ -1067,7 +1131,7 @@ function initDictionary() {
                 </span>
             </div>
             <p class="card-value">${ds.n_opposite_sign.toLocaleString()}</p>
-            <p class="card-note">${sharePct} hồ sơ (88.7%)</p>
+            <p class="card-note">${sharePct} hồ sơ</p>
         </div>
         <div class="card">
             <div class="card-top">

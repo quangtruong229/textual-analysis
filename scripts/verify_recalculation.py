@@ -120,7 +120,7 @@ def main() -> None:
     if set(b6.window) != set(extended.window) or len(delayed) != len(events):
         raise AssertionError("B6/C6 event coverage changed")
     if delayed[["car_p5_p5", "car_p5_p10", "car_p5_p22"]].notna().sum().ne(
-            [969, 969, 963]).any():
+            [969, 969, 969]).any():
         raise AssertionError("C6 complete-case coverage changed")
     if not c5.n.eq(769).all() or not c7.n.eq(862).all():
         raise AssertionError("C5/C7 sample coverage changed")

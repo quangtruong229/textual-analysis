@@ -1,6 +1,6 @@
 # Phân tích định lượng 10-K
 
-Dự án xử lý và kiểm tra dữ liệu theo [bộ công thức](docs/Cong_thuc_dinh_luong.docx) do nhóm cung cấp: tính AR/CAR từ bảng giá, hồi quy liên hệ tone với CAR, tạo bảng theo công ty–năm nộp và xuất phần trình bày kết quả. Có trang local để xem nhanh; thiết kế UX/UI của sản phẩm do thành viên phụ trách thực hiện riêng.
+Dự án xử lý và kiểm tra dữ liệu theo [bộ công thức](docs/Cong_thuc_dinh_luong.docx) do nhóm cung cấp: tính AR/CAR từ bảng giá, hồi quy liên hệ tone với CAR, tạo bảng theo công ty–năm nộp và xuất phần trình bày kết quả. Có trang Streamlit local và [webapp tĩnh](webapp/README.md) để xem kết quả; các trang không chạy lại mô hình khi mở.
 
 ## Cài đặt và chạy
 
@@ -25,7 +25,7 @@ Hai bảng `EADRet` và `Accruals` mới từ nhánh `finalize-eadret-accruals` 
 
 Đọc [luồng xử lý](docs/data_pipeline.md), [phương pháp](docs/METHODOLOGY.md), [kết quả và diễn giải](analysis_outputs/RESULTS_PRESENTATION.md), [đối chiếu yêu cầu đề án](analysis_outputs/ASSIGNMENT_AUDIT.md) và [kiểm tra dạng máy đọc](analysis_outputs/verification.json). `handoff/manifest.json` lưu danh sách bảng, cột, đơn vị và mã kiểm tra tệp.
 
-Mẫu đầu vào gồm 1.000 hồ sơ của 100 công ty, theo **năm nộp 2016–2025**, không đồng nghĩa năm tài chính. Lệnh phân tích đọc tone từ `data/metadata/tone_method_item7.csv`, giờ công bố từ `data/metadata/filing_acceptance.csv`, tính AR/CAR từ `data/market_data/daily_prices.csv` và ước lượng các mô hình hồi quy. C2 dùng bốn biến kiểm soát Size, BM, Volatility và Turnover; lịch chia tách ở `data/market_data/stock_splits.csv` giữ giá và số cổ phiếu trên cùng một cơ sở.
+Mẫu đầu vào gồm 1.000 hồ sơ của 100 công ty, theo **năm nộp 2016–2025**, không đồng nghĩa năm tài chính. Lệnh phân tích đọc tone từ `data/metadata/tone_method_item7.csv`, giờ công bố từ `data/metadata/filing_acceptance.csv`, tính AR/CAR từ `data/market_data/daily_prices.csv` và ước lượng các mô hình hồi quy. C2 dùng bốn biến kiểm soát Size, BM, Volatility và Turnover; lịch chia tách ở `data/market_data/stock_splits.csv` giữ giá và số cổ phiếu trên cùng một cơ sở. Mã `src/select_companies.py` đọc cả lịch sử SEC trong `filings.files` để không bỏ các 10-K cũ. Giá hiện có đến 27/2/2026, đủ cửa sổ C6 `[+5,+22]` cho 969 hồ sơ; khi cần nối thêm giá, chạy `python src/download_market_data.py --extend`, rồi `python scripts/optional_robustness.py`, `python scripts/verify_recalculation.py`, `python scripts/validate_handoff.py` và `python webapp/build_data.py`.
 
 ### Corpus Item 7 tải từ SEC
 
@@ -44,3 +44,5 @@ python -m streamlit run app_local.py --server.address 127.0.0.1
 Trang chỉ đọc các bảng đã tính. Hai mục **Kết quả & diễn giải** và **Phương pháp** trình bày cách đọc kết quả, công thức và giới hạn. Nếu tính lại dữ liệu khi trang đang mở, khởi động lại trang để đọc đầu ra mới.
 
 `analysis_outputs/RESULTS_PRESENTATION.md` được tạo từ cùng CSV với trang local. Có thể xuất lại riêng nội dung này bằng `python scripts/export_presentation.py`.
+
+Để cập nhật webapp tĩnh sau khi chạy phân tích, dùng `python webapp/build_data.py`. File `webapp/data.js` đóng gói các bảng CSV, gồm Word Power, C2 sáu biến và B6–C8. Chạy `python -m unittest discover -s tests` và `python scripts/validate_handoff.py` trước khi bàn giao; GitHub Actions thực hiện các kiểm tra này trên mỗi push/PR.

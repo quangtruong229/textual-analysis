@@ -36,6 +36,7 @@ data/metadata/event_study/*
 
 # Control-variable SEC cache
 data/metadata/controls/sec_facts_cache/
+data/market_data/.yfinance_cache/
 
 # Historical/intermediate metadata
 data/metadata/archive/

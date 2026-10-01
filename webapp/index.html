@@ -291,7 +291,7 @@
                             </div>
                             <h4 class="finding-title">Dữ liệu xác thực SHA-256</h4>
                             <p class="finding-desc">
-                                Toàn bộ số liệu hiển thị được đọc trực tiếp từ các file CSV đầu ra; 100% ngày t=0 khớp
+                                Dữ liệu giao diện được đóng gói từ các bảng CSV đầu ra; 100% ngày t=0 khớp
                                 lịch giao dịch S&amp;P 500, không sai lệch số học.
                             </p>
                             <a href="#audit" class="finding-link" onclick="activateTab('audit')">Xem bảng kiểm toán
@@ -326,7 +326,7 @@
 
                     <div class="note note-info">
                         <div class="note-title">Lưu ý Học thuật &amp; Giới hạn Nghiên cứu:</div>
-                        CAAR khác 0 chứng minh có phản ứng giá trung bình quanh thời điểm nộp 10-K, <strong>không chứng
+                        CAAR khác 0 cho thấy lợi suất bất thường trung bình quanh thời điểm nộp 10-K, <strong>không chứng
                             minh giọng điệu MD&amp;A là nguyên nhân</strong>. Phản ứng có thể bị chi phối bởi thông tin
                         kết quả kinh doanh công bố cùng kỳ, bất đối xứng thông tin, hoặc các yếu tố vĩ mô. Kết quả mang
                         tính mô tả thực nghiệm, không phải khuyến nghị đầu tư.
@@ -476,6 +476,25 @@
                         Kiểm tra &amp; Audit.
                     </p>
                     <div class="table-wrap" id="c2-table"></div>
+
+                    <h3>Kết quả mở rộng từ bộ dữ liệu hiện tại</h3>
+                    <p class="section-subtitle">Word Power dùng tần suất từng từ Item 7 và ước lượng trọng số ngoài năm được chấm điểm; nhóm từ tiêu cực dùng ridge, nên không phải bản OLS nguyên xi. C2 sáu biến chỉ gồm hồ sơ có Accruals đạt PASS (481 hồ sơ, 71 công ty). B6 kiểm tra CAAR; C5–C8 dùng tone tỷ lệ. Các hệ số không chứng minh nhân quả hay khả năng giao dịch sinh lời.</p>
+                    <div class="control-group">
+                        <label for="extended-model">Bảng kết quả</label>
+                        <select id="extended-model">
+                            <option value="wordPower">Word Power — H1/H2</option>
+                            <option value="c2Full6">C2 — sáu biến kiểm soát</option>
+                            <option value="c2Matched4">C2 — bốn biến trên cùng mẫu 481</option>
+                            <option value="b6">B6 — chuẩn hóa và phương sai cắt ngang</option>
+                            <option value="brownWarner">Brown–Warner và B7 — tự tương quan</option>
+                            <option value="c5Full6">C5 — yếu tố quyết định tone</option>
+                            <option value="c6">C6 — phản ứng chậm</option>
+                            <option value="c7">C7 — AR ngày 0</option>
+                            <option value="c8">C8 — Fama–MacBeth</option>
+                        </select>
+                    </div>
+                    <p class="section-subtitle" id="extended-note"></p>
+                    <div class="table-wrap" id="extended-table"></div>
                 </section>
 
                 <!-- ============================================ -->
@@ -496,10 +515,7 @@
                     <div class="cards" id="dict-cards"></div>
 
                     <div class="note note-info">
-                        <strong>Phát hiện thực nghiệm:</strong> Tỷ lệ trái dấu <strong>88.7% (861 / 971 hồ sơ)</strong>
-                        chứng minh sự khác biệt bản chất giữa từ điển tổng quát và từ điển tài chính. Harvard IV-4 phân
-                        loại các từ mang tính thận trọng trong 10-K thành tích cực, dẫn tới điểm trung bình dương
-                        (+0.0076), trong khi LM cho điểm trung bình âm (-0.0084).
+                        <strong>Phát hiện thực nghiệm:</strong> <span id="dict-interpretation"></span>
                     </div>
 
                     <div class="grid-2">
@@ -1009,7 +1025,7 @@
                             </div>
                         </div>
 
-                        <h4>C2. Mô hình Đa biến có Biến Kiểm soát (Jegadeesh &amp; Wu Eq. 14) [Bắt buộc]</h4>
+                        <h4>C2. Mô hình rút gọn với bốn biến kiểm soát; mô hình sáu biến được báo riêng</h4>
                         <p>Cô lập ảnh hưởng của giọng điệu khỏi các đặc tính tài chính cơ bản:</p>
                         <div class="formula-box">
                             <div class="formula-math">
@@ -1032,7 +1048,8 @@
                             </div>
                             <p class="formula-desc">
                                 <em>Quy tắc mẫu C2:</em> Mô hình chỉ giữ các hồ sơ có đầy đủ cả 4 biến kiểm soát và Item
-                                7 thành công ($N = 862$ hồ sơ / 99 công ty).
+                                7 thành công ($N = 862$ hồ sơ / 96 công ty). Mô hình sáu biến bổ sung EADRet và Accruals,
+                                còn 481 hồ sơ / 71 công ty. Xem bảng tương ứng tại tab Hồi quy.
                             </p>
                         </div>
 
@@ -1055,9 +1072,8 @@
                                 $$CAR_i = a + b \cdot Score_i^{LM} + c \cdot Score_i^{Harvard} + \varepsilon_i$$
                             </div>
                             <p class="formula-desc">
-                                So sánh từ điển tài chính Loughran–McDonald với từ điển tổng quát Harvard IV-4 nhằm
-                                chứng minh từ điển tổng quát tạo sai lệch do gán nhãn tích cực cho các thuật ngữ rủi
-                                ro/thuế.
+                                So sánh điểm LM và Harvard IV-4 để đánh giá độ nhạy của kết quả theo từ điển.
+                                Hai điểm trái dấu chưa xác định từ điển nào đúng trong từng ngữ cảnh.
                             </p>
                         </div>
                     </div>
@@ -1147,9 +1163,9 @@
                                 <li><strong>Không gán ép dữ liệu thiếu:</strong> 29 hồ sơ thiếu Item 7 MD&amp;A và 2 hồ
                                     sơ thiếu giá giao dịch được giữ nguyên mã <code>missing / null</code>, tuyệt đối
                                     không gán bằng 0.</li>
-                                <li><strong>Toàn vẹn số liệu:</strong> Toàn bộ giá trị trong báo cáo này được trích xuất
-                                    nguyên vẹn từ các file CSV đầu ra trong <code>analysis_outputs/</code> mà không qua
-                                    bất kỳ khâu xử lý nhân tạo nào.</li>
+                                <li><strong>Toàn vẹn số liệu:</strong> Các giá trị được đọc từ <code>data.js</code>,
+                                    tạo bởi <code>webapp/build_data.py</code> từ bảng CSV đầu ra. HTML 10-K gốc
+                                    được lưu ngoài Git và có thể tải lại theo manifest SEC.</li>
                             </ul>
                         </div>
                     </div>
@@ -1201,7 +1217,8 @@
 
                     <div class="note note-info">
                         <strong>Khả năng tái lập kết quả:</strong> Chạy <code>python scripts/run_analysis.py</code> từ
-                        thư mục gốc để tái tạo kết quả từ dữ liệu thô.
+                        thư mục gốc để tái tạo kết quả từ các bảng đầu vào đã xử lý. Để kiểm toán từ HTML 10-K gốc,
+                        tải lại corpus theo manifest SEC và hướng dẫn trong README.
                         Giao diện này đọc từ <code>data.js</code> được tạo bởi
                         <code>python webapp/build_data.py</code>.<br>
                         Thời điểm tạo data.js: <strong id="audit-gen-date"></strong>
@@ -1218,7 +1235,7 @@
                     <span class="footer-sep">&bull;</span>
                     <span>Từ điển: <strong>Loughran-McDonald (2011)</strong> &amp; <strong>Harvard IV-4</strong></span>
                     <span class="footer-sep">&bull;</span>
-                    <span>Phần mềm đọc trực tiếp CSV từ <code>analysis_outputs/</code></span>
+                    <span>Giao diện đọc <code>data.js</code> tạo từ các CSV trong <code>analysis_outputs/</code></span>
                 </div>
             </footer>
         </div>
