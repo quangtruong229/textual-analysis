@@ -18,9 +18,11 @@ Trên 971 filing so sánh được, tone LM và Harvard IV-4 trái dấu ở **8
 
 Theo bảng nghiên cứu sự kiện được chạy lại, CAAR [-1,+1] = **0,005699** (khoảng 0,570%), p MacKinlay = **0,00000000187**, N = 969. Phương sai CAR dùng xấp xỉ B4 của tài liệu công thức: số phiên trong cửa sổ nhân phương sai phần dư mô hình thị trường. Bốn cửa sổ và các phép kiểm định nằm ở `event_study/event_study_summary.csv`. Đây là phản ứng trung bình quanh ngày công bố, không tự chứng minh tone là nguyên nhân.
 
-Brown–Warner A.11 và B7 cho cả bốn cửa sổ nằm ở `event_study/extended_window_tests.csv`; Corrado theo từng ngày ở `corrado_daily.csv`; B8 theo ba mức CAAR giả định ở `theoretical_power.csv`. Không dùng bảng B8 như power của H1 tone. Bảng tone tổng hợp không có tần suất từng từ, nên chưa tính được Word Power ngoài mẫu và chưa kiểm định H1 được viết theo ScorePos Word Power.
+Brown–Warner A.11 và B7 cho cả bốn cửa sổ nằm ở `event_study/extended_window_tests.csv`; Corrado theo từng ngày ở `corrado_daily.csv`; B8 theo ba mức CAAR giả định ở `theoretical_power.csv`. Không dùng bảng B8 như power của H1 tone. Word Power ngoài năm kiểm định và H1/H2 được xuất riêng trong `word_power/`; đọc `word_power/RESULTS.md` trước khi diễn giải do danh sách tiêu cực dùng ridge và kết quả nhạy với penalty.
 
 Các kiểm định B6 và đặc tả C5–C8 từ dữ liệu đang có nằm trong `event_study/b6_robustness_tests.csv`, `c5_reduced_results.csv`, `c6_delayed_results.csv`, `c7_cross_section_results.csv` và `c8_fama_macbeth_summary.csv`; bảng mẫu/hệ số theo năm nằm cạnh chúng. Đọc `ROBUSTNESS_RESULTS.md` để biết rõ cửa sổ, số quan sát, công thức rút gọn và giới hạn.
+
+Các bảng `c2_matched4_results.csv`, `c2_full6_results.csv`, `c3_posneg_full6_results.csv` và `c5_full6_results.csv` dùng `EADRet` cùng Accruals trạng thái `PASS` mới bổ sung. Đọc `FULL_CONTROLS_REVIEW.md` và `full_controls_qa.json` để biết nguồn, quy tắc chọn mẫu 481 hồ sơ và giới hạn; không nhầm các mô hình tone tỷ lệ này với Word Power.
 
 ## C2 với biến kiểm soát có sẵn
 

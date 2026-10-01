@@ -1,0 +1,15 @@
+{
+  "input_filings": 1000,
+  "eadret_success": 991,
+  "accruals_pass": 571,
+  "accruals_warn": 341,
+  "accruals_structural_missing": 88,
+  "eadret_arithmetic_mismatches": 0,
+  "accession_mismatches": 0,
+  "report_date_mismatches": 0,
+  "current_four_control_sample": 862,
+  "six_control_complete_cases": 481,
+  "six_control_firms": 71,
+  "c5_six_control_complete_cases": 431,
+  "c5_six_control_firms": 71
+}

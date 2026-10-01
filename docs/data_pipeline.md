@@ -12,6 +12,8 @@ Chạy `python scripts/run_analysis.py` từ thư mục gốc sau khi cài `requ
 | C2 rút gọn | Mẫu hồi quy hiện hành và `data/metadata/controls/controls_item7.csv` | `scripts/calculate_c2_controls.py` ghép Size, BM, Volatility, Turnover; giá và số cổ phiếu được đưa về cùng cơ sở chia tách bằng `data/market_data/stock_splits.csv`; ghi `analysis_outputs/c2_reduced_results.csv` và `c2_reduced_sample.csv` |
 | Bảng công ty–năm nộp | Metadata hồ sơ, bảng tone được cung cấp và CAR hiện hành | `scripts/build_firm_year_panel.py` giữ toàn bộ hồ sơ, đánh dấu phần có/thiếu tone và CAR; ghi `analysis_outputs/tone_firm_year.csv` |
 | Độ vững B6, C5–C8 | AR ước lượng/sự kiện, bảng công ty–năm, controls, giá và mẫu hồi quy | `scripts/optional_robustness.py` ghi các bảng B6, C5 rút gọn, C6 phản ứng chậm, C7 AR ngày 0 và C8 theo năm; giải thích trong `analysis_outputs/ROBUSTNESS_RESULTS.md` |
+| Sáu controls | `eadret_item7.csv`, `accruals_item7.csv` từ nhánh dữ liệu và mẫu/controls hiện hành | `scripts/calculate_full_controls.py` kiểm tra khóa, thời điểm, trạng thái và số học; chỉ nhận Accruals `PASS`; xuất C2/C3 sáu controls, C5 sáu controls và đối chứng bốn controls trên cùng mẫu vào `analysis_outputs/` |
+| Word Power H1/H2 | `item7_lm_sentiment_counts.csv.gz`, CAR và mẫu sáu controls | `scripts/calculate_word_power.py` ước lượng trọng số ngoài năm đang chấm điểm; xuất Score, trọng số từng năm, hồi quy bốn cửa sổ và kiểm tra độ nhạy tại `analysis_outputs/word_power/` |
 | So sánh từ điển | `data/metadata/tone_method_item7.csv` | `scripts/summarize_dictionary_comparison.py` xuất bảng từng hồ sơ và tổng hợp LM/Harvard vào `analysis_outputs/` |
 | Kiểm tra và trình bày | Các đầu vào và đầu ra trên | Các script kiểm tra số học, khóa và độ phủ dữ liệu, tổng AR thành CAR, sự nhất quán giữa các bảng; hàm ý tài chính được tạo lại từ hệ số và p-value hiện hành; lưu `analysis_outputs/verification.json`, `handoff/manifest.json` và `analysis_outputs/RESULTS_PRESENTATION.md` |
 
@@ -28,3 +30,5 @@ CAR, CAAR và AAR là lợi suất dạng thập phân: `0.01` tương ứng `1%
 ## Bảng đầu vào
 
 `run_analysis.py` sử dụng các bảng đầu vào được liệt kê ở trên và không tải thêm dữ liệu. Mã thu thập báo cáo và giá nằm trong `src/` để nhóm quản lý riêng với luồng tính kết quả. Mỗi đầu ra trong `analysis_outputs/` có thể đối chiếu với bảng đầu vào và mã xử lý tương ứng.
+
+Corpus bổ sung được tạo bằng `scripts/fetch_item7_corpus.py --all` với `SEC_USER_AGENT` chứa tên nhóm và email liên hệ. Lệnh tải 1.000 HTML 10-K theo accession, đối chiếu văn bản sạch với `preprocessed_10k.csv`, trích 971 Item 7 theo ranh giới `sections_10k_v3.csv` và so số token với `tone_method_item7.csv`. `scripts/verify_item7_corpus.py` kiểm tra tần suất từ và đếm LM/phủ định A1; bảng `data/item7_corpus/item7_lm_sentiment_counts.csv.gz` là đầu vào Word Power. HTML, văn bản sạch và Item 7 gốc được giữ local, có thể tải lại từ URL trong manifest. `run_analysis.py` không tải SEC khi chạy lại các phép tính.

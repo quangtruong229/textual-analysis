@@ -38,7 +38,17 @@ FILES = {
     "c8_summary": "analysis_outputs/c8_fama_macbeth_summary.csv",
     "regression": "analysis_outputs/regression/regression_results.csv",
     "c2_regression": "analysis_outputs/c2_reduced_results.csv",
+    "c2_matched4": "analysis_outputs/c2_matched4_results.csv",
+    "c2_full6": "analysis_outputs/c2_full6_results.csv",
+    "c2_full6_sample": "analysis_outputs/c2_full6_sample.csv",
+    "c3_full6": "analysis_outputs/c3_posneg_full6_results.csv",
+    "c5_full6": "analysis_outputs/c5_full6_results.csv",
+    "c5_full6_sample": "analysis_outputs/c5_full6_sample.csv",
     "missing_filings": "analysis_outputs/missing_filings.csv",
+    "word_power_scores": "analysis_outputs/word_power/scores.csv",
+    "word_power_regression": "analysis_outputs/word_power/regression_results.csv",
+    "word_power_six_control_sample": "analysis_outputs/word_power/six_control_sample.csv",
+    "word_power_ridge_sensitivity": "analysis_outputs/word_power/ridge_sensitivity.csv",
 }
 
 
@@ -111,13 +121,40 @@ def main() -> None:
     require(len(tables["c7_sample"]) == int(tables["c2_regression"].n.iloc[0]),
             "C7 control sample changed")
 
-    for name in ("regression", "c2_regression", "c5_reduced", "c6_delayed", "c7_cross_section"):
+    for name in ("regression", "c2_regression", "c2_matched4", "c2_full6",
+                 "c3_full6", "c5_reduced", "c5_full6", "c6_delayed", "c7_cross_section"):
         table = tables[name]
         require(table.p_hc3_two_sided.dropna().between(0, 1).all(), f"Invalid HC3 p-values in {name}")
         require(table.p_cluster_two_sided.dropna().between(0, 1).all(), f"Invalid cluster p-values in {name}")
     require(len(tables["regression"]) == 76, "Expected 76 C1/C3/C4 rows")
     require(len(tables["c2_regression"]) == 24, "Expected 24 reduced C2 rows")
     require(tables["c2_regression"].n.eq(862).all(), "Reduced C2 sample changed")
+    require(len(tables["c2_full6_sample"]) == 481 and
+            tables["c2_full6_sample"].ticker.nunique() == 71,
+            "Six-control sample coverage changed")
+    require(len(tables["c5_full6_sample"]) == 431,
+            "Full C5 sample coverage changed")
+    for name in ("c2_matched4", "c2_full6", "c3_full6"):
+        require(tables[name].n.eq(481).all(), f"{name} sample mismatch")
+
+    wp = tables["word_power_scores"]
+    require(len(wp) == 971 and not wp.duplicated(keys).any(), "Word Power score coverage changed")
+    require(wp[["lm_positive_wp", "lm_negative_wp"]].notna().all().all(),
+            "Missing Word Power scores")
+    wp_reg = tables["word_power_regression"]
+    require(wp_reg.p_hc3_two_sided.dropna().between(0, 1).all(), "Invalid Word Power HC3 p")
+    require(wp_reg.p_cluster_two_sided.dropna().between(0, 1).all(), "Invalid Word Power cluster p")
+    for model, term, n in (
+        ("C1_H1_WP_positive", "lm_positive_wp", 969),
+        ("C1_H2_WP_negative", "lm_negative_wp", 969),
+        ("C2_H1_WP_positive_six_controls", "lm_positive_wp", 481),
+        ("C2_H2_WP_negative_six_controls", "lm_negative_wp", 481),
+    ):
+        rows = wp_reg.loc[wp_reg.model.eq(model) &
+                          wp_reg.dependent_variable.eq("car_0_p3") & wp_reg.term.eq(term)]
+        require(len(rows) == 1 and int(rows.iloc[0].n) == n, f"Word Power {model} result changed")
+    require(len(tables["word_power_six_control_sample"]) == 481,
+            "Word Power six-control sample changed")
 
     files = {}
     for name, relative in FILES.items():

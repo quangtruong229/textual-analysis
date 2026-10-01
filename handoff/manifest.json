@@ -408,6 +408,130 @@
         "controls_omitted"
       ]
     },
+    "c2_matched4": {
+      "path": "analysis_outputs/c2_matched4_results.csv",
+      "rows": 24,
+      "sha256": "cd6bc09bae228119e811f0e8641a4deddcc8662d1683cfbcc1563829bc344212",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided"
+      ]
+    },
+    "c2_full6": {
+      "path": "analysis_outputs/c2_full6_results.csv",
+      "rows": 32,
+      "sha256": "59692068e42d5c386c799dc338a56b43d40f735b70b0a28b022fd8c066cedcc6",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided"
+      ]
+    },
+    "c2_full6_sample": {
+      "path": "analysis_outputs/c2_full6_sample.csv",
+      "rows": 481,
+      "sha256": "6f7f9cfe32983dd0fdd6f113d46339c0f65eafe572301a63b806df33d2bf9dc0",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "car_m1_p1",
+        "car_0_p3",
+        "car_m3_p3",
+        "car_m5_p5",
+        "lm_net_prop",
+        "size",
+        "bm",
+        "volatility",
+        "turnover",
+        "accession_number",
+        "lm_positive_prop",
+        "lm_negative_prop",
+        "eadret",
+        "accruals"
+      ]
+    },
+    "c3_full6": {
+      "path": "analysis_outputs/c3_posneg_full6_results.csv",
+      "rows": 36,
+      "sha256": "10a75e3b59d76b0f5f005ca8dd1881f2cf9b7eb719f6f8e52f8f29c043994596",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided"
+      ]
+    },
+    "c5_full6": {
+      "path": "analysis_outputs/c5_full6_results.csv",
+      "rows": 8,
+      "sha256": "3ae42962b4ca77f329996e3df28e376469debb26da622f5affd04f3eff2c28b7",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided"
+      ]
+    },
+    "c5_full6_sample": {
+      "path": "analysis_outputs/c5_full6_sample.csv",
+      "rows": 431,
+      "sha256": "779abb111ed0f3b4c9f02016837c30cbdd511fb59bf50ce812742b63dc59e11c",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "filing_year",
+        "lm_net_prop",
+        "lag_tone",
+        "lag_year",
+        "status",
+        "size",
+        "bm",
+        "volatility",
+        "turnover",
+        "z_size",
+        "z_bm",
+        "z_volatility",
+        "z_turnover",
+        "z_lag_tone",
+        "eadret",
+        "accruals"
+      ]
+    },
     "missing_filings": {
       "path": "analysis_outputs/missing_filings.csv",
       "rows": 31,
@@ -420,6 +544,81 @@
         "has_tone",
         "has_event",
         "event_exclusion_reason"
+      ]
+    },
+    "word_power_scores": {
+      "path": "analysis_outputs/word_power/scores.csv",
+      "rows": 971,
+      "sha256": "a0e8339e4aeeaf826fd43a31b2a1fb8e8ece0c896a5c82a956bffe904cacd857",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "accession_number",
+        "filing_year",
+        "lm_total_words",
+        "lm_positive_wp",
+        "lm_negative_wp"
+      ]
+    },
+    "word_power_regression": {
+      "path": "analysis_outputs/word_power/regression_results.csv",
+      "rows": 208,
+      "sha256": "bdf5179dfbff84f37fa7f6a8f422949edcdcaff4d5ed34c89458744cf48317b2",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided",
+        "hypothesis_direction",
+        "p_hc3_one_sided",
+        "p_cluster_one_sided"
+      ]
+    },
+    "word_power_six_control_sample": {
+      "path": "analysis_outputs/word_power/six_control_sample.csv",
+      "rows": 481,
+      "sha256": "00f3b99770ec0797da81cc867d75972a7c7fb36bffb694ed60ea707f9b2dd293",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "car_m1_p1",
+        "car_0_p3",
+        "car_m3_p3",
+        "car_m5_p5",
+        "lm_net_prop",
+        "size",
+        "bm",
+        "volatility",
+        "turnover",
+        "accession_number",
+        "lm_positive_prop",
+        "lm_negative_prop",
+        "eadret",
+        "accruals",
+        "lm_positive_wp",
+        "lm_negative_wp"
+      ]
+    },
+    "word_power_ridge_sensitivity": {
+      "path": "analysis_outputs/word_power/ridge_sensitivity.csv",
+      "rows": 8,
+      "sha256": "27cc69de657864030de68a052fae9ce82c5cbf1126e9e5be88e497bdac2a3172",
+      "columns": [
+        "alpha",
+        "model",
+        "n",
+        "coefficient",
+        "coefficient_per_score_sd",
+        "p_hc3_two_sided",
+        "p_cluster_two_sided"
       ]
     }
   }

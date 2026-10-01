@@ -89,7 +89,7 @@ def main() -> None:
     print("Excluded for incomplete controls:", len(merged) - len(frame))
     print("Firms in C2:", frame.ticker.nunique())
     print("Model: CAR ~ LM_net_prop + Size + BM + Volatility + Turnover")
-    print("EADRet and Accruals unavailable; this is reduced C2.")
+    print("This is the four-control C2 baseline; six-control C2 is exported separately.")
     headline = pd.DataFrame(results).query("term == 'lm_net_prop'")
     print("\nTone coefficient by CAR window (HC3 and firm-clustered p-values):")
     print(headline[["dependent_variable", "coefficient", "p_hc3_two_sided", "p_cluster_two_sided", "n"]].to_string(index=False, float_format=lambda x: f"{x:.6f}"))

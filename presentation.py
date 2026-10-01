@@ -24,7 +24,8 @@ def pvalue(value: float) -> str:
 
 
 def financial_implications(regression: pd.DataFrame, c2: pd.DataFrame,
-                           event_summary: pd.DataFrame, daily: pd.DataFrame | None = None) -> str:
+                           event_summary: pd.DataFrame, daily: pd.DataFrame | None = None,
+                           word_power: pd.DataFrame | None = None) -> str:
     """Describe observed directions without turning associations into causal claims."""
     model = "C3_CAR_0_p3_LM_PosNeg"
     def coefficient(term: str):
@@ -69,11 +70,36 @@ def financial_implications(regression: pd.DataFrame, c2: pd.DataFrame,
         descriptions = [f"{r.term} ({'dương' if r.coefficient > 0 else 'âm'})" for r in significant.itertuples()]
         control_sentence = ("Trong C2 rút gọn [0,+3], các biến kiểm soát có p < 0,05 "
                             "theo cả HC3 và cụm công ty là " + ", ".join(descriptions) + ".")
+    wp_sentence = ""
+    if word_power is not None:
+        wp_rows = word_power.loc[
+            word_power.dependent_variable.eq("car_0_p3")
+            & word_power.model.isin(["C2_H1_WP_positive_six_controls",
+                                       "C2_H2_WP_negative_six_controls"])
+            & word_power.term.isin(["lm_positive_wp", "lm_negative_wp"])]
+        if len(wp_rows) != 2:
+            raise ValueError("Missing primary six-control Word Power results")
+        findings = []
+        for label, model, term in (
+            ("H1", "C2_H1_WP_positive_six_controls", "lm_positive_wp"),
+            ("H2", "C2_H2_WP_negative_six_controls", "lm_negative_wp"),
+        ):
+            row = wp_rows.loc[wp_rows.model.eq(model) & wp_rows.term.eq(term)]
+            if len(row) != 1:
+                raise ValueError(f"Missing {label} Word Power result")
+            value = row.iloc[0]
+            supported = (value.coefficient > 0 and value.p_hc3_one_sided < .05
+                         and value.p_cluster_one_sided < .05)
+            findings.append(f"{label} {'có' if supported else 'chưa có'} bằng chứng ở ngưỡng 5% theo chiều kỳ vọng")
+        wp_sentence = (" Word Power đã được tính riêng từ tần suất Item 7 theo năm tách mẫu; "
+                       f"mô hình sáu biến kiểm soát dùng {int(wp_rows.iloc[0].n)} hồ sơ. "
+                       + "; ".join(findings) + ". Xem "
+                       "[báo cáo Word Power](word_power/RESULTS.md) để biết hệ số, p-value và giới hạn.")
     return (f"CAR trung bình [0,+3] của mẫu là {dec(100 * car.CAAR, 3)}%.{ar_sentence} "
             "Đây là phản ứng chung quanh công bố, chưa quy cho tone.\n\n"
             f"{pos}\n\n{neg}\n\n{control_sentence} "
-            "Các hệ số là quan hệ trong mẫu; không suy ra giao dịch sinh lời hay tác động nhân quả. "
-            "Word Power chưa được tính từ văn bản gốc, nên H1 viết theo ScorePos Word Power chưa được kiểm định.")
+            "Các hệ số là quan hệ trong mẫu; không suy ra giao dịch sinh lời hay tác động nhân quả."
+            + wp_sentence)
 
 
 def results_markdown(
@@ -84,8 +110,9 @@ def results_markdown(
     c2: pd.DataFrame,
     daily: pd.DataFrame | None = None,
     extended: pd.DataFrame | None = None,
+    word_power: pd.DataFrame | None = None,
 ) -> str:
-    implications = financial_implications(regression, c2, event_summary, daily)
+    implications = financial_implications(regression, c2, event_summary, daily, word_power)
     extended_text = ""
     if extended is not None:
         rows = []
@@ -191,6 +218,8 @@ C2 trong bảng dùng `LM_net_prop`, Size, BM, Volatility và Turnover. Do yêu 
 {chr(10).join(c2_rows)}
 
 Ở `[-1,+1]`, hệ số tone C2 là **{dec(c2_baseline.coefficient, 4)}**, p HC3 **{pvalue(c2_baseline.p_hc3_two_sided)}**. Đây là mô hình **rút gọn**, và sự khác biệt với C1 vừa phản ánh thêm biến kiểm soát vừa phản ánh mẫu nhỏ hơn; không thể tách hai tác động chỉ bằng hai bảng này.
+
+Mô hình với **đủ sáu biến kiểm soát** dùng EADRet và Accruals trạng thái `PASS` được báo riêng tại [FULL_CONTROLS_REVIEW.md](FULL_CONTROLS_REVIEW.md). Bảng này còn 481 hồ sơ; điểm tone vẫn là LM dạng tỷ lệ, không phải Word Power.
 
 ## Hàm ý tài chính theo kết quả hiện tại
 

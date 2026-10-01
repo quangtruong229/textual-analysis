@@ -105,6 +105,18 @@ def main() -> None:
     c6 = pd.read_csv(OUT / "c6_delayed_results.csv")
     c7 = pd.read_csv(OUT / "c7_cross_section_results.csv")
     c8 = pd.read_csv(OUT / "c8_fama_macbeth_summary.csv")
+    c2_full = pd.read_csv(OUT / "c2_full6_results.csv")
+    c2_matched = pd.read_csv(OUT / "c2_matched4_results.csv")
+    c3_full = pd.read_csv(OUT / "c3_posneg_full6_results.csv")
+    c5_full = pd.read_csv(OUT / "c5_full6_results.csv")
+    full_qa = json.loads((OUT / "full_controls_qa.json").read_text(encoding="utf-8"))
+    if full_qa["six_control_complete_cases"] != 481 or full_qa["six_control_firms"] != 71:
+        raise AssertionError("Full controls sample changed")
+    for table in (c2_full, c2_matched, c3_full):
+        if not table.n.eq(481).all():
+            raise AssertionError("Six-control regressions use different samples")
+    if not c5_full.n.eq(431).all():
+        raise AssertionError("C5 full-controls sample changed")
     if set(b6.window) != set(extended.window) or len(delayed) != len(events):
         raise AssertionError("B6/C6 event coverage changed")
     if delayed[["car_p5_p5", "car_p5_p10", "car_p5_p22"]].notna().sum().ne(
@@ -202,6 +214,8 @@ def main() -> None:
             source / "filing_acceptance.csv",
             source / "tone_method_item7.csv",
             source / "controls/controls_item7.csv",
+            source / "controls/eadret_item7.csv",
+            source / "controls/accruals_item7.csv",
         ]},
         "input_filings": len(filings),
         "input_firms": int(filings.ticker.nunique()),
@@ -211,6 +225,7 @@ def main() -> None:
         "missing_event": int((~missing.has_event).sum()),
         "c2_complete_cases": int(c2.n.iloc[0]),
         "c2_firms": int(c2.n_firms.iloc[0]),
+        "full_controls": full_qa,
         "firm_year_rows": len(panel),
         "dictionary_opposite_sign": int(comparison.opposite_sign.sum()),
         "event_calendar": calendar_checks,
