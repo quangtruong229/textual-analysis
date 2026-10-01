@@ -21,4 +21,4 @@ C3 đưa đồng thời positive và negative tone **dạng tỷ lệ** vào mô
 
 C5 dùng tone hiện tại làm biến phụ thuộc, sáu controls và tone năm nộp liền trước, chuẩn hóa các biến giải thích trên mẫu hoàn chỉnh. Hệ số tone trễ chuẩn hóa = 0.003592, p HC3 = 2.554e-37, p cụm = 1.402e-18.
 
-Hai bảng nguồn là dữ liệu đã tính sẵn từ nhánh khác. Kiểm tra ở đây xác nhận khóa, thời gian và số học nhưng không tái dựng độc lập mọi SEC Company Fact hay 8-K từ đầu. Word Power ở nhánh nguồn hiện chỉ là TF-IDF chưa chuẩn hóa được đặt tên lại; không dùng cột đó trong bất kỳ mô hình nào. Các kết quả hồi quy mô tả liên hệ trong mẫu nhỏ hơn và không chứng minh tác động nhân quả.
+Hai bảng nguồn là dữ liệu đã tính sẵn từ nhánh khác. Kiểm tra ở đây xác nhận khóa, thời gian và số học nhưng không tái dựng độc lập mọi SEC Company Fact hay 8-K từ đầu. Cột `word_power` ở nhánh nguồn chỉ là TF-IDF chưa chuẩn hóa; không dùng cột đó trong các mô hình tỷ lệ của báo cáo này. Word Power ước lượng từ tần suất từng từ được báo riêng tại `word_power/RESULTS.md`. Các kết quả hồi quy mô tả liên hệ trong mẫu nhỏ hơn và không chứng minh tác động nhân quả.

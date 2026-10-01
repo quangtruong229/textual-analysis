@@ -59,7 +59,7 @@ Tone tích cực LM dạng tỷ lệ tăng 1 điểm phần trăm đi kèm CAR [
 
 Tone tiêu cực LM dạng tỷ lệ tăng 1 điểm phần trăm đi kèm CAR [0,+3] tăng khoảng 0,168 điểm phần trăm trong hồi quy C3 (p HC3 0,4443, p theo cụm 0,4275); dấu ước lượng chưa có bằng chứng ổn định ở ngưỡng 5% với cả hai loại sai số chuẩn.
 
-Trong C2 rút gọn [0,+3], các biến kiểm soát có p < 0,05 theo cả HC3 và cụm công ty là size (âm). Các hệ số là quan hệ trong mẫu; không suy ra giao dịch sinh lời hay tác động nhân quả. Word Power chưa được tính từ văn bản gốc, nên H1 viết theo ScorePos Word Power chưa được kiểm định.
+Trong C2 rút gọn [0,+3], các biến kiểm soát có p < 0,05 theo cả HC3 và cụm công ty là size (âm). Các hệ số là quan hệ trong mẫu; không suy ra giao dịch sinh lời hay tác động nhân quả. Word Power đã được tính riêng từ tần suất Item 7 theo năm tách mẫu; mô hình sáu biến kiểm soát dùng 481 hồ sơ. H1 chưa có bằng chứng ở ngưỡng 5% theo chiều kỳ vọng; H2 chưa có bằng chứng ở ngưỡng 5% theo chiều kỳ vọng. Xem [báo cáo Word Power](word_power/RESULTS.md) để biết hệ số, p-value và giới hạn.
 
 
 ## Kiểm định bổ sung

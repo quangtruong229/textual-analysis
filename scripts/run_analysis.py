@@ -29,6 +29,8 @@ def main() -> None:
         ("build_firm_year_panel.py", []),
         ("optional_robustness.py", []),
         ("calculate_full_controls.py", []),
+        ("calculate_word_power.py", []),
+        ("verify_word_power.py", []),
         ("summarize_dictionary_comparison.py", []),
         ("export_presentation.py", []),
         ("verify_recalculation.py", []),

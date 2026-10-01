@@ -4,6 +4,7 @@
   "excluded_invalid_item7": 29,
   "token_total": 11102368,
   "term_rows": 1399773,
+  "lm_sentiment_term_rows": 66133,
   "checks": [
     "per-word frequency",
     "total words",

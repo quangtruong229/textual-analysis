@@ -206,7 +206,7 @@ AR ngày 0 được hồi quy theo LM net tỷ lệ và bốn biến kiểm soá
 
 Hồi quy cắt ngang riêng cho từng năm 2016–2025, sau đó lấy trung bình **10 hệ số năm** và tính sai số chuẩn từ độ phân tán giữa các năm (t với 9 bậc tự do). Dùng CAR `[0,+3]`. Đặc tả C1 tỷ lệ: hệ số tone trung bình = {c8_base.mean_coefficient:.4f}, p = {c8_base.p_two_sided:.4f}; đặc tả C2 rút gọn: {c8_control.mean_coefficient:.4f}, p = {c8_control.p_two_sided:.4f}. Chỉ có 10 năm, nên sức mạnh kiểm định hạn chế; cả hai mô hình không dùng Word Power.
 
-Các CSV trong `analysis_outputs/` và `analysis_outputs/event_study/` lưu toàn bộ hệ số, p-value, cỡ mẫu và hồ sơ. C2/C5 sáu controls từ hai bảng mới được tính riêng bởi `calculate_full_controls.py` và giải thích ở `FULL_CONTROLS_REVIEW.md`. Word Power, kiểm tra ngữ cảnh từng từ và khả năng tái tạo bước xử lý văn bản vẫn cần dữ liệu gốc bổ sung.
+Các CSV trong `analysis_outputs/` và `analysis_outputs/event_study/` lưu toàn bộ hệ số, p-value, cỡ mẫu và hồ sơ. C2/C5 sáu controls từ hai bảng mới được tính riêng bởi `calculate_full_controls.py` và giải thích ở `FULL_CONTROLS_REVIEW.md`. Word Power được tính riêng tại `word_power/`; kiểm tra ngữ cảnh từng từ và tái tạo toàn bộ từ HTML gốc cần tải lại corpus theo manifest SEC.
 """
     (OUT / "ROBUSTNESS_RESULTS.md").write_text(report, encoding="utf-8")
 

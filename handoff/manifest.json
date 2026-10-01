@@ -545,6 +545,81 @@
         "has_event",
         "event_exclusion_reason"
       ]
+    },
+    "word_power_scores": {
+      "path": "analysis_outputs/word_power/scores.csv",
+      "rows": 971,
+      "sha256": "a0e8339e4aeeaf826fd43a31b2a1fb8e8ece0c896a5c82a956bffe904cacd857",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "accession_number",
+        "filing_year",
+        "lm_total_words",
+        "lm_positive_wp",
+        "lm_negative_wp"
+      ]
+    },
+    "word_power_regression": {
+      "path": "analysis_outputs/word_power/regression_results.csv",
+      "rows": 208,
+      "sha256": "bdf5179dfbff84f37fa7f6a8f422949edcdcaff4d5ed34c89458744cf48317b2",
+      "columns": [
+        "model",
+        "dependent_variable",
+        "term",
+        "n",
+        "n_firms",
+        "coefficient",
+        "se_hc3",
+        "p_hc3_two_sided",
+        "ci_hc3_low",
+        "ci_hc3_high",
+        "se_cluster",
+        "p_cluster_two_sided",
+        "hypothesis_direction",
+        "p_hc3_one_sided",
+        "p_cluster_one_sided"
+      ]
+    },
+    "word_power_six_control_sample": {
+      "path": "analysis_outputs/word_power/six_control_sample.csv",
+      "rows": 481,
+      "sha256": "00f3b99770ec0797da81cc867d75972a7c7fb36bffb694ed60ea707f9b2dd293",
+      "columns": [
+        "ticker",
+        "filing_date",
+        "car_m1_p1",
+        "car_0_p3",
+        "car_m3_p3",
+        "car_m5_p5",
+        "lm_net_prop",
+        "size",
+        "bm",
+        "volatility",
+        "turnover",
+        "accession_number",
+        "lm_positive_prop",
+        "lm_negative_prop",
+        "eadret",
+        "accruals",
+        "lm_positive_wp",
+        "lm_negative_wp"
+      ]
+    },
+    "word_power_ridge_sensitivity": {
+      "path": "analysis_outputs/word_power/ridge_sensitivity.csv",
+      "rows": 8,
+      "sha256": "27cc69de657864030de68a052fae9ce82c5cbf1126e9e5be88e497bdac2a3172",
+      "columns": [
+        "alpha",
+        "model",
+        "n",
+        "coefficient",
+        "coefficient_per_score_sd",
+        "p_hc3_two_sided",
+        "p_cluster_two_sided"
+      ]
     }
   }
 }

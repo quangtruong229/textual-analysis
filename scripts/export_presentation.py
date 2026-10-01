@@ -22,6 +22,7 @@ def main() -> None:
         pd.read_csv(out / "c2_reduced_results.csv"),
         pd.read_csv(out / "event_study/event_daily_summary.csv"),
         pd.read_csv(out / "event_study/extended_window_tests.csv"),
+        pd.read_csv(out / "word_power/regression_results.csv"),
     )
     target = out / "RESULTS_PRESENTATION.md"
     target.write_text(text, encoding="utf-8")

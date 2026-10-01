@@ -34,6 +34,7 @@ required = [
     "analysis_outputs/event_study/theoretical_power.csv",
     "analysis_outputs/regression/regression_results.csv",
     "analysis_outputs/c2_reduced_results.csv",
+    "analysis_outputs/word_power/regression_results.csv",
 ]
 missing = [name for name in required if not (ROOT / name).exists()]
 if missing:
@@ -50,6 +51,7 @@ corrado = read_csv("analysis_outputs/event_study/corrado_daily.csv")
 power = read_csv("analysis_outputs/event_study/theoretical_power.csv")
 regression = read_csv("analysis_outputs/regression/regression_results.csv")
 c2 = read_csv("analysis_outputs/c2_reduced_results.csv")
+word_power = read_csv("analysis_outputs/word_power/regression_results.csv")
 
 st.title("Nhóm 5 · Kết quả phân tích 10-K")
 st.caption("Trang local đọc bảng kết quả có sẵn. Năm trong bộ lọc là năm nộp 10-K, không nhất thiết là năm tài chính.")
@@ -71,7 +73,8 @@ with overview:
                  hide_index=True, width="stretch")
 
 with results_tab:
-    narrative = results_markdown(panel, comparison_summary, event_summary, regression, c2, daily, extended)
+    narrative = results_markdown(panel, comparison_summary, event_summary, regression, c2,
+                                 daily, extended, word_power)
     st.markdown(narrative)
     st.download_button("Tải phần trình bày kết quả", narrative.encode("utf-8"),
                        file_name="Ket_qua_va_dien_giai.md", mime="text/markdown")

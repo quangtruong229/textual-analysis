@@ -25,6 +25,7 @@ def main() -> None:
     errors: list[dict[str, str]] = []
     verified = manifest[manifest["status"] == "verified"]
     token_total = 0
+    sentiment_rows: list[tuple[str, str, str, str, str, int]] = []
     for _, row in verified.iterrows():
         key = (row["ticker"], row["filing_date"])
         accession = row["accession_number"].replace("-", "")
@@ -46,6 +47,10 @@ def main() -> None:
         lm = tone.loc[key]
         counts, neg_pos, neg_neg = sentiment_counts(
             tokens, dictionary["positive"], dictionary["negative"]
+        )
+        sentiment_rows.extend(
+            (row["ticker"], row["filing_date"], row["accession_number"], kind, term, count)
+            for (kind, term), count in sorted(counts.items())
         )
         observed = {
             "lm_total_words": len(tokens),
@@ -74,6 +79,13 @@ def main() -> None:
                                          row["accession_number"], entry["term"], entry["count"]])
                         aggregate_rows += 1
         temporary.replace(aggregate)
+        sentiment_output = corpus / "item7_lm_sentiment_counts.csv.gz"
+        temporary = corpus / "item7_lm_sentiment_counts.csv.gz.part"
+        with gzip.open(temporary, "wt", encoding="utf-8", newline="") as stream:
+            writer = csv.writer(stream)
+            writer.writerow(["ticker", "filing_date", "accession_number", "category", "term", "count"])
+            writer.writerows(sorted(sentiment_rows))
+        temporary.replace(sentiment_output)
 
     report = {
         "manifest_rows": len(manifest),
@@ -81,6 +93,7 @@ def main() -> None:
         "excluded_invalid_item7": int((manifest["status"] == "no_valid_item7").sum()),
         "token_total": token_total,
         "term_rows": aggregate_rows,
+        "lm_sentiment_term_rows": len(sentiment_rows),
         "checks": ["per-word frequency", "total words", "LM positive", "LM negative", "A1 negated positive", "A1 negated negative"],
         "mismatch_count": len(errors),
         "first_mismatches": errors[:20],
