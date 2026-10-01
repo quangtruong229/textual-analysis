@@ -1,6 +1,6 @@
 {
   "source_sha256": {
-    "data\\market_data\\daily_prices.csv": "39c777b6bed301faf2f4e85ef39d14345a9c62005f7a8cd07409043163bb0f5c",
+    "data\\market_data\\daily_prices.csv": "3c7e69e5eec1f2992fb5eceb6c37de35ef03fbcbde9867282231cd5ba3e21fd6",
     "data\\market_data\\stock_splits.csv": "53f04da27dfea7760fb7ac5a5f9d7612a10c90382be9541ee59fcd060ea12e92",
     "data\\metadata\\filings_2016_2025.csv": "3e701d5c6bdec10321aedc9646c9b67f0d8c7152364313a93c9e0be9a236b73b",
     "data\\metadata\\filing_acceptance.csv": "83b4656f59c81b3b2c861ea5a88f490734815035f0515a775ab9c0362ea42a2b",
@@ -51,7 +51,7 @@
     "b6_windows": 4,
     "c5_filings": 769,
     "c6_windows": 3,
-    "c6_long_window_filings": 963,
+    "c6_long_window_filings": 969,
     "c7_filings": 862,
     "c8_years": 10
   },

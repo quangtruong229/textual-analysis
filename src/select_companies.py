@@ -114,7 +114,7 @@ def get_company_list() -> pd.DataFrame:
 
 def get_10k_filings(cik: str) -> list:
     """
-    Get 10-K filings for a company.
+    Get 10-K filings for a company, including archived submissions pages.
     """
 
     url = (
@@ -124,10 +124,18 @@ def get_10k_filings(cik: str) -> list:
 
     data = get_json(url, DATA_HEADERS)
 
-    recent = pd.DataFrame(
-        data["filings"]["recent"]
-    )
+    filings = data["filings"]
+    pages = [pd.DataFrame(filings["recent"])]
+    # SEC keeps only the most recent submissions in the primary JSON. Older
+    # entries live in the files listed here, sometimes inside our ten-year span.
+    for archive in filings.get("files", []):
+        if archive["filingTo"] < START_DATE or archive["filingFrom"] > END_DATE:
+            continue
+        archive_url = f"https://data.sec.gov/submissions/{archive['name']}"
+        time.sleep(0.15)
+        pages.append(pd.DataFrame(get_json(archive_url, DATA_HEADERS)))
 
+    recent = pd.concat(pages, ignore_index=True)
     if recent.empty:
         return []
 
@@ -151,6 +159,7 @@ def get_10k_filings(cik: str) -> list:
             <= pd.Timestamp(END_DATE)
         )
     ].copy()
+    filtered = filtered.drop_duplicates(subset=["accessionNumber"])
 
     records = []
 
